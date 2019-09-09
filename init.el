@@ -2,7 +2,7 @@
 
 ;;; Description
 
-;; This is the master configuration file this loads several other
+;; This is the master configuration file. This loads several other
 ;; files to give customized behaviour. The goal of this file is to
 ;; provide light weight customizations to your emacs without changing
 ;; much of the default behaviour.
@@ -13,13 +13,6 @@
 ;;; Configuration
 
 ;; Check emacs-version 26.3
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
-
 (let ((minver "26.3"))
   (when (version< emacs-version minver)
     (error "Old emacs. Require v%s or higher" minver)))
@@ -32,11 +25,19 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-;; Load modular lisp files
+;; Load modular lisp packages. In each of these files the general
+;; logic should be like this - IF the required PACKAGE exists THEN DO
+;; the configuration ELSE mark the package for download. Later
+;; (init-pack) can be called manually to download all marked packages.
+
+(require 'init-vars)
 (require 'init-melpa)
+(require 'init-pack)
 (require 'init-path)
 (require 'init-keys)
 (require 'init-theme)
+(require 'init-flycheck)
+(require 'init-edit)
 
 (provide 'init)
 ;;; init.el ends here
