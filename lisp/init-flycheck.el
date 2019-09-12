@@ -1,8 +1,7 @@
 ;; init-flycheck.el --- configure flycheck -*- lexical-binding: t -*-
 
-(if (package-installed-p '(flycheck))
-    (add-hook 'after-init-hook #'global-flycheck-mode)
-  (message "flycheck loaded"))
+(when (package-installed-p '(flycheck))
+  (add-hook 'after-init-hook #'global-flycheck-mode))
 
 (provide 'init-flycheck)
 ;; end-of init-flycheck.el

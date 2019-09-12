@@ -4,7 +4,12 @@
       '(exec-path-from-shell
 	color-theme-sanityinc-tomorrow
 	w3m
-	flycheck))
+	flycheck
+	org
+	ivy
+	direnv
+	company
+	company-jedi))
 
 (defun install-essential-packages ()
   "Install the package from `essential-packages'"
@@ -12,9 +17,8 @@
   (package-refresh-contents)
   (dolist (package essential-packages)
     (unless (package-installed-p package)
-      (package-install package))))
-
-;; (install-essential-packages)
+      (package-install package)))
+  (message "Installed essential packages."))
 
 (provide 'init-pack)
 ;;; end-of init-pack.el

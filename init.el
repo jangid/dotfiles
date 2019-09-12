@@ -38,6 +38,15 @@
 (require 'init-theme)
 (require 'init-flycheck)
 (require 'init-edit)
+(require 'init-org)
+(require 'init-ivy)
+(require 'init-direnv)
+(require 'init-company)
+(require 'init-python)
+(require 'init-gnus)
+
+;; start server for emacsclient support
+(server-start)
 
 (provide 'init)
 ;;; init.el ends here
