@@ -1,5 +1,6 @@
 ;;; init-pack.el --- essential packages -*- lexical-binding: t -*-
 
+(defvar essential-packages)
 (setq essential-packages
       '(exec-path-from-shell
 	color-theme-sanityinc-tomorrow
