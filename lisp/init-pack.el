@@ -4,12 +4,22 @@
       '(exec-path-from-shell
 	color-theme-sanityinc-tomorrow
 	w3m
-	flycheck
+	magit
+	flymake
+	flymake-rust
 	org
-	ivy
+	which-key
+	helm
 	direnv
+	rust-mode
 	company
-	company-jedi))
+	company-jedi
+	company-lsp
+	lsp-mode
+	helm-lsp
+	lsp-java
+	yasnippet
+	dap-mode))
 
 (defun install-essential-packages ()
   "Install the package from `essential-packages'"
