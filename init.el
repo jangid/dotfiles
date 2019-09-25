@@ -1,24 +1,30 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t -*-
-
-;;; Description
-
-;; This is the master configuration file. This loads several other
-;; files to give customized behaviour. The goal of this file is to
-;; provide light weight customizations to your emacs without changing
+;;; Commentary:
+;; This is the master configuration file.  This loads several other
+;; files to give customized behaviour.  The goal of this file is to
+;; provide light weight customizations to your Emacs without changing
 ;; much of the default behaviour.
 ;;
 ;; Another objective of this file is to keep this file updated with
-;; the latest version of emacs.
+;; the latest version of Emacs.
 
-;;; Configuration
+;;; Code:
+
+;; This line initializes all the installed packages.
+(package-initialize)
+
+;; Produce backtrace on error
+(setq debug-on-error t)
 
 ;; Check emacs-version 26.3
 (let ((minver "26.3"))
   (when (version< emacs-version minver)
-    (error "Old emacs. Require v%s or higher" minver)))
+    (error "Old Emacs.  Require v%s or higher" minver)))
 
 ;; Directory to hold modular lisp files
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(push (expand-file-name "lisp" user-emacs-directory) load-path)
+
+;;(setq flycheck-emacs-lisp-load-path nil)
 
 ;; Keep the custom file separate from init.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -36,14 +42,15 @@
 (require 'init-path)
 (require 'init-keys)
 (require 'init-theme)
-(require 'init-flycheck)
+(require 'init-magit)
+(require 'init-lsp)
 (require 'init-edit)
 (require 'init-org)
-(require 'init-ivy)
+(require 'init-helm)
 (require 'init-direnv)
-(require 'init-company)
-(require 'init-python)
+(require 'init-prog)
 (require 'init-gnus)
+(require 'init-erc)
 
 ;; start server for emacsclient support
 (server-start)
