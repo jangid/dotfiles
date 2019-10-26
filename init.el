@@ -10,9 +10,6 @@
 
 ;;; Code:
 
-;; This line initializes all the installed packages.
-(package-initialize)
-
 ;; Produce backtrace on error
 (setq debug-on-error t)
 
@@ -22,9 +19,11 @@
     (error "Old Emacs.  Require v%s or higher" minver)))
 
 ;; Directory to hold modular lisp files
-(push (expand-file-name "lisp" user-emacs-directory) load-path)
+(eval-when-compile
+  (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)))
 
-;;(setq flycheck-emacs-lisp-load-path nil)
+;; Initialize packaging system
+(require 'init-melpa)
 
 ;; Keep the custom file separate from init.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -36,8 +35,8 @@
 ;; the configuration ELSE mark the package for download. Later
 ;; (init-pack) can be called manually to download all marked packages.
 
+(require 'init-diminish)
 (require 'init-vars)
-(require 'init-melpa)
 (require 'init-pack)
 (require 'init-path)
 (require 'init-keys)
@@ -46,14 +45,16 @@
 (require 'init-lsp)
 (require 'init-edit)
 (require 'init-org)
-(require 'init-helm)
+(require 'init-ivy)
 (require 'init-direnv)
 (require 'init-prog)
 (require 'init-gnus)
 (require 'init-erc)
+(require 'init-bbdb)
 
 ;; start server for emacsclient support
-(server-start)
+(require 'server)
+(unless (server-running-p) (server-start))
 
 (provide 'init)
 ;;; init.el ends here

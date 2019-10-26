@@ -1,6 +1,7 @@
 ;;; init-path.el --- exec path initialization -*- lexical-binding: t -*-
 
-(exec-path-from-shell-initialize)
+(when (package-installed-p 'exec-path-from-shell)
+  (exec-path-from-shell-initialize))
 
 (provide 'init-path)
-;;; end-of init-path.el
+;;; init-path.el ends here

@@ -2,8 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-;; (package-refresh-contents t)
+
+;; This line initializes all the installed packages.
+(package-initialize)
 
 (provide 'init-melpa)
 ;;; init-melpa.el ends here

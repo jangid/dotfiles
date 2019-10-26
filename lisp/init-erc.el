@@ -10,33 +10,36 @@
 (require 'erc-auth (expand-file-name ".erc-auth.el" user-emacs-directory))
 
 (defun connect-irc ()
+  "Connect to IRC."
   (interactive)
   (erc :server erc-server :port erc-port
        :nick erc-nick :password erc-password))
 
 (defun connect-irc-tls ()
+  "Connect to IRC using SSL."
   (interactive)
   (erc-tls :server erc-server :port erc-port
        :nick erc-nick :password erc-password))
 
 (defun connect-freenode ()
+  "Connect to irc.freenode.net."
   (interactive)
   (set-freenode-credentials)
   (connect-irc)
   (unset-credentials))
 
 (defun connect-gitter ()
+  "Connect to irc.gitter.im."
   (interactive)
-  (set-freenode-credentials)
-  (erc-tls :server "irc.gitter.im" :port "6697"
-       :nick "jangid")
+  (set-gitter-credentials)
+  (connect-irc-tls)
   (unset-credentials))
 
 (defun connect-bitlbee ()
+  "Connect to bitlbee localhost."
   (interactive)
-  (set-freenode-credentials)
-  (erc :server "localhost" :port "6667"
-       :nick "jangid")
+  (set-bitlbee-credentials)
+  (connect-irc)
   (unset-credentials))
 
 ;; This causes ERC to connect to the Freenode network upon hitting
