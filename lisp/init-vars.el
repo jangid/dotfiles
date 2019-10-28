@@ -35,9 +35,12 @@
 
 (add-hook 'text-mode-hook #'flyspell-mode)
 
-;; default browser
+;; browser settings
 ;; (setq browse-url-browser-function 'w3m-browse-url)
 (setq browse-url-browser-function 'eww-browse-url)
+;;(setq shr-color-visible-distance-min 100)
+(setq shr-color-visible-luminance-min 60)
+
 
 ;; (defun my/eww-toggle-images ()
 ;;   "Toggle whether images are loaded and reload the current page fro cache."

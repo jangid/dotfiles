@@ -30,6 +30,12 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
+;; The configuration is divided into sections and each section has its
+;; configuration file. These configuration files in turn load other
+;; configuration files for components.
+(require 'init-looks)
+(require 'init-tools)
+
 ;; Load modular lisp packages. In each of these files the general
 ;; logic should be like this - IF the required PACKAGE exists THEN DO
 ;; the configuration ELSE mark the package for download. Later
@@ -40,7 +46,7 @@
 (require 'init-pack)
 (require 'init-path)
 (require 'init-keys)
-(require 'init-theme)
+;;(require 'init-theme)
 (require 'init-magit)
 (require 'init-lsp)
 (require 'init-edit)
@@ -48,7 +54,7 @@
 (require 'init-ivy)
 (require 'init-direnv)
 (require 'init-prog)
-(require 'init-gnus)
+;;(require 'init-gnus)
 (require 'init-erc)
 (require 'init-bbdb)
 
