@@ -14,19 +14,24 @@
 
 ;; Disable menu-bar, tool-bar and scroll-bar. What is the use of emacs
 ;; if you are using these mouseee features.
-(defun enable-mousee-features ()
+(defun enable-mouse-features ()
     "Enable UI features to be used with mouse."
+  (menu-bar-mode 1)
+  (toggle-scroll-bar 1)
+  (tool-bar-mode 1))
+
+(defun disable-mouse-features ()
+  "Disable UI features which are used with mouse."
   (menu-bar-mode -1)
   (toggle-scroll-bar -1)
   (tool-bar-mode -1))
 
-(defun disable-mousee-features ()
-    "Disable UI features which are used with mouse."
-  (menu-bar-mode t)
-  (toggle-scroll-bar t)
-  (tool-bar-mode t))
+(disable-mouse-features)
+;;(enable-mouse-features)
 
-(disable-mousee-features)
+;; (setq menu-bar-mode t)
+;; (setq toggle-scroll-bar t)
+;; (setq tool-bar-mode t)
 
 (provide 'init-looks)
 ;;; init-looks.el ends here

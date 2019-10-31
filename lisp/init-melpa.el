@@ -6,6 +6,7 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
 ;; This line initializes all the installed packages.
+;; (eval-when-compile (package-initialize))
 (package-initialize)
 
 (provide 'init-melpa)

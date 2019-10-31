@@ -35,6 +35,7 @@
 ;; configuration files for components.
 (require 'init-looks)
 (require 'init-tools)
+(require 'init-editr)
 
 ;; Load modular lisp packages. In each of these files the general
 ;; logic should be like this - IF the required PACKAGE exists THEN DO
@@ -45,21 +46,16 @@
 (require 'init-vars)
 (require 'init-pack)
 (require 'init-path)
-(require 'init-keys)
-;;(require 'init-theme)
-(require 'init-magit)
-(require 'init-lsp)
-(require 'init-edit)
 (require 'init-org)
 (require 'init-ivy)
 (require 'init-direnv)
 (require 'init-prog)
-;;(require 'init-gnus)
-(require 'init-erc)
 (require 'init-bbdb)
 
 ;; start server for emacsclient support
-(require 'server)
+(require 'server)			; I don't know why this is
+					; required after
+					; package-initialize
 (unless (server-running-p) (server-start))
 
 (provide 'init)
