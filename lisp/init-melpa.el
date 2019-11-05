@@ -2,14 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
 (defvar essential-packages)
 (setq essential-packages
       '(exec-path-from-shell
 	color-theme-sanityinc-tomorrow
-	magit
+;;	magit
 	gnuplot
 	gnuplot-mode
 	org-bullets
