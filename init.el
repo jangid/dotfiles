@@ -10,45 +10,33 @@
 
 ;;; Code:
 
-;; Produce backtrace on error
-(setq debug-on-error t)
-
 ;; Check emacs-major-version 27
 (when (< emacs-major-version 27)
     (error "Old Emacs.  Require v%s or higher" 27))
 
-;; Directory to hold modular lisp files
-(eval-when-compile
-  (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)))
-
-;; Initialize packaging system
-(require 'init-melpa)
-
-;; Keep the custom file separate from init.el
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(when (file-exists-p custom-file)
-  (load custom-file))
+;; (eval-when-compile
+;;   (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)))
 
 ;; The configuration is divided into sections and each section has its
 ;; configuration file. These configuration files in turn load other
 ;; configuration files for components.
 
+(require 'init-melpa)
 (require 'init-env)
 (require 'init-looks)
 (require 'init-tools)
 (require 'init-edit)
 (require 'init-prog)
-
-;; Load modular lisp packages. In each of these files the general
-;; logic should be like this - IF the required PACKAGE exists THEN DO
-;; the configuration ELSE mark the package for download. Later
-;; (init-pack) can be called manually to download all marked packages.
-
 (require 'init-diminish)
 (require 'init-vars)
 
 ;; (require 'init-path)
 ;; (require 'init-direnv)
+
+;; Keep the custom file separate from init.el
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 ;; start server for emacsclient support
 (require 'server)			; I don't know why this is
