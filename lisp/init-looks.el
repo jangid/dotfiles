@@ -1,16 +1,16 @@
 ;;; init-looks.el --- customize emacs looks -*- lexical-binding: t -*-
 
 ;; theme
-;; (setq-default custom-enabled-themes '(sanityinc-tomorrow-bright))
+(setq-default custom-enabled-themes '(sanityinc-tomorrow-bright))
 
-;; ;; Ensure that themes will be applied even if they have not been customized
-;; (defun reapply-themes ()
-;;   "Forcibly load the themes listed in `custom-enabled-themes'."
-;;   (dolist (theme custom-enabled-themes)
-;;     (unless (custom-theme-p theme)
-;;       (load-theme theme))))
+;; Ensure that themes will be applied even if they have not been customized
+(defun reapply-themes ()
+  "Forcibly load the themes listed in `custom-enabled-themes'."
+  (dolist (theme custom-enabled-themes)
+    (unless (custom-theme-p theme)
+      (load-theme theme))))
 
-;; (add-hook 'after-init-hook 'reapply-themes)
+(add-hook 'after-init-hook 'reapply-themes)
 
 ;; Disable menu-bar, tool-bar and scroll-bar. What is the use of emacs
 ;; if you are using these mouseee features.
@@ -40,6 +40,10 @@
 (setq browse-url-browser-function 'eww-browse-url)
 ;; (setq shr-color-visible-distance-min 100)
 (setq shr-color-visible-luminance-min 60)
+
+;; cursor
+;;(blink-cursor-mode t)
+(global-hl-line-mode +1)
 
 (provide 'init-looks)
 ;;; init-looks.el ends here
