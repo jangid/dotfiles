@@ -1,19 +1,20 @@
 ;;; init-looks.el --- customize emacs looks -*- lexical-binding: t -*-
 
 ;; theme
-(setq-default custom-enabled-themes '(sanityinc-tomorrow-bright))
+;; (setq-default custom-enabled-themes '(sanityinc-tomorrow-bright))
 
-;; Ensure that themes will be applied even if they have not been customized
-(defun reapply-themes ()
-  "Forcibly load the themes listed in `custom-enabled-themes'."
-  (dolist (theme custom-enabled-themes)
-    (unless (custom-theme-p theme)
-      (load-theme theme))))
+;; ;; Ensure that themes will be applied even if they have not been customized
+;; (defun reapply-themes ()
+;;   "Forcibly load the themes listed in `custom-enabled-themes'."
+;;   (dolist (theme custom-enabled-themes)
+;;     (unless (custom-theme-p theme)
+;;       (load-theme theme))))
 
-(add-hook 'after-init-hook 'reapply-themes)
+;; (add-hook 'after-init-hook 'reapply-themes)
 
 ;; Disable menu-bar, tool-bar and scroll-bar. What is the use of emacs
 ;; if you are using these mouseee features.
+
 (defun enable-mouse-features ()
     "Enable UI features to be used with mouse."
   (menu-bar-mode 1)
@@ -29,9 +30,16 @@
 (disable-mouse-features)
 ;;(enable-mouse-features)
 
-;; (setq menu-bar-mode t)
-;; (setq toggle-scroll-bar t)
-;; (setq tool-bar-mode t)
+;; tabs
+(tab-bar-mode -1)
+
+;; default to Ibuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+;; browser settings eww
+(setq browse-url-browser-function 'eww-browse-url)
+;; (setq shr-color-visible-distance-min 100)
+(setq shr-color-visible-luminance-min 60)
 
 (provide 'init-looks)
 ;;; init-looks.el ends here

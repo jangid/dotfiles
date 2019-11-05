@@ -2,8 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'lsp)
-(require 'lsp-java)
+;;(require 'lsp)
+;;(require 'lsp-java)
 
 ;;(load-library "lsp-java") 		; TODO: This library is not
 					; automatically loaded. Need

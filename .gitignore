@@ -28,3 +28,4 @@ transient/
 url/
 workspace/
 .lsp-session-*
+ido.last

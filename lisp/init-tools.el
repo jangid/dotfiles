@@ -75,5 +75,45 @@
 	 "#emacs" "#erc" "#postgresql" "##rust" "#rust-embedded"
 	 "#python")))
 
+;; ido
+(ido-mode 1)
+
+;; bbdb
+(bbdb-initialize 'gnus 'message)
+(bbdb-mua-auto-update-init 'gnus 'message)
+(setq bbdb-mua-pop-up nil)
+(setq bbdb-mua-update-interactive-p '(query . create))
+(setq bbdb-message-all-addresses t)
+(setq bbdb-north-american-phone-numbers-p nil)
+
+;; use ; on a message to invoke bbdb interactively
+(add-hook
+ 'gnus-summary-mode-hook
+ (lambda ()
+    (define-key gnus-summary-mode-map (kbd ";") 'bbdb-mua-edit-field)))(require 'bbdb)
+(setq bbdb-user-mail-names
+      (regexp-opt '("pankaj.jangid@gmail.com"
+		    "pankaj.jangid@optimizory.com")))
+
+;; org-mode
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c b") 'org-switchb)
+
+(add-hook 'org-mode-hook (lambda ()
+			   (visual-line-mode)
+			   ;; (org-indent-mode)
+			   (org-bullets-mode)))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (python . t)
+   (C . t)))
+
+;; ispell - this requires 'ispell' tool to be in path
+(add-hook 'text-mode-hook #'flyspell-mode)
+
 (provide 'init-tools)
 ;;; init-tools.el ends here

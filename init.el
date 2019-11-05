@@ -13,10 +13,9 @@
 ;; Produce backtrace on error
 (setq debug-on-error t)
 
-;; Check emacs-version 26.3
-(let ((minver "26.3"))
-  (when (version< emacs-version minver)
-    (error "Old Emacs.  Require v%s or higher" minver)))
+;; Check emacs-major-version 27
+(when (< emacs-major-version 27)
+    (error "Old Emacs.  Require v%s or higher" 27))
 
 ;; Directory to hold modular lisp files
 (eval-when-compile
@@ -33,9 +32,12 @@
 ;; The configuration is divided into sections and each section has its
 ;; configuration file. These configuration files in turn load other
 ;; configuration files for components.
+
+(require 'init-env)
 (require 'init-looks)
 (require 'init-tools)
-(require 'init-editr)
+(require 'init-edit)
+(require 'init-prog)
 
 ;; Load modular lisp packages. In each of these files the general
 ;; logic should be like this - IF the required PACKAGE exists THEN DO
@@ -44,13 +46,9 @@
 
 (require 'init-diminish)
 (require 'init-vars)
-(require 'init-pack)
-(require 'init-path)
-(require 'init-org)
-(require 'init-ivy)
-(require 'init-direnv)
-(require 'init-prog)
-(require 'init-bbdb)
+
+;; (require 'init-path)
+;; (require 'init-direnv)
 
 ;; start server for emacsclient support
 (require 'server)			; I don't know why this is
