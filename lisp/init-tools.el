@@ -75,8 +75,10 @@
 	 "#emacs" "#erc" "#postgresql" "##rust" "#rust-embedded"
 	 "#python")))
 
-;; ido
-(ido-mode 1)
+;; icomplete-mode with fake-ido
+(fido-mode -1)
+(ido-mode +1)
+(icomplete-mode -1)
 
 ;; bbdb
 (bbdb-initialize 'gnus 'message)
@@ -85,15 +87,15 @@
 (setq bbdb-mua-update-interactive-p '(query . create))
 (setq bbdb-message-all-addresses t)
 (setq bbdb-north-american-phone-numbers-p nil)
+(setq bbdb-user-mail-names
+      (regexp-opt '("pankaj.jangid@gmail.com"
+		    "pankaj.jangid@optimizory.com")))
 
 ;; use ; on a message to invoke bbdb interactively
 (add-hook
  'gnus-summary-mode-hook
  (lambda ()
-    (define-key gnus-summary-mode-map (kbd ";") 'bbdb-mua-edit-field)))(require 'bbdb)
-(setq bbdb-user-mail-names
-      (regexp-opt '("pankaj.jangid@gmail.com"
-		    "pankaj.jangid@optimizory.com")))
+   (define-key gnus-summary-mode-map (kbd ";") 'bbdb-mua-edit-field)))
 
 ;; org-mode
 (global-set-key (kbd "C-c l") 'org-store-link)
@@ -101,10 +103,12 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c b") 'org-switchb)
 
-(add-hook 'org-mode-hook (lambda ()
-			   (visual-line-mode)
-			   ;; (org-indent-mode)
-			   (org-bullets-mode)))
+(add-hook
+ 'org-mode-hook 
+ (lambda ()
+   (visual-line-mode)
+   ;; (org-indent-mode)
+   (org-bullets-mode)))
 
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -114,6 +118,12 @@
 
 ;; ispell - this requires 'ispell' tool to be in path
 (add-hook 'text-mode-hook #'flyspell-mode)
+
+;; projectile
+(require 'projectile) ;; this required despite package-initialize. Not sure why.
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(projectile-mode +1)
 
 (provide 'init-tools)
 ;;; init-tools.el ends here

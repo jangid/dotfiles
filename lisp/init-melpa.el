@@ -7,13 +7,14 @@
 (defvar essential-packages)
 (setq essential-packages
       '(exec-path-from-shell
-	color-theme-sanityinc-tomorrow
+;;	color-theme-sanityinc-tomorrow
 ;;	magit
 	gnuplot
 	gnuplot-mode
 	org-bullets
 	org-babel-eval-in-repl
 	org-mime
+	projectile
 	lua-mode
 	luarocks
 	flymake-rust

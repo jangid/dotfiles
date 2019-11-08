@@ -14,9 +14,6 @@
 (when (< emacs-major-version 27)
     (error "Old Emacs.  Require v%s or higher" 27))
 
-;; (eval-when-compile
-;;   (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)))
-
 ;; The configuration is divided into sections and each section has its
 ;; configuration file. These configuration files in turn load other
 ;; configuration files for components.
@@ -27,11 +24,8 @@
 (require 'init-tools)
 (require 'init-edit)
 (require 'init-prog)
-(require 'init-diminish)
+;; (require 'init-diminish)
 (require 'init-vars)
-
-;; (require 'init-path)
-;; (require 'init-direnv)
 
 ;; Keep the custom file separate from init.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))

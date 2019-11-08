@@ -1,16 +1,9 @@
 ;;; init-looks.el --- customize emacs looks -*- lexical-binding: t -*-
 
+(setq inhibit-startup-screen t)
+
 ;; theme
-(setq-default custom-enabled-themes '(sanityinc-tomorrow-bright))
-
-;; Ensure that themes will be applied even if they have not been customized
-(defun reapply-themes ()
-  "Forcibly load the themes listed in `custom-enabled-themes'."
-  (dolist (theme custom-enabled-themes)
-    (unless (custom-theme-p theme)
-      (load-theme theme))))
-
-(add-hook 'after-init-hook 'reapply-themes)
+(add-hook 'after-init-hook (lambda () (load-theme 'nimbus t)))
 
 ;; Disable menu-bar, tool-bar and scroll-bar. What is the use of emacs
 ;; if you are using these mouseee features.
@@ -34,7 +27,7 @@
 (tab-bar-mode -1)
 
 ;; default to Ibuffer
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x C-b") #'ibuffer-other-window)
 
 ;; browser settings eww
 (setq browse-url-browser-function 'eww-browse-url)
@@ -42,8 +35,11 @@
 (setq shr-color-visible-luminance-min 60)
 
 ;; cursor
-;;(blink-cursor-mode t)
+;; (blink-cursor-mode t)
 (global-hl-line-mode +1)
+
+;; mode-line
+(display-time-mode +1)
 
 (provide 'init-looks)
 ;;; init-looks.el ends here

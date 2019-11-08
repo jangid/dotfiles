@@ -11,26 +11,43 @@
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 (add-hook 'prog-mode-hook #'electric-pair-mode)
-;; (add-hook 'prog-mode-hook #'flyspell-prog-mode)
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+(add-hook 'prog-mode-hook #'flyspell-prog-mode)
 
-(require 'flymake)
+;;(require 'flymake)
 (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
 (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
 
-;;(require 'projectile)
-;;(add-hook 'prog-mode-hook #'projectile-mode)
-;;(setq projectile-completion-system 'ivy)
-;;(setq ivy-use-virtual-buffers t)
+;; Emacs Lisp
+(add-hook 'emacs-lisp-mode-hook #'flymake-mode)
+;; Java
+;; (require 'init-java)
+;;(load-library "lsp-java") 		; TODO: This library is not
+					; automatically loaded. Need
+					; to check why.
 
-;; projectile settings
-;; (setq projectile-project-search-path '("~/work/code"))
-;;(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(setq lsp-java-workspace-dir (expand-file-name "~/work/code/eclipse"))
+;; I have downloaded and compiled Eclipse JDT myself. But actually
+;; lsp-java can do it on its own. You don't need to do it manually.
+(setq lsp-java-server-install-dir
+      (expand-file-name "~/work/code/github/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/"))
 
-(require 'init-elisp)
-(require 'init-java)
-(require 'init-python)
-(require 'init-rust)
-;;(require 'init-lua)
+(add-hook 'java-mode-hook #'lsp)
+
+;; Python
+(add-hook 'python-mode-hook #'lsp)
+
+;; rust-lang
+(require 'flymake-rust)
+(add-hook 'rust-mode-hook #'flymake-rust-load)
+(setq flymake-rust-use-cargo 1)
+(add-hook 'rust-mode-hook #'lsp)
+
+;; Lua - disable; not working with emacs27
+;;(require 'company) ;; despite package-initialize this is required. Not sure why.
+;;(require 'company-lua)
+;;(add-hook 'lua-mode-hook #'flymake-lua-load)
+;;(push 'company-lua company-backends)
 
 (provide 'init-prog)
 ;;; init-prog.el ends here
