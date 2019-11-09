@@ -2,19 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-;; ideally, push list of required packages to 'essential-packages
-;; defined in init-pack.el
-
 (add-hook 'prog-mode-hook #'company-mode)
-;; (add-hook 'company-mode-hook #'company-box-mode)
-
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 (add-hook 'prog-mode-hook #'electric-pair-mode)
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 (add-hook 'prog-mode-hook #'flyspell-prog-mode)
 
-;;(require 'flymake)
 (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
 (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
 
@@ -39,7 +33,7 @@
 
 ;; rust-lang
 (require 'flymake-rust)
-(setq flymake-rust-use-cargo 1)
+;;(setq flymake-rust-use-cargo nil)
 (add-hook 'rust-mode-hook #'flymake-rust-load)
 (add-hook 'rust-mode-hook #'lsp)
 

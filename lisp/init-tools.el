@@ -76,8 +76,8 @@
 	 "#python")))
 
 ;; icomplete-mode with fake-ido
-(fido-mode -1)
-(ido-mode +1)
+(fido-mode +1)
+(ido-mode -1)
 (icomplete-mode -1)
 
 ;; bbdb
@@ -104,7 +104,7 @@
 (global-set-key (kbd "C-c b") 'org-switchb)
 
 (add-hook
- 'org-mode-hook 
+ 'org-mode-hook
  (lambda ()
    (visual-line-mode)
    ;; (org-indent-mode)
