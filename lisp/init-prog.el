@@ -39,8 +39,8 @@
 
 ;; rust-lang
 (require 'flymake-rust)
-(add-hook 'rust-mode-hook #'flymake-rust-load)
 (setq flymake-rust-use-cargo 1)
+(add-hook 'rust-mode-hook #'flymake-rust-load)
 (add-hook 'rust-mode-hook #'lsp)
 
 ;; Lua - disable; not working with emacs27
