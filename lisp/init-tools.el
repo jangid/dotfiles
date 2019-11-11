@@ -6,9 +6,6 @@
 (setq gnus-init-file (expand-file-name "gnus" user-emacs-directory))
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
-;; Magit
-(global-set-key (kbd "C-x g") 'magit-status)
-
 ;; Configure ERC
 (require 'erc)
 (require 'erc-join)
@@ -75,10 +72,8 @@
 	 "#emacs" "#erc" "#postgresql" "##rust" "#rust-embedded"
 	 "#python")))
 
-;; icomplete-mode with fake-ido
+;; fake-ido. fido-mode also enables icomplete-mode.
 (fido-mode +1)
-(ido-mode -1)
-(icomplete-mode -1)
 
 ;; bbdb
 (bbdb-initialize 'gnus 'message)
