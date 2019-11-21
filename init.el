@@ -18,13 +18,12 @@
 ;; configuration file. These configuration files in turn load other
 ;; configuration files for components.
 
+(require 'init-tools)
 (require 'init-melpa)
 (require 'init-env)
 (require 'init-looks)
-(require 'init-tools)
 (require 'init-edit)
 (require 'init-prog)
-;; (require 'init-diminish)
 (require 'init-vars)
 
 ;; Keep the custom file separate from init.el

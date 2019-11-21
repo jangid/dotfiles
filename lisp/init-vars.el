@@ -3,7 +3,7 @@
 ;;; Code:
 
 (require 'dired)
-(require 'desktop)
+;;(require 'desktop)
 
 
 ;; use emacs' emulation of ls command; mac doesn't have ls with --dired
@@ -18,7 +18,7 @@
   (make-directory desktop-dirname))
 
 ;; default email address and full name
-(setq user-mail-address	"pankaj.jangid@gmail.com"
+(setq user-mail-address	"p4j@j4d.net"
       user-full-name "Pankaj Jangid")
 
 (provide 'init-vars)

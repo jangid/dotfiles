@@ -4,7 +4,6 @@
 
 (add-hook 'after-init-hook 'show-paren-mode)
 (require 'init-keys)
-(require 'init-lsp)
 
 (provide 'init-edit)
 ;; init-edit.el ends here

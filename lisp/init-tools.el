@@ -2,9 +2,20 @@
 ;;; Commentary:
 ;;; Code:
 
+;; GnuPG configuration
+(setq epg-pinentry-mode 'loopback)
+
 ;; Configure Gnus
 (setq gnus-init-file (expand-file-name "gnus" user-emacs-directory))
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
+;; use ; on a message to invoke bbdb interactively
+(add-hook
+ 'gnus-summary-mode-hook
+ (lambda ()
+   (define-key gnus-summary-mode-map (kbd ";") 'bbdb-mua-edit-field)))
+;; (setq sc-auto-fill-region-p nil sc-preferred-header-style 1)
+;; (setq gnus-use-dribble-file nil)
+;; (setq gnus-always-read-dribble-file t)
 
 ;; Configure ERC
 (require 'erc)
@@ -73,7 +84,8 @@
 	 "#python")))
 
 ;; fake-ido. fido-mode also enables icomplete-mode.
-(fido-mode +1)
+;; now only icomplete-mode enabled.
+(icomplete-mode +1)
 
 ;; bbdb
 (bbdb-initialize 'gnus 'message)
@@ -83,14 +95,9 @@
 (setq bbdb-message-all-addresses t)
 (setq bbdb-north-american-phone-numbers-p nil)
 (setq bbdb-user-mail-names
-      (regexp-opt '("pankaj.jangid@gmail.com"
+      (regexp-opt '("p4j@j4d.net"
+		    "pankaj.jangid@gmail.com"
 		    "pankaj.jangid@optimizory.com")))
-
-;; use ; on a message to invoke bbdb interactively
-(add-hook
- 'gnus-summary-mode-hook
- (lambda ()
-   (define-key gnus-summary-mode-map (kbd ";") 'bbdb-mua-edit-field)))
 
 ;; org-mode
 (global-set-key (kbd "C-c l") 'org-store-link)

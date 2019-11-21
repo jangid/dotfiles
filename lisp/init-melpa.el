@@ -7,8 +7,6 @@
 (defvar essential-packages)
 (setq essential-packages
       '(exec-path-from-shell
-;;	color-theme-sanityinc-tomorrow
-;;	magit
 	gnuplot
 	gnuplot-mode
 	org-bullets
@@ -17,8 +15,6 @@
 	projectile
 	lua-mode
 	luarocks
-	flymake-rust
-	flymake-lua
 	bbdb
 	htmlize
 	json-mode
@@ -28,14 +24,9 @@
 	direnv
 	rust-mode
 	company
-	company-jedi
-	company-lsp
-	company-lua
-	lsp-mode
-	lsp-java
+	company-quickhelp
 	use-package
-	yasnippet
-	dap-mode))
+	yasnippet))
 
 (defun install-essential-packages ()
   "Install the package from `essential-packages'."
