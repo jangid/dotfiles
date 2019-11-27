@@ -27,7 +27,8 @@
 (tab-bar-mode -1)
 
 ;; default to Ibuffer
-(global-set-key (kbd "C-x C-b") #'ibuffer-other-window)
+;; (global-set-key (kbd "C-x C-b") #'ibuffer-other-window)
+(global-set-key (kbd "C-x C-b") #'ibuffer)
 
 ;; browser settings eww
 (setq browse-url-browser-function 'eww-browse-url)
