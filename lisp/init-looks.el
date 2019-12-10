@@ -3,7 +3,8 @@
 (setq inhibit-startup-screen t)
 
 ;; theme
-(add-hook 'after-init-hook (lambda () (load-theme 'nimbus t)))
+;; (add-hook 'after-init-hook (lambda () (load-theme 'nimbus t)))
+(add-hook 'after-init-hook (lambda () (load-theme 'sanityinc-tomorrow-bright t)))
 
 ;; Disable menu-bar, tool-bar and scroll-bar. What is the use of emacs
 ;; if you are using these mouseee features.
