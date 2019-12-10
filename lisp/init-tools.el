@@ -16,6 +16,7 @@
 ;; (setq sc-auto-fill-region-p nil sc-preferred-header-style 1)
 ;; (setq gnus-use-dribble-file nil)
 ;; (setq gnus-always-read-dribble-file t)
+(setq mml-secure-openpgp-encrypt-to-self t)
 
 ;; Configure ERC
 (require 'erc)
