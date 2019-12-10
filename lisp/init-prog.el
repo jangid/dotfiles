@@ -43,6 +43,9 @@
           (lambda () (setq indent-tabs-mode nil)))
 (add-hook 'rust-mode-hook #'eglot-ensure)
 
+;; JavaScript
+(setq js-indent-level 2)
+
 ;; Lua - disable; not working with emacs27
 ;;(require 'company) ;; despite package-initialize this is required. Not sure why.
 ;;(require 'company-lua)
