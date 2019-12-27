@@ -24,7 +24,6 @@
 (require 'init-looks)
 (require 'init-edit)
 (require 'init-prog)
-(require 'init-vars)
 
 ;; Keep the custom file separate from init.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))

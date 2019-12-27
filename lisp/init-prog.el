@@ -36,7 +36,16 @@
 ;;(add-hook 'java-mode-hook #'eglot-ensure)
 
 ;; Python
-(add-hook 'python-mode-hook #'eglot-ensure)
+;; (add-hook 'python-mode-hook #'eglot-ensure)
+(add-hook 'python-mode-hook #'flymake-mode)
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+(add-hook 'python-mode-hook 'my/python-mode-hook)
+(add-hook 'python-mode-hook #'company-mode)
+(add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
+(setq flymake-python-pyflakes-executable "flake8")
+;; (add-hook 'python-mode-hook 'yapf-mode)
+;; (elpy-enable)
 
 ;; rust-lang
 (add-hook 'rust-mode-hook
@@ -44,6 +53,7 @@
 (add-hook 'rust-mode-hook #'eglot-ensure)
 
 ;; JavaScript
+(add-hook 'js-mode-hook #'eglot-ensure)
 (setq js-indent-level 2)
 
 ;; Lua - disable; not working with emacs27

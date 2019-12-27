@@ -2,6 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
+;; Recent files
+(recentf-mode 1)
+
 ;; GnuPG configuration
 (setq epg-pinentry-mode 'loopback)
 
@@ -127,6 +130,14 @@
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (projectile-mode +1)
+;; (setq projectile-project-search-path '("~/work/code/"))
+
+;; use emacs' emulation of ls command; mac doesn't have ls with --dired
+(when (string= system-type "darwin")
+  (setq dired-use-ls-dired nil))
+
+;; launch treemacs
+(global-set-key [f8] 'treemacs)
 
 (provide 'init-tools)
 ;;; init-tools.el ends here

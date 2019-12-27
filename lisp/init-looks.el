@@ -9,23 +9,22 @@
 ;; Disable menu-bar, tool-bar and scroll-bar. What is the use of emacs
 ;; if you are using these mouseee features.
 
-(defun enable-mouse-features ()
-    "Enable UI features to be used with mouse."
-  (menu-bar-mode 1)
-  (toggle-scroll-bar 1)
-  (tool-bar-mode 1))
+;; menuBar
+(menu-bar-mode 1)
+;; (menu-bar-mode -1)
 
-(defun disable-mouse-features ()
-  "Disable UI features which are used with mouse."
-  (menu-bar-mode -1)
-  (toggle-scroll-bar -1)
-  (tool-bar-mode -1))
+;; scrollBar
+;; (scroll-bar-mode 1)
+(scroll-bar-mode -1)
 
-(disable-mouse-features)
-;;(enable-mouse-features)
+;; toolBar
+;; (tool-bar-mode 1)
+(tool-bar-mode -1)
 
-;; tabs
-(tab-bar-mode -1)
+;; tabBar
+(setq tab-bar-show 1)
+;(tab-bar-mode +1)
+;; (tab-bar-mode -1)
 
 ;; default to Ibuffer
 ;; (global-set-key (kbd "C-x C-b") #'ibuffer-other-window)
