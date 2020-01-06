@@ -10,20 +10,20 @@
 ;; if you are using these mouseee features.
 
 ;; menuBar
-(menu-bar-mode 1)
+;; (menu-bar-mode +1)
 ;; (menu-bar-mode -1)
 
 ;; scrollBar
-;; (scroll-bar-mode 1)
-(scroll-bar-mode -1)
+;; (scroll-bar-mode +1)
+;; (scroll-bar-mode -1)
 
 ;; toolBar
-;; (tool-bar-mode 1)
-(tool-bar-mode -1)
+;; (tool-bar-mode +1)
+;; (tool-bar-mode -1)
 
 ;; tabBar
-(setq tab-bar-show 1)
-;(tab-bar-mode +1)
+;; (setq tab-bar-show 1)
+;; (tab-bar-mode +1)
 ;; (tab-bar-mode -1)
 
 ;; default to Ibuffer
@@ -40,7 +40,7 @@
 (global-hl-line-mode +1)
 
 ;; mode-line
-(display-time-mode +1)
+;; (display-time-mode +1)
 
 (provide 'init-looks)
 ;;; init-looks.el ends here
