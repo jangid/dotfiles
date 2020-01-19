@@ -131,6 +131,8 @@
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (projectile-mode +1)
 ;; (setq projectile-project-search-path '("~/work/code/"))
+;; (setq projectile-mode-line '(:eval (format " P[%s]" (projectile-project-name))))
+;; (setq projectile-mode-line-lighter " P")
 
 ;; use emacs' emulation of ls command; mac doesn't have ls with --dired
 (when (string= system-type "darwin")
@@ -138,6 +140,9 @@
 
 ;; launch treemacs
 (global-set-key [f8] 'treemacs)
+
+;; desktop save restore
+(desktop-save-mode +1)
 
 (provide 'init-tools)
 ;;; init-tools.el ends here

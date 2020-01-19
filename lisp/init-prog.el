@@ -9,6 +9,7 @@
 (add-hook 'prog-mode-hook #'electric-pair-mode)
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 ;;(add-hook 'prog-mode-hook #'flyspell-prog-mode)
+(add-hook 'prog-mode-hook #'semantic-mode)
 
 (require 'flymake)
 (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
@@ -53,7 +54,7 @@
 (add-hook 'rust-mode-hook #'eglot-ensure)
 
 ;; JavaScript
-(add-hook 'js-mode-hook #'eglot-ensure)
+;; (add-hook 'js-mode-hook #'eglot-ensure)
 (setq js-indent-level 2)
 
 ;; Lua - disable; not working with emacs27

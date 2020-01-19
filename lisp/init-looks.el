@@ -11,15 +11,15 @@
 
 ;; menuBar
 ;; (menu-bar-mode +1)
-;; (menu-bar-mode -1)
+(menu-bar-mode -1)
 
 ;; scrollBar
 ;; (scroll-bar-mode +1)
-;; (scroll-bar-mode -1)
+(scroll-bar-mode -1)
 
 ;; toolBar
 ;; (tool-bar-mode +1)
-;; (tool-bar-mode -1)
+(tool-bar-mode -1)
 
 ;; tabBar
 ;; (setq tab-bar-show 1)
@@ -41,6 +41,12 @@
 
 ;; mode-line
 ;; (display-time-mode +1)
+(delight '((which-key-mode nil "which-key")
+	   (company-mode nil "company")
+	   (yas-minor-mode nil "yasnippet")
+	   (hs-minor-mode nil "hideshow")
+	   (eldoc-mode nil "eldoc")
+	   (projectile-mode nil  "projectile")))
 
 (provide 'init-looks)
 ;;; init-looks.el ends here
