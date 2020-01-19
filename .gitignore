@@ -29,3 +29,5 @@ url/
 workspace/
 .lsp-session-*
 ido.last
+#recentf#
+.emacs.desktop.lock
