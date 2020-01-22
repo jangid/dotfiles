@@ -25,7 +25,10 @@
 (eval-when-compile
   (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)))
 
-(require 'init-melpa)
+;; MELPA repositlry
+(eval-when-compile (require 'package))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
 (require 'init-tools)
 (require 'init-env)
 (require 'init-looks)

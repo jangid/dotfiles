@@ -2,8 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-(when (< emacs-major-version 27)
-  (eval-and-compile (package-initialize)))
+;; (when (< emacs-major-version 27)
+;;   (eval-and-compile
+;;     (package-initialize)))
 
 (eval-when-compile (require 'company))
 (add-hook 'prog-mode-hook #'company-mode)

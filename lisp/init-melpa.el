@@ -2,10 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-(when (< emacs-major-version 27)
-  (eval-and-compile (package-initialize)))
+(require 'package)
+;; (eval-when-compile
+;;   (when (< emacs-major-version 27)
+;;     (package-initialize)))
 
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
 
 (defvar essential-packages)
 (setq essential-packages

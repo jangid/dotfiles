@@ -2,8 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-(when (< emacs-major-version 27)
-  (eval-and-compile (package-initialize)))
+;; (when (< emacs-major-version 27)
+;;   (eval-and-compile
+;;     (package-initialize)))
 
 (setq inhibit-startup-screen t)
 

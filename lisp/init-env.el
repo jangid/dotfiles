@@ -2,8 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(when (< emacs-major-version 27)
-  (eval-and-compile (package-initialize)))
+;; (eval-and-compile
+;;     (package-initialize))
 
 (eval-when-compile (require 'exec-path-from-shell))
 (exec-path-from-shell-initialize)

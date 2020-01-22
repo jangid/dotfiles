@@ -2,10 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Commons
-;;;(require 'package)
-(when (< emacs-major-version 27)
-    (eval-and-compile (package-initialize)))
+;; (if (< emacs-major-version 27)
+;;   (eval-and-compile
+;;     (package-initialize))
+;;   (eval-when-compile
+;;     (package-initialize))) ; bbdb is not loaded without it even in 27.x
 
 ;; Recent files
 (recentf-mode 1)
