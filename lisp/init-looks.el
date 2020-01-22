@@ -41,6 +41,7 @@
 
 ;; mode-line
 ;; (display-time-mode +1)
+(eval-when-compile (require 'delight))
 (delight '((which-key-mode nil "which-key")
 	   (company-mode nil "company")
 	   (yas-minor-mode nil "yasnippet")

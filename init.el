@@ -14,12 +14,19 @@
 (when (< emacs-major-version 27)
     (error "Old Emacs.  Require v%s or higher" 27))
 
+;; Produce backtrace on error
+(setq debug-on-error t)
+
 ;; The configuration is divided into sections and each section has its
 ;; configuration file. These configuration files in turn load other
 ;; configuration files for components.
 
-(require 'init-tools)
+;; Directory to hold modular lisp files
+(eval-when-compile
+  (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)))
+
 (require 'init-melpa)
+(require 'init-tools)
 (require 'init-env)
 (require 'init-looks)
 (require 'init-edit)

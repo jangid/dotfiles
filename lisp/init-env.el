@@ -1,5 +1,6 @@
 ;;; init-env.el --- set environment -*-lexical-mode: t-*-
 
+(eval-when-compile (require 'exec-path-from-shell))
 (exec-path-from-shell-initialize)
 (add-hook 'after-init-hook 'direnv-mode)
 

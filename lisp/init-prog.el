@@ -68,11 +68,5 @@
 (add-hook 'js-mode-hook 'my/js-mode-hook)
 (add-hook 'js-mode-hook #'abbrev-mode)
 
-;; Lua - disable; not working with emacs27
-;;(require 'company) ;; despite package-initialize this is required. Not sure why.
-;;(require 'company-lua)
-;;(add-hook 'lua-mode-hook #'flymake-lua-load)
-;;(push 'company-lua company-backends)
-
 (provide 'init-prog)
 ;;; init-prog.el ends here

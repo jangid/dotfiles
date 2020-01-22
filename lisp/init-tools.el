@@ -6,16 +6,13 @@
 (recentf-mode 1)
 
 ;; GnuPG configuration
+(eval-when-compile (require 'epg))
 (setq epg-pinentry-mode 'loopback)
 
 ;; Configure Gnus
-(setq gnus-init-file (expand-file-name "gnus" user-emacs-directory))
+(eval-when-compile (require 'gnus))
+;; (setq gnus-init-file (expand-file-name "gnus" user-emacs-directory))
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
-;; use ; on a message to invoke bbdb interactively
-(add-hook
- 'gnus-summary-mode-hook
- (lambda ()
-   (define-key gnus-summary-mode-map (kbd ";") 'bbdb-mua-edit-field)))
 ;; (setq sc-auto-fill-region-p nil sc-preferred-header-style 1)
 ;; (setq gnus-use-dribble-file nil)
 ;; (setq gnus-always-read-dribble-file t)
@@ -92,9 +89,10 @@
 (icomplete-mode +1)
 
 ;; bbdb
+(eval-when-compile (require 'bbdb))
 (bbdb-initialize 'gnus 'message)
 (bbdb-mua-auto-update-init 'gnus 'message)
-(setq bbdb-mua-pop-up nil)
+(setq bbdb-message-pop-up nil)
 (setq bbdb-mua-update-interactive-p '(query . create))
 (setq bbdb-message-all-addresses t)
 (setq bbdb-north-american-phone-numbers-p nil)
@@ -102,6 +100,11 @@
       (regexp-opt '("p4j@j4d.net"
 		    "pankaj.jangid@gmail.com"
 		    "pankaj.jangid@optimizory.com")))
+;; use ; on a message to invoke bbdb interactively
+(add-hook
+ 'gnus-summary-mode-hook
+ (lambda ()
+   (define-key gnus-summary-mode-map (kbd ";") 'bbdb-mua-edit-field)))
 
 ;; org-mode
 (global-set-key (kbd "C-c l") 'org-store-link)
@@ -126,7 +129,7 @@
 (add-hook 'text-mode-hook #'flyspell-mode)
 
 ;; projectile
-(require 'projectile) ;; this required despite package-initialize. Not sure why.
+(eval-when-compile (require 'projectile))
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (projectile-mode +1)

@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
+(eval-when-compile (require 'package))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
 (defvar essential-packages)
@@ -39,8 +40,9 @@
 
 ;; This line initializes all the installed packages.
 ;; (eval-when-compile (package-initialize))
-(when (< emacs-major-version 27)
-  (package-initialize))
+(if (< emacs-major-version 27)
+    (package-initialize)
+  (eval-when-compile (package-initialize)))
 
 (provide 'init-melpa)
 ;;; init-melpa.el ends here
