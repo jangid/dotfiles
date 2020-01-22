@@ -150,7 +150,7 @@
   (setq dired-use-ls-dired nil))
 
 ;; launch treemacs
-(global-set-key [f8] 'treemacs)
+;; (global-set-key [f8] 'treemacs)
 
 ;; desktop save restore
 (desktop-save-mode +1)
