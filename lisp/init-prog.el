@@ -40,6 +40,7 @@
 ;; (add-hook 'python-mode-hook #'eglot-ensure)
 (add-hook 'python-mode-hook #'flymake-mode)
 (defun my/python-mode-hook ()
+  "Company package isn't loaded during init; hence the lazy function."
   (add-to-list 'company-backends 'company-jedi))
 (add-hook 'python-mode-hook 'my/python-mode-hook)
 (add-hook 'python-mode-hook #'flymake-python-pyflakes-load)
@@ -62,6 +63,7 @@
 ;; npm install -g eslint
 (add-hook 'js-mode-hook (lambda () (flymake-eslint-enable)))
 (defun my/js-mode-hook ()
+  "Company package isn't loaded during init; hence the lazy function."
   (add-to-list 'company-backends 'company-tern))
 (add-hook 'js-mode-hook 'my/js-mode-hook)
 (add-hook 'js-mode-hook #'abbrev-mode)
