@@ -40,7 +40,7 @@
 (setq browse-url-browser-function 'eww-browse-url)
 ;; (setq shr-color-visible-distance-min 100)
 (defvar shr-color-visible-luminance-min)
-(setq shr-color-visible-luminance-min 60)
+(setq shr-color-visible-luminance-min 70)
 
 ;; cursor
 ;; (blink-cursor-mode t)
