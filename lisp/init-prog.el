@@ -2,7 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Common settings
+(when (< emacs-major-version 27)
+  (eval-and-compile (package-initialize)))
+
+(eval-when-compile (require 'company))
 (add-hook 'prog-mode-hook #'company-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
@@ -43,6 +46,7 @@
   "Company package isn't loaded during init; hence the lazy function."
   (add-to-list 'company-backends 'company-jedi))
 (add-hook 'python-mode-hook 'my/python-mode-hook)
+(eval-when-compile (require 'flymake-python-pyflakes))
 (add-hook 'python-mode-hook #'flymake-python-pyflakes-load)
 (setq flymake-python-pyflakes-executable "flake8")
 ;; (add-hook 'python-mode-hook 'yapf-mode)
@@ -54,10 +58,10 @@
 (add-hook 'rust-mode-hook #'eglot-ensure)
 
 ;; JavaScript
+(eval-when-compile (require 'js))
 ;; (add-hook 'js-mode-hook #'eglot-ensure)
 (add-hook 'js-mode-hook #'flymake-mode)
 (setq js-indent-level 2)
-;; (autoload 'tern-mode "tern.el" nil t)
 ;; npm install -g tern
 (add-hook 'js-mode-hook (lambda () (tern-mode t)))
 ;; npm install -g eslint

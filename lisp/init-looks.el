@@ -1,10 +1,16 @@
 ;;; init-looks.el --- customize emacs looks -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
+(when (< emacs-major-version 27)
+  (eval-and-compile (package-initialize)))
 
 (setq inhibit-startup-screen t)
 
 ;; theme
 ;; (add-hook 'after-init-hook (lambda () (load-theme 'nimbus t)))
-(add-hook 'after-init-hook (lambda () (load-theme 'sanityinc-tomorrow-bright t)))
+(add-hook 'after-init-hook
+	  (lambda () (load-theme 'sanityinc-tomorrow-bright t)))
 
 ;; Disable menu-bar, tool-bar and scroll-bar. What is the use of emacs
 ;; if you are using these mouseee features.
@@ -33,6 +39,7 @@
 ;; browser settings eww
 (setq browse-url-browser-function 'eww-browse-url)
 ;; (setq shr-color-visible-distance-min 100)
+(defvar shr-color-visible-luminance-min)
 (setq shr-color-visible-luminance-min 60)
 
 ;; cursor

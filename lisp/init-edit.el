@@ -6,4 +6,4 @@
 (require 'init-keys)
 
 (provide 'init-edit)
-;; init-edit.el ends here
+;;; init-edit.el ends here

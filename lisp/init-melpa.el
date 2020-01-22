@@ -2,7 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-(eval-when-compile (require 'package))
+(when (< emacs-major-version 27)
+  (eval-and-compile (package-initialize)))
+
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
 (defvar essential-packages)
@@ -14,8 +16,6 @@
 	org-babel-eval-in-repl
 	org-mime
 	projectile
-	lua-mode
-	luarocks
 	bbdb
 	htmlize
 	json-mode
@@ -37,12 +37,6 @@
     (unless (package-installed-p package)
       (package-install package)))
   (message "Installed essential packages."))
-
-;; This line initializes all the installed packages.
-;; (eval-when-compile (package-initialize))
-(if (< emacs-major-version 27)
-    (package-initialize)
-  (eval-when-compile (package-initialize)))
 
 (provide 'init-melpa)
 ;;; init-melpa.el ends here

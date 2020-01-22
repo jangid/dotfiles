@@ -2,6 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
+;; Commons
+;;;(require 'package)
+(when (< emacs-major-version 27)
+    (eval-and-compile (package-initialize)))
+
 ;; Recent files
 (recentf-mode 1)
 
@@ -10,13 +15,14 @@
 (setq epg-pinentry-mode 'loopback)
 
 ;; Configure Gnus
-(eval-when-compile (require 'gnus))
-;; (setq gnus-init-file (expand-file-name "gnus" user-emacs-directory))
+;;(eval-when-compile (require 'gnus))
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 ;; (setq sc-auto-fill-region-p nil sc-preferred-header-style 1)
-;; (setq gnus-use-dribble-file nil)
-;; (setq gnus-always-read-dribble-file t)
+
+;; Configure mml - sign and encrypt key
+(eval-when-compile (require 'mml-sec))
 (setq mml-secure-openpgp-encrypt-to-self t)
+(setq mml-secure-openpgp-signers '("0B6274243B26A911052ADDE67C956E6FF8587689"))
 
 ;; Configure ERC
 (require 'erc)
@@ -92,14 +98,16 @@
 (eval-when-compile (require 'bbdb))
 (bbdb-initialize 'gnus 'message)
 (bbdb-mua-auto-update-init 'gnus 'message)
-(setq bbdb-message-pop-up nil)
+(setq bbdb-mua-pop-up nil)
 (setq bbdb-mua-update-interactive-p '(query . create))
 (setq bbdb-message-all-addresses t)
-(setq bbdb-north-american-phone-numbers-p nil)
-(setq bbdb-user-mail-names
-      (regexp-opt '("p4j@j4d.net"
-		    "pankaj.jangid@gmail.com"
-		    "pankaj.jangid@optimizory.com")))
+;; (setq bbdb-north-american-phone-numbers-p nil)
+;; (setq bbdb-user-mail-names
+;;       (regexp-opt '("p4j@j4d.net"
+;; 		    "pankaj.jangid@gmail.com"
+;; 		    "pankaj.jangid@optimizory.com")))
+
+(eval-when-compile (require 'gnus-sum))
 ;; use ; on a message to invoke bbdb interactively
 (add-hook
  'gnus-summary-mode-hook
