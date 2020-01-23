@@ -135,7 +135,7 @@
    (C . t)))
 
 ;; ispell - this requires 'ispell' tool to be in path
-(add-hook 'text-mode-hook #'flyspell-mode)
+;; (add-hook 'text-mode-hook #'flyspell-mode)
 
 ;; projectile
 (eval-when-compile (require 'projectile))
