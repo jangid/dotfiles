@@ -6,7 +6,8 @@
 ;; much of the default behaviour.
 ;;
 ;; Another objective of this file is to keep this file updated with
-;; the latest version of Emacs.
+;; the latest version of Emacs.  Currently, only major version 27 is
+;; supported.
 
 ;;; Code:
 
