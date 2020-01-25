@@ -2,11 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (when (< emacs-major-version 27)
-;;   (eval-and-compile
-;;     (package-initialize)))
+(require 'init-pkg)
 
 (eval-when-compile (require 'company))
+
 (add-hook 'prog-mode-hook #'company-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'yas-minor-mode)

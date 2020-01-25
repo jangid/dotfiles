@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (when (< emacs-major-version 27)
-;;   (eval-and-compile
-;;     (package-initialize)))
+(require 'init-pkg)
 
 (setq inhibit-startup-screen t)
 

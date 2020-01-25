@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'init-pkg)
+
 (eval-when-compile (require 'exec-path-from-shell))
 (exec-path-from-shell-initialize)
 (add-hook 'after-init-hook 'direnv-mode)

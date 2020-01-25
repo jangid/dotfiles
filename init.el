@@ -17,21 +17,13 @@
 ;; Produce backtrace on error
 (setq debug-on-error t)
 
+;; utility package required by all other packages
+(require 'init-pkg
+	 (expand-file-name "lisp/init-pkg.el" user-emacs-directory))
+
 ;; The configuration is divided into sections and each section has its
 ;; configuration file. These configuration files in turn load other
 ;; configuration files for components.
-
-;; Directory to hold modular lisp files
-(eval-when-compile
-  (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)))
-
-;; MELPA repositlry
-(eval-when-compile (require 'package))
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-
-(if (< emacs-major-version 27)
-    (eval-and-compile
-      (package-initialize)))
 
 (require 'init-env)
 (require 'init-tools)

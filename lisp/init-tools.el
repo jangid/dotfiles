@@ -2,8 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-;;   (eval-when-compile
-;;     (package-initialize))) ; bbdb is not loaded without it even in 27.x
+(require 'init-pkg)
 
 ;; Recent files
 (recentf-mode 1)
