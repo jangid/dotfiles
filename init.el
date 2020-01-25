@@ -29,8 +29,12 @@
 (eval-when-compile (require 'package))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
-(require 'init-tools)
+(if (< emacs-major-version 27)
+    (eval-and-compile
+      (package-initialize)))
+
 (require 'init-env)
+(require 'init-tools)
 (require 'init-looks)
 (require 'init-edit)
 (require 'init-prog)

@@ -2,9 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (eval-and-compile
-;;     (package-initialize))
-
 (eval-when-compile (require 'exec-path-from-shell))
 (exec-path-from-shell-initialize)
 (add-hook 'after-init-hook 'direnv-mode)
