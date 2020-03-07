@@ -15,6 +15,7 @@
 ;;(eval-when-compile (require 'gnus))
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 ;; (setq sc-auto-fill-region-p nil sc-preferred-header-style 1)
+(add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
 
 ;; Configure mml - sign and encrypt key
 (eval-when-compile (require 'mml-sec))
@@ -150,7 +151,7 @@
 ;; (global-set-key [f8] 'treemacs)
 
 ;; desktop save restore
-(desktop-save-mode +1)
+;; (desktop-save-mode +1)
 
 (provide 'init-tools)
 ;;; init-tools.el ends here
