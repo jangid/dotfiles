@@ -11,10 +11,6 @@
 
 ;;; Code:
 
-;; Check emacs-major-version 27
-(when (< emacs-major-version 27)
-    (error "Old Emacs.  Require v%s or higher" 27))
-
 ;; Produce backtrace on error
 (setq debug-on-error t)
 
