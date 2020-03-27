@@ -16,30 +16,20 @@
 
 ;; menuBar
 ;; (menu-bar-mode +1)
-(menu-bar-mode -1)
+;; (menu-bar-mode -1)
 
 ;; scrollBar
 ;; (scroll-bar-mode +1)
-(scroll-bar-mode -1)
+;; (scroll-bar-mode -1)
 
 ;; toolBar
 ;; (tool-bar-mode +1)
-(tool-bar-mode -1)
+;; (tool-bar-mode -1)
 
 ;; tabBar
 ;; (setq tab-bar-show 1)
 ;; (tab-bar-mode +1)
 ;; (tab-bar-mode -1)
-
-;; default to Ibuffer
-;; (global-set-key (kbd "C-x C-b") #'ibuffer-other-window)
-(global-set-key (kbd "C-x C-b") #'ibuffer)
-
-;; browser settings eww
-(setq browse-url-browser-function 'eww-browse-url)
-;; (setq shr-color-visible-distance-min 100)
-(defvar shr-color-visible-luminance-min)
-(setq shr-color-visible-luminance-min 70)
 
 ;; cursor
 ;; (blink-cursor-mode t)
