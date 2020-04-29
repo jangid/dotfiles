@@ -30,34 +30,9 @@
   (connect-irc)
   (unset-credentials))
 
-(defun connect-gitter ()
-  "Connect to irc.gitter.im."
-  (interactive)
-  (set-gitter-credentials)
-  (connect-irc-tls)
-  (unset-credentials))
-
-(defun connect-bitlbee ()
-  "Connect to bitlbee localhost."
-  (interactive)
-  (set-bitlbee-credentials)
-  (connect-irc)
-  (unset-credentials))
-
 ;; This causes ERC to connect to the Freenode network upon hitting
 ;; C-c e f.
 (global-set-key "\C-cef" 'connect-freenode)
-
-;; This causes ERC to connect to the Gitter network upon hitting
-;; C-c e f.
-(global-set-key "\C-ceg" 'connect-gitter)
-
-;; This causes ERC to connect to the IRC server on your own machine (if
-;; you have one) upon hitting C-c e b.  Replace MYNICK with your IRC
-;; nick.  Often, people like to run bitlbee (http://bitlbee.org/) as an
-;; AIM/Jabber/MSN to IRC gateway, so that they can use ERC to chat with
-;; people on those networks.
-(global-set-key "\C-ceb" 'connect-bitlbee)
 
 ;; Make C-c RET (or C-c C-RET) send messages instead of RET.
 (define-key erc-mode-map (kbd "RET") nil)
