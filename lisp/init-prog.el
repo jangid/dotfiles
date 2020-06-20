@@ -59,6 +59,9 @@
 
 ;; JavaScript
 (eval-when-compile (require 'js))
+(add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.cjs\\'" . js-mode))
+
 ;; (add-hook 'js-mode-hook #'eglot-ensure)
 (add-hook 'js-mode-hook #'flymake-mode)
 (setq js-indent-level 2)
@@ -68,6 +71,7 @@
 (add-hook 'js-mode-hook (lambda () (flymake-eslint-enable)))
 (defun my/js-mode-hook ()
   "Company package isn't loaded during init; hence the lazy function."
+  (setq-default indent-tabs-mode nil)
   (add-to-list 'company-backends 'company-tern))
 (add-hook 'js-mode-hook 'my/js-mode-hook)
 (add-hook 'js-mode-hook #'abbrev-mode)
