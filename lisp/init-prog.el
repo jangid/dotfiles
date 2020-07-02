@@ -18,11 +18,6 @@
 (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
 (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
 
-;; company settings
-;;(require 'company)
-;;(require 'company-lsp)
-;;(push 'company-lsp company-backends)
-
 ;; Emacs Lisp
 (add-hook 'emacs-lisp-mode-hook #'flymake-mode)
 
@@ -48,6 +43,7 @@
 
 (add-hook 'python-mode-hook #'flymake-mode)
 (add-hook 'python-mode-hook 'my/python-mode-hook)
+(add-hook 'python-mode-hook #'abbrev-mode)
 (add-hook 'python-mode-hook #'flymake-python-pyflakes-load)
 (setq flymake-python-pyflakes-executable "flake8")
 ;; (add-hook 'python-mode-hook 'yapf-mode)
