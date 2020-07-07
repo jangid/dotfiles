@@ -72,5 +72,16 @@
 (add-hook 'js-mode-hook 'my/js-mode-hook)
 (add-hook 'js-mode-hook #'abbrev-mode)
 
+;; Dart
+(eval-when-compile (require 'eglot))
+(add-to-list 'eglot-server-programs
+	     '(dart-mode . ("dart"
+			    "/usr/local/Cellar/dart/2.8.4/libexec/bin/snapshots/analysis_server.dart.snapshot"
+			    "--lsp")))
+(add-hook 'dart-mode-hook #'eglot-ensure)
+
+;; Go
+(add-hook 'go-mode-hook #'eglot-ensure)
+
 (provide 'init-prog)
 ;;; init-prog.el ends here
