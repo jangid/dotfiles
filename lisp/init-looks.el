@@ -7,7 +7,8 @@
 (setq inhibit-startup-screen t)
 
 ;; theme
-;; (add-hook 'after-init-hook (lambda () (load-theme 'nimbus t)))
+(use-package color-theme-sanityinc-tomorrow
+  :ensure t)
 (add-hook 'after-init-hook
 	  (lambda () (load-theme 'sanityinc-tomorrow-bright t)))
 
@@ -16,15 +17,15 @@
 
 ;; menuBar
 ;; (menu-bar-mode +1)
-;; (menu-bar-mode -1)
+(menu-bar-mode -1)
 
 ;; scrollBar
 ;; (scroll-bar-mode +1)
-;; (scroll-bar-mode -1)
+(scroll-bar-mode -1)
 
 ;; toolBar
 ;; (tool-bar-mode +1)
-;; (tool-bar-mode -1)
+(tool-bar-mode -1)
 
 ;; tabBar
 ;; (setq tab-bar-show 1)
@@ -33,11 +34,13 @@
 
 ;; cursor
 ;; (blink-cursor-mode t)
-(global-hl-line-mode +1)
+;; (global-hl-line-mode +1)
 
 ;; mode-line
 ;; (display-time-mode +1)
-(eval-when-compile (require 'delight))
+(use-package delight
+  :ensure t)
+;; (eval-when-compile (require 'delight))
 (delight '((which-key-mode nil "which-key")
 	   (company-mode nil "company")
 	   (yas-minor-mode nil "yasnippet")

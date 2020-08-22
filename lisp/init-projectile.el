@@ -5,7 +5,9 @@
 (require 'init-pkg)
 
 ;; projectile
-(eval-when-compile (require 'projectile))
+(use-package projectile
+  :ensure t)
+;; (eval-when-compile (require 'projectile))
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (projectile-mode +1)

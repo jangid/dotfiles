@@ -4,7 +4,31 @@
 
 (require 'init-pkg)
 
-(eval-when-compile (require 'company))
+(use-package magit
+  :ensure t)
+(use-package eglot
+  :ensure t)
+(use-package company
+  :ensure t)
+(use-package dap-mode
+  :ensure t)
+(use-package flycheck
+  :ensure t)
+(use-package tern
+  :ensure t)
+(use-package flymake-eslint
+  :ensure t)
+(use-package yasnippet
+  :ensure t)
+(use-package lsp-mode
+  :ensure t)
+(use-package lsp-java
+  :ensure t)
+(use-package rust-mode
+  :ensure t)
+
+;; (eval-when-compile (require 'eglot))
+;; (eval-when-compile (require 'company))
 
 (add-hook 'prog-mode-hook #'company-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
@@ -22,20 +46,30 @@
 (add-hook 'emacs-lisp-mode-hook #'flymake-mode)
 
 ;; Java
-;; (require 'init-java)
-;;(load-library "lsp-java") 		; TODO: This library is not
-					; automatically loaded. Need
-					; to check why.
+;; (eval-when-compile (require 'lsp-java))
+(setq lsp-java-server-install-dir
+      (expand-file-name "~/work/code/eclipse.jdt.ls"))
+(setq lsp-java-workspace-dir
+      (expand-file-name "~/work/code/eclipse"))
+(setq lsp-java-workspace-cache-dir
+      (expand-file-name "~/work/code/eclipse/.cache/"))
+;; (defun my/java-mode-hook ()
+;;   "Company package isn't loaded during init; hence the lazy function."
+;;   (eval-when-compile (require 'company-lsp))
+;;   (push 'company-lsp company-backends))
 
-;;(setq lsp-java-workspace-dir (expand-file-name "~/work/code/eclipse"))
-;; I have downloaded and compiled Eclipse JDT myself. But actually
-;; lsp-java can do it on its own. You don't need to do it manually.
-;;(setq lsp-java-server-install-dir (expand-file-name "~/work/code/github/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/"))
+(add-hook 'java-mode-hook #'flycheck-mode)
+;; (add-hook 'java-mode-hook #'my/java-mode-hook)
+(add-hook 'java-mode-hook #'dap-mode)
+(add-hook 'java-mode-hook #'lsp)
 
-;;(add-hook 'java-mode-hook #'eglot-ensure)
+;; (setenv "CLASSPATH" "~/work/code/eclipse.jdt.ls/plugins/org.eclipse.equinox.launcher_1.5.700.v20200207-2156.jar")
+;; (add-hook 'java-mode-hook #'eglot-ensure)
 
 ;; Python
-(eval-when-compile (require 'flymake-python-pyflakes))
+(use-package flymake-python-pyflakes
+  :ensure t)
+;;(eval-when-compile (require 'flymake-python-pyflakes))
 
 (defun my/python-mode-hook ()
   "Company package isn't loaded during init; hence the lazy function."
@@ -73,7 +107,6 @@
 (add-hook 'js-mode-hook #'abbrev-mode)
 
 ;; Dart
-(eval-when-compile (require 'eglot))
 (add-to-list 'eglot-server-programs
 	     '(dart-mode . ("dart"
 			    "/usr/local/Cellar/dart/2.8.4/libexec/bin/snapshots/analysis_server.dart.snapshot"
@@ -82,6 +115,9 @@
 
 ;; Go
 (add-hook 'go-mode-hook #'eglot-ensure)
+
+;; Ruby
+(add-hook 'ruby-mode-hook #'eglot-ensure)
 
 (provide 'init-prog)
 ;;; init-prog.el ends here

@@ -5,7 +5,10 @@
 (require 'init-pkg)
 
 ;; bbdb
-(eval-when-compile (require 'bbdb))
+(use-package bbdb
+  :ensure t)
+
+;;(eval-when-compile (require 'bbdb))
 (bbdb-initialize 'gnus 'message)
 (bbdb-mua-auto-update-init 'gnus 'message)
 (setq bbdb-mua-pop-up nil)
