@@ -4,8 +4,6 @@
 
 (require 'init-pkg)
 
-(use-package magit
-  :ensure t)
 (use-package eglot
   :ensure t)
 (use-package company
@@ -23,8 +21,6 @@
 (use-package lsp-mode
   :ensure t)
 (use-package lsp-java
-  :ensure t)
-(use-package rust-mode
   :ensure t)
 
 ;; (eval-when-compile (require 'eglot))
@@ -82,29 +78,6 @@
 (setq flymake-python-pyflakes-executable "flake8")
 ;; (add-hook 'python-mode-hook 'yapf-mode)
 
-;; rust-lang
-(add-hook 'rust-mode-hook
-          (lambda () (setq indent-tabs-mode nil)))
-(add-hook 'rust-mode-hook #'eglot-ensure)
-
-;; JavaScript
-(eval-when-compile (require 'js))
-(add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))
-(add-to-list 'auto-mode-alist '("\\.cjs\\'" . js-mode))
-
-;; (add-hook 'js-mode-hook #'eglot-ensure)
-(add-hook 'js-mode-hook #'flymake-mode)
-(setq js-indent-level 2)
-;; npm install -g tern
-(add-hook 'js-mode-hook (lambda () (tern-mode t)))
-;; npm install -g eslint
-(add-hook 'js-mode-hook (lambda () (flymake-eslint-enable)))
-(defun my/js-mode-hook ()
-  "Company package isn't loaded during init; hence the lazy function."
-  (setq-default indent-tabs-mode nil)
-  (add-to-list 'company-backends 'company-tern))
-(add-hook 'js-mode-hook 'my/js-mode-hook)
-(add-hook 'js-mode-hook #'abbrev-mode)
 
 ;; Dart
 (add-to-list 'eglot-server-programs

@@ -23,21 +23,27 @@
 ;; configuration files for components.
 
 (require 'init-env)
+
+(require 'init-magit)
+(require 'init-ibuffer)
 (require 'init-gnus)
 (require 'init-erc)
 (require 'init-org)
-(require 'init-crypto)
 (require 'init-bbdb)
 (require 'init-dired)
 (require 'init-projectile)
-(require 'init-completion)
+(require 'init-which-key)
+(require 'init-company)
+(require 'init-icomplete)
 (require 'init-desktop)
 (require 'init-browser)
-(require 'init-ibuffer)
+(require 'init-crypto)
+(require 'init-rust)
+(require 'init-javascript)
 (require 'init-misc)
 (require 'init-looks)
 (require 'init-edit)
-(require 'init-prog)
+;;(require 'init-prog)
 
 ;; Keep the custom file separate from init.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
