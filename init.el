@@ -26,6 +26,7 @@
 
 (require 'init-magit)
 (require 'init-ibuffer)
+(require 'init-modeline)
 (require 'init-gnus)
 (require 'init-erc)
 (require 'init-org)
@@ -38,6 +39,8 @@
 (require 'init-desktop)
 (require 'init-browser)
 (require 'init-crypto)
+(require 'init-flymake)
+(require 'init-elisp)
 (require 'init-rust)
 (require 'init-javascript)
 (require 'init-misc)

@@ -4,6 +4,8 @@
 
 (require 'init-pkg)
 
+(use-package company
+  :ensure t)
 (use-package rust-mode
   :ensure t)
 (use-package eglot
@@ -11,8 +13,17 @@
 (use-package yasnippet
   :ensure t)
 
-(add-hook 'rust-mode-hook
-          (lambda () (setq indent-tabs-mode nil)))
+(defun my/rust-mode-hook ()
+  "Custom code to run on start of 'rust-mode'."
+  (setq indent-tabs-mode nil))
+
+(add-hook 'rust-mode-hook 'my/rust-mode-hook)
+(add-hook 'rust-mode-hook #'company-mode)
+(add-hook 'rust-mode-hook #'display-line-numbers-mode)
+(add-hook 'rust-mode-hook #'yas-minor-mode)
+(add-hook 'rust-mode-hook #'electric-pair-mode)
+(add-hook 'rust-mode-hook #'hs-minor-mode)
+(add-hook 'rust-mode-hook #'semantic-mode)
 (add-hook 'rust-mode-hook #'eglot-ensure)
 
 (provide 'init-rust)

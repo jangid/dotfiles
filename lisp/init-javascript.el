@@ -30,9 +30,9 @@
   (flymake-eslint-enable)
   (add-to-list 'company-backends 'company-tern))
 
+(add-hook 'js-mode-hook 'my/js-mode-hook)
 (add-hook 'js-mode-hook #'flymake-mode)
 (add-hook 'js-mode-hook #'abbrev-mode)
-(add-hook 'js-mode-hook 'my/js-mode-hook)
 
 (provide 'init-javascript)
 ;;; init-javascript.el ends here

@@ -4,8 +4,6 @@
 
 (require 'init-pkg)
 
-(use-package eglot
-  :ensure t)
 (use-package company
   :ensure t)
 (use-package dap-mode
@@ -14,13 +12,6 @@
   :ensure t)
 (use-package yasnippet
   :ensure t)
-(use-package lsp-mode
-  :ensure t)
-(use-package lsp-java
-  :ensure t)
-
-;; (eval-when-compile (require 'eglot))
-;; (eval-when-compile (require 'company))
 
 (add-hook 'prog-mode-hook #'company-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
@@ -30,33 +21,6 @@
 ;;(add-hook 'prog-mode-hook #'flyspell-prog-mode)
 (add-hook 'prog-mode-hook #'semantic-mode)
 
-(require 'flymake)
-(define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
-(define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
-
-;; Emacs Lisp
-(add-hook 'emacs-lisp-mode-hook #'flymake-mode)
-
-;; Java
-;; (eval-when-compile (require 'lsp-java))
-(setq lsp-java-server-install-dir
-      (expand-file-name "~/work/code/eclipse.jdt.ls"))
-(setq lsp-java-workspace-dir
-      (expand-file-name "~/work/code/eclipse"))
-(setq lsp-java-workspace-cache-dir
-      (expand-file-name "~/work/code/eclipse/.cache/"))
-;; (defun my/java-mode-hook ()
-;;   "Company package isn't loaded during init; hence the lazy function."
-;;   (eval-when-compile (require 'company-lsp))
-;;   (push 'company-lsp company-backends))
-
-(add-hook 'java-mode-hook #'flycheck-mode)
-;; (add-hook 'java-mode-hook #'my/java-mode-hook)
-(add-hook 'java-mode-hook #'dap-mode)
-(add-hook 'java-mode-hook #'lsp)
-
-;; (setenv "CLASSPATH" "~/work/code/eclipse.jdt.ls/plugins/org.eclipse.equinox.launcher_1.5.700.v20200207-2156.jar")
-;; (add-hook 'java-mode-hook #'eglot-ensure)
 
 ;; Python
 (use-package flymake-python-pyflakes
