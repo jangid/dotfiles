@@ -12,10 +12,6 @@
   :ensure t)
 (use-package flycheck
   :ensure t)
-(use-package tern
-  :ensure t)
-(use-package flymake-eslint
-  :ensure t)
 (use-package yasnippet
   :ensure t)
 (use-package lsp-mode
