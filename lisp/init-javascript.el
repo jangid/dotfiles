@@ -15,6 +15,8 @@
   :ensure t)
 (use-package flymake-eslint
   :ensure t)
+(use-package yasnippet
+  :ensure t)
 
 (eval-when-compile (require 'js))
 (add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))

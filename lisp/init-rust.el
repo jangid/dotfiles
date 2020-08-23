@@ -8,6 +8,8 @@
   :ensure t)
 (use-package eglot
   :ensure t)
+(use-package yasnippet
+  :ensure t)
 
 (add-hook 'rust-mode-hook
           (lambda () (setq indent-tabs-mode nil)))
