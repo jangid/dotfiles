@@ -23,7 +23,6 @@
 ;; configuration files for components.
 
 (require 'init-env)
-
 (require 'init-magit)
 (require 'init-ibuffer)
 (require 'init-modeline)
@@ -36,7 +35,6 @@
 (require 'init-which-key)
 (require 'init-company)
 (require 'init-icomplete)
-(require 'init-desktop)
 (require 'init-browser)
 (require 'init-crypto)
 (require 'init-flymake)
@@ -44,8 +42,11 @@
 (require 'init-rust)
 (require 'init-javascript)
 (require 'init-misc)
-(require 'init-looks)
+(require 'init-sanity-tomorrow-bright)
+(require 'init-delight)
+;; (require 'init-looks)
 (require 'init-edit)
+(require 'init-desktop)
 ;;(require 'init-prog)
 
 ;; Keep the custom file separate from init.el
