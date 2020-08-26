@@ -36,7 +36,7 @@
 (require 'init-gnus)
 (require 'init-erc)
 (require 'init-org)
-;;(require 'init-bbdb)
+(require 'init-bbdb)
 (require 'init-dired)
 (require 'init-projectile)
 (require 'init-which-key)
