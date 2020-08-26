@@ -1,9 +1,10 @@
-;;; init-pkg.el --- compile time pkg -*- lexical-binding: t -*-
+;;; init-pkg.el --- initialize package system -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
+(require 'package)
+
 ;; MELPA stable repositlry
-(eval-when-compile (require 'package))
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (eval-when-compile (package-initialize))
 

@@ -4,7 +4,7 @@
 
 (require 'init-pkg)
 
-(setq inhibit-startup-screen t)
+;; (setq inhibit-startup-screen t)
 
 ;; Disable menu-bar, tool-bar and scroll-bar. What is the use of emacs
 ;; if you are using these mouseee features.
@@ -30,8 +30,6 @@
 ;; (blink-cursor-mode t)
 ;; (global-hl-line-mode +1)
 
-;; mode-line
-;; (display-time-mode +1)
 
 (provide 'init-looks)
 ;;; init-looks.el ends here

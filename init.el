@@ -1,4 +1,5 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t -*-
+
 ;;; Commentary:
 ;; This is the master configuration file.  This loads several other
 ;; files to give customized behaviour.  The goal of this file is to
@@ -14,6 +15,10 @@
 ;; Produce backtrace on error
 (setq debug-on-error t)
 
+;; default email address and full name
+(setq user-mail-address	"p4j@j4d.net"
+      user-full-name "Pankaj Jangid")
+
 ;; utility package required by all other packages
 (require 'init-pkg
 	 (expand-file-name "lisp/init-pkg.el" user-emacs-directory))
@@ -22,10 +27,12 @@
 ;; configuration file. These configuration files in turn load other
 ;; configuration files for components.
 
+;; Environment variables
 (require 'init-env)
+
+;; Tools and utilities
 (require 'init-magit)
 (require 'init-ibuffer)
-(require 'init-modeline)
 (require 'init-gnus)
 (require 'init-erc)
 (require 'init-org)
@@ -38,16 +45,32 @@
 (require 'init-browser)
 (require 'init-crypto)
 (require 'init-flymake)
+(require 'init-date-time)
+
+;; Looks and themes
+(require 'init-looks)			; Common UI settings - menu, tabs...
+(require 'init-sanity-tomorrow-bright)
+(require 'init-delight)
+(require 'init-modeline)
+
+;; Editor settings
+(require 'init-edit)
+
+;; Programming languages
+(require 'init-prog)			; Common programming settings
 (require 'init-elisp)
 (require 'init-rust)
 (require 'init-javascript)
+(require 'init-python)
+;; (require 'init-dart)
+;; (require 'init-go)
+;; (require 'init-ruby)
+
+;; Miscelleneous
 (require 'init-misc)
-(require 'init-sanity-tomorrow-bright)
-(require 'init-delight)
-;; (require 'init-looks)
-(require 'init-edit)
-(require 'init-desktop)
-;;(require 'init-prog)
+
+;; Session save and restore
+;; (require 'init-desktop)
 
 ;; Keep the custom file separate from init.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -55,9 +78,6 @@
   (load custom-file))
 
 ;; start server for emacsclient support
-(require 'server)			; I don't know why this is
-					; required after
-					; package-initialize
 (unless (server-running-p) (server-start))
 
 (provide 'init)

@@ -4,8 +4,8 @@
 
 (require 'init-pkg)
 
-(use-package org
-  :ensure t)
+;; (use-package org
+;;   :ensure t)
 (use-package org-bullets
   :ensure t)
 
