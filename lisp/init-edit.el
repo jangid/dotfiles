@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-pkg)
-
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'super)
 ;; (setq mac-right-option-modifier nil)

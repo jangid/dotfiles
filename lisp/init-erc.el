@@ -2,10 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-pkg)
-
 ;; Configure ERC
-(require 'erc)
+;;(require 'erc)
 (require 'erc-join)
 
 ;; Authentication

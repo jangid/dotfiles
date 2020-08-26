@@ -2,16 +2,21 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-pkg)
+(require 'init-use-package)
 
 (use-package company
-  :ensure t)
+  :ensure t
+  :hook
+  (rust-mode . company-mode))
+
 (use-package rust-mode
   :ensure t)
+
 (use-package eglot
-  :ensure t)
-(use-package yasnippet
-  :ensure t)
+  :ensure t
+  :hook
+  (rust-mode . eglot-ensure))
+
 (use-package flymake
   :ensure t)
 
@@ -20,14 +25,6 @@
   (setq indent-tabs-mode nil))
 
 (add-hook 'rust-mode-hook 'my/rust-mode-hook)
-(add-hook 'rust-mode-hook #'company-mode)
-(add-hook 'rust-mode-hook #'display-line-numbers-mode)
-(add-hook 'rust-mode-hook #'yas-minor-mode)
-(add-hook 'rust-mode-hook #'electric-pair-mode)
-(add-hook 'rust-mode-hook #'hs-minor-mode)
-(add-hook 'rust-mode-hook #'semantic-mode)
-(add-hook 'rust-mode-hook #'eglot-ensure)
-(add-hook 'js-mode-hook #'flymake-mode)
 
 (provide 'init-rust)
 ;;; init-rust.el ends here

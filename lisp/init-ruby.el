@@ -2,12 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-pkg)
+(require 'init-use-package)
 
 (use-package eglot
-  ensure: t)
-
-(add-hook 'ruby-mode-hook #'eglot-ensure)
+  :ensure t
+  :hook
+  (ruby-mode . eglot-ensure))
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here

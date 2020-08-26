@@ -5,12 +5,12 @@
 
 ;;; Code:
 
-(require 'init-pkg)
+(require 'init-use-package)
 
 (use-package which-key
-  :ensure t)
-
-(add-hook 'after-init-hook #'which-key-mode)
+  :ensure t
+  :config
+  (which-key-mode 1))
 
 (provide 'init-which-key)
 ;;; init-which-key.el ends here

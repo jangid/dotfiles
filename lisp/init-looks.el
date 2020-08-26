@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-pkg)
-
 ;; (setq inhibit-startup-screen t)
 
 ;; Disable menu-bar, tool-bar and scroll-bar. What is the use of emacs

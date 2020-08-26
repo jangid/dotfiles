@@ -2,12 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-pkg)
+(require 'init-use-package)
 
 (use-package eglot
-  ensure: t)
-
-(add-hook 'go-mode-hook #'eglot-ensure)
+  :ensure t
+  :hook
+  (go-mode . eglot-ensure))
 
 (provide 'init-go)
 ;;; init-go.el ends here

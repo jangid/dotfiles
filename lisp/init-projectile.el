@@ -2,18 +2,15 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-pkg)
+(require 'init-use-package)
 
 ;; projectile
 (use-package projectile
-  :ensure t)
-;; (eval-when-compile (require 'projectile))
-(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-(projectile-mode +1)
-;; (setq projectile-project-search-path '("~/work/code/"))
-;; (setq projectile-mode-line '(:eval (format " P[%s]" (projectile-project-name))))
-;; (setq projectile-mode-line-lighter " P")
+  :ensure t
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :config
+  (projectile-mode 1))
 
 (provide 'init-projectile)
 ;;; init-projectile.el ends here

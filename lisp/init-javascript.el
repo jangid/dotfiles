@@ -7,16 +7,23 @@
 
 ;;; Code:
 
-(require 'init-pkg)
+(require 'init-use-package)
 
 (use-package company
-  :ensure t)
-(use-package tern
-  :ensure t)
+  :ensure t
+  :config
+  (use-package tern
+    :ensure t
+    :config
+    (tern-mode t)
+    (add-to-list 'company-backends 'company-tern)
+    :hook
+    (js-mode . company-mode)))
+
 (use-package flymake-eslint
-  :ensure t)
-(use-package yasnippet
-  :ensure t)
+  :ensure t
+  :config
+  (lambda () (flymake-eslint-enable)))
 
 (eval-when-compile (require 'js))
 (add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))
@@ -25,14 +32,9 @@
 (defun my/js-mode-hook ()
   "Company package isn't loaded during init; hence the lazy function."
   (setq js-indent-level 2)
-  (setq-default indent-tabs-mode nil)
-  (tern-mode t)
-  (flymake-eslint-enable)
-  (add-to-list 'company-backends 'company-tern))
+  (setq-default indent-tabs-mode nil))
 
 (add-hook 'js-mode-hook 'my/js-mode-hook)
-(add-hook 'js-mode-hook #'flymake-mode)
-(add-hook 'js-mode-hook #'abbrev-mode)
 
 (provide 'init-javascript)
 ;;; init-javascript.el ends here

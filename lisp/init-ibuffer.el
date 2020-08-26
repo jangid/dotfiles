@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-pkg)
+(require 'init-use-package)
 
 ;; default to Ibuffer
 ;; (global-set-key (kbd "C-x C-b") #'ibuffer-other-window)

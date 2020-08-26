@@ -2,12 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-pkg)
+(require 'init-use-package)
 
-;; (use-package org
-;;   :ensure t)
 (use-package org-bullets
-  :ensure t)
+  :ensure t
+  :hook
+  (org-mode . org-bullets-mode))
 
 ;; Global key bindings
 (global-set-key (kbd "C-c l") 'org-store-link)
@@ -15,11 +15,11 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c b") 'org-switchb)
 
+(require 'org-indent)
 (defun my/org-mode-hook ()
   "Custom code to run on start of 'org-mode'."
   (visual-line-mode)
   (org-indent-mode)
-  (org-bullets-mode)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)

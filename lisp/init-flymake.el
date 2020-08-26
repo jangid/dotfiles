@@ -2,11 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-pkg)
+(require 'flymake)
 
-(use-package flymake
-  :ensure t)
-
+(add-hook 'prog-mode-hook #'flymake-mode)
 (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
 (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
 

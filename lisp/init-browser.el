@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-pkg)
-
 (setq browse-url-browser-function 'eww-browse-url)
 ;; (setq shr-color-visible-distance-min 100)
 (defvar shr-color-visible-luminance-min)

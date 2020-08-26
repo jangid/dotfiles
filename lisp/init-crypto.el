@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-pkg)
-
 ;; GnuPG configuration
 (eval-when-compile (require 'epg))
 (setq epg-pinentry-mode 'loopback)
