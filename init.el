@@ -27,6 +27,12 @@
 ;; activate use-package
 (require 'init-use-package)
 
+;; (require 'package)
+;;(use-package gnu-elpa-keyring-update
+;;   :ensure t)
+;;   :config
+;;   (setq package-check-signature t))
+
 ;; Environment variables
 (require 'init-env)
 
@@ -36,7 +42,7 @@
 (require 'init-gnus)
 (require 'init-erc)
 (require 'init-org)
-(require 'init-bbdb)
+(require 'init-bbdb) ; signature verification issue
 (require 'init-dired)
 (require 'init-projectile)
 (require 'init-which-key)

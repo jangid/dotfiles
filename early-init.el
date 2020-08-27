@@ -13,5 +13,7 @@
 (add-to-list 'package-archives
 	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
+;;(setq package-check-signature nil)
+
 (provide 'early-init)
 ;;; early-init.el ends here

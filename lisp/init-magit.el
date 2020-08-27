@@ -5,10 +5,10 @@
 (require 'init-use-package)
 
 (use-package magit
-  :ensure t)
-
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
+  :ensure t
+  :bind
+  ("C-x g" . magit-status)
+  ("C-x M-g" . magit-dispatch-popup))
 
 (provide 'init-magit)
 ;;; init-magit.el ends here

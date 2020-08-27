@@ -1,4 +1,4 @@
-;;; init-use-package.el --- initialize package system -*- lexical-binding: t -*-
+;;; init-use-package.el --- setup use-package -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
