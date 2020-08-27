@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-pkg)
-
 ;; (display-time-mode +1)
 
 (provide 'init-modeline)

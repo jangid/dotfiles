@@ -4,10 +4,14 @@
 
 (require 'package)
 
-(dolist (package '(use-package))
-  (unless (package-installed-p package)
+;; MELPA stable repositlry
+(eval-when-compile
+  (add-to-list 'package-archives
+	       '("melpa-stable" . "https://stable.melpa.org/packages/")))
+
+(unless (package-installed-p 'use-package)
     (package-refresh-contents)
-    (package-install package)))
+    (package-install 'use-package))
 
 (eval-when-compile (package-initialize))
 

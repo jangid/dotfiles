@@ -24,29 +24,33 @@
 (eval-and-compile
   (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)))
 
+;; Update GNU ELPA signature
+;;(require 'package)
+;; (unless (package-installed-p 'gnu-elpa-keyring-update)
+;;   (setq package-check-signature nil)
+;;   (package-refresh-contents)
+;;   (package-install 'gnu-elpa-keyring-update)
+;;   (setq package-check-signature 'allow-unsigned)
+;;   (package-refresh-contents))
+
+;;(setq package-check-signature nil) ; this must be removed
+
 ;; activate use-package
 (require 'init-use-package)
-
-;; (require 'package)
-;;(use-package gnu-elpa-keyring-update
-;;   :ensure t)
-;;   :config
-;;   (setq package-check-signature t))
 
 ;; Environment variables
 (require 'init-env)
 
 ;; Tools and utilities
-(require 'init-magit)
+;;(require 'init-bbdb) ; signature verification issue
 (require 'init-ibuffer)
 (require 'init-gnus)
 (require 'init-erc)
 (require 'init-org)
-(require 'init-bbdb) ; signature verification issue
 (require 'init-dired)
+(require 'init-magit)
 (require 'init-projectile)
 (require 'init-which-key)
-(require 'init-company)
 (require 'init-icomplete)
 (require 'init-browser)
 (require 'init-crypto)
@@ -57,8 +61,8 @@
 ;; Looks and themes
 (require 'init-looks)			; Common UI settings - menu, tabs...
 (require 'init-theme)
-(require 'init-delight)
-;; (require 'init-modeline)
+(require 'init-diminish)
+(require 'init-modeline)
 
 ;; Editor settings
 (require 'init-edit)
@@ -72,6 +76,7 @@
 (require 'init-dart)
 (require 'init-go)
 (require 'init-ruby)
+;;(require 'init-java)
 
 ;; Session save and restore
 ;; (require 'init-desktop)

@@ -2,28 +2,36 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'init-use-package)
+
 (use-package lsp-mode
-  :ensure t)
+  :ensure t
+  :hook
+  (java-mode . lsp))
+
 (use-package lsp-java
   :ensure t)
 (use-package flycheck
-  :ensure t)
+  :ensure t
+  :hook
+  (java-mode . flycheck-mode))
+
 (use-package dap-mode
-  :ensure t)
+  :ensure t
+  :hook
+  (java-mode . dap-mode))
 
-(defun my/java-mode-hook ()
-  "Custom code to run on start of 'java-mode'."
-  (setq lsp-java-server-install-dir
-	(expand-file-name "~/work/code/eclipse.jdt.ls"))
-  (setq lsp-java-workspace-dir
-	(expand-file-name "~/work/code/eclipse"))
-  (setq lsp-java-workspace-cache-dir
-	(expand-file-name "~/work/code/eclipse/.cache/")))
+;; (defun my/java-mode-hook ()
+;;   "Custom code to run on start of 'java-mode'."
+;;   (setq lsp-java-server-install-dir
+;; 	(expand-file-name "~/work/code/eclipse.jdt.ls"))
+;;   (setq lsp-java-workspace-dir
+;; 	(expand-file-name "~/work/code/eclipse"))
+;;   (setq lsp-java-workspace-cache-dir
+;; 	(expand-file-name "~/work/code/eclipse/.cache/")))
 
-(add-hook 'java-mode-hook #'my/java-mode-hook)
-(add-hook 'java-mode-hook #'flycheck-mode)
-(add-hook 'java-mode-hook #'dap-mode)
-(add-hook 'java-mode-hook #'lsp)
+;; (add-hook 'java-mode-hook #'my/java-mode-hook)
+
 
 (provide 'init-java)
 ;;; init-java.el ends here
