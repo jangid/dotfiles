@@ -4,10 +4,13 @@
 
 (require 'init-use-package)
 
-(use-package eglot
+(use-package go-mode
   :ensure t
-  :hook
-  (go-mode . eglot-ensure))
+  :config
+  (use-package eglot
+    :ensure t
+    :hook
+    (go-mode . eglot-ensure)))
 
 (provide 'init-go)
 ;;; init-go.el ends here
