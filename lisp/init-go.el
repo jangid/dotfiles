@@ -7,6 +7,15 @@
 (use-package go-mode
   :ensure t
   :config
+  (require 'init-prog-common)
+  (use-package company
+    :ensure t
+    :hook
+    (go-mode . company-mode))
+  (use-package yasnippet
+    :ensure t
+    :hook
+    (go-mode . yas-minor-mode))
   (use-package eglot
     :ensure t
     :hook

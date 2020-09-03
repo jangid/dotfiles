@@ -9,12 +9,15 @@
   :init
   (setq indent-tabs-mode nil)
   :config
+  (require 'init-prog-common)
   (use-package company
     :ensure t
     :hook
     (rust-mode . company-mode))
-  (use-package flymake
-    :ensure t)
+  (use-package yasnippet
+    :ensure t
+    :hook
+    (rust-mode . yas-minor-mode))
   (use-package eglot
     :ensure t
     :hook

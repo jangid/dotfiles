@@ -6,6 +6,8 @@
 
 (use-package eglot
   :ensure t
+  :config
+  (require 'init-prog-common)
   :hook
   (ruby-mode . eglot-ensure))
 

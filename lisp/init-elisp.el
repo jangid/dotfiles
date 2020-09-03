@@ -3,6 +3,7 @@
 ;;; Code:
 
 (require 'init-use-package)
+(require 'init-prog-common)
 
 (use-package company
   :ensure t

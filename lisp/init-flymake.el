@@ -2,10 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'flymake)
+(require 'init-use-package)
 
-(define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
-(define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
+(use-package flymake
+     :ensure t
+     :bind
+     ("M-n" . flymake-goto-next-error)
+     ("M-p" . flymake-goto-prev-error))
 
 (provide 'init-flymake)
 ;;; init-flymake.el ends here

@@ -16,7 +16,7 @@
 (setq debug-on-error t)
 
 ;; default email address and full name
-(setq user-mail-address	"pankaj.jangid@gmail.com"
+(setq user-mail-address	"p4j@j4d.net"
       user-full-name "Pankaj Jangid")
 
 ;; The configuration is divided into many files called modules. Set
@@ -54,7 +54,6 @@
 (require 'init-icomplete)
 (require 'init-browser)
 (require 'init-crypto)
-(require 'init-flymake)
 (require 'init-date-time)
 (require 'init-recentf)
 
@@ -68,7 +67,6 @@
 (require 'init-edit)
 
 ;; Programming languages
-(require 'init-prog)			; Common programming settings
 (require 'init-elisp)
 (require 'init-rust)
 (require 'init-javascript)

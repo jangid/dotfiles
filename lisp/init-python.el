@@ -4,22 +4,42 @@
 
 (require 'init-use-package)
 
-(use-package company
-  :ensure t)
-
-(use-package flymake-python-pyflakes
+(use-package python
   :ensure t
-  :init
-  (setq flymake-python-pyflakes-executable "flake8")
-  :hook
-  (python-mode . flymake-python-pyflakes-load)
-  (python-mode . flymake-mode))
+  :config
+  (require 'init-prog-common)
+  (setq python-indent-guess-indent-offset-verbose nil)
+    :config
+  (require 'init-prog-common)
+  (use-package company
+    :ensure t
+    :hook
+    (python-mode . company-mode))
+  ;; (use-package company
+  ;;   :ensure t
+  ;;   :config
+  ;;   (use-package company-jedi
+  ;;     :ensure t
+  ;;     :config
+  ;;     (add-to-list 'company-backends 'company-jedi))
+  ;;   :hook
+  ;;   (python-mode . company-mode))
+  (use-package yasnippet
+    :ensure t
+    :hook
+    (python-mode . yas-minor-mode))
+  (use-package eglot
+    :ensure t
+    :hook
+    (python-mode . eglot-ensure)))
 
-(defun my/python-mode-hook ()
-  "Company package isn't loaded during init; hence the lazy function."
-  (add-to-list 'company-backends 'company-jedi))
-
-(add-hook 'python-mode-hook 'my/python-mode-hook)
+  ;; (use-package flymake-python-pyflakes
+  ;;   :ensure t
+  ;;   :config
+  ;;   (setq flymake-python-pyflakes-executable "flake8")
+  ;;   :hook
+  ;;   (python-mode . flymake-python-pyflakes-load)
+  ;;   (python-mode . flymake-mode)))
 
 (provide 'init-python)
 ;;; init-python.el ends here
