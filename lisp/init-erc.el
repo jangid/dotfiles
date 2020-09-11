@@ -28,9 +28,17 @@
   (connect-irc)
   (unset-credentials))
 
+(defun connect-gitter ()
+  "Connect to irc.gitter.im."
+  (interactive)
+  (set-gitter-credentials)
+  (connect-irc-tls)
+  (unset-credentials))
+
 ;; This causes ERC to connect to the Freenode network upon hitting
 ;; C-c e f.
 (global-set-key "\C-cef" 'connect-freenode)
+(global-set-key "\C-ceg" 'connect-gitter)
 
 ;; Make C-c RET (or C-c C-RET) send messages instead of RET.
 (define-key erc-mode-map (kbd "RET") nil)

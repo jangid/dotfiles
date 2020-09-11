@@ -4,11 +4,11 @@
 
 (require 'init-use-package)
 
-(use-package color-theme-sanityinc-tomorrow
-  :ensure t
-  :config
-  (add-hook 'after-init-hook
-	    (lambda () (load-theme 'sanityinc-tomorrow-bright t nil))))
+;; (use-package color-theme-sanityinc-tomorrow
+;;   :ensure t
+;;   :config
+;;   (add-hook 'after-init-hook
+;; 	    (lambda () (load-theme 'sanityinc-tomorrow-bright t nil))))
 
 ;; TODO - disable all previously enabled themes
 

@@ -75,6 +75,7 @@
 (require 'init-go)
 (require 'init-ruby)
 ;;(require 'init-java)
+(require 'init-docker)
 
 ;; Session save and restore
 ;; (require 'init-desktop)

@@ -11,6 +11,7 @@
 
 (use-package lsp-java
   :ensure t)
+
 (use-package flycheck
   :ensure t
   :hook
