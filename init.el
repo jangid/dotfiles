@@ -44,7 +44,7 @@
 ;; Tools and utilities
 ;;(require 'init-bbdb) ; signature verification issue
 (require 'init-ibuffer)
-(require 'init-gnus)
+(require 'init-email)
 (require 'init-erc)
 (require 'init-org)
 (require 'init-dired)
@@ -75,7 +75,11 @@
 (require 'init-go)
 (require 'init-ruby)
 ;;(require 'init-java)
+(require 'init-kotlin)
+
+;; File types
 (require 'init-docker)
+(require 'init-yaml)
 
 ;; Session save and restore
 ;; (require 'init-desktop)

@@ -46,10 +46,13 @@
 (define-key erc-mode-map (kbd "C-c C-RET") 'erc-send-current-line)
 
 ;; Join the #emacs and #erc channels whenever connecting to Freenode.
-(setq erc-autojoin-channels-alist
-      '(("freenode.net"
-	 "#emacs" "#erc" "#postgresql" "##rust" "#rust-embedded"
-	 "#python")))
+;; (setq erc-autojoin-channels-alist
+;;       '(("freenode.net"
+;; 	 "#emacs" "#erc" "#postgresql" "##rust" "#rust-embedded"
+;; 	 "#python" "##javascript" "#docker" "##electronics" "#arduino"
+;;       "#arduino-ops" "#sr.ht")))
+;; (setq erc-autojoin-channels-alist
+;;       '(("#emacs" "#python" "#docker" "#arduino")))
 
 (provide 'init-erc)
 ;;; init-erc.el ends here
