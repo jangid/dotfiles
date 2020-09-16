@@ -2,37 +2,41 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-use-package)
+(require 'package)
 
-(use-package lsp-mode
-  :ensure t
-  :hook
-  (java-mode . lsp))
+(defun my/java-setup ()
+  "Initialize tools require for Java programming."
+  (defvar my/pkgs)
+  (setq my/pkgs '(lsp-mode lsp-java
+			   company
+			   dap-mode
+			   flycheck))
 
-(use-package lsp-java
-  :ensure t)
+  (let (ulist)
+    (dolist (pkg my/pkgs ulist)
+      (unless (package-installed-p pkg)
+	(setq ulist (cons pkg ulist))))
+    (unless (null ulist)
+      (package-refresh-contents)
+      (dolist (pkg ulist)
+	(package-install pkg))))
 
-(use-package flycheck
-  :ensure t
-  :hook
-  (java-mode . flycheck-mode))
+  (setenv "JAVA_HOME"
+ 	  "/usr/local/Cellar/openjdk/14.0.1")
 
-(use-package dap-mode
-  :ensure t
-  :hook
-  (java-mode . dap-mode))
+  (require 'company)
+  (defvar company-backends)
+  (add-to-list 'company-backends 'company-capf)
+  (add-hook 'java-mode-hook #'lsp)
+  (add-hook 'java-mode-hook #'company-mode)
+  (add-hook 'java-mode-hook #'dap-mode)
+  (add-hook 'java-mode-hook #'flycheck-mode)
+  (add-hook 'java-mode-hook #'display-line-numbers-mode)
+  (add-hook 'java-mode-hook #'electric-pair-mode)
+  (add-hook 'java-mode-hook #'hs-minor-mode)
+  (add-hook 'java-mode-hook #'abbrev-mode))
 
-;; (defun my/java-mode-hook ()
-;;   "Custom code to run on start of 'java-mode'."
-;;   (setq lsp-java-server-install-dir
-;; 	(expand-file-name "~/work/code/eclipse.jdt.ls"))
-;;   (setq lsp-java-workspace-dir
-;; 	(expand-file-name "~/work/code/eclipse"))
-;;   (setq lsp-java-workspace-cache-dir
-;; 	(expand-file-name "~/work/code/eclipse/.cache/")))
-
-;; (add-hook 'java-mode-hook #'my/java-mode-hook)
-
+(my/java-setup)
 
 (provide 'init-java)
 ;;; init-java.el ends here

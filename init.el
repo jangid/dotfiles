@@ -24,32 +24,14 @@
 (eval-and-compile
   (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)))
 
-;; Update GNU ELPA signature
-;;(require 'package)
-;; (unless (package-installed-p 'gnu-elpa-keyring-update)
-;;   (setq package-check-signature nil)
-;;   (package-refresh-contents)
-;;   (package-install 'gnu-elpa-keyring-update)
-;;   (setq package-check-signature 'allow-unsigned)
-;;   (package-refresh-contents))
-
-;;(setq package-check-signature nil) ; this must be removed
-
-;; activate use-package
-(require 'init-use-package)
-
-;; Environment variables
-(require 'init-env)
-
 ;; Tools and utilities
-;;(require 'init-bbdb) ; signature verification issue
 (require 'init-ibuffer)
 (require 'init-email)
 (require 'init-erc)
 (require 'init-org)
 (require 'init-dired)
+(require 'init-flymake)
 (require 'init-magit)
-(require 'init-projectile)
 (require 'init-which-key)
 (require 'init-icomplete)
 (require 'init-browser)
@@ -59,27 +41,26 @@
 
 ;; Looks and themes
 (require 'init-looks)			; Common UI settings - menu, tabs...
-(require 'init-theme)
-(require 'init-diminish)
+;; (require 'init-diminish)
 (require 'init-modeline)
 
 ;; Editor settings
-(require 'init-edit)
+(require 'init-keys)
 
 ;; Programming languages
 (require 'init-elisp)
-(require 'init-rust)
-(require 'init-javascript)
-(require 'init-python)
-(require 'init-dart)
-(require 'init-go)
-(require 'init-ruby)
-;;(require 'init-java)
+;; (require 'init-rust)
+;; (require 'init-javascript)
+;; (require 'init-python)
+;; (require 'init-dart)
+;; (require 'init-go)
+;; (require 'init-ruby)
 (require 'init-kotlin)
+(require 'init-java)
 
 ;; File types
-(require 'init-docker)
-(require 'init-yaml)
+;; (require 'init-docker)
+;; (require 'init-yaml)
 
 ;; Session save and restore
 ;; (require 'init-desktop)

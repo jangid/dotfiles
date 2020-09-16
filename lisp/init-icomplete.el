@@ -2,9 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;; fake-ido. fido-mode also enables icomplete-mode.
-;; now only icomplete-mode enabled. This is a built-in feature
-(icomplete-mode +1)
+;; icomplete-mode or fido-mode
+(icomplete-mode t)
+;; (fido-mode t)
 
 (provide 'init-icomplete)
 ;;; init-icomplete.el ends here

@@ -45,7 +45,7 @@
 (define-key erc-mode-map (kbd "C-c RET") 'erc-send-current-line)
 (define-key erc-mode-map (kbd "C-c C-RET") 'erc-send-current-line)
 
-;; Join the #emacs and #erc channels whenever connecting to Freenode.
+;; useful irc channel 
 ;; (setq erc-autojoin-channels-alist
 ;;       '(("freenode.net"
 ;; 	 "#emacs" "#erc" "#postgresql" "##rust" "#rust-embedded"

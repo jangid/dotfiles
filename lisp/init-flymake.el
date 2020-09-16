@@ -2,13 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-use-package)
-
-(use-package flymake
-     :ensure t
-     :bind
-     ("M-n" . flymake-goto-next-error)
-     ("M-p" . flymake-goto-prev-error))
+(require 'flymake)
+(global-set-key (kbd "M-n") #'flymake-goto-next-error)
+(global-set-key (kbd "M-p") #'flymake-goto-prev-error)
 
 (provide 'init-flymake)
 ;;; init-flymake.el ends here

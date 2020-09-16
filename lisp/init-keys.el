@@ -1,4 +1,4 @@
-;;; init-edit.el --- editing helpers -*- lexical-binding: t -*-
+;;; init-keys.el --- keyboard settings -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -7,7 +7,5 @@
 ;; (setq mac-right-option-modifier nil)
 ;; (setq mac-right-command-modifier nil)
 
-(add-hook 'after-init-hook 'show-paren-mode)
-
-(provide 'init-edit)
-;;; init-edit.el ends here
+(provide 'init-keys)
+;;; init-keys.el ends here

@@ -5,12 +5,15 @@
 
 ;;; Code:
 
-(require 'init-use-package)
+(require 'package)
+(defun my/which-key-setup ()
+  "Startup configuration for which-key."
+  (unless (package-installed-p 'which-key)
+    (package-install 'which-key))
 
-(use-package which-key
-  :ensure t
-  :config
   (which-key-mode 1))
+
+(my/which-key-setup)
 
 (provide 'init-which-key)
 ;;; init-which-key.el ends here

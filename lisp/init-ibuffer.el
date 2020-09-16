@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-use-package)
-
 ;; default to Ibuffer
 (global-set-key (kbd "C-x C-b") #'ibuffer-other-window)
 ;; (global-set-key (kbd "C-x C-b") #'ibuffer)

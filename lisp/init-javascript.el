@@ -28,11 +28,6 @@
     (flymake)
     :config
     (lambda () (flymake-eslint-enable)))
-  (use-package company
-    :ensure t
-    :config
-    :hook
-    (js-mode . company-mode))
   (use-package eglot
     :ensure t
     :hook

@@ -2,18 +2,18 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-use-package)
+;; (require 'init-use-package)
 
-(use-package org-bullets
-  :ensure t
-  :hook
-  (org-mode . org-bullets-mode))
+;; (use-package org-bullets
+;;   :ensure t
+;;   :hook
+;;   (org-mode . org-bullets-mode))
 
 ;; Global key bindings
-(global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c b") 'org-switchb)
+(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c l") 'org-store-link)
 
 (require 'org-indent)
 (defun my/org-mode-hook ()

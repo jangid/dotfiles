@@ -2,13 +2,16 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-use-package)
+(require 'package)
+(defun my/magit-setup ()
+  "Startup configuration for magit."
+  (unless (package-installed-p 'magit)
+    (package-install 'magit))
 
-(use-package magit
-  :ensure t
-  :bind
-  ("C-x g" . magit-status)
-  ("C-x M-g" . magit-dispatch-popup))
+  (global-set-key (kbd "C-x g") #'magit-status)
+  (global-set-key (kbd "C-x M-g") #'magit-dispatch-popup))
+
+(my/magit-setup)
 
 (provide 'init-magit)
 ;;; init-magit.el ends here

@@ -10,10 +10,6 @@
   (setq indent-tabs-mode nil)
   :config
   (require 'init-prog-common)
-  (use-package company
-    :ensure t
-    :hook
-    (rust-mode . company-mode))
   (use-package yasnippet
     :ensure t
     :hook

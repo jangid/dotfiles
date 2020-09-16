@@ -2,15 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-use-package)
-(require 'init-prog-common)
-
-(use-package company
-  :ensure t
-  :hook
-  (emacs-lisp-mode . company-mode))
-
 (add-hook 'emacs-lisp-mode-hook #'flymake-mode)
+(add-hook 'emacs-lisp-mode-hook #'display-line-numbers-mode)
+(add-hook 'emacs-lisp-mode-hook #'electric-pair-mode)
+(add-hook 'emacs-lisp-mode-hook #'show-paren-mode)
+(add-hook 'emacs-lisp-mode-hook #'hs-minor-mode)
+(add-hook 'emacs-lisp-mode-hook #'semantic-mode)
+(add-hook 'emacs-lisp-mode-hook #'abbrev-mode)
 
 (provide 'init-elisp)
 ;;; init-elisp.el ends here

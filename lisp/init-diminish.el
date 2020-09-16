@@ -5,14 +5,7 @@
 (require 'init-use-package)
 
 (use-package diminish
-  :ensure t
-  :config
-  (diminish 'which-key-mode)
-  (diminish 'company-mode)
-  (diminish 'yas-minor-mode)
-  (diminish 'hs-minor-mode)
-  (diminish 'eldoc-mode)
-  (diminish 'projectile-mode))
+  :ensure t)
 
 (provide 'init-diminish)
 ;;; init-diminish.el ends here

@@ -3,7 +3,8 @@
 ;;; Code:
 
 ;; time-zone
-(eval-when-compile (require 'solar))
+;; (eval-when-compile (require 'solar))
+(require 'solar)
 
 ;; (setq calendar-latitude 28.6)		; New Delhi
 ;; (setq calendar-longitude 77.3)

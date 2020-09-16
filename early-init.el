@@ -2,6 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'package)
+
+;; MELPA stable repositlry
+;;(eval-when-compile
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/"))
+
 ;; window size
 ;; (setq default-frame-alist
 ;;       '((height . 55)
