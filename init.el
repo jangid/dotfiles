@@ -50,7 +50,7 @@
 ;; Programming languages
 (require 'init-elisp)
 ;; (require 'init-rust)
-;; (require 'init-javascript)
+(require 'init-javascript)
 ;; (require 'init-python)
 ;; (require 'init-dart)
 ;; (require 'init-go)

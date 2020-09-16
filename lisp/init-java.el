@@ -23,7 +23,7 @@
 
   (setenv "JAVA_HOME"
  	  "/usr/local/Cellar/openjdk/14.0.1")
-
+  
   (require 'company)
   (defvar company-backends)
   (add-to-list 'company-backends 'company-capf)

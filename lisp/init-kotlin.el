@@ -7,11 +7,14 @@
 (defun my/kotlin-setup ()
   "Initialize tools require for Kotlin programming."
   (defvar my/pkgs)
+  ;; (setq my/pkgs '(kotlin-mode
+  ;; 		  lsp-mode
+  ;; 		  company
+  ;; 		  dap-mode
+  ;; 		  flycheck))
   (setq my/pkgs '(kotlin-mode
-		  lsp-mode
-		  company
-		  dap-mode
-		  flycheck))
+		  eglot
+		  company))
   
   (let (ulist)
     (dolist (pkg my/pkgs ulist)
@@ -30,10 +33,11 @@
   (require 'company)
   (defvar company-backends)
   (add-to-list 'company-backends 'company-capf)
-  (add-hook 'kotlin-mode-hook #'lsp)
+  ;;(add-hook 'kotlin-mode-hook #'lsp)
+  (add-hook 'kotlin-mode-hook #'eglot-ensure)
   (add-hook 'kotlin-mode-hook #'company-mode)
-  (add-hook 'kotlin-mode-hook #'dap-mode)
-  (add-hook 'kotlin-mode-hook #'flycheck-mode)
+  ;; (add-hook 'kotlin-mode-hook #'dap-mode)
+  ;; (add-hook 'kotlin-mode-hook #'flycheck-mode)
   (add-hook 'kotlin-mode-hook #'display-line-numbers-mode)
   (add-hook 'kotlin-mode-hook #'electric-pair-mode)
   (add-hook 'kotlin-mode-hook #'hs-minor-mode)
