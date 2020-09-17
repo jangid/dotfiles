@@ -27,6 +27,8 @@
 
   (setenv "JAVA_HOME"
  	  "/Library/Java/JavaVirtualMachines/jdk1.8.0_261.jdk/Contents/Home")
+  (setenv "PATH"
+	  (concat "/Users/pankaj/work/code/github/kotlin-language-server/server/build/install/server/bin:" (getenv "PATH")))
   (add-to-list 'exec-path
 	       "/Users/pankaj/work/code/github/kotlin-language-server/server/build/install/server/bin")
   

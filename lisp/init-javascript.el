@@ -12,8 +12,7 @@
   "Initialize tools require for JavaScript programming."
   (defvar my/pkgs)
   (setq my/pkgs '(eglot
-		  company
-		  flymake-eslint))
+		  company))
 
   (let (ulist)
     (dolist (pkg my/pkgs ulist)
@@ -24,8 +23,15 @@
       (dolist (pkg ulist)
 	(package-install pkg))))
 
+  (setenv "PATH"
+	  (concat "/usr/local/bin:" (getenv "PATH")))
   (add-to-list 'exec-path
 	       "/usr/local/bin")
+
+  (require 'eglot)
+  (add-to-list 'eglot-server-programs
+	       '(js-mode . ("/usr/local/bin/javascript-typescript-stdio")))
+  
   (add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))
   (add-to-list 'auto-mode-alist '("\\.cjs\\'" . js-mode))
   (setq indent-tabs-mode nil)
@@ -35,13 +41,13 @@
   
   (require 'company)
   (defvar company-backends)
-;;  (add-to-list 'company-backends 'company-capf)
-  (add-hook 'js-mode-hook #'eglot-ensure))
-  ;; (add-hook 'js-mode-hook #'company-mode)
-  ;; (add-hook 'js-mode-hook #'display-line-numbers-mode)
-  ;; (add-hook 'js-mode-hook #'electric-pair-mode)
-  ;; (add-hook 'js-mode-hook #'hs-minor-mode)
-  ;; (add-hook 'js-mode-hook #'abbrev-mode))
+  ;;(add-to-list 'company-backends 'company-capf)
+  (add-hook 'js-mode-hook #'eglot-ensure)
+  (add-hook 'js-mode-hook #'company-mode)
+  (add-hook 'js-mode-hook #'display-line-numbers-mode)
+  (add-hook 'js-mode-hook #'electric-pair-mode)
+  (add-hook 'js-mode-hook #'hs-minor-mode)
+  (add-hook 'js-mode-hook #'abbrev-mode))
 ;;  (add-hook 'js-mode-hook (lambda () (flymake-eslint-enable))))
 
 (my/js-setup)
