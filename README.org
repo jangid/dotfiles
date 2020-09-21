@@ -13,6 +13,6 @@ I have used configuration files written by many excellent programmers over the y
 2. Syntax checkers must report zero errors in the configuration files. It is annoying to see those red wavy underlines.
 3. Hierarchical configuration. Local settings must override the wider
    settings. This is the order of override: Global Settings
-   $\rightarrow$ Global Personal Settings $\rightarrow$ Project
-   Directory Settings.
+   \rightarrow Global Personal Settings \rightarrow Project Directory
+   Settings.
 4. Try to leverage built-in features as much as possible. If some packages are included in the default =Emacs= then there is some merit in it. I tend to rely on the core-developers' wisdom.
