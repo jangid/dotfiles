@@ -6,7 +6,13 @@
 * Objectives
 I have used configuration files written by many excellent programmers over the years. They themselves have spent years building those configurations. I have come up with this approach after reading through concepts from those sources. Following are the goals of this project. 
 
-1. The startup time is important. It should be less than 2 seconds in all settings. The number of packages that one uses should not be affect the startup time. The design should use some kind of lazy loading mechanism to achieve this goal.
+1. The startup time is important. It should be less than 2 seconds in
+   all settings. The number of packages that one uses should not
+   affect the startup time. The design should use some kind of lazy
+   loading mechanism to achieve this goal.
 2. Syntax checkers must report zero errors in the configuration files. It is annoying to see those red wavy underlines.
-3. Hierarchical configuration. Local settings must override the wider settings. This is the order of override: Global Settings \rightarrow Global Personal Settings $\rightarrow$ Project Directory Settings.
+3. Hierarchical configuration. Local settings must override the wider
+   settings. This is the order of override: Global Settings
+   $\rightarrow$ Global Personal Settings $\rightarrow$ Project
+   Directory Settings.
 4. Try to leverage built-in features as much as possible. If some packages are included in the default =Emacs= then there is some merit in it. I tend to rely on the core-developers' wisdom.

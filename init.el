@@ -38,6 +38,7 @@
 (require 'init-crypto)
 (require 'init-date-time)
 (require 'init-recentf)
+(require 'init-speedbar)
 
 ;; Looks and themes
 (require 'init-looks)			; Common UI settings - menu, tabs...

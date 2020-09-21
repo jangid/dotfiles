@@ -14,5 +14,15 @@
       '((message-citation-line-function
 	 'message-insert-formatted-citation-line)))
 
+;; Fetch addresses from headers
+;; (defun my/fetch-addresses ()
+;;   "Fetch email addresses from the email headers."
+;;   (message-fetch-field)
+;;   (message-narrow-to-headers-or-head)
+;;   (ietf-drums-parse-address "Sanjay Sahani <sanjay.sahani@op.com>, Deepak G <dk@op.com>")
+;;   (ietf-drums-parse-addresses "Sanjay Sahani <sanjay.sahani@op.com>, Deepak G <dk@op.com>")
+;;   )
+;; (defun my/save-alias ()
+;;   "Save the a")
 (provide 'init-email)
 ;;; init-email.el ends here
