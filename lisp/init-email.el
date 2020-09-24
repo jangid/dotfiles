@@ -14,6 +14,7 @@
       '((message-citation-line-function
 	 'message-insert-formatted-citation-line)))
 
+;; (setq message-signature-directory "~/.signatures")
 ;; Fetch addresses from headers
 ;; (defun my/fetch-addresses ()
 ;;   "Fetch email addresses from the email headers."

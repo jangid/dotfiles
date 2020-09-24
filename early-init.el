@@ -22,7 +22,7 @@
 ;; (setq default-frame-alist
 ;;       '((left . 175)))
 (setq default-frame-alist
-      '((left . 250)
+      '((left . 350)
 	(top . 175)))
 
 (provide 'early-init)

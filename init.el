@@ -39,6 +39,7 @@
 (require 'init-date-time)
 (require 'init-recentf)
 (require 'init-speedbar)
+(require 'init-editorconfig)
 
 ;; Looks and themes
 (require 'init-looks)			; Common UI settings - menu, tabs...
@@ -62,6 +63,7 @@
 ;; File types
 ;; (require 'init-docker)
 ;; (require 'init-yaml)
+(require 'vtl)
 
 ;; Session save and restore
 ;; (require 'init-desktop)
