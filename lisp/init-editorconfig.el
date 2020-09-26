@@ -11,7 +11,8 @@
   (unless (package-installed-p 'editorconfig)
     (package-install 'editorconfig))
 
-  (editorconfig-mode 1))
+  (add-hook 'prog-mode-hook (lambda ()
+			      (editorconfig-mode 1))))
 
 (my/editorconfig-setup)
 
