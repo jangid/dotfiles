@@ -14,6 +14,18 @@
       '((message-citation-line-function
 	 'message-insert-formatted-citation-line)))
 
+;; Configure search index
+(defun my/timestamp-me (process event)
+  "Record EVENT in the PROCESS buffer."
+  (print (format "%s %s at %s" process event (current-time-string))
+	 (process-buffer process)))
+
+(defun my/notmuch-new ()
+  "Execute 'notmuch new' command and logs in buffer *Notmuch*."
+  (set-process-sentinel
+   (start-process "notmuch" "*Notmuch*" "notmuch" "new")
+   'my/timestamp-me))
+
 ;; (setq message-signature-directory "~/.signatures")
 ;; Fetch addresses from headers
 ;; (defun my/fetch-addresses ()
