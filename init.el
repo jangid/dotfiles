@@ -36,7 +36,7 @@
 (require 'init-org)
 (require 'init-dired)
 (require 'init-flymake)
-(require 'init-magit)
+;; (require 'init-magit)
 (require 'init-which-key)
 (require 'init-icomplete)
 (require 'init-browser)
