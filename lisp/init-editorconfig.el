@@ -6,13 +6,20 @@
 ;;; Code:
 
 (require 'package)
+
 (defun my/editorconfig-setup ()
   "Startup configuration for editorconfig."
-  (unless (package-installed-p 'editorconfig)
-    (package-install 'editorconfig))
 
-  (add-hook 'prog-mode-hook (lambda ()
-			      (editorconfig-mode 1))))
+  (defvar my/pkgs '(editorconfig))
+  
+  (let (ulist)
+    (dolist (pkg my/pkgs ulist)
+      (unless (package-installed-p pkg)
+	(setq ulist (cons pkg ulist))))
+    (unless (null ulist)
+      (package-refresh-contents)
+      (dolist (pkg ulist)
+	(package-install pkg)))))
 
 (my/editorconfig-setup)
 

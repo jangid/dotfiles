@@ -15,6 +15,11 @@
 ;; Produce backtrace on error
 (setq debug-on-error t)
 
+;; Version check
+(let ((minver "27.1"))
+  (when (version< emacs-version minver)
+    (error "This config doesn't support version less than %s" minver)))
+
 ;; default email address and full name
 (setq user-mail-address	"p4j@j4d.net"
       user-full-name "Pankaj Jangid")

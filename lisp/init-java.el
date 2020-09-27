@@ -6,8 +6,7 @@
 
 (defun my/java-setup ()
   "Initialize tools require for Java programming."
-  (defvar my/pkgs)
-  (setq my/pkgs '(gradle-mode))
+  (defvar my/pkgs '(gradle-mode))
 
   (let (ulist)
     (dolist (pkg my/pkgs ulist)
