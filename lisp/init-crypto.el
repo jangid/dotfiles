@@ -11,7 +11,7 @@
 ;; (eval-when-compile (require 'mml-sec))
 (require 'mml-sec)
 (setq mml-secure-openpgp-encrypt-to-self t)
-(setq mml-secure-openpgp-signers '("7C956E6FF8587689" "65FDA0A10D6D02F1"))
+(setq mml-secure-openpgp-signers '("7C956E6FF8587689"))
 
 (provide 'init-crypto)
 ;;; init-crypto.el ends here
