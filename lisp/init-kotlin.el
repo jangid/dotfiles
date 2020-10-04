@@ -8,7 +8,8 @@
   "Initialize tools require for Kotlin programming."
   (defvar my/pkgs)
   (setq my/pkgs '(kotlin-mode
-		  gradle-mode))
+		  gradle-mode
+		  eglot))
   
   (let (ulist)
     (dolist (pkg my/pkgs ulist)
@@ -25,8 +26,8 @@
 
 ;; (add-to-list 'exec-path
 ;;    	     (concat (getenv "JAVA_HOME") "/bin"))
-;; (add-to-list 'exec-path
-;; 	     "/Users/pankaj/work/code/github/kotlin-language-server/server/build/install/server/bin")
+  ;; (add-to-list 'exec-path
+  ;; 	       "/Users/pankaj/work/code/github/kotlin-language-server/server/build/install/server/bin")
 
 ;; add kotlin jars
 ;; (setenv "CLASSPATH"
@@ -56,6 +57,9 @@
 ;; (with-eval-after-load 'flycheck
 ;; (flycheck-gradle-setup))
 
+  ;; (declare-function eglot-ensure "eglot")
+  ;; (add-hook 'kotlin-mode-hook #'eglot-ensure)
+  
 ;; (add-hook 'kotlin-mode-hook #'lsp)
 ;; (add-hook 'kotlin-mode-hook
 ;; 	  (lambda ()
