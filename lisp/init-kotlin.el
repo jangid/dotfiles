@@ -8,8 +8,7 @@
   "Initialize tools require for Kotlin programming."
   (defvar my/pkgs)
   (setq my/pkgs '(kotlin-mode
-		  gradle-mode
-		  eglot))
+		  gradle-mode))
   
   (let (ulist)
     (dolist (pkg my/pkgs ulist)

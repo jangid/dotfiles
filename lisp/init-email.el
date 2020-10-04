@@ -14,6 +14,8 @@
       '((message-citation-line-function
 	 'message-insert-formatted-citation-line)))
 
+;; (add-hook 'mail-citation-hook 'sc-cite-original)
+
 ;; Configure search index
 (defun my/timestamp-me (process event)
   "Record EVENT in the PROCESS buffer."

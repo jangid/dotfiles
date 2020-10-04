@@ -50,6 +50,13 @@
   (add-hook 'java-mode-hook #'electric-pair-mode)
   (add-hook 'java-mode-hook #'hs-minor-mode)
   (add-hook 'java-mode-hook #'abbrev-mode)
+
+  (declare-function semantic-idle-scheduler-mode "semantic/idle")
+  (declare-function semantic-idle-summary-mode "semantic/idle")
+  (declare-function semantic-idle-completions-mode "semantic/idle")
+  (declare-function srecode-minor-mode "srecode/mode")
+  (declare-function ede-enable-generic-projects "ede/generic")
+  
   (add-hook 'java-mode-hook (lambda ()
 			      (semantic-mode 1)
 			      (semantic-idle-scheduler-mode 1)

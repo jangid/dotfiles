@@ -2,22 +2,33 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-use-package)
+(require 'package)
 
-(use-package rust-mode
-  :ensure t
-  :init
-  (setq indent-tabs-mode nil)
-  :config
-  (require 'init-prog-common)
-  (use-package yasnippet
-    :ensure t
-    :hook
-    (rust-mode . yas-minor-mode))
-  (use-package eglot
-    :ensure t
-    :hook
-    (rust-mode . eglot-ensure)))
+(defun my/rust-setup ()
+  "Initialize tools require for Rust programming."
+  (defvar my/pkgs '(rust-mode
+		    eglot))
+
+  (let (ulist)
+    (dolist (pkg my/pkgs ulist)
+      (unless (package-installed-p pkg)
+	(setq ulist (cons pkg ulist))))
+    (unless (null ulist)
+      (package-refresh-contents)
+      (dolist (pkg ulist)
+	(package-install pkg))))
+
+
+  (add-hook 'rust-mode-hook #'display-line-numbers-mode)
+  (add-hook 'rust-mode-hook #'electric-pair-mode)
+  (add-hook 'rust-mode-hook #'hs-minor-mode)
+  (add-hook 'rust-mode-hook #'semantic-mode)
+  (add-hook 'rust-mode-hook #'abbrev-mode)
+
+  (declare-function eglot-ensure "eglot")
+  (add-hook 'rust-mode-hook #'eglot-ensure))
+
+(my/rust-setup)
 
 (provide 'init-rust)
 ;;; init-rust.el ends here

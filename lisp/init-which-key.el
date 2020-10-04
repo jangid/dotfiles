@@ -11,6 +11,7 @@
   (unless (package-installed-p 'which-key)
     (package-install 'which-key))
 
+  (declare-function which-key-mode "which-key")
   (which-key-mode 1))
 
 (my/which-key-setup)

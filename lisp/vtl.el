@@ -16,7 +16,7 @@
 ;; #* comment *# - font-lock-comment-face
 ;;
 ;; $customer.Address
-;;    ^^^      ^^^ 
+;;    ^^^      ^^^
 ;;     |        +--- font-lock-variable-name-face
 ;;     +--- font-lock-type-face
 ;;
@@ -130,7 +130,7 @@ the mode, respectively."
 
 
 (defvar vtl-keywords
-  (let 
+  (let
       ((directive (concat "\\(#\\(set\\|if\\|elseif\\|else\\|foreach\\|end\\|"
 			  "include\\|parse\\|stop\\|macro\\)\\)"))
        (variable "\\(\\$[!]?[{]?[a-zA-Z][a-zA-Z0-9---_]*[}]?\\)")

@@ -21,7 +21,7 @@
     (error "This config doesn't support version less than %s" minver)))
 
 ;; default email address and full name
-(setq user-mail-address	"p4j@j4d.net"
+(setq user-mail-address	"pankaj@codeisgreat.org"
       user-full-name "Pankaj Jangid")
 
 ;; The configuration is divided into many files called modules. Set
@@ -36,7 +36,8 @@
 (require 'init-org)
 (require 'init-dired)
 (require 'init-flymake)
-;; (require 'init-magit)
+(require 'init-flycheck)
+(require 'init-eglot)
 (require 'init-which-key)
 (require 'init-icomplete)
 (require 'init-browser)
@@ -56,18 +57,14 @@
 
 ;; Programming languages
 (require 'init-elisp)
-;; (require 'init-rust)
-(require 'init-javascript)
-;; (require 'init-python)
-;; (require 'init-dart)
-;; (require 'init-go)
-;; (require 'init-ruby)
+;;(require 'init-rust)
+;;(require 'init-javascript)
+;;(require 'init-python)
+;;(require 'init-ruby)
 (require 'init-kotlin)
 (require 'init-java)
 
 ;; File types
-;; (require 'init-docker)
-;; (require 'init-yaml)
 (require 'vtl)
 
 ;; Session save and restore

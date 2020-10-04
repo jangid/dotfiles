@@ -13,7 +13,7 @@
   (defvar my/pkgs)
   (setq my/pkgs '(eglot
 		  company))
-
+  
   (let (ulist)
     (dolist (pkg my/pkgs ulist)
       (unless (package-installed-p pkg)
@@ -22,28 +22,33 @@
       (package-refresh-contents)
       (dolist (pkg ulist)
 	(package-install pkg))))
-
+  
+  
   (setenv "PATH"
 	  (concat "/usr/local/bin:" (getenv "PATH")))
   (add-to-list 'exec-path
 	       "/usr/local/bin")
 
-  (require 'eglot)
-  (add-to-list 'eglot-server-programs
-	       '(js-mode . ("/usr/local/bin/javascript-typescript-stdio")))
+    
   
   (add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))
   (add-to-list 'auto-mode-alist '("\\.cjs\\'" . js-mode))
   (setq indent-tabs-mode nil)
-  (require 'js)
+
+  (defvar js-indent-level)
   (setq js-indent-level 2)
+
+  (declare-function eglot-ensure "eglot")
+  (defvar eglot-server-programs)
+  (add-to-list 'eglot-server-programs
+	       '(js-mode . ("/usr/local/bin/javascript-typescript-stdio")))
+  (add-hook 'js-mode-hook #'eglot-ensure)
   
-  
-  (require 'company)
+  (declare-function company-mode "company")
   (defvar company-backends)
   ;;(add-to-list 'company-backends 'company-capf)
-  (add-hook 'js-mode-hook #'eglot-ensure)
   (add-hook 'js-mode-hook #'company-mode)
+
   (add-hook 'js-mode-hook #'display-line-numbers-mode)
   (add-hook 'js-mode-hook #'electric-pair-mode)
   (add-hook 'js-mode-hook #'hs-minor-mode)
