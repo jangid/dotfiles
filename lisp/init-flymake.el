@@ -17,7 +17,7 @@
       (dolist (pkg ulist)
 	(package-install pkg)))))
 
-(my/flymake-setup)
+;; (my/flymake-setup)
 
 (require 'flymake)
 (global-set-key (kbd "M-n") #'flymake-goto-next-error)
