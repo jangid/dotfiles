@@ -36,6 +36,7 @@
 (require 'init-org)
 (require 'init-dired)
 (require 'init-flymake)
+(require 'init-markdown)
 (require 'init-flycheck)
 (require 'init-eglot)
 (require 'init-which-key)
