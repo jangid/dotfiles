@@ -22,7 +22,6 @@
   (add-hook 'python-mode-hook #'display-line-numbers-mode)
   (add-hook 'python-mode-hook #'electric-pair-mode)
   (add-hook 'python-mode-hook #'hs-minor-mode)
-  (add-hook 'python-mode-hook #'semantic-mode)
   (add-hook 'python-mode-hook #'abbrev-mode)
 
   (declare-function eglot-ensure "eglot")

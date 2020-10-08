@@ -58,7 +58,6 @@
   (declare-function ede-enable-generic-projects "ede/generic")
   
   (add-hook 'java-mode-hook (lambda ()
-			      (semantic-mode 1)
 			      (semantic-idle-scheduler-mode 1)
 			      (semantic-idle-summary-mode 1)
 			      (semantic-idle-completions-mode 1)

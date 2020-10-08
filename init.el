@@ -45,6 +45,7 @@
 (require 'init-crypto)
 (require 'init-date-time)
 (require 'init-recentf)
+(require 'init-semantic)
 (require 'init-speedbar)
 (require 'init-editorconfig)
 

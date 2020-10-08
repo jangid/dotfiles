@@ -22,7 +22,6 @@
   (add-hook 'rust-mode-hook #'display-line-numbers-mode)
   (add-hook 'rust-mode-hook #'electric-pair-mode)
   (add-hook 'rust-mode-hook #'hs-minor-mode)
-  (add-hook 'rust-mode-hook #'semantic-mode)
   (add-hook 'rust-mode-hook #'abbrev-mode)
 
   (declare-function eglot-ensure "eglot")
