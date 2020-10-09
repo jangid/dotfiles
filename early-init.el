@@ -10,10 +10,10 @@
 	     '("melpa" . "https://melpa.org/packages/"))
 
 ;; window size
-(setq default-frame-alist
-      '((height . 47)
- 	(width . 169)
-	(left . 110)))
+;; (setq default-frame-alist
+;;       '((height . 47)
+;;  	(width . 169)
+;; 	(left . 110)))
 ;; (setq default-frame-alist
 ;;       '((left . 175)
 ;; 	(top . 175)

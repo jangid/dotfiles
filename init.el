@@ -39,7 +39,6 @@
 (require 'init-markdown)
 (require 'init-flycheck)
 (require 'init-eglot)
-(require 'init-which-key)
 (require 'init-icomplete)
 (require 'init-browser)
 (require 'init-crypto)
@@ -47,6 +46,7 @@
 (require 'init-recentf)
 (require 'init-cedet)
 (require 'init-speedbar)
+(require 'init-which-key)
 
 ;; Looks and themes
 (require 'init-looks)			; Common UI settings - menu, tabs...
@@ -58,7 +58,7 @@
 
 ;; Programming languages
 (require 'init-elisp)
-;;(require 'init-rust)
+(require 'init-rust)
 ;;(require 'init-javascript)
 ;;(require 'init-python)
 ;;(require 'init-ruby)

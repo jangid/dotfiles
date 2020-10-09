@@ -39,3 +39,4 @@ newsticker/
 tutorial
 projects
 eglot-eclipse-jdt-cache
+**/*.elc
