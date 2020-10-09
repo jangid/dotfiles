@@ -8,6 +8,19 @@
 ;; gnus-dired-mode allow multiple files to be selected for attachment
 (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
 
+;; SMTP
+(require 'message)
+(setq send-mail-function 'smtpmail-send-it)
+;;(setq message-send-mail-function 'message-send-mail-with-sendmail)
+
+;;(setq mail-default-headers
+;; (defun my/smtp-message-header-setup ()
+;;   (message-add-header
+;;    (concat "X-Message-SMTP-Method: "
+;; 	   (message-fetch-field "From")))
+;;          "smtp smtp.gmail.com 587 pankaj.jangid@gmail.com"))
+;; (add-hook 'message-header-setup-hook 'my/smtp-message-header-setup)
+
 ;; Configure Citation
 (require 'message)
 (setq message-cite-style

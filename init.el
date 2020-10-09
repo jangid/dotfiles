@@ -45,9 +45,8 @@
 (require 'init-crypto)
 (require 'init-date-time)
 (require 'init-recentf)
-(require 'init-semantic)
+(require 'init-cedet)
 (require 'init-speedbar)
-(require 'init-editorconfig)
 
 ;; Looks and themes
 (require 'init-looks)			; Common UI settings - menu, tabs...
