@@ -15,7 +15,5 @@
 	global-semantic-idle-summary-mode
 	global-semantic-idle-completions-mode))
 
-;;(semantic-mode +1)
-
 (provide 'init-cedet)
 ;;; init-cedet.el ends here

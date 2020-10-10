@@ -7,7 +7,8 @@
   (defvar my/pkgs '(gradle-mode))
 
   (require 'package)
-
+  (declare-function package-installed-p "package.el")
+  
   (let (ulist)
     (dolist (pkg my/pkgs ulist)
       (unless (package-installed-p pkg)
@@ -50,6 +51,7 @@
   (add-hook 'java-mode-hook #'electric-pair-mode)
   (add-hook 'java-mode-hook #'hs-minor-mode)
   (add-hook 'java-mode-hook #'abbrev-mode))
+  (add-hook 'java-mode-hook #'semantic-mode)
 
 			      ;;(require 'srecode/mode)
 			      ;;(srecode-minor-mode 1)

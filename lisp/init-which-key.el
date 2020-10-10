@@ -21,9 +21,6 @@
       (dolist (pkg ulist)
 	(package-install pkg))))
 
-  ;; (add-to-list 'load-path (expand-file-name
-  ;; 			   "emacs-which-key"
-  ;; 			   user-emacs-directory))
   (declare-function which-key-mode "which-key")
   (which-key-mode 1))
 

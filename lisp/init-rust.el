@@ -8,7 +8,8 @@
 		    eglot))
 
   (require 'package)
-
+  (declare-function package-installed-p "package.el")
+  
   (let (ulist)
     (dolist (pkg my/pkgs ulist)
       (unless (package-installed-p pkg)
