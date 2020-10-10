@@ -2,11 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'package)
-
 (defun my/java-setup ()
   "Initialize tools require for Java programming."
   (defvar my/pkgs '(gradle-mode))
+
+  (require 'package)
 
   (let (ulist)
     (dolist (pkg my/pkgs ulist)
@@ -55,8 +55,9 @@
 			      ;;(srecode-minor-mode 1)
 			      ;;(global-ede-mode 1)
 			      ;;(ede-enable-generic-projects))))
-
-(my/java-setup)
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (my/java-setup)))
 
 (provide 'init-java)
 ;;; init-java.el ends here

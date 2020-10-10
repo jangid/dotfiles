@@ -2,11 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'package)
-
 (defun my/flycheck-setup ()
   "Initialize tools require for Rust programming."
   (defvar my/pkgs '(flycheck))
+
+  (eval-when-compile (require 'package))
+  (declare-function package-installed-p "package.el")
 
   (let (ulist)
     (dolist (pkg my/pkgs ulist)
@@ -17,7 +18,9 @@
       (dolist (pkg ulist)
 	(package-install pkg)))))
 
-(my/flycheck-setup)
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (my/flycheck-setup)))
 
 (provide 'init-flycheck)
 ;;; init-flycheck.el ends here

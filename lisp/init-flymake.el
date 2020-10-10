@@ -2,7 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'package)
+(eval-when-compile (require 'package))
+(declare-function package-installed-p "package")
 
 (defun my/flymake-setup ()
   "Initialize flymake from elpa."
@@ -19,7 +20,9 @@
 
 ;; (my/flymake-setup)
 
-(require 'flymake)
+(eval-when-compile (require 'flymake))
+(declare-function flymake-goto-next-error "flymake")
+(declare-function flymake-goto-prev-error "flymake")
 (global-set-key (kbd "M-n") #'flymake-goto-next-error)
 (global-set-key (kbd "M-p") #'flymake-goto-prev-error)
 

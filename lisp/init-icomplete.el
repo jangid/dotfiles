@@ -3,7 +3,9 @@
 ;;; Code:
 
 ;; icomplete-mode or fido-mode
-(icomplete-mode t)
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (icomplete-mode t)))
 ;; (fido-mode t)
 
 (provide 'init-icomplete)

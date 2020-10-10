@@ -9,15 +9,15 @@
 
 ;; menuBar
 ;; (menu-bar-mode +1)
-(menu-bar-mode -1)
+;; (menu-bar-mode -1)
 
 ;; scrollBar
 ;; (scroll-bar-mode +1)
-(scroll-bar-mode -1)
+;; (scroll-bar-mode -1)
 
 ;; toolBar
 ;; (tool-bar-mode +1)
-(tool-bar-mode -1)
+;; (tool-bar-mode -1)
 
 ;; tabBar
 ;; (setq tab-bar-show 1)

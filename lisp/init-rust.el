@@ -2,12 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'package)
-
 (defun my/rust-setup ()
   "Initialize tools require for Rust programming."
   (defvar my/pkgs '(rust-mode
 		    eglot))
+
+  (require 'package)
 
   (let (ulist)
     (dolist (pkg my/pkgs ulist)
@@ -27,7 +27,9 @@
   (declare-function eglot-ensure "eglot")
   (add-hook 'rust-mode-hook #'eglot-ensure))
 
-(my/rust-setup)
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (my/rust-setup)))
 
 (provide 'init-rust)
 ;;; init-rust.el ends here

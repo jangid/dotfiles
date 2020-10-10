@@ -15,10 +15,11 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c l") 'org-store-link)
 
-(require 'org-indent)
 (defun my/org-mode-hook ()
   "Custom code to run on start of 'org-mode'."
   (visual-line-mode)
+
+  (declare-function org-indent-mode "org-indent")
   (org-indent-mode)
   (org-babel-do-load-languages
    'org-babel-load-languages

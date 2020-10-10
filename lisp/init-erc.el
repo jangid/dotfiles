@@ -4,14 +4,31 @@
 
 ;; Configure ERC
 ;;(require 'erc)
-(require 'erc-join)
+;;(require 'erc-join)
 
-;; Authentication
-(require 'erc-auth (expand-file-name ".erc-auth.el" user-emacs-directory))
+(eval-when-compile
+  (defvar erc-auth-file
+    (expand-file-name
+   ".erc-auth.el"
+   user-emacs-directory)
+    "ERC auth file location."))
+
+(defun my/load-erc-auth ()
+  "Load erc auth."
+  (require 'erc-auth erc-auth-file))
+
+(defvar erc-server)
+(defvar erc-port)
+(defvar erc-nick)
+(defvar erc-password)
+(declare-function set-freenode-credentials erc-auth-file)
+(declare-function set-gitter-credentials erc-auth-file)
+(declare-function unset-credentials erc-auth-file)
 
 (defun connect-irc ()
   "Connect to IRC."
   (interactive)
+  
   (erc :server erc-server :port erc-port
        :nick erc-nick :password erc-password))
 
@@ -19,7 +36,7 @@
   "Connect to IRC using SSL."
   (interactive)
   (erc-tls :server erc-server :port erc-port
-       :nick erc-nick :password erc-password))
+	   :nick erc-nick :password erc-password))
 
 (defun connect-freenode ()
   "Connect to irc.freenode.net."
@@ -41,11 +58,12 @@
 (global-set-key "\C-ceg" 'connect-gitter)
 
 ;; Make C-c RET (or C-c C-RET) send messages instead of RET.
+(require 'erc)
 (define-key erc-mode-map (kbd "RET") nil)
 (define-key erc-mode-map (kbd "C-c RET") 'erc-send-current-line)
 (define-key erc-mode-map (kbd "C-c C-RET") 'erc-send-current-line)
 
-;; useful irc channel 
+;; useful irc channel
 ;; (setq erc-autojoin-channels-alist
 ;;       '(("freenode.net"
 ;; 	 "#emacs" "#erc" "#postgresql" "##rust" "#rust-embedded"

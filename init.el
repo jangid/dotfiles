@@ -32,11 +32,11 @@
 ;; Tools and utilities
 (require 'init-ibuffer)
 (require 'init-email)
-(require 'init-erc)
+;;(require 'init-erc)
 (require 'init-org)
 (require 'init-dired)
 (require 'init-flymake)
-(require 'init-markdown)
+;;(require 'init-markdown)
 (require 'init-flycheck)
 (require 'init-eglot)
 (require 'init-icomplete)
@@ -66,7 +66,7 @@
 (require 'init-java)
 
 ;; File types
-(require 'vtl)
+;; (require 'vtl)
 
 ;; Session save and restore
 ;; (require 'init-desktop)
@@ -77,8 +77,11 @@
   (load custom-file))
 
 ;; start server for emacsclient support
+;; use 'emacs-startup-hook when in text mode
 (require 'server)
-(unless (server-running-p) (server-start))
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (unless (server-running-p) (server-start))))
 
 (provide 'init)
 ;;; init.el ends here

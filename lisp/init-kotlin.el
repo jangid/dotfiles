@@ -2,14 +2,14 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'package)
-
 (defun my/kotlin-setup ()
   "Initialize tools require for Kotlin programming."
   (defvar my/pkgs)
   (setq my/pkgs '(kotlin-mode
 		  gradle-mode))
   
+  (require 'package)
+
   (let (ulist)
     (dolist (pkg my/pkgs ulist)
       (unless (package-installed-p pkg)
@@ -70,7 +70,9 @@
 (add-hook 'kotlin-mode-hook #'hs-minor-mode)
 (add-hook 'kotlin-mode-hook #'abbrev-mode))
 
-(my/kotlin-setup)
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (my/kotlin-setup)))
 
 (provide 'init-kotlin)
 ;;; init-kotlin.el ends here

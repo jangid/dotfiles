@@ -2,12 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'package)
-
 (defun my/eglot-setup ()
   "Initialize eglot."
   (interactive)
   (defvar my/pkgs '(eglot))
+
+  (eval-when-compile (require 'package))
+  (declare-function package-installed-p "package.el")
 
   (let (ulist)
     (dolist (pkg my/pkgs ulist)
@@ -19,7 +20,9 @@
       (dolist (pkg ulist)
 	(package-install pkg)))))
 
-(my/eglot-setup)
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (my/eglot-setup)))
 
 (provide 'init-eglot)
 ;;; init-eglot.el ends here
