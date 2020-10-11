@@ -33,6 +33,7 @@ ido.last
 .\#*
 .emacs.desktop.lock
 diary
+ical-diary
 newsticker/
 .dap-breakpoints
 .tern-port

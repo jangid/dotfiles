@@ -43,6 +43,7 @@
 (require 'init-browser)
 (require 'init-crypto)
 (require 'init-date-time)
+(require 'init-diary)
 (require 'init-recentf)
 (require 'init-cedet)
 (require 'init-speedbar)
