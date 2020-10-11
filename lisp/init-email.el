@@ -51,6 +51,9 @@
 (defun my/fix-smtp ()
   "Fix SMTP as per FROM field."
   (interactive)
+  (declare-function message-add-header "message.el")
+  (declare-function message-fetch-field "message.el")
+  (declare-function ietf-drums-parse-address "ietf-drums.el")
   (message-add-header
    (concat "X-Message-SMTP-Method: "
 	   (cdr
