@@ -12,13 +12,54 @@
 (setq send-mail-function 'smtpmail-send-it)
 ;;(setq message-send-mail-function 'message-send-mail-with-sendmail)
 
-;;(setq mail-default-headers
-;; (defun my/smtp-message-header-setup ()
-;;   (message-add-header
-;;    (concat "X-Message-SMTP-Method: "
-;; 	   (message-fetch-field "From")))
-;;          "smtp smtp.gmail.com 587 pankaj.jangid@gmail.com"))
-;; (add-hook 'message-header-setup-hook 'my/smtp-message-header-setup)
+(defvar my/smtp-alist)
+(setq my/smtp-alist
+      '(("pankaj.jangid@gmail.com"
+	 .
+	 "smtp smtp.gmail.com 587 pankaj.jangid@gmail.com")
+	("pankaj@optimizory.com"
+	 .
+	 "smtp smtp.gmail.com 587 pankaj.jangid@optimizory.com")
+	("pankaj@codeisgreat.org"
+	 .
+	 "smtp smtp.gmail.com 587 pankaj.jangid@codeisgreat.com")
+	("editor@seemasanghosh.org"
+	 .
+	 "smtp smtp.gmail.com 587 seemasanghosh@gmail.com")
+	("pankaj.jangid@atlassiancommunity.com"
+	 .
+	 "smtp smtp.gmail.com 587 pankaj.jangid@atlassiancommunity.com")
+	("pankaj.jangid@moneyraam.com"
+	 .
+	 "smtp smtp.gmail.com 587 pankaj.jangid@moneyraam.com")
+	("pankaj@jangid.info"
+	 .
+	 "smtp smtp.gmail.com 587 pankaj@jangid.info")
+	("pankaj.jangid@gmail.com"
+	 .
+	 "smtp smtp.gmail.com 587 pankaj.jangid@gmail.com")
+	("pankaj.jangid@gmail.com"
+	 .
+	 "smtp smtp.gmail.com 587 pankaj.jangid@gmail.com")
+	("p4j@j4d.net"
+	 .
+         "smtp smtp.zoho.in 587 p4j@j4d.net")
+	("pankaj.jangid@outlook.com"
+	 .
+         "smtp smtp.office365.com 587 pankaj.jangid@outlook.com")))
+
+(defun my/fix-smtp ()
+  "Fix SMTP as per FROM field."
+  (interactive)
+  (message-add-header
+   (concat "X-Message-SMTP-Method: "
+	   (cdr
+	    (assoc
+	     (car
+	      (ietf-drums-parse-address
+	       (message-fetch-field "From")))
+	     my/smtp-alist)))))
+(add-hook 'message-header-setup-hook 'my/fix-smtp)
 
 ;; Configure Citation
 (defvar message-cite-style)
@@ -46,8 +87,8 @@
 ;;   "Fetch email addresses from the email headers."
 ;;   (message-fetch-field)
 ;;   (message-narrow-to-headers-or-head)
-;;   (ietf-drums-parse-address "Sanjay Sahani <sanjay.sahani@op.com>, Deepak G <dk@op.com>")
-;;   (ietf-drums-parse-addresses "Sanjay Sahani <sanjay.sahani@op.com>, Deepak G <dk@op.com>")
+;; (car (ietf-drums-parse-address "Sanjay Sahani <sanjay.sahani@op.com>"))
+;;  (ietf-drums-parse-addresses "Sanjay Sahani <sanjay.sahani@op.com>, Deepak G <dk@op.com>")
 ;;   )
 ;; (defun my/save-alias ()
 ;;   "Save the a")
