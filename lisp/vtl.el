@@ -37,7 +37,7 @@
 ;;; Code:
 
 (require 'font-lock)
-(require 'cl)
+(require 'cl-lib)
 
 
 (defgroup vtl nil
@@ -48,7 +48,7 @@
 
 ;;;###autoload
 (defcustom vtl-mode nil
-  "*If non-nil, fontify vtl code
+  "*If non-nil, fontify vtl code.
 
 This variable is buffer-local."
   :type 'boolean)
@@ -82,11 +82,11 @@ This variable is buffer-local."
 ;;;###autoload
 (defun vtl-mode (&optional prefix)
   "Toggle VTL Mode.
-
-If called interactively with no prefix argument, toggle current condition
+If called interactively with no PREFIX argument, toggle current condition
 of the mode.
 If called with a positive or negative prefix argument, enable or disable
 the mode, respectively."
+  
   (interactive "P")
 
   (setq vtl-mode
@@ -101,27 +101,28 @@ the mode, respectively."
 
 	 ;; add vtl regexps
 	 (setq font-lock-keywords
-	       (let ((new-keywords
-		      (cond ((null font-lock-keywords)
-			     vtl-keywords)
-			    (t
-			     (list* (car font-lock-keywords)
-				    (append (cdr font-lock-keywords)
-					    vtl-keywords))))))
-		 new-keywords))
+	       (defvar vtl-keywords
+		 (let ((new-keywords
+			(cond ((null font-lock-keywords)
+			       vtl-keywords)
+			      (t
+			       (list (car font-lock-keywords)
+				      (append (cdr font-lock-keywords)
+					      vtl-keywords))))))
+		   new-keywords)))
 
 	 ;; and restart font-lock
 	 (font-lock-mode 1)
-	 (font-lock-fontify-buffer))
+	 (font-lock-ensure))
 
 	(t
 	 ;; reset to major mode's defaults
 	 (font-lock-mode 0)
 	 (font-lock-set-defaults)
 	 (font-lock-mode 1)
-	 (font-lock-fontify-buffer)))
+	 (font-lock-ensure)))
 	 
-  (and (interactive-p)
+  (and (called-interactively-p (interactive))
        (if vtl-mode
            (message "vtl-mode is enabled")
          (message "vtl-mode is disabled")))
