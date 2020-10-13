@@ -47,7 +47,8 @@
 (require 'init-recentf)
 (require 'init-cedet)
 (require 'init-speedbar)
-(require 'init-which-key)
+;;(require 'init-which-key)
+(require 'init-bbdb)
 
 ;; Looks and themes
 (require 'init-looks)			; Common UI settings - menu, tabs...
