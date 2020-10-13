@@ -12,9 +12,8 @@
 (setq send-mail-function 'smtpmail-send-it)
 ;;(setq message-send-mail-function 'message-send-mail-with-sendmail)
 
-
-(defun my/fix-smtp ()
-  "Fix SMTP as per FROM field."
+(defun my/get-smtp ()
+  "Get SMTP for as per FROM field."
   (interactive)
   (defvar my/smtp-alist-file (locate-user-emacs-file "my-SMTPs"))
   (let ((filename my/smtp-alist-file))
@@ -29,21 +28,37 @@
              (lambda (elt) (stringp (car-safe elt)))
              my/smtp-alist)
 	(progn
-	  (declare-function message-add-header "message.el")
 	  (declare-function message-fetch-field "message.el")
 	  (declare-function ietf-drums-parse-address "ietf-drums.el")
-	  (message-add-header
-	   (concat "X-Message-SMTP-Method: "
-		   (cdr
-		    (assoc
-		     (car
-		      (ietf-drums-parse-address
-		       (message-fetch-field "From")))
-		     my/smtp-alist)))))
+	  (cdr
+	   (assoc
+	    (car
+	     (ietf-drums-parse-address
+	      (message-fetch-field "From")))
+	    my/smtp-alist)))
       (warn "Contents of %s are in wrong format."
             my/smtp-alist-file))))
 
-(add-hook 'message-header-setup-hook 'my/fix-smtp)
+(defun my/set-smtp ()
+  "Set SMTP field as per FROM field."
+  (interactive)
+  (progn
+    (declare-function message-add-header "message.el")
+    (declare-function message-fetch-field "message.el")
+    (declare-function ietf-drums-parse-address "ietf-drums.el")
+    (message-add-header
+     (concat "X-Message-SMTP-Method: "
+	     (my/get-smtp)))))
+
+(defun my/unset-smtp ()
+  "Remove -X-Message-SMTP-Method field."
+  (interactive)
+  (progn
+    (declare-function message-remove-header "message.el")
+    (message-remove-header "X-Message-SMTP-Method"
+	     (my/get-smtp))))
+
+(add-hook 'message-setup-hook 'my/set-smtp)
   
 ;; (make-temp-file
 ;;  (expand-file-name "invite-" temporary-file-directory)
