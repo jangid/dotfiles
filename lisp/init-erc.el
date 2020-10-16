@@ -2,55 +2,21 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Configure ERC
-;;(require 'erc)
-;;(require 'erc-join)
-
-(eval-when-compile
-  (defvar erc-auth-file
-    (expand-file-name
-   ".erc-auth.el"
-   user-emacs-directory)
-    "ERC auth file location."))
-
-(defun my/load-erc-auth ()
-  "Load erc auth."
-  (require 'erc-auth erc-auth-file))
-
-(defvar erc-server)
-(defvar erc-port)
-(defvar erc-nick)
-(defvar erc-password)
-(declare-function set-freenode-credentials erc-auth-file)
-(declare-function set-gitter-credentials erc-auth-file)
-(declare-function unset-credentials erc-auth-file)
-
-(defun connect-irc ()
-  "Connect to IRC."
-  (interactive)
-  
-  (erc :server erc-server :port erc-port
-       :nick erc-nick :password erc-password))
-
-(defun connect-irc-tls ()
-  "Connect to IRC using SSL."
-  (interactive)
-  (erc-tls :server erc-server :port erc-port
-	   :nick erc-nick :password erc-password))
-
 (defun connect-freenode ()
   "Connect to irc.freenode.net."
   (interactive)
-  (set-freenode-credentials)
-  (connect-irc)
-  (unset-credentials))
+  (erc :server "irc.freenode.net"
+       :port 6667
+       :nick "jangid"
+       :full-name "Pankaj Jangid"))
 
 (defun connect-gitter ()
   "Connect to irc.gitter.im."
   (interactive)
-  (set-gitter-credentials)
-  (connect-irc-tls)
-  (unset-credentials))
+  (erc-tls :server "irc.gitter.im"
+	   :port 6667
+	   :nick "jangid"
+	   :full-name "Pankaj Jangid"))
 
 ;; This causes ERC to connect to the Freenode network upon hitting
 ;; C-c e f.

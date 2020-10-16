@@ -32,7 +32,7 @@
 ;; Tools and utilities
 (require 'init-ibuffer)
 (require 'init-email)
-;;(require 'init-erc)
+(require 'init-erc)
 (require 'init-org)
 (require 'init-dired)
 (require 'init-flymake)
