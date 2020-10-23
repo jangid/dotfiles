@@ -1,18 +1,19 @@
 ;;; init-javascript.el --- javascript conf -*- lexical-binding: t -*-
 
 ;;; Commentary:
+
 ;; Install follwoing npm packages for this configuration to work
 ;; npm install -g eslint
 
 ;;; Code:
 
-(require 'package)
-
 (defun my/js-setup ()
   "Initialize tools require for JavaScript programming."
   (defvar my/pkgs)
-  (setq my/pkgs '(eglot
-		  company))
+  (setq my/pkgs '(tern))
+  
+  (require 'package)
+  (declare-function package-installed-p "package.el")
   
   (let (ulist)
     (dolist (pkg my/pkgs ulist)
@@ -22,15 +23,7 @@
       (package-refresh-contents)
       (dolist (pkg ulist)
 	(package-install pkg))))
-  
-  
-  (setenv "PATH"
-	  (concat "/usr/local/bin:" (getenv "PATH")))
-  (add-to-list 'exec-path
-	       "/usr/local/bin")
 
-    
-  
   (add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))
   (add-to-list 'auto-mode-alist '("\\.cjs\\'" . js-mode))
   (setq indent-tabs-mode nil)
@@ -38,24 +31,18 @@
   (defvar js-indent-level)
   (setq js-indent-level 2)
 
-  (declare-function eglot-ensure "eglot")
-  (defvar eglot-server-programs)
-  (add-to-list 'eglot-server-programs
-	       '(js-mode . ("/usr/local/bin/javascript-typescript-stdio")))
-  (add-hook 'js-mode-hook #'eglot-ensure)
+  (declare-function tern-mode "tern.el")
+  (add-hook 'js-mode-hook (lambda () (tern-mode t)))
   
-  (declare-function company-mode "company")
-  (defvar company-backends)
-  ;;(add-to-list 'company-backends 'company-capf)
-  (add-hook 'js-mode-hook #'company-mode)
-
   (add-hook 'js-mode-hook #'display-line-numbers-mode)
   (add-hook 'js-mode-hook #'electric-pair-mode)
+  (add-hook 'js-mode-hook #'show-paren-mode)
   (add-hook 'js-mode-hook #'hs-minor-mode)
   (add-hook 'js-mode-hook #'abbrev-mode))
-;;  (add-hook 'js-mode-hook (lambda () (flymake-eslint-enable))))
 
-(my/js-setup)
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (my/js-setup)))
 
 (provide 'init-javascript)
 ;;; init-javascript.el ends here

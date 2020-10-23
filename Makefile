@@ -1,4 +1,4 @@
-all: init.elc lisp/*.elc
+all: lisp/*.elc init.elc
 
 init.elc: init.el
 	emacs -batch -f batch-byte-compile $^

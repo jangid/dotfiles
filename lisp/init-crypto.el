@@ -3,12 +3,11 @@
 ;;; Code:
 
 ;; GnuPG configuration
-;; (eval-when-compile (require 'epg))
 (eval-when-compile (require 'epg))
 (setq epg-pinentry-mode 'loopback)
 
-(custom-set-variables
- '(epg-gpg-program  "/usr/local/bin/gpg"))
+;;(custom-set-variables
+;; '(epg-gpg-program  "/usr/local/bin/gpg"))
 
 ;; Configure mml - sign and encrypt key
 ;; (eval-when-compile (require 'mml-sec))

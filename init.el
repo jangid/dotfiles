@@ -30,13 +30,16 @@
   (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)))
 
 ;; Tools and utilities
+(require 'init-auth)
 (require 'init-ibuffer)
 (require 'init-email)
 (require 'init-erc)
 (require 'init-org)
+(require 'init-website)
 (require 'init-dired)
 (require 'init-flymake)
-;;(require 'init-markdown)
+(require 'init-flycheck)
+(require 'init-markdown)
 (require 'init-flycheck)
 (require 'init-eglot)
 (require 'init-icomplete)
@@ -61,7 +64,7 @@
 ;; Programming languages
 (require 'init-elisp)
 (require 'init-rust)
-;;(require 'init-javascript)
+(require 'init-javascript)
 ;;(require 'init-python)
 ;;(require 'init-ruby)
 (require 'init-kotlin)

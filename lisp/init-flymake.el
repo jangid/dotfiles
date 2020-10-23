@@ -2,12 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-(eval-when-compile (require 'package))
-(declare-function package-installed-p "package")
-
 (defun my/flymake-setup ()
   "Initialize flymake from elpa."
   (defvar my/pkgs '(flymake))
+
+  (eval-when-compile (require 'package))
+  (declare-function package-installed-p "package")
 
   (let (ulist)
     (dolist (pkg my/pkgs ulist)
@@ -18,7 +18,9 @@
       (dolist (pkg ulist)
 	(package-install pkg)))))
 
-;; (my/flymake-setup)
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (my/flymake-setup)))
 
 (eval-when-compile (require 'flymake))
 (declare-function flymake-goto-next-error "flymake")

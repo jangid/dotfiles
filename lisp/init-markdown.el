@@ -2,13 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'package)
-(declare-function package-installed-p "package.el")
-
 (defun my/markdown-setup ()
   "Initialize markdown from elpa."
   (defvar my/pkgs '(markdown-mode))
   
+  (require 'package)
+  (declare-function package-installed-p "package.el")
+
   (let (ulist)
     (dolist (pkg my/pkgs ulist)
       (unless (package-installed-p pkg)
@@ -18,7 +18,9 @@
       (dolist (pkg ulist)
 	(package-install pkg)))))
 
-(my/markdown-setup)
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (my/markdown-setup)))
 
 (provide 'init-markdown)
 ;;; init-markdown.el ends here

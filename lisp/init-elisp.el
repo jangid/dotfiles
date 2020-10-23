@@ -1,4 +1,4 @@
-;;; init-rust.el --- rust configuration -*- lexical-binding: t -*-
+;;; init-elisp.el --- elisp configuration -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

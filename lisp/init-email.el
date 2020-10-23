@@ -54,8 +54,6 @@
   (interactive)
   (progn
     (declare-function message-add-header "message.el")
-    (declare-function message-fetch-field "message.el")
-    (declare-function ietf-drums-parse-address "ietf-drums.el")
     (message-add-header
      (concat "X-Message-SMTP-Method: "
 	     (my/get-smtp)))))
@@ -83,8 +81,6 @@
   (interactive)
     (progn
     (declare-function message-add-header "message.el")
-    (declare-function message-fetch-field "message.el")
-    (declare-function ietf-drums-parse-address "ietf-drums.el")
     (message-add-header
      (concat "Face: "
 	     (gnus-face-from-file "face.png")))))
@@ -95,6 +91,17 @@
   (progn
     (declare-function message-remove-header "message.el")
     (message-remove-header "Face")))
+
+(defun my/set-gcc ()
+  "Set archive group."
+  (interactive)
+  ;;Gcc: nnfolder+archive:sent.2020-10
+  (progn
+    (declare-function message-add-header "message.el")
+    (defvar gnus-message-archive-group)
+    (message-add-header
+     (concat "Gcc: "
+	     (format-time-string "sent.%Y-%m")))))
 
 ;; (make-temp-file
 ;;  (expand-file-name "invite-" temporary-file-directory)
