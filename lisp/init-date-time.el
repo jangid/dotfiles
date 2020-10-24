@@ -10,7 +10,6 @@
 ;;; Code:
 
 ;; time-zone
-;; (eval-when-compile (require 'solar))
 (eval-when-compile (require 'solar))
 
 ;; (setq calendar-latitude 28.6)		; New Delhi

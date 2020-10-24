@@ -9,18 +9,14 @@
 (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
 
 ;; Signature
-(eval-when-compile (require 'message))
-(defvar message-signature-file)
-(defvar message-signature-directory)
-(setq message-signature-directory "~/.signature")
-(setq message-signature-file (expand-file-name
-			      "default"
-			      message-signature-directory))
-(setq message-signature nil)
+(defvar message-signature nil)
+(defvar message-signature-directory
+  "~/.signature_dir")
+(defvar message-signature-file
+  (expand-file-name "default" message-signature-directory))
 
 ;; SMTP
 (setq send-mail-function 'smtpmail-send-it)
-;;(setq message-send-mail-function 'message-send-mail-with-sendmail)
 
 (defun my/get-smtp ()
   "Get SMTP for as per FROM field."

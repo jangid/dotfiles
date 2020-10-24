@@ -27,21 +27,15 @@
 ;; The configuration is divided into many files called modules. Set
 ;; the load path for those modules.
 (eval-and-compile
-  (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)))
+  (add-to-list 'load-path
+	       (expand-file-name "lisp" user-emacs-directory)))
 
-;; Tools and utilities
+(require 'init-keys)
 (require 'init-auth)
 (require 'init-ibuffer)
 (require 'init-email)
 (require 'init-erc)
 (require 'init-org)
-(require 'init-website)
-(require 'init-dired)
-(require 'init-flymake)
-(require 'init-flycheck)
-(require 'init-markdown)
-(require 'init-flycheck)
-(require 'init-eglot)
 (require 'init-icomplete)
 (require 'init-browser)
 (require 'init-crypto)
@@ -50,31 +44,29 @@
 (require 'init-recentf)
 (require 'init-cedet)
 (require 'init-speedbar)
-;;(require 'init-which-key)
-(require 'init-bbdb)
-
-;; Looks and themes
-(require 'init-looks)			; Common UI settings - menu, tabs...
-;; (require 'init-diminish)
+(require 'init-website)
+(require 'init-dired)
+(require 'init-flymake)
+(require 'init-looks)
 (require 'init-modeline)
-
-;; Editor settings
-(require 'init-keys)
-
-;; Programming languages
 (require 'init-elisp)
+(require 'init-flycheck)
+(require 'init-org-extras)
+(require 'init-esup)
+(require 'init-eglot)
+;; (require 'init-which-key)
+(require 'init-bbdb)
+;; (require 'init-diminish)
 (require 'init-rust)
 (require 'init-javascript)
-;;(require 'init-python)
-;;(require 'init-ruby)
+;; ;;(require 'init-python)
+;; ;;(require 'init-ruby)
 (require 'init-kotlin)
 (require 'init-java)
+(require 'init-markdown)
+(require 'init-docker)
 
-;; File types
 ;; (require 'vtl)
-
-;; Session save and restore
-;; (require 'init-desktop)
 
 ;; Keep the custom file separate from init.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))

@@ -2,27 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(defun my/org-extras-setup ()
-  "Initialize extras for Org Mode."
-  (defvar my/pkgs '(org-mime
-		    org-superstar))
-  
-  (require 'package)
-  (declare-function package-installed-p "package.el")
-  
-  (let (ulist)
-    (dolist (pkg my/pkgs ulist)
-      (unless (package-installed-p pkg)
-	(setq ulist (cons pkg ulist))))
-    (unless (null ulist)
-      (package-refresh-contents)
-      (dolist (pkg ulist)
-	(package-install pkg)))))
-
-(add-hook 'emacs-startup-hook
-	  (lambda ()
-	    (my/org-extras-setup)))
-
 ;; Global key bindings
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c b") 'org-switchb)
