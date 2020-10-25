@@ -7,15 +7,15 @@
   "My webstie.")
 
 (defvar org-publish-project-alist
-  '(("website"
-     :components ("pages" "blog"))
+  `(("website"
+     :components ("pages" "articles"))
     ("pages"
-     :base-directory "~/work/code/github/codeisgreat/src/"
-     :publishing-directory "~/work/code/github/codeisgreat/docs/"
+     :base-directory ,(concat site-project-dir "src/")
+     :publishing-directory ,(concat site-project-dir "docs/")
      :publishing-function org-html-publish-to-html)
-    ("blog"
-     :base-directory "~/work/code/github/codeisgreat/src/blog"
-     :publishing-directory "~/work/code/github/codeisgreat/docs/blog"
+    ("articles"
+     :base-directory ,(concat site-project-dir "src/articles")
+     :publishing-directory ,(concat site-project-dir "docs/articles")
      :publishing-function org-html-publish-to-html))
   "My website project.")
 
