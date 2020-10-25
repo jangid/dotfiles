@@ -8,6 +8,7 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c f") 'org-footnote-action)
+(defvar org-agenda-include-diary t)
 
 (defun my/org-mode-hook ()
   "Custom code to run on start of 'org-mode'."
