@@ -2,39 +2,32 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Global key bindings
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c b") 'org-switchb)
-(global-set-key (kbd "C-c c") 'org-capture)
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c f") 'org-footnote-action)
-(defvar org-agenda-include-diary t)
+(require 'init-use-package)
+(use-package org
+  :bind
+  (("C-c a" . org-agenda)
+   ("C-c b" . org-switchb)
+   ("C-c c" . org-capture)
+   ("C-c l" . org-store-link)
+   ("C-c f" . org-footnote-action))
+  :config
+  (add-hook 'org-agenda-mode-hook
+	    (lambda ()
+	      (defvar org-agenda-include-diary t)))
+  (add-hook 'org-mode-hook
+	    (lambda ()
+	      ;; (visual-line-mode)
+	      ;; (org-indent-mode)
+	      ;; (require 'org-tempo)
 
-(defun my/org-mode-hook ()
-  "Custom code to run on start of 'org-mode'."
-  (visual-line-mode)
-
-  (declare-function org-superstar-mode "org-superstar.el")
-  (org-superstar-mode)
-  (declare-function org-indent-mode "org-indent.el")
-  (org-indent-mode)
-
-  (require 'org-tempo)
-
-  (require 'ob-python)
-  (require 'ob-C)
-  (require 'ob-java)
-  (require 'ob-latex)
-  (require 'ob-js)
-  (require 'ob-css)
-  (require 'ob-sed)
-  (require 'ob-awk)
-  (require 'ob-perl)
-  (require 'ob-sql)
-  (require 'ob-emacs-lisp))
-
-(add-hook 'org-mode-hook 'my/org-mode-hook)
-
+	      (require 'ob-python)
+	      (require 'ob-C)
+	      (require 'ob-java)
+	      (require 'ob-latex)
+	      (require 'ob-js)
+	      (require 'ob-css)
+	      (require 'ob-sql)
+	      (require 'ob-emacs-lisp))))
 
 (provide 'init-org)
 ;;; init-org.el ends here
