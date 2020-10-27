@@ -9,11 +9,11 @@
 
 (require 'init-use-package)
 
-(use-package tern
-  :ensure t
-  :config
-  (declare-function tern-mode "tern.el")
-  (add-hook 'js-mode-hook (lambda () (tern-mode t))))
+;; (use-package tern
+;;   :ensure t
+;;   :config
+;;   (declare-function tern-mode "tern.el")
+;;   (add-hook 'js-mode-hook (lambda () (tern-mode t))))
 
 (use-package js
   :mode
@@ -24,6 +24,7 @@
   (setq indent-tabs-mode nil)
   (defvar js-indent-level)
   (setq js-indent-level 2)
+  (add-hook 'js-mode-hook 'eglot-ensure)
   (add-hook 'js-mode-hook #'display-line-numbers-mode)
   (add-hook 'js-mode-hook #'electric-pair-mode)
   (add-hook 'js-mode-hook #'show-paren-mode)
