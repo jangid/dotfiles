@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-use-package)
+(eval-when-compile (require 'init-use-package))
 (use-package org
   :bind
   (("C-c a" . org-agenda)
@@ -11,9 +11,7 @@
    ("C-c l" . org-store-link)
    ("C-c f" . org-footnote-action))
   :config
-  (add-hook 'org-agenda-mode-hook
-	    (lambda ()
-	      (defvar org-agenda-include-diary t)))
+  (defvar org-agenda-include-diary t)
   (add-hook 'org-mode-hook
 	    (lambda ()
 	      ;; (visual-line-mode)
