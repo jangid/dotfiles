@@ -23,6 +23,7 @@ all: 	early-init.elc lisp/init-use-package.elc \
 	lisp/init-flycheck.elc \
 	lisp/init-org-extras.elc \
 	lisp/init-esup.elc \
+	lisp/init-twitter.elc \
 	init.elc
 
 early-init.elc: early-init.el
@@ -104,6 +105,10 @@ lisp/init-esup.elc: lisp/init-esup.el \
 	lisp/init-use-package.elc
 	emacs -batch -L lisp -f batch-byte-compile $<
 
+lisp/init-twitter.elc: lisp/init-twitter.el \
+	lisp/init-use-package.elc
+	emacs -batch -L lisp -f batch-byte-compile $<
+
 init.elc: init.el \
 	lisp/init-keys.elc \
 	lisp/init-auth.elc \
@@ -127,7 +132,8 @@ init.elc: init.el \
 	lisp/init-org.elc \
 	lisp/init-flycheck.elc \
 	lisp/init-org-extras.elc \
-	lisp/init-esup.elc
+	lisp/init-esup.elc \
+	lisp/init-twitter.elc
 	emacs -batch -L lisp -f batch-byte-compile $<
 
 #lisp/*.elc: lisp/*.el

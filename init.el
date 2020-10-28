@@ -65,6 +65,7 @@
 (require 'init-java)
 (require 'init-markdown)
 (require 'init-docker)
+(require 'init-twitter)
 
 ;; (require 'vtl)
 
