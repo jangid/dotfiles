@@ -18,12 +18,12 @@ all: 	early-init.elc lisp/init-use-package.elc \
 	lisp/init-looks.elc \
 	lisp/init-modeline.elc \
 	lisp/init-elisp.elc \
+	lisp/init-crypto.elc \
 	lisp/init-org.elc \
 	lisp/init-flycheck.elc \
 	lisp/init-org-extras.elc \
 	lisp/init-esup.elc \
 	lisp/init-twitter.elc \
-	lisp/init-crypto.elc \
 	init.elc
 
 early-init.elc: early-init.el
@@ -86,6 +86,9 @@ lisp/init-modeline.elc: lisp/init-modeline.el
 lisp/init-elisp.elc: lisp/init-elisp.el
 	emacs -batch -L lisp -f batch-byte-compile $<
 
+lisp/init-crypto.elc: lisp/init-crypto.el
+	emacs -batch -L lisp -f batch-byte-compile $<
+
 lisp/init-org.elc: lisp/init-org.el \
 	lisp/init-use-package.elc
 	emacs -batch -L lisp -f batch-byte-compile $<
@@ -106,10 +109,6 @@ lisp/init-twitter.elc: lisp/init-twitter.el \
 	lisp/init-use-package.elc
 	emacs -batch -L lisp -f batch-byte-compile $<
 
-lisp/init-crypto.elc: lisp/init-crypto.el \
-	lisp/init-use-package.elc
-	emacs -batch -L lisp -f batch-byte-compile $<
-
 init.elc: init.el \
 	lisp/init-keys.elc \
 	lisp/init-auth.elc \
@@ -118,7 +117,6 @@ init.elc: init.el \
 	lisp/init-erc.elc \
 	lisp/init-icomplete.elc \
 	lisp/init-browser.elc \
-	lisp/init-crypto.elc \
 	lisp/init-date-time.elc \
 	lisp/init-diary.elc \
 	lisp/init-recentf.elc \
@@ -130,6 +128,7 @@ init.elc: init.el \
 	lisp/init-looks.elc \
 	lisp/init-modeline.elc \
 	lisp/init-elisp.elc \
+	lisp/init-crypto.elc \
 	lisp/init-org.elc \
 	lisp/init-flycheck.elc \
 	lisp/init-org-extras.elc \
