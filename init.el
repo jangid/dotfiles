@@ -75,11 +75,11 @@
   (load custom-file))
 
 ;; start server for emacsclient support
-;; use 'emacs-startup-hook when in text mode
-(require 'server)
 (add-hook 'emacs-startup-hook
 	  (lambda ()
-	    (unless (server-running-p) (server-start))))
+	    (progn
+	      (eval-and-compile (require 'server))
+	      (unless (server-running-p) (server-start)))))
 
 (provide 'init)
 ;;; init.el ends here
