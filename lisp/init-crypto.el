@@ -2,9 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (require 'init-use-package)
-;; (use-package pinentry
-;;   :ensure t)
+(require 'init-use-package)
+(use-package pinentry
+  :ensure t)
 
 ;; GnuPG configuration
 (eval-when-compile (require 'epg))
