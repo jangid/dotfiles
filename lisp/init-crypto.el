@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'init-use-package)
+(use-package pinentry
+  :ensure t)
+
 ;; GnuPG configuration
 (eval-when-compile (require 'epg))
 (setq epg-pinentry-mode 'loopback)
