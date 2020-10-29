@@ -4,9 +4,6 @@
 
 (eval-and-compile
   (prog1 "use-package"
-    (custom-set-variables
-     '(package-archives '(("melpa" . "https://melpa.org/packages/")
-                          ("gnu"   . "https://elpa.gnu.org/packages/"))))
     (package-initialize)
     (unless (package-installed-p 'use-package)
       (package-refresh-contents)
