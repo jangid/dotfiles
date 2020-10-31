@@ -36,7 +36,8 @@
   (global-set-key (kbd "C-c l") 'org-store-link)
   (global-set-key (kbd "C-c f") 'org-footnote-action)
   
-  (defvar org-agenda-include-diary t)
+  (custom-set-variables
+   '(org-agenda-include-diary t t))
 
   (add-hook 'org-mode-hook
 	    (lambda ()

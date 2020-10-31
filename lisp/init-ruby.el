@@ -19,7 +19,6 @@
 
 
   (add-hook 'ruby-mode-hook #'display-line-numbers-mode)
-  (add-hook 'ruby-mode-hook #'electric-pair-mode)
   (add-hook 'ruby-mode-hook #'hs-minor-mode)
   (add-hook 'ruby-mode-hook #'abbrev-mode)
 

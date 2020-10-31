@@ -20,7 +20,6 @@
 
   ;; (setq python-indent-guess-indent-offset-verbose nil)
   (add-hook 'python-mode-hook #'display-line-numbers-mode)
-  (add-hook 'python-mode-hook #'electric-pair-mode)
   (add-hook 'python-mode-hook #'hs-minor-mode)
   (add-hook 'python-mode-hook #'abbrev-mode)
 

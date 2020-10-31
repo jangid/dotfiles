@@ -17,7 +17,6 @@
   (add-to-list 'exec-path
    	       (concat (getenv "JAVA_HOME") "/bin"))
   (add-hook 'java-mode-hook #'display-line-numbers-mode)
-  (add-hook 'java-mode-hook #'electric-pair-mode)
   (add-hook 'java-mode-hook #'hs-minor-mode)
   (add-hook 'java-mode-hook #'abbrev-mode)
   (add-hook 'java-mode-hook #'semantic-mode))

@@ -7,7 +7,7 @@
   :ensure t
   :config
   (add-hook 'rust-mode-hook #'display-line-numbers-mode)
-  (add-hook 'rust-mode-hook #'electric-pair-mode)
+  (add-hook 'rust-mode-hook #'electric-pair-local-mode)
   (add-hook 'rust-mode-hook #'show-paren-mode)
   (add-hook 'rust-mode-hook #'hs-minor-mode)
   (add-hook 'rust-mode-hook #'abbrev-mode)

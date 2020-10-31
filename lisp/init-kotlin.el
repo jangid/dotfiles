@@ -10,7 +10,6 @@
    ("\\.kts\\'" . kotlin-mode))
   :config
   (add-hook 'kotlin-mode-hook #'display-line-numbers-mode)
-  (add-hook 'kotlin-mode-hook #'electric-pair-mode)
   (add-hook 'kotlin-mode-hook #'show-paren-mode)
   (add-hook 'kotlin-mode-hook #'hs-minor-mode)
   (add-hook 'kotlin-mode-hook #'abbrev-mode))
