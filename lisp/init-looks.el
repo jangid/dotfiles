@@ -3,6 +3,7 @@
 ;;; Code:
 
 ;; (setq inhibit-startup-screen t)
+;; (setq initial-scratch-message nil)
 
 ;; Disable menu-bar, tool-bar and scroll-bar. What is the use of emacs
 ;; if you are using these mouseee features.

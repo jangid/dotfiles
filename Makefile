@@ -136,8 +136,5 @@ init.elc: init.el \
 	lisp/init-twitter.elc
 	emacs -batch -L lisp -f batch-byte-compile $<
 
-#lisp/*.elc: lisp/*.el
-#	emacs -batch -L lisp -f batch-byte-compile $<
-
 clean:
 	rm early-init.elc init.elc lisp/*.elc

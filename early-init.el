@@ -2,10 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(custom-set-variables
- '(package-archives '(("melpa" . "https://melpa.org/packages/")
-                      ("gnu"   . "https://elpa.gnu.org/packages/"))))
-
 ;; window size
 ;; (setq default-frame-alist
 ;;       '((height . 47)

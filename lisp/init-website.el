@@ -12,7 +12,7 @@
     ("pages"
      :base-directory ,(concat site-project-dir "src/")
      :publishing-directory ,(concat site-project-dir "docs/")
-     :publishing-function org-html-publish-to-html)
+     :publishing-function org-htmo-publish-to-html)
     ("articles"
      :base-directory ,(concat site-project-dir "src/articles")
      :publishing-directory ,(concat site-project-dir "docs/articles")

@@ -37,12 +37,14 @@
   (global-set-key (kbd "C-c f") 'org-footnote-action)
   
   (custom-set-variables
-   '(org-agenda-include-diary t t))
+   '(org-agenda-include-diary t)
+   '(org-agenda-files '("~/org")))
 
   (add-hook 'org-mode-hook
 	    (lambda ()
 	      (visual-line-mode)
-	      ;; (org-indent-mode)
+	      (declare-function org-indent-mode "org.el")
+	      (org-indent-mode)
 	      ;; (require 'org-tempo)
 	      
 	      (require 'ob-python)
