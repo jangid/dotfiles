@@ -22,11 +22,11 @@
 ;; 	  (lambda ()
 ;; 	    (my/flymake-setup)))
 
-(eval-when-compile (require 'flymake))
-(declare-function flymake-goto-next-error "flymake")
-(declare-function flymake-goto-prev-error "flymake")
-(global-set-key (kbd "M-n") #'flymake-goto-next-error)
-(global-set-key (kbd "M-p") #'flymake-goto-prev-error)
+(require 'init-use-package)
+(use-package flymake
+  :bind
+  (("M-n" . flymake-goto-next-error)
+   ("M-p" . flymake-goto-prev-error)))
 
 (provide 'init-flymake)
 ;;; init-flymake.el ends here

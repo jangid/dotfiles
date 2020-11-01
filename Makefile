@@ -14,16 +14,26 @@ all: 	early-init.elc lisp/init-use-package.elc \
 	lisp/init-speedbar.elc \
 	lisp/init-website.elc \
 	lisp/init-dired.elc \
-	lisp/init-flymake.elc \
 	lisp/init-looks.elc \
 	lisp/init-modeline.elc \
 	lisp/init-elisp.elc \
 	lisp/init-crypto.elc \
 	lisp/init-org.elc \
+	lisp/init-flymake.elc \
 	lisp/init-flycheck.elc \
 	lisp/init-org-extras.elc \
 	lisp/init-esup.elc \
+	lisp/init-eglot.elc \
+	lisp/init-bbdb.elc \
+	lisp/init-rust.elc \
+	lisp/init-javascript.elc \
+	lisp/init-python.elc \
+	lisp/init-kotlin.elc \
+	lisp/init-java.elc \
+	lisp/init-markdown.elc \
+	lisp/init-docker.elc \
 	lisp/init-twitter.elc \
+	lisp/init-direnv.elc \
 	init.elc
 
 early-init.elc: early-init.el
@@ -74,9 +84,6 @@ lisp/init-website.elc: lisp/init-website.el
 lisp/init-dired.elc: lisp/init-dired.el
 	emacs -batch -L lisp -f batch-byte-compile $<
 
-lisp/init-flymake.elc: lisp/init-flymake.el
-	emacs -batch -L lisp -f batch-byte-compile $<
-
 lisp/init-looks.elc: lisp/init-looks.el
 	emacs -batch -L lisp -f batch-byte-compile $<
 
@@ -93,6 +100,10 @@ lisp/init-org.elc: lisp/init-org.el \
 	lisp/init-use-package.elc
 	emacs -batch -L lisp -f batch-byte-compile $<
 
+lisp/init-flymake.elc: lisp/init-flymake.el \
+	lisp/init-use-package.elc
+	emacs -batch -L lisp -f batch-byte-compile $<
+
 lisp/init-flycheck.elc: lisp/init-flycheck.el \
 	lisp/init-use-package.elc
 	emacs -batch -L lisp -f batch-byte-compile $<
@@ -105,7 +116,47 @@ lisp/init-esup.elc: lisp/init-esup.el \
 	lisp/init-use-package.elc
 	emacs -batch -L lisp -f batch-byte-compile $<
 
+lisp/init-eglot.elc: lisp/init-eglot.el \
+	lisp/init-use-package.elc
+	emacs -batch -L lisp -f batch-byte-compile $<
+
+lisp/init-bbdb.elc: lisp/init-bbdb.el \
+	lisp/init-use-package.elc
+	emacs -batch -L lisp -f batch-byte-compile $<
+
+lisp/init-rust.elc: lisp/init-rust.el \
+	lisp/init-use-package.elc
+	emacs -batch -L lisp -f batch-byte-compile $<
+
+lisp/init-javascript.elc: lisp/init-javascript.el \
+	lisp/init-use-package.elc
+	emacs -batch -L lisp -f batch-byte-compile $<
+
+lisp/init-python.elc: lisp/init-python.el \
+	lisp/init-use-package.elc
+	emacs -batch -L lisp -f batch-byte-compile $<
+
+lisp/init-kotlin.elc: lisp/init-kotlin.el \
+	lisp/init-use-package.elc
+	emacs -batch -L lisp -f batch-byte-compile $<
+
+lisp/init-java.elc: lisp/init-java.el \
+	lisp/init-use-package.elc
+	emacs -batch -L lisp -f batch-byte-compile $<
+
+lisp/init-markdown.elc: lisp/init-markdown.el \
+	lisp/init-use-package.elc
+	emacs -batch -L lisp -f batch-byte-compile $<
+
+lisp/init-docker.elc: lisp/init-docker.el \
+	lisp/init-use-package.elc
+	emacs -batch -L lisp -f batch-byte-compile $<
+
 lisp/init-twitter.elc: lisp/init-twitter.el \
+	lisp/init-use-package.elc
+	emacs -batch -L lisp -f batch-byte-compile $<
+
+lisp/init-direnv.elc: lisp/init-direnv.el \
 	lisp/init-use-package.elc
 	emacs -batch -L lisp -f batch-byte-compile $<
 
@@ -124,16 +175,26 @@ init.elc: init.el \
 	lisp/init-speedbar.elc \
 	lisp/init-website.elc \
 	lisp/init-dired.elc \
-	lisp/init-flymake.elc \
 	lisp/init-looks.elc \
 	lisp/init-modeline.elc \
 	lisp/init-elisp.elc \
 	lisp/init-crypto.elc \
 	lisp/init-org.elc \
+	lisp/init-flymake.elc \
 	lisp/init-flycheck.elc \
 	lisp/init-org-extras.elc \
 	lisp/init-esup.elc \
-	lisp/init-twitter.elc
+	lisp/init-eglot.elc \
+	lisp/init-bbdb.elc \
+	lisp/init-rust.elc \
+	lisp/init-javascript.elc \
+	lisp/init-python.elc \
+	lisp/init-kotlin.elc \
+	lisp/init-java.elc \
+	lisp/init-markdown.elc \
+	lisp/init-docker.elc \
+	lisp/init-twitter.elc \
+	lisp/init-direnv.elc
 	emacs -batch -L lisp -f batch-byte-compile $<
 
 clean:

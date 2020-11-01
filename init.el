@@ -57,13 +57,14 @@
 (require 'init-bbdb)
 (require 'init-rust)
 (require 'init-javascript)
-;; ;;(require 'init-python)
+(require 'init-python)
 ;; ;;(require 'init-ruby)
 (require 'init-kotlin)
 (require 'init-java)
 (require 'init-markdown)
 (require 'init-docker)
 (require 'init-twitter)
+;;(require 'init-direnv)
 
 ;; (require 'vtl)
 
