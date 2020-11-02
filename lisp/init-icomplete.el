@@ -5,7 +5,7 @@
 ;; icomplete-mode or fido-mode
 (add-hook 'emacs-startup-hook
 	  (lambda ()
-	    (icomplete-mode +1)))
+	    (icomplete-mode t)))
 ;; (fido-mode +1)
 
 (provide 'init-icomplete)

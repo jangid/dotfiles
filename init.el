@@ -54,7 +54,6 @@
 (require 'init-org-extras)
 (require 'init-esup)
 (require 'init-eglot)
-(require 'init-bbdb)
 (require 'init-rust)
 (require 'init-javascript)
 (require 'init-python)
@@ -65,6 +64,7 @@
 (require 'init-docker)
 (require 'init-twitter)
 (require 'init-direnv)
+(require 'init-eudc)
 
 ;; (require 'vtl)
 
