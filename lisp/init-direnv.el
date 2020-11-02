@@ -6,7 +6,7 @@
 (use-package direnv
   :ensure t
   :config
-  (direnv-mode))
+  (direnv-mode +1))
 
 (provide 'init-direnv)
 ;;; init-direnv.el ends here
