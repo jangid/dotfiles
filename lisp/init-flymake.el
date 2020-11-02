@@ -2,31 +2,19 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (defun my/flymake-setup ()
-;;   "Initialize flymake from elpa."
-;;   (defvar my/pkgs '(flymake))
+;; (require 'init-use-package)
+;; (use-package flymake
+;;   :bind
+;;   (("M-n" . flymake-goto-next-error)
+;;    ("M-p" . flymake-goto-prev-error)))
 
-;;   (eval-when-compile (require 'package))
-;;   (declare-function package-installed-p "package")
+;; TODO - enable use-package if it is included in emacs. Right now,
+;; inclusion of use-package above is taking .3s extra.
 
-;;   (let (ulist)
-;;     (dolist (pkg my/pkgs ulist)
-;;       (unless (package-installed-p pkg)
-;; 	(setq ulist (cons pkg ulist))))
-;;     (unless (null ulist)
-;;       (package-refresh-contents)
-;;       (dolist (pkg ulist)
-;; 	(package-install pkg)))))
-
-;; (add-hook 'emacs-startup-hook
-;; 	  (lambda ()
-;; 	    (my/flymake-setup)))
-
-(require 'init-use-package)
-(use-package flymake
-  :bind
-  (("M-n" . flymake-goto-next-error)
-   ("M-p" . flymake-goto-prev-error)))
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (global-set-key (kbd "M-n") 'flymake-goto-next-error)
+	    (global-set-key (kbd "M-p") 'flymake-goto-prev-error)))
 
 (provide 'init-flymake)
 ;;; init-flymake.el ends here

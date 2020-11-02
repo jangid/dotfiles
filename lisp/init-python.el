@@ -5,8 +5,8 @@
 (require 'init-use-package)
 (use-package python
   :config
-  (cond ((eq system-type 'darwin)	; Homebrew version supports readline
-	 (custom-set-variables
+  (cond ((eq system-type 'darwin)	; Pick 'python3' from Homebrew,
+	 (custom-set-variables		; this supports readline
 	  '(python-shell-interpreter
 	    "/usr/local/opt/python@3/bin/python3")))
 	(t
