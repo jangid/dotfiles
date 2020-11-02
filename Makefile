@@ -18,12 +18,12 @@ all: 	early-init.elc lisp/init-use-package.elc \
 	lisp/init-elisp.elc \
 	lisp/init-crypto.elc \
 	lisp/init-org.elc \
+	lisp/init-eudc.elc \
 	lisp/init-flymake.elc \
 	lisp/init-flycheck.elc \
 	lisp/init-org-extras.elc \
 	lisp/init-esup.elc \
 	lisp/init-eglot.elc \
-	lisp/init-bbdb.elc \
 	lisp/init-rust.elc \
 	lisp/init-javascript.elc \
 	lisp/init-python.elc \
@@ -102,6 +102,10 @@ lisp/init-org.elc: lisp/init-org.el \
 	lisp/init-use-package.elc
 	emacs $(OPTIONS) $<
 
+lisp/init-eudc.elc: lisp/init-eudc.el \
+	lisp/init-use-package.elc
+	emacs $(OPTIONS) $<
+
 lisp/init-flymake.elc: lisp/init-flymake.el \
 	lisp/init-use-package.elc
 	emacs $(OPTIONS) $<
@@ -119,10 +123,6 @@ lisp/init-esup.elc: lisp/init-esup.el \
 	emacs $(OPTIONS) $<
 
 lisp/init-eglot.elc: lisp/init-eglot.el \
-	lisp/init-use-package.elc
-	emacs $(OPTIONS) $<
-
-lisp/init-bbdb.elc: lisp/init-bbdb.el \
 	lisp/init-use-package.elc
 	emacs $(OPTIONS) $<
 
@@ -186,12 +186,12 @@ init.elc: init.el \
 	lisp/init-elisp.elc \
 	lisp/init-crypto.elc \
 	lisp/init-org.elc \
+	lisp/init-eudc.elc \
 	lisp/init-flymake.elc \
 	lisp/init-flycheck.elc \
 	lisp/init-org-extras.elc \
 	lisp/init-esup.elc \
 	lisp/init-eglot.elc \
-	lisp/init-bbdb.elc \
 	lisp/init-rust.elc \
 	lisp/init-javascript.elc \
 	lisp/init-python.elc \
