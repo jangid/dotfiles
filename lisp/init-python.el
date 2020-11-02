@@ -5,8 +5,13 @@
 (require 'init-use-package)
 (use-package python
   :config
-  (custom-set-variables
-   '(python-shell-interpreter "/usr/local/opt/python@3/bin/python3"))
+  (cond ((eq system-type 'darwin)	; Homebrew version supports readline
+	 (custom-set-variables
+	  '(python-shell-interpreter
+	    "/usr/local/opt/python@3/bin/python3")))
+	(t
+	 (custom-set-variables
+	  '(python-shell-interpreter "python3"))))
   :hook
   ((python-mode . flymake-mode)
    (python-mode . display-line-numbers-mode)
