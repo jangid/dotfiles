@@ -29,6 +29,10 @@
 ;; (blink-cursor-mode t)
 ;; (global-hl-line-mode +1)
 
+(setq default-frame-alist
+      '((height . 47)
+ 	(width . 169)
+	(left . 110)))
 
 (provide 'init-looks)
 ;;; init-looks.el ends here
