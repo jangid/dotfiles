@@ -31,6 +31,7 @@
 	       (expand-file-name "lisp" user-emacs-directory)))
 
 (require 'init-keys)
+(require 'init-looks)
 (require 'init-auth)
 (require 'init-ibuffer)
 (require 'init-email)
@@ -47,7 +48,6 @@
 (require 'init-website)
 (require 'init-dired)
 (require 'init-flymake)
-(require 'init-looks)
 (require 'init-modeline)
 (require 'init-elisp)
 (require 'init-flycheck)
@@ -65,6 +65,7 @@
 (require 'init-twitter)
 (require 'init-direnv)
 (require 'init-eudc)
+(require 'init-bbdb)
 
 ;; (require 'vtl)
 
