@@ -13,7 +13,7 @@
 ;;; Code:
 
 ;; Produce backtrace on error
-(setq debug-on-error t)
+;; (setq debug-on-error t)
 
 ;; Version check
 (let ((minver "27.1"))
