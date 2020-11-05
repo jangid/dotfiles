@@ -42,3 +42,4 @@ projects
 eglot-eclipse-jdt-cache
 **/*.elc
 my-SMTPs
+eudc-options
