@@ -9,10 +9,7 @@
 	      (eudc-macos-contacts-set-server "localhost"))
 	    (custom-set-variables
 	     '(eudc-server-hotlist '(("" . bbdb)))
-	     '(eudc-inline-expansion-servers 'hotlist))
-	    (eval-when-compile (require 'message))
-	    (define-key message-mode-map
-	      (kbd "TAB") 'eudc-expand-inline)))
+	     '(eudc-inline-expansion-servers 'hotlist))))
 
 (provide 'init-eudc)
 ;;; init-eudc.el ends here
