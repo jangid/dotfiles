@@ -10,21 +10,22 @@
 ;;; Code:
 
 ;; time-zone
-(eval-when-compile (require 'solar))
+;;(eval-when-compile (require 'solar))
 
-;; (setq calendar-latitude 28.6)		; New Delhi
-;; (setq calendar-longitude 77.3)
-;; (setq calendar-location-name "New Delhi, India")
 
-;; (setq calendar-latitude 26.9)		; Jaipur
-;; (setq calendar-longitude 75.8)
-(setq calendar-latitude [26 52 north])		; Jaipur
-(setq calendar-longitude [75 46 east])
-(setq calendar-location-name "Jaipur, India")
-
-(setq calendar-time-zone +330)
-(setq calendar-standard-time-zone-name "IST")
-(setq calendar-daylight-time-zone-name "IST")
+(custom-set-variables
+ ;; '(calendar-latitude 28.6)		; New Delhi
+ ;; '(calendar-longitude 77.3)
+ ;; '(calendar-location-name "New Delhi, India")
+ ;; '(calendar-latitude 26.9)		; Jaipur
+ ;; '(calendar-longitude 75.8)
+ '(calendar-latitude [26 52 north])	; Jaipur
+ '(calendar-longitude [75 46 east])
+ '(calendar-location-name "Jaipur, India")
+ '(calendar-time-zone +330))
+ ;; '(calendar-time-zone-style 'numeric))
+ ;; '(calendar-standard-time-zone-name "IST")
+ ;; '(calendar-daylight-time-zone-name "IST"))
 
 (provide 'init-date-time)
 ;;; init-date-time.el ends here
