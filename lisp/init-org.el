@@ -38,7 +38,8 @@
   
   (custom-set-variables
    '(org-agenda-include-diary t)
-   '(org-agenda-files '("~/org")))
+   '(org-agenda-files '("~/org"))
+   '(org-default-notes-file (concat org-directory "/notes.org")))
 
   (add-hook 'org-mode-hook
 	    (lambda ()
