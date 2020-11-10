@@ -2,10 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq mac-command-modifier 'meta)
-(setq mac-option-modifier 'super)
-;; (setq mac-right-option-modifier nil)
-;; (setq mac-right-command-modifier nil)
+(when (eq system-type 'darwin)
+  (custom-set-variables
+   '(mac-command-modifier 'meta)
+   '(mac-option-modifier 'super)
+   ;; '(mac-right-option-modifier nil)
+   ;; '(mac-right-command-modifier nil)
+   ))
 
 (provide 'init-keys)
 ;;; init-keys.el ends here
