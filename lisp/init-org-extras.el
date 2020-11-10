@@ -7,7 +7,8 @@
   :ensure t
   :defer t
   :config
-  (setq org-mime-library 'mml))
+  (custom-set-variables
+   '(org-mime-library 'mml)))
 
 (provide 'init-org-extras)
 ;;; init-org-extras.el ends here
