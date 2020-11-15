@@ -17,6 +17,7 @@ all: 	early-init.elc lisp/init-use-package.elc \
 	lisp/init-modeline.elc \
 	lisp/init-elisp.elc \
 	lisp/init-crypto.elc \
+	lisp/init-prog.elc \
 	lisp/init-org.elc \
 	lisp/init-eudc.elc \
 	lisp/init-flymake.elc \
@@ -97,6 +98,9 @@ lisp/init-elisp.elc: lisp/init-elisp.el
 	emacs $(OPTIONS) $<
 
 lisp/init-crypto.elc: lisp/init-crypto.el
+	emacs $(OPTIONS) $<
+
+lisp/init-prog.elc: lisp/init-prog.el
 	emacs $(OPTIONS) $<
 
 lisp/init-org.elc: lisp/init-org.el \
@@ -190,6 +194,7 @@ init.elc: init.el \
 	lisp/init-modeline.elc \
 	lisp/init-elisp.elc \
 	lisp/init-crypto.elc \
+	lisp/init-prog.elc \
 	lisp/init-org.elc \
 	lisp/init-eudc.elc \
 	lisp/init-flymake.elc \
