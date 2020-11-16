@@ -39,7 +39,7 @@
 (require 'init-crypto)
 (require 'init-prog)
 (require 'init-org)
-(require 'init-icomplete)
+(require 'init-completion)
 (require 'init-browser)
 (require 'init-date-time)
 (require 'init-diary)
