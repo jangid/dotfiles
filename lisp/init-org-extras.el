@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-use-package)
+(eval-when-compile (require 'init-use-package))
 (use-package org-mime
   :ensure t
   :defer t

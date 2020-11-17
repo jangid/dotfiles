@@ -8,10 +8,32 @@
      '(package-archives '(("melpa" . "https://melpa.org/packages/")
 			  ("gnu"   . "https://elpa.gnu.org/packages/"))))
     (package-initialize)
-    (unless (package-installed-p 'use-package)
-      (package-refresh-contents)
-      (package-install 'use-package))
-    (require 'use-package)))
+    
+    (let ((pkgs-all (list 'use-package 'bind-key 'diminish))
+	  (pkgs-to-install (list)))
+
+      
+      (message "PackagesAll %s" pkgs-all)
+
+      (dolist (pkg pkgs-all)		; prepare list
+	(message "checking %s" pkg)
+	(unless (package-installed-p pkg)
+	  (message "%s not installed." pkg)
+	  (push pkg pkgs-to-install)
+	  (message "Added to list.")))
+      
+      (message "PackageToInstall %s" pkgs-to-install)
+      
+      (unless (null pkgs-to-install)
+	  (progn
+	    (package-refresh-contents)
+	    (dolist (pkg pkgs-to-install)
+	      (package-install pkg))))
+
+      (require 'use-package)
+      (require 'diminish)
+      (require 'bind-key))))
+
 
 (provide 'init-use-package)
 ;;; init-use-package.el ends here

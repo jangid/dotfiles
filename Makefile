@@ -4,7 +4,7 @@ all: 	early-init.elc lisp/init-use-package.elc \
 	lisp/init-ibuffer.elc \
 	lisp/init-email.elc \
 	lisp/init-erc.elc \
-	lisp/init-icomplete.elc \
+	lisp/init-completion.elc \
 	lisp/init-browser.elc \
 	lisp/init-date-time.elc \
 	lisp/init-diary.elc \
@@ -61,7 +61,7 @@ lisp/init-email.elc: lisp/init-email.el
 lisp/init-erc.elc: lisp/init-erc.el
 	emacs $(OPTIONS) $<
 
-lisp/init-icomplete.elc: lisp/init-icomplete.el
+lisp/init-completion.elc: lisp/init-completion.el
 	emacs $(OPTIONS) $<
 
 lisp/init-browser.elc: lisp/init-browser.el
@@ -103,16 +103,13 @@ lisp/init-crypto.elc: lisp/init-crypto.el
 lisp/init-prog.elc: lisp/init-prog.el
 	emacs $(OPTIONS) $<
 
-lisp/init-org.elc: lisp/init-org.el \
-	lisp/init-use-package.elc
+lisp/init-org.elc: lisp/init-org.el
 	emacs $(OPTIONS) $<
 
-lisp/init-eudc.elc: lisp/init-eudc.el \
-	lisp/init-use-package.elc
+lisp/init-eudc.elc: lisp/init-eudc.el
 	emacs $(OPTIONS) $<
 
-lisp/init-flymake.elc: lisp/init-flymake.el \
-	lisp/init-use-package.elc
+lisp/init-flymake.elc: lisp/init-flymake.el
 	emacs $(OPTIONS) $<
 
 lisp/init-flycheck.elc: lisp/init-flycheck.el \
@@ -181,7 +178,7 @@ init.elc: init.el \
 	lisp/init-ibuffer.elc \
 	lisp/init-email.elc \
 	lisp/init-erc.elc \
-	lisp/init-icomplete.elc \
+	lisp/init-completion.elc \
 	lisp/init-browser.elc \
 	lisp/init-date-time.elc \
 	lisp/init-diary.elc \

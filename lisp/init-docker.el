@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-use-package)
+(eval-when-compile (require 'init-use-package))
 (use-package dockerfile-mode
   :ensure t)
 (use-package docker-compose-mode

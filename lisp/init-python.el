@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-use-package)
+(eval-when-compile (require 'init-use-package))
 (use-package python
   :config
   (if (and (eq system-type 'darwin) (executable-find "ipython"))

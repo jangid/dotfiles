@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-(require 'init-use-package)
+(eval-when-compile (require 'init-use-package))
 (use-package bbdb
   :ensure t)
 

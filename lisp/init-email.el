@@ -45,7 +45,7 @@
       (warn "Contents of %s are in wrong format."
             my/smtp-alist-file))))
 
-(defun my/set-smtp ()
+(defun my-set-smtp ()
   "Set SMTP field as per FROM field."
   (interactive)
   (progn
@@ -54,14 +54,20 @@
      (concat "X-Message-SMTP-Method: "
 	     (my/get-smtp)))))
 
-(defun my/unset-smtp ()
+(defun my-unset-smtp ()
   "Remove -X-Message-SMTP-Method field."
   (interactive)
   (progn
     (declare-function message-remove-header "message.el")
     (message-remove-header "X-Message-SMTP-Method")))
 
-(add-hook 'message-setup-hook 'my/set-smtp)
+(defun my-check-group-type-and-set-smtp ()
+  "Check group type news or mail and set smtp header."
+  (interactive)
+  (progn
+    (my-set-smtp)))
+
+(add-hook 'message-setup-hook 'my-check-group-type-and-set-smtp)
 
 ;; Make face from JPG using:
 
