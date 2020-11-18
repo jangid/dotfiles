@@ -66,7 +66,7 @@
 (require 'init-twitter)
 (require 'init-direnv)
 (require 'init-eudc)
-(require 'init-bbdb)
+(require 'init-ebdb)
 
 ;; (require 'vtl)
 

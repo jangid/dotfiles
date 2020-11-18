@@ -22,7 +22,7 @@ all: 	early-init.elc lisp/init-use-package.elc \
 	lisp/init-eudc.elc \
 	lisp/init-flymake.elc \
 	lisp/init-flycheck.elc \
-	lisp/init-bbdb.elc \
+	lisp/init-ebdb.elc \
 	lisp/init-org-extras.elc \
 	lisp/init-esup.elc \
 	lisp/init-eglot.elc \
@@ -116,7 +116,7 @@ lisp/init-flycheck.elc: lisp/init-flycheck.el \
 	lisp/init-use-package.elc
 	emacs $(OPTIONS) $<
 
-lisp/init-bbdb.elc: lisp/init-bbdb.el \
+lisp/init-ebdb.elc: lisp/init-ebdb.el \
 	lisp/init-use-package.elc
 	emacs $(OPTIONS) $<
 
@@ -196,7 +196,7 @@ init.elc: init.el \
 	lisp/init-eudc.elc \
 	lisp/init-flymake.elc \
 	lisp/init-flycheck.elc \
-	lisp/init-bbdb.elc \
+	lisp/init-ebdb.elc \
 	lisp/init-org-extras.elc \
 	lisp/init-esup.elc \
 	lisp/init-eglot.elc \
