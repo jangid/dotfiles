@@ -10,7 +10,8 @@
   :ensure t
   :config
   (require 'ebdb-gnus)
-  (require 'ebdb-message))
+  (require 'ebdb-message)
+  (setq ebdb-mua-pop-up nil))
 
 (provide 'init-ebdb)
 ;;; init-ebdb.el ends here

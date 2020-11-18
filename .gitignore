@@ -11,6 +11,7 @@ gnus.el
 README.html
 abbrev_defs
 bbdb
+ebdb
 bookmarks
 desktop/
 ede-projects.el
