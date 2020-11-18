@@ -2,10 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-(add-hook 'emacs-startup-hook
-	  (lambda ()
-	    (fido-mode t)))
-;; (fido-mode +1)
+;; (add-hook 'emacs-startup-hook
+;; 	  (lambda ()
+;; 	    (fido-mode +1)))
+
 
 (provide 'init-completion)
 ;;; init-completion.el ends here
