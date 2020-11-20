@@ -34,5 +34,23 @@
 ;;  	(width . 169)
 ;; 	(left . 110)))
 
+(setq default-frame-alist
+       '((height . 36)
+  	(width . 120)))
+
+(defun toggle-light-or-dark-theme ()
+  "Toggle between modus-operandi and modus-vivendi themes."
+  (interactive)
+  (if (member 'modus-operandi custom-enabled-themes)
+      (progn
+	(disable-theme 'modus-operandi)
+	(load-theme 'modus-vivendi t))
+    (disable-theme 'modus-vivendi)
+    (load-theme 'modus-operandi t)))
+
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (load-theme 'modus-operandi t)))
+
 (provide 'init-looks)
 ;;; init-looks.el ends here
