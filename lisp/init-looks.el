@@ -33,7 +33,7 @@
 ;;  	(width . 169)
 ;; 	(left . 110)))
 
-(defun toggle-light-or-dark-theme ()
+(defun modus-theme-toggle ()
   "Toggle between modus-operandi and modus-vivendi themes."
   (interactive)
   (if (member 'modus-operandi custom-enabled-themes)
