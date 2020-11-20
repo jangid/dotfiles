@@ -14,7 +14,6 @@
 
 ;; scrollBar
 ;; (scroll-bar-mode +1)
-;;(scroll-bar-mode -1)
 
 ;; toolBar
 ;; (tool-bar-mode +1)
@@ -34,10 +33,6 @@
 ;;  	(width . 169)
 ;; 	(left . 110)))
 
-(setq default-frame-alist
-       '((height . 36)
-  	(width . 120)))
-
 (defun toggle-light-or-dark-theme ()
   "Toggle between modus-operandi and modus-vivendi themes."
   (interactive)
@@ -50,6 +45,7 @@
 
 (add-hook 'emacs-startup-hook
 	  (lambda ()
+	    (scroll-bar-mode -1)
 	    (load-theme 'modus-operandi t)))
 
 (provide 'init-looks)

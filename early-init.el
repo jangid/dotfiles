@@ -18,6 +18,10 @@
 ;;      '((left . 350)
 ;;	(top . 175)))
 
+(setq default-frame-alist
+       '((height . 36)
+  	(width . 120)))
+
 (provide 'early-init)
 ;;; early-init.el ends here
 
