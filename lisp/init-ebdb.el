@@ -8,11 +8,12 @@
 (eval-when-compile (require 'init-use-package))
 (use-package ebdb
   :ensure t
-  :defer t
   :config
   (setq ebdb-mua-pop-up nil)
-  (use-package ebdb-gnus)
-  (use-package ebdb-message))
+  :hook
+  (emacs-startup . (progn
+		     (require 'ebdb-gnus)
+		     (require 'ebdb-message))))
 
 (provide 'init-ebdb)
 ;;; init-ebdb.el ends here
