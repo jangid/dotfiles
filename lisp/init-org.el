@@ -75,16 +75,16 @@
      '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
    '(org-agenda-custom-commands
       '(("o" "At Optimzory" tags-todo "@optimizory"
-         ((org-agenda-overriding-header "Optimizory")
+         ((org-agenda-overriding-header "Optimizory:")
           (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
 	("j" "At J4D" tags-todo "@j4d"
-         ((org-agenda-overriding-header "J4D")
+         ((org-agenda-overriding-header "J4D:")
           (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
 	("h" "At Home" tags-todo "@home"
-         ((org-agenda-overriding-header "Home")
+         ((org-agenda-overriding-header "Home and Personal:")
           (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
 	("f" "At FSF" tags-todo "@fsf"
-         ((org-agenda-overriding-header "FSF")
+         ((org-agenda-overriding-header "FSF:")
           (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
 	("n" "Agenda and all TODOs"
 	 ((agenda "")
