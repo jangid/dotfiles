@@ -19,8 +19,8 @@
 ;;	(top . 175)))
 
 (setq default-frame-alist
-       '((height . 36)
-  	(width . 120)))
+       '((height . 50)
+  	(width . 160)))
 
 (provide 'early-init)
 ;;; early-init.el ends here
