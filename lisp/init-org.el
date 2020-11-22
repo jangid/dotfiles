@@ -86,7 +86,9 @@
 	("f" "At FSF" tags-todo "@fsf"
          ((org-agenda-overriding-header "FSF")
           (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
-	)))
+	("n" "Agenda and all TODOs"
+	 ((agenda "")
+	  (alltodo ""))))))
 
   (add-hook 'org-mode-hook
 	    (lambda ()
