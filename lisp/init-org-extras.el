@@ -10,5 +10,13 @@
   (custom-set-variables
    '(org-mime-library 'mml)))
 
+(use-package gnuplot
+  :ensure t
+  :defer t)
+
+(use-package gnuplot-mode
+  :ensure t
+  :defer t)
+
 (provide 'init-org-extras)
 ;;; init-org-extras.el ends here
