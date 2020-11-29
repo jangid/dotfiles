@@ -49,8 +49,12 @@
 	  (lambda ()
 	    (menu-bar-mode -1)
 	    (tool-bar-mode -1)
-	    (scroll-bar-mode -1)
-	    (load-theme 'modus-operandi t)))
+	    (scroll-bar-mode -1)))
+;;	    (load-theme 'modus-operandi t)))
+
+;; Font
+;; (set-fontset-font "fontset-startup" 'devanagari "ITF Devanagari")
+;; (set-fontset-font "fontset-startup" 'devanagari "Kohinoor Devanagari")
 
 (provide 'init-looks)
 ;;; init-looks.el ends here
