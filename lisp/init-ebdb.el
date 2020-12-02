@@ -5,15 +5,25 @@
 
 ;;; Code:
 
-;; (eval-when-compile (require 'init-use-package))
+(eval-when-compile (require 'init-use-package))
 ;; (use-package ebdb
 ;;   :ensure t
 ;;   :config
-;;   (setq ebdb-mua-pop-up nil)
-;;   :hook
-;;   (emacs-startup . (progn
-;; 		     (require 'ebdb-gnus)
-;; 		     (require 'ebdb-message))))
+;;   (use-package ebdb-gnus  ; no `:ensure t' here, installed with ebdb
+;;     :hook emacs-startup)
+;;   (use-package ebdb-message
+;;     :hook emacs-startup))
+
+;; (use-package ebdb
+;;   :ensure t
+;;   :config
+;;   (require 'edbd-gnus)
+;;   (require 'ebdb-message))
+
+;; (use-package 'ebdb-gnus  ; no `:ensure t' here, installed with ebdb
+;;   :hook emacs-startup)
+;; (use-package 'ebdb-message
+;;   :hook emacs-startup)
 
 (add-hook 'emacs-startup-hook
 	  (lambda ()
@@ -21,6 +31,8 @@
 	      (defvar ebdb-mua-pop-up nil)
 	      (require 'ebdb-gnus)
 	      (require 'ebdb-message))))
+
+;; Error (use-package): Failed to parse package 'ebdb-gnus: Wrong type argument: symbolp, 'ebdb-gnus Disable showing Disable logging
 
 (provide 'init-ebdb)
 ;;; init-ebdb.el ends here
