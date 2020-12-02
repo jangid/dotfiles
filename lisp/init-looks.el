@@ -45,11 +45,11 @@
 
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
-(add-hook 'emacs-startup-hook
-	  (lambda ()
-	    (menu-bar-mode -1)
-	    (tool-bar-mode -1)
-	    (scroll-bar-mode -1)))
+;; (add-hook 'emacs-startup-hook
+;; 	  (lambda ()
+;; 	    (menu-bar-mode -1)
+;; 	    (tool-bar-mode -1)
+;; 	    (scroll-bar-mode -1)))
 ;;	    (load-theme 'modus-operandi t)))
 
 ;; Font

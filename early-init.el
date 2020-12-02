@@ -19,23 +19,13 @@
 ;;	(top . 175)))
 
 (setq default-frame-alist
-       '((height . 50)
-  	(width . 160)))
+       '((height . 55)
+  	 (width . 174)
+	 (left . 613)
+	 (top . 391)
+	 (vertical-scroll-bars . nil)
+	 (horizontal-scroll-bars . nil)
+	 (tool-bar-lines . 0)))
 
 (provide 'early-init)
 ;;; early-init.el ends here
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
