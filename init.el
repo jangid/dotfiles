@@ -67,6 +67,7 @@
 (require 'init-direnv)
 (require 'init-eudc)
 (require 'init-ebdb)
+(require 'init-company)
 
 ;; (require 'vtl)
 
