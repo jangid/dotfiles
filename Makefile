@@ -37,6 +37,7 @@ all: 	early-init.elc lisp/init-use-package.elc \
 	lisp/init-twitter.elc \
 	lisp/init-direnv.elc \
 	lisp/init-company.elc \
+	lisp/init-plantuml.elc \
 	init.elc
 
 OPTIONS = -Q -batch -L lisp -f batch-byte-compile
@@ -177,6 +178,10 @@ lisp/init-company.elc: lisp/init-company.el \
 	lisp/init-use-package.elc
 	emacs $(OPTIONS) $<
 
+lisp/init-plantuml.elc: lisp/init-plantuml.el \
+	lisp/init-use-package.elc
+	emacs $(OPTIONS) $<
+
 init.elc: init.el \
 	lisp/init-keys.elc \
 	lisp/init-auth.elc \
@@ -215,7 +220,8 @@ init.elc: init.el \
 	lisp/init-docker.elc \
 	lisp/init-twitter.elc \
 	lisp/init-direnv.elc \
-	lisp/init-company.elc
+	lisp/init-company.elc \
+	lisp/init-plantuml.elc
 	emacs $(OPTIONS) $<
 
 clean:

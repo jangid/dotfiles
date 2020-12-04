@@ -68,6 +68,7 @@
 (require 'init-eudc)
 (require 'init-ebdb)
 (require 'init-company)
+(require 'init-plantuml)
 
 ;; (require 'vtl)
 

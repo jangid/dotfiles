@@ -46,6 +46,17 @@
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
 ;; (add-hook 'emacs-startup-hook
+;; 	  (lambda()
+;; 	    (setq default-frame-alist
+;; 		  '((height . 55)
+;;   		    (width . 174)
+;; 		    (left . 613)
+;; 		    (top . 391)
+;; 		    (vertical-scroll-bars . nil)
+;; 		    (horizontal-scroll-bars . nil)
+;; 		    (tool-bar-lines . 0)))))
+
+;; (add-hook 'emacs-startup-hook
 ;; 	  (lambda ()
 ;; 	    (menu-bar-mode -1)
 ;; 	    (tool-bar-mode -1)

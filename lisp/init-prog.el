@@ -8,7 +8,6 @@
 
   (add-hook 'prog-mode-hook #'display-line-numbers-mode)
   (add-hook 'prog-mode-hook #'electric-pair-local-mode)
-  (add-hook 'prog-mode-hook #'show-paren-mode)
   (add-hook 'prog-mode-hook #'hs-minor-mode)
   (add-hook 'prog-mode-hook #'abbrev-mode))
 

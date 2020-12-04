@@ -5,7 +5,7 @@
 (eval-when-compile (require 'init-use-package))
 (use-package eglot
   :ensure t
-  :defer t)
+  :hook (rust-mode . eglot-ensure))
 
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

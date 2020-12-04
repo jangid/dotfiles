@@ -4,9 +4,9 @@
 
 (eval-and-compile
   (prog1 "use-package"
-    (custom-set-variables
-     '(package-archives '(("melpa" . "https://melpa.org/packages/")
-			  ("gnu"   . "https://elpa.gnu.org/packages/"))))
+    (setq package-archives
+	  '(("melpa" . "https://melpa.org/packages/")
+	    ("gnu"   . "https://elpa.gnu.org/packages/")))
     (package-initialize)
     
     (let ((pkgs-all (list 'use-package 'bind-key 'diminish))
@@ -33,7 +33,6 @@
       (require 'use-package)
       (require 'diminish)
       (require 'bind-key))))
-
 
 (provide 'init-use-package)
 ;;; init-use-package.el ends here

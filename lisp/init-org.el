@@ -56,7 +56,7 @@
   (global-set-key (kbd "C-c f") 'org-footnote-action)
   
   (custom-set-variables
-   '(org-agenda-include-diary nil)
+   '(org-agenda-include-diary t)
    '(org-directory "~/Documents/org")
    '(org-agenda-files
      (mapcar
@@ -97,7 +97,8 @@
           (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
 	("n" "Agenda and all TODOs"
 	 ((agenda "")
-	  (alltodo ""))))))
+	  (alltodo "")))))
+   '(org-plantuml-jar-path "/usr/local/opt/libexec/plantuml.jar"))
 
   (add-hook 'org-mode-hook
 	    (lambda ()
@@ -105,7 +106,7 @@
 	      (declare-function org-indent-mode "org.el")
 	      (org-indent-mode +1)
 	      ;; (require 'org-tempo)
-	      
+
 	      (require 'ob-python)
 	      (require 'ob-C)
 	      (require 'ob-java)
@@ -113,6 +114,7 @@
 	      (require 'ob-js)
 	      (require 'ob-css)
 	      (require 'ob-sql)
+	      (require 'ob-plantuml)
 	      (require 'ob-emacs-lisp))))
 
 (add-hook 'emacs-startup-hook 'my-org-setup)
