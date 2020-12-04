@@ -15,8 +15,14 @@
 (defvar message-signature-file
   (expand-file-name "default" message-signature-directory))
 
+;; MUA
+(setq mail-user-agent 'gnus-user-agent)
+
 ;; SMTP
 (setq send-mail-function 'smtpmail-send-it)
+
+;; Enable org-tables as minor mode in message-mode
+(add-hook 'message-mode-hook 'turn-on-orgtbl)
 
 (defun my/get-smtp ()
   "Get SMTP for as per FROM field."
