@@ -81,25 +81,34 @@
        (,(concat org-directory "/social.org") :maxlevel . 3)
        (,(concat org-directory "/someday.org") :level . 1)))
    '(org-todo-keywords
-     '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+     '((sequence "TODO(t)"
+		 "NEXT(n)"
+		 "WAITING(w)"
+		 "|"
+		 "DONE(d)"
+		 "CANCELLED(c)")))
    '(org-agenda-custom-commands
-      '(("o" "At Optimzory" tags-todo "@optimizory"
-         ((org-agenda-overriding-header "Optimizory:")
-          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
-	("j" "At J4D" tags-todo "@j4d"
-         ((org-agenda-overriding-header "J4D:")
-          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
-	("h" "At Home" tags-todo "@home"
-         ((org-agenda-overriding-header "Home and Personal:")
-          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
-	("f" "At FSF" tags-todo "@fsf"
-         ((org-agenda-overriding-header "FSF:")
-          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
-	("n" "Agenda and all TODOs"
-	 ((agenda "")
-	  (alltodo "")))))
+     '(("o" "At Optimzory" tags-todo "@optimizory"
+	((org-agenda-overriding-header "Optimizory:")
+         (org-agenda-skip-function
+          #'my-org-agenda-skip-all-siblings-but-first)))
+       ("j" "At J4D" tags-todo "@j4d"
+        ((org-agenda-overriding-header "J4D:")
+         (org-agenda-skip-function
+          #'my-org-agenda-skip-all-siblings-but-first)))
+       ("h" "At Home" tags-todo "@home"
+        ((org-agenda-overriding-header "Home and Personal:")
+         (org-agenda-skip-function
+          #'my-org-agenda-skip-all-siblings-but-first)))
+       ("f" "At FSF" tags-todo "@fsf"
+        ((org-agenda-overriding-header "FSF:")
+         (org-agenda-skip-function
+          #'my-org-agenda-skip-all-siblings-but-first)))
+       ("n" "Agenda and all TODOs"
+	((agenda "")
+	 (alltodo "")))))
    '(org-plantuml-jar-path "/usr/local/opt/libexec/plantuml.jar"))
-
+  
   (add-hook 'org-mode-hook
 	    (lambda ()
 	      ;(visual-line-mode +1)
