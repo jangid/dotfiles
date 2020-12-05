@@ -67,5 +67,25 @@
 ;; (set-fontset-font "fontset-startup" 'devanagari "ITF Devanagari")
 ;; (set-fontset-font "fontset-startup" 'devanagari "Kohinoor Devanagari")
 
+(defun my-toggle-frame-size ()
+  "Toggle between my set size and default."
+  (interactive)
+  (let ((frame (next-frame))
+	(width (frame-width))
+	(height (frame-height)))
+    (if (and (eq width 174) (eq height 55))
+	(set-frame-size frame 100 45)
+      (set-frame-size frame 174 55))))
+
+  ;; (if (and ()size )
+  ;;     (progn
+  ;; 	(disable-theme 'modus-operandi)
+  ;; 	(load-theme 'modus-vivendi t))
+  ;;   (disable-theme 'modus-vivendi)
+  ;;   (load-theme 'modus-operandi t)))
+
+(global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen)
+(global-set-key (kbd "M-<f9>") 'my-toggle-frame-size)
+
 (provide 'init-looks)
 ;;; init-looks.el ends here
