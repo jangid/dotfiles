@@ -69,6 +69,7 @@
 (require 'init-ebdb)
 (require 'init-company)
 (require 'init-plantuml)
+(require 'init-php)
 
 ;; (require 'vtl)
 
