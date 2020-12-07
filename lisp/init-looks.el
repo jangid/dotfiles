@@ -45,47 +45,34 @@
 
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
-;; (add-hook 'emacs-startup-hook
-;; 	  (lambda()
-;; 	    (setq default-frame-alist
-;; 		  '((height . 55)
-;;   		    (width . 174)
-;; 		    (left . 613)
-;; 		    (top . 391)
-;; 		    (vertical-scroll-bars . nil)
-;; 		    (horizontal-scroll-bars . nil)
-;; 		    (tool-bar-lines . 0)))))
-
-;; (add-hook 'emacs-startup-hook
-;; 	  (lambda ()
-;; 	    (menu-bar-mode -1)
-;; 	    (tool-bar-mode -1)
-;; 	    (scroll-bar-mode -1)))
-;;	    (load-theme 'modus-operandi t)))
 
 ;; Font
 ;; (set-fontset-font "fontset-startup" 'devanagari "ITF Devanagari")
 ;; (set-fontset-font "fontset-startup" 'devanagari "Kohinoor Devanagari")
 
-(defun my-toggle-frame-size ()
-  "Toggle between my set size and default."
+(defun looks-cycle-frame-size ()
+  "Cycle frame-size among default, small and big.
+
+0) default - 80x38 (built-in).
+1) small - 100x48
+2) big - 174x58"
+
   (interactive)
-  (let ((frame (next-frame))
+
+  (let ((frame (selected-frame))
 	(width (frame-width))
 	(height (frame-height)))
-    (if (and (eq width 174) (eq height 55))
-	(set-frame-size frame 100 45)
-      (set-frame-size frame 174 55))))
 
-  ;; (if (and ()size )
-  ;;     (progn
-  ;; 	(disable-theme 'modus-operandi)
-  ;; 	(load-theme 'modus-vivendi t))
-  ;;   (disable-theme 'modus-vivendi)
-  ;;   (load-theme 'modus-operandi t)))
+    (message "%s %s" width height)
+    (cond ((and (eq width 80) (eq height 36))
+	   (set-frame-size frame 100 46))
+	  ((and (eq width 100) (eq height 46))
+	   (set-frame-size frame 174 56))
+	  ((and (eq width 174) (eq height 56))
+	   (set-frame-size frame 80 36)))))
 
 (global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen)
-(global-set-key (kbd "M-<f9>") 'my-toggle-frame-size)
+(global-set-key (kbd "M-<f9>") 'looks-cycle-frame-size)
 
 (provide 'init-looks)
 ;;; init-looks.el ends here
