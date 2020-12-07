@@ -2,9 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Show categorised group buffer
-(add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
-
 ;; gnus-dired-mode allow multiple files to be selected for attachment
 (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
 
