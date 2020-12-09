@@ -6,7 +6,7 @@
   (prog1 "use-package"
     (setq package-archives
 	  '(("melpa" . "https://melpa.org/packages/")
-	    ("gnu"   . "https://elpa.gnu.org/packages/")))
+	    ("elpa"   . "https://elpa.gnu.org/packages/")))
     (package-initialize)
     
     (let ((pkgs-all (list 'use-package 'bind-key 'diminish))
