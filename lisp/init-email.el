@@ -2,24 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-;; gnus-dired-mode allow multiple files to be selected for attachment
-(add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
-
-;; Signature
-(defvar message-signature nil)
-(defvar message-signature-directory
-  "~/.signature_dir")
-(defvar message-signature-file
-  (expand-file-name "default" message-signature-directory))
-
-;; MUA
-(setq mail-user-agent 'gnus-user-agent)
-
 ;; SMTP
 (setq send-mail-function 'smtpmail-send-it)
+(defvar smtpmail-stream-type "ssl")
 
 ;; Enable org-tables as minor mode in message-mode
-(add-hook 'message-mode-hook 'turn-on-orgtbl)
+;; (add-hook 'message-mode-hook 'turn-on-orgtbl)
 
 (defun my/get-smtp ()
   "Get SMTP for as per FROM field."
