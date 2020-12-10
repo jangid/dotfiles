@@ -44,3 +44,5 @@ eglot-eclipse-jdt-cache
 **/*.elc
 my-SMTPs
 eudc-options
+google-diary
+image-dired/
