@@ -11,5 +11,7 @@
    mac-option-modifier 'none
    mac-right-option-modifier 'super))
 
+(setq visible-bell t)
+
 (provide 'init-keys)
 ;;; init-keys.el ends here
