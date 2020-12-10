@@ -69,6 +69,8 @@
 	  ((and (eq width 100) (eq height 46))
 	   (set-frame-size frame 174 56))
 	  ((and (eq width 174) (eq height 56))
+	   (set-frame-size frame 80 56))
+	  ((and (eq width 80) (eq height 56))
 	   (set-frame-size frame 80 36)))))
 
 (global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen)
