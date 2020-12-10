@@ -2,13 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+
 (eval-when-compile (require 'init-use-package))
 (use-package org
-  :bind
-  (("C-c a" . org-agenda)
-   ("C-c b" . org-switchb)
-   ("C-c c" . org-capture)
-   ("C-c l" . org-store-link))
   :hook
   ((message-mode . orgtbl-mode))
   :config
@@ -80,7 +79,8 @@
          #'my-org-agenda-skip-all-siblings-but-first)))
       ("n" "Agenda and all TODOs"
        ((agenda "")
-	(alltodo ""))))))
+	(alltodo "")))))
+  )
 
 (defun my-org-agenda-skip-all-siblings-but-first ()
   "Skip all but the first non-done entry."
