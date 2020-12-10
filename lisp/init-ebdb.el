@@ -14,8 +14,9 @@
   (defvar ebdb-mua-pop-up nil)
   :hook
   (emacs-startup . (lambda ()
-		     (use-package ebdb-gnus)
-		     (use-package ebdb-message))))
+		     (use-package ebdb-message)))
+  (gnus-started . (lambda ()
+		    (use-package ebdb-gnus))))
 
 (provide 'init-ebdb)
 ;;; init-ebdb.el ends here
