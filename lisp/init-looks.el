@@ -41,7 +41,8 @@
 	  ((and (eq width 174) (eq height 56))
 	   (set-frame-size frame 100 56))
 	  ((and (eq width 100) (eq height 56))
-	   (set-frame-size frame 100 46)))
+	   (set-frame-size frame 100 46))
+	  (t (set-frame-size frame 80 36))) ; default
     
     (message "Frame size: %sx%s" (frame-width) (frame-height))))
 
