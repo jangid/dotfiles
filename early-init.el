@@ -8,10 +8,10 @@
 	 (tool-bar-lines . 0)))
 
 (setq initial-frame-alist
-       '((height . 56)
-  	 (width . 174)
-	 (left . 613)
-	 (top . 391)))
+      '((left . 613)
+	;; (height . 56)
+  	;; (width . 174)
+	(top . 391)))
 
 (provide 'early-init)
 ;;; early-init.el ends here
