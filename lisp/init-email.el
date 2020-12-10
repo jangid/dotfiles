@@ -6,8 +6,8 @@
 (setq send-mail-function 'smtpmail-send-it)
 (defvar smtpmail-stream-type "ssl")
 
-;; Enable org-tables as minor mode in message-mode
-;; (add-hook 'message-mode-hook 'turn-on-orgtbl)
+;; Enable electric quote mode in message-mode
+(add-hook 'message-mode-hook 'electric-quote-mode)
 
 (defun my/get-smtp ()
   "Get SMTP for as per FROM field."
