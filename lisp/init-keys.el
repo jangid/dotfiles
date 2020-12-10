@@ -2,13 +2,14 @@
 ;;; Commentary:
 ;;; Code:
 
+;; Probably my right and left switches are swapped inside keyboard.
+
 (when (eq system-type 'darwin)
-  (custom-set-variables
-   '(mac-command-modifier 'meta)
-   '(mac-option-modifier 'super)
-   ;; '(mac-right-option-modifier nil)
-   ;; '(mac-right-command-modifier nil)
-   ))
+  (setq
+   mac-command-modifier 'none
+   mac-right-command-modifier 'meta
+   mac-option-modifier 'none
+   mac-right-option-modifier 'super))
 
 (provide 'init-keys)
 ;;; init-keys.el ends here
