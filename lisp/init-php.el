@@ -5,6 +5,8 @@
 (eval-when-compile (require 'init-use-package))
 (use-package php-mode
   :ensure t
+  :mode "\\.php\\'"
+  :interpreter "/usr/local/bin/php"
   :config
   (add-hook 'php-mode-hook #'display-line-numbers-mode)
   (add-hook 'php-mode-hook #'electric-pair-local-mode)
