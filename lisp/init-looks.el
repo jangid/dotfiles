@@ -63,7 +63,6 @@
 	(width (frame-width))
 	(height (frame-height)))
 
-    (message "%s %s" width height)
     (cond ((and (eq width 80) (eq height 36))
 	   (set-frame-size frame 174 56))
 	  ((and (eq width 100) (eq height 46))
@@ -73,7 +72,9 @@
 	  ((and (eq width 174) (eq height 56))
 	   (set-frame-size frame 100 56))
 	  ((and (eq width 100) (eq height 56))
-	   (set-frame-size frame 100 46)))))
+	   (set-frame-size frame 100 46)))
+    
+    (message "Frame size: %sx%s" (frame-width) (frame-height))))
 
 (global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen)
 (global-set-key (kbd "M-<f9>") 'looks-cycle-frame-size)
