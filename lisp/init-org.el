@@ -82,11 +82,12 @@
        ((agenda "")
 	(alltodo ""))))))
 
-(require 'org)
-(require 'outline)
-
 (defun my-org-agenda-skip-all-siblings-but-first ()
   "Skip all but the first non-done entry."
+  (declare-function org-goto-sibling "org.el")
+  (declare-function org-get-todo-state "org.el")
+  (declare-function outline-next-heading "outline.el")
+
   (let (should-skip-entry)
     (unless (org-current-is-todo)
       (setq should-skip-entry t))
