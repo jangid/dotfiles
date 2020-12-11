@@ -5,12 +5,11 @@
 
 ;;; Code:
 
-(setq compose-mail-user-agent-warnings nil)
-
 (eval-when-compile (require 'init-use-package))
 (use-package ebdb
   :ensure t
   :init
+  (setq compose-mail-user-agent-warnings nil)
   (defvar ebdb-mua-pop-up nil)
   :hook
   (emacs-startup . (lambda ()
