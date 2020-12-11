@@ -2,18 +2,17 @@
 ;;; Commentary:
 ;;; Code:
 
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c c") 'org-capture)
-
+(add-hook 'emacs-startup-hook (lambda ()
 (eval-when-compile (require 'init-use-package))
 (use-package org
   :hook
-  ((message-mode . orgtbl-mode))
+  ((message-mode . (lambda ()
+		     (declare-function turn-on-orgtbl "org-table")
+		     (turn-on-orgtbl))))
   :config
   (defun my-org-mode-hook ()
     (declare-function org-indent-mode "org.el")
-    (org-indent-mode +1))
+    (org-indent-mode -1))
   (add-hook 'org-mode-hook 'my-org-mode-hook)
 
   (org-babel-do-load-languages
@@ -28,6 +27,10 @@
      (sql . t)
      (plantuml . t)))
   :init
+  (global-set-key (kbd "C-c l") 'org-store-link)
+  (global-set-key (kbd "C-c a") 'org-agenda)
+  (global-set-key (kbd "C-c c") 'org-capture)
+
   (defvar org-agenda-include-diary t)
   (defvar org-plantuml-jar-path "/usr/local/opt/libexec/plantuml.jar")
   (defvar org-directory "~/Documents/org")
@@ -81,7 +84,7 @@
        ((agenda "")
 	(alltodo "")))))
   )
-
+))
 (defun my-org-agenda-skip-all-siblings-but-first ()
   "Skip all but the first non-done entry."
   (declare-function org-goto-sibling "org.el")
