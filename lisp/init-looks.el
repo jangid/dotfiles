@@ -28,21 +28,20 @@
 
   (interactive)
 
-  (let ((frame (selected-frame))
-	(width (frame-width))
+  (let ((width (frame-width))
 	(height (frame-height)))
 
     (cond ((and (eq width 80) (eq height 36))
-	   (set-frame-size frame 174 56))
+	   (set-frame-size nil 174 56))
 	  ((and (eq width 100) (eq height 46))
-	   (set-frame-size frame 80 46))
+	   (set-frame-size nil 80 46))
 	  ((and (eq width 80) (eq height 46))
-	   (set-frame-size frame 80 36))
+	   (set-frame-size nil 80 36))
 	  ((and (eq width 174) (eq height 56))
-	   (set-frame-size frame 100 56))
+	   (set-frame-size nil 100 56))
 	  ((and (eq width 100) (eq height 56))
-	   (set-frame-size frame 100 46))
-	  (t (set-frame-size frame 80 36))) ; default
+	   (set-frame-size nil 100 46))
+	  (t (set-frame-size nil 80 36))) ; default
     
     (message "Frame size: %sx%s" (frame-width) (frame-height))))
 
