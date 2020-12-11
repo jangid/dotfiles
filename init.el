@@ -36,6 +36,7 @@
 (require 'init-auth)
 (require 'init-ibuffer)
 (require 'init-email)
+(require 'init-mime)
 (require 'init-erc)
 (require 'init-crypto)
 (require 'init-prog)
