@@ -32,16 +32,23 @@
 	(height (frame-height)))
 
     (cond ((and (eq width 80) (eq height 36))
-	   (set-frame-size nil 174 56))
-	  ((and (eq width 100) (eq height 46))
-	   (set-frame-size nil 80 46))
-	  ((and (eq width 80) (eq height 46))
+	   (set-frame-size nil 130 54))
+	  ((and (eq width 130) (eq height 54))
+	   (set-frame-size nil 174 54))
+	  ((and (eq width 174) (eq height 54))
 	   (set-frame-size nil 80 36))
-	  ((and (eq width 174) (eq height 56))
-	   (set-frame-size nil 100 56))
-	  ((and (eq width 100) (eq height 56))
-	   (set-frame-size nil 100 46))
 	  (t (set-frame-size nil 80 36))) ; default
+    ;; (cond ((and (eq width 80) (eq height 36))
+    ;; 	   (set-frame-size nil 174 56))
+    ;; 	  ((and (eq width 100) (eq height 46))
+    ;; 	   (set-frame-size nil 80 46))
+    ;; 	  ((and (eq width 80) (eq height 46))
+    ;; 	   (set-frame-size nil 80 36))
+    ;; 	  ((and (eq width 174) (eq height 56))
+    ;; 	   (set-frame-size nil 100 56))
+    ;; 	  ((and (eq width 100) (eq height 56))
+    ;; 	   (set-frame-size nil 100 46))
+    ;; 	  (t (set-frame-size nil 80 36))) ; default
     
     (message "Frame size: %sx%s" (frame-width) (frame-height))))
 
