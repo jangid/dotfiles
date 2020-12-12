@@ -7,11 +7,14 @@
 	 (horizontal-scroll-bars . nil)
 	 (tool-bar-lines . 0)))
 
+(frame-parameter nil 'left)
+
+(frame-parameter nil 'top)
 (setq initial-frame-alist
-      '((left . 164)
+      '((left . 674)
 	;; (height . 56)
   	;; (width . 174)
-	(top . 25)))
+	(top . 312)))
 
 (provide 'early-init)
 ;;; early-init.el ends here
