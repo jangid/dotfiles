@@ -55,5 +55,9 @@
 (global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen)
 (global-set-key (kbd "M-<f9>") 'looks-cycle-frame-size)
 
+;; show time in non-graphical displays
+(if (eq window-system nil)
+    (display-time-mode +1))
+
 (provide 'init-looks)
 ;;; init-looks.el ends here
