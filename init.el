@@ -30,13 +30,13 @@
   (add-to-list 'load-path
 	       (expand-file-name "lisp" user-emacs-directory)))
 
-(require 'init-env)
+;;(require 'init-env)
 (require 'init-keys)
 (require 'init-looks)
 (require 'init-auth)
 (require 'init-ibuffer)
 (require 'init-email)
-(require 'init-mime)
+;;(require 'init-mime)
 (require 'init-erc)
 (require 'init-crypto)
 (require 'init-prog)

@@ -2,14 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
+
 (setq default-frame-alist
-       '((vertical-scroll-bars . nil)
-	 (horizontal-scroll-bars . nil)
-	 (tool-bar-lines . 0)))
+      '((vertical-scroll-bars . nil)
+	(horizontal-scroll-bars . nil)
+	(tool-bar-lines . 0)))
 
-(frame-parameter nil 'left)
-
-(frame-parameter nil 'top)
 (setq initial-frame-alist
       '((left . 674)
 	;; (height . 56)
