@@ -2,13 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(defvar mailcap-user-mime-data
-  `(("application"
-     ("vnd\\.ms-excel"
-      (viewer . "/Applications/Microsoft\\ Excel\\.app/Contents/MacOS/Microsoft\\ Excel
- %s")
-      (test   . t)
-      (type . "application/vnd.ms-excel")))))
+(defvar mailcap-user-mime-data nil)
 
 (provide 'init-mime)
 ;;; init-mime.el ends here
