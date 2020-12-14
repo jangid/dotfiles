@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
+(setq frame-resize-pixelwise t)
 (setq default-frame-alist
       '((vertical-scroll-bars . nil)
 	(horizontal-scroll-bars . nil)
