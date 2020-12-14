@@ -24,11 +24,7 @@
 (setq user-mail-address	"pankaj@codeisgreat.org"
       user-full-name "Pankaj Jangid")
 
-(eval-when-compile
-  (add-to-list 'load-path
-	       (expand-file-name "use-package" user-emacs-directory))
-  (require 'use-package))
-
+;; Configure built-in packages
 (eval-and-compile
   (add-to-list 'load-path
 	       (expand-file-name "lisp" user-emacs-directory)))
@@ -54,32 +50,19 @@
 (require 'init-flymake)
 (require 'init-modeline)
 (require 'init-elisp)
+(require 'init-python)
 ;;(require 'init-use-package)
+
+;; Configure external packages
+(eval-when-compile
+  (add-to-list 'load-path
+	       (expand-file-name "use-package" user-emacs-directory))
+  (require 'use-package))
 
 (eval-and-compile
   (prog1 "essential-packages"
     (let ((pkgs-all (list 'bind-key
-			  'diminish
-			  'company
-			  'direnv
-			  'dockerfile-mode
-			  'docker-compose-mode
-			  'ebdb
-			  'eglot
-			  'exec-path-from-shell
-			  'flycheck
-			  'gradle-mode
-			  'kotlin-mode
-			  'flycheck-kotlin
-			  'markdown-mode
-			  'org-mime
-			  'gnuplot
-			  'gnuplot-mode
-			  'php-mode
-			  'twittering-mode
-			  'rust-mode
-			  'plantuml-mode
-			  'flycheck-plantuml))
+			  'diminish))
 	  (pkgs-to-install (list)))
 
       (setq package-archives
@@ -110,32 +93,49 @@
 ;; Configure packages
 ;; Company
 (use-package company
-  :hook (rust-mode . company-mode))
+  :ensure t
+  :hook ((rust-mode . company-mode)
+	 (python-mode . company-mode)))
 
 ;; Direnv
 (use-package direnv
+  :ensure t
   :config
   (declare-function direnv-mode "direnv")
   (direnv-mode +1))
 
 ;; Docker
-;; (use-package dockerfile-mode)
-;; (use-package docker-compose-mode)
+(use-package dockerfile-mode
+  :ensure t)
+(use-package docker-compose-mode
+  :ensure t)
 
 ;; ebdb
-(setq compose-mail-user-agent-warnings nil)
-(defvar ebdb-mua-pop-up nil)
-(add-hook 'emacs-startup-hook
-	  (lambda ()
-	    (require 'ebdb-message)
-	    (require 'ebdb-gnus)))
+;; (setq compose-mail-user-agent-warnings nil)
+;; (defvar ebdb-mua-pop-up nil)
+;; (add-hook 'emacs-startup-hook
+;; 	  (lambda ()
+;; 	    (require 'ebdb-message)
+;; 	    (require 'ebdb-gnus)))
+(use-package ebdb
+  :ensure t
+  :init
+  (setq compose-mail-user-agent-warnings nil)
+  (defvar ebdb-mua-pop-up nil)
+  :hook
+  (emacs-startup . (lambda ()
+		     (use-package ebdb-message)
+		     (use-package ebdb-gnus))))
 
 ;; Eglot
 (use-package eglot
-  :hook (rust-mode . eglot-ensure))
+  :ensure t
+  :hook ((rust-mode . eglot-ensure)
+	 (python-mode . eglot-ensure)))
 
 ;; Exec Path
 (use-package exec-path-from-shell
+  :ensure t
   :if window-system
   :init
   (defvar exec-path-from-shell-arguments '("-i"))
@@ -144,36 +144,47 @@
 
 ;; flycheck
 (use-package flycheck
+  :ensure t
   :hook ((kotlin-mode . flycheck-mode)
 	 (plantuml-mode . flycheck-mode)))
 
 ;; kotlin, gradle
 (use-package kotlin-mode
+  :ensure t
   :mode
   (("\\.kt\\'" . kotlin-mode)
    ("\\.kts\\'" . kotlin-mode))
   :config
   (add-hook 'kotlin-mode-hook #'display-line-numbers-mode)
   (add-hook 'kotlin-mode-hook #'hs-minor-mode)
-  (add-hook 'kotlin-mode-hook #'abbrev-mode))
-;; (use-package gradle-mode)
-;; (use-package flycheck-kotlin)
+  (add-hook 'kotlin-mode-hook #'abbrev-mode)
+  (use-package gradle-mode
+    :ensure t)
+  (use-package flycheck-kotlin
+    :ensure t))
 
 ;; markdown
 (use-package markdown-mode
+  :ensure t
   :mode
   (("\\.md\\'" . markdown-mode)
    ("\\.markdown\\'" . markdown-mode)))
 
 ;; org - TODO
-(defvar org-mime-library 'mml)
+(use-package org-mime
+  :ensure t
+  :init
+  (defvar org-mime-library 'mml))
 
 ;; gnuplot
-;; (use-package gnuplot)
-;; (use-package gnuplot-mode)
+(use-package gnuplot
+  :ensure t)
+(use-package gnuplot-mode
+  :ensure t)
 
 ;; php
 (use-package php-mode
+  :ensure t
   :mode "\\.php\\'"
   :interpreter "/usr/local/bin/php"
   :config
@@ -184,6 +195,7 @@
 
 ;; twitter
 (use-package twittering-mode
+  :ensure t
   :init
   (defalias 'epa--decode-coding-string 'decode-coding-string)
   :config
@@ -191,6 +203,7 @@
 
 ;; rust-lang
 (use-package rust-mode
+  :ensure t
   :config
   (add-hook 'rust-mode-hook #'display-line-numbers-mode)
   (add-hook 'rust-mode-hook #'electric-pair-local-mode)
@@ -198,8 +211,10 @@
   (add-hook 'rust-mode-hook #'abbrev-mode))
 
 ;; plantuml
-;; (use-package plantuml-mode)
-;; (use-package flycheck-plantuml)
+(use-package plantuml-mode
+  :ensure t)
+(use-package flycheck-plantuml
+  :ensure t)
 
 ;; (require 'vtl)
 

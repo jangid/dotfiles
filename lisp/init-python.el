@@ -2,19 +2,15 @@
 ;;; Commentary:
 ;;; Code:
 
-(eval-when-compile (require 'init-use-package))
-(use-package python
-  :config
-  (if (and (eq system-type 'darwin) (executable-find "ipython"))
-      (custom-set-variables
-       '(python-shell-interpreter "ipython"))
-    (custom-set-variables
-     '(python-shell-interpreter "python3")))
-  :hook
-  ((python-mode . flymake-mode)
-   (python-mode . display-line-numbers-mode)
-   (python-mode . hs-minor-mode)
-   (python-mode . abbrev-mode)))
+(defvar python-shell-interpreter)
+(if (and (eq system-type 'darwin) (executable-find "ipython"))
+    (setq python-shell-interpreter "ipython")
+  (setq python-shell-interpreter "python3"))
+
+;;(add-hook 'python-mode-hook #'flymake-mode)
+(add-hook 'python-mode-hook #'display-line-numbers-mode)
+(add-hook 'python-mode-hook #'hs-minor-mode)
+(add-hook 'python-mode-hook #'abbrev-mode)
 
 (provide 'init-python)
 ;;; init-python.el ends here
