@@ -47,3 +47,6 @@ eudc-options
 google-diary
 image-dired/
 .org-id-locations
+.envrc
+build.log
+**/*~

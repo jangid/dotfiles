@@ -24,13 +24,15 @@
 (setq user-mail-address	"pankaj@codeisgreat.org"
       user-full-name "Pankaj Jangid")
 
-;; The configuration is divided into many files called modules. Set
-;; the load path for those modules.
+(eval-when-compile
+  (add-to-list 'load-path
+	       (expand-file-name "use-package" user-emacs-directory))
+  (require 'use-package))
+
 (eval-and-compile
   (add-to-list 'load-path
 	       (expand-file-name "lisp" user-emacs-directory)))
 
-;;(require 'init-env)
 (require 'init-keys)
 (require 'init-looks)
 (require 'init-auth)
@@ -40,7 +42,6 @@
 (require 'init-erc)
 (require 'init-crypto)
 (require 'init-prog)
-(require 'init-org)
 (require 'init-completion)
 (require 'init-browser)
 (require 'init-date-time)
@@ -53,25 +54,152 @@
 (require 'init-flymake)
 (require 'init-modeline)
 (require 'init-elisp)
-(require 'init-flycheck)
-(require 'init-org-extras)
-(require 'init-esup)
-(require 'init-eglot)
-(require 'init-rust)
-(require 'init-javascript)
-(require 'init-python)
-(require 'init-ruby)
-(require 'init-kotlin)
-(require 'init-java)
-(require 'init-markdown)
-(require 'init-docker)
-(require 'init-twitter)
-(require 'init-direnv)
-(require 'init-eudc)
-(require 'init-ebdb)
-(require 'init-company)
-(require 'init-plantuml)
-(require 'init-php)
+;;(require 'init-use-package)
+
+(eval-and-compile
+  (prog1 "essential-packages"
+    (let ((pkgs-all (list 'bind-key
+			  'diminish
+			  'company
+			  'direnv
+			  'dockerfile-mode
+			  'docker-compose-mode
+			  'ebdb
+			  'eglot
+			  'exec-path-from-shell
+			  'flycheck
+			  'gradle-mode
+			  'kotlin-mode
+			  'flycheck-kotlin
+			  'markdown-mode
+			  'org-mime
+			  'gnuplot
+			  'gnuplot-mode
+			  'php-mode
+			  'twittering-mode
+			  'rust-mode
+			  'plantuml-mode
+			  'flycheck-plantuml))
+	  (pkgs-to-install (list)))
+
+      (setq package-archives
+	    '(("melpa" . "https://melpa.org/packages/")
+	      ("elpa"   . "https://elpa.gnu.org/packages/")
+	      ("nongnu" . "http://elpa.gnu.org/nongnu/")))
+      
+      (eval-when-compile (package-initialize))
+      
+      (message "PackagesAll %s" pkgs-all)
+
+      (require 'package)
+      (dolist (pkg pkgs-all)		; prepare list
+	(message "checking %s" pkg)
+	(unless (package-installed-p pkg)
+	  (message "%s not installed." pkg)
+	  (push pkg pkgs-to-install)
+	  (message "Added to list.")))
+      
+      (message "PackageToInstall %s" pkgs-to-install)
+      
+      (unless (null pkgs-to-install)	; packages to install?
+	  (progn
+	    (package-refresh-contents)
+	    (dolist (pkg pkgs-to-install)
+	      (package-install pkg)))))))
+
+;; Configure packages
+;; Company
+(use-package company
+  :hook (rust-mode . company-mode))
+
+;; Direnv
+(use-package direnv
+  :config
+  (declare-function direnv-mode "direnv")
+  (direnv-mode +1))
+
+;; Docker
+;; (use-package dockerfile-mode)
+;; (use-package docker-compose-mode)
+
+;; ebdb
+(setq compose-mail-user-agent-warnings nil)
+(defvar ebdb-mua-pop-up nil)
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (require 'ebdb-message)
+	    (require 'ebdb-gnus)))
+
+;; Eglot
+(use-package eglot
+  :hook (rust-mode . eglot-ensure))
+
+;; Exec Path
+(use-package exec-path-from-shell
+  :if window-system
+  :init
+  (defvar exec-path-from-shell-arguments '("-i"))
+  :hook
+  (emacs-startup . exec-path-from-shell-initialize))
+
+;; flycheck
+(use-package flycheck
+  :hook ((kotlin-mode . flycheck-mode)
+	 (plantuml-mode . flycheck-mode)))
+
+;; kotlin, gradle
+(use-package kotlin-mode
+  :mode
+  (("\\.kt\\'" . kotlin-mode)
+   ("\\.kts\\'" . kotlin-mode))
+  :config
+  (add-hook 'kotlin-mode-hook #'display-line-numbers-mode)
+  (add-hook 'kotlin-mode-hook #'hs-minor-mode)
+  (add-hook 'kotlin-mode-hook #'abbrev-mode))
+;; (use-package gradle-mode)
+;; (use-package flycheck-kotlin)
+
+;; markdown
+(use-package markdown-mode
+  :mode
+  (("\\.md\\'" . markdown-mode)
+   ("\\.markdown\\'" . markdown-mode)))
+
+;; org - TODO
+(defvar org-mime-library 'mml)
+
+;; gnuplot
+;; (use-package gnuplot)
+;; (use-package gnuplot-mode)
+
+;; php
+(use-package php-mode
+  :mode "\\.php\\'"
+  :interpreter "/usr/local/bin/php"
+  :config
+  (add-hook 'php-mode-hook #'display-line-numbers-mode)
+  (add-hook 'php-mode-hook #'electric-pair-local-mode)
+  (add-hook 'php-mode-hook #'hs-minor-mode)
+  (add-hook 'php-mode-hook #'abbrev-mode))
+
+;; twitter
+(use-package twittering-mode
+  :init
+  (defalias 'epa--decode-coding-string 'decode-coding-string)
+  :config
+  (defvar twittering-use-master-password t))
+
+;; rust-lang
+(use-package rust-mode
+  :config
+  (add-hook 'rust-mode-hook #'display-line-numbers-mode)
+  (add-hook 'rust-mode-hook #'electric-pair-local-mode)
+  (add-hook 'rust-mode-hook #'hs-minor-mode)
+  (add-hook 'rust-mode-hook #'abbrev-mode))
+
+;; plantuml
+;; (use-package plantuml-mode)
+;; (use-package flycheck-plantuml)
 
 ;; (require 'vtl)
 
