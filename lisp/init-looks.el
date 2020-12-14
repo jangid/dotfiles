@@ -16,8 +16,15 @@
 (setq initial-scratch-message nil)
 
 ;; Font
-;; (set-fontset-font "fontset-startup" 'devanagari "ITF Devanagari")
-;; (set-fontset-font "fontset-startup" 'devanagari "Kohinoor Devanagari")
+(cond
+ ((eq system-type 'gnu/linux)
+  ;; On Debian, do this
+  ;; sudo apt-get install fonts-noto
+  (set-fontset-font "fontset-startup" 'devanagari "Noto"))
+ ((eq system-type 'darwin)
+  ;; (set-fontset-font "fontset-startup" 'devanagari "ITF Devanagari")
+  ;; (set-fontset-font "fontset-startup" 'devanagari "Kohinoor Devanagari")
+  (set-fontset-font "fontset-startup" 'devanagari "Kohinoor Devanagari")))
 
 (defun looks-cycle-frame-size ()
   "Cycle frame-size among default, small and big.
