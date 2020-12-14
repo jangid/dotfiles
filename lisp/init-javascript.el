@@ -24,7 +24,7 @@
   (setq indent-tabs-mode nil)
   (defvar js-indent-level)
   (setq js-indent-level 2)
-  (add-hook 'js-mode-hook 'eglot-ensure)
+;;  (add-hook 'js-mode-hook 'eglot-ensure)
   (add-hook 'js-mode-hook #'display-line-numbers-mode)
   (add-hook 'js-mode-hook #'hs-minor-mode)
   (add-hook 'js-mode-hook #'abbrev-mode))
