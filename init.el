@@ -51,6 +51,8 @@
 (require 'init-modeline)
 (require 'init-elisp)
 (require 'init-python)
+(require 'init-org)
+
 ;;(require 'init-use-package)
 
 ;; Configure external packages
