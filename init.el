@@ -30,7 +30,8 @@
 ;; 								    ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Produce backtrace on error
+(defvar start-time (current-time))
+
 ;; (setq debug-on-error t)
 
 ;; Version check
@@ -258,6 +259,15 @@
   :ensure t)
 
 ;; (require 'vtl)
+
+(defun load-time ()
+  (let ((end-time (current-time)))
+    (float-time (time-subtract end-time start-time))))
+
+(setq inhibit-startup-echo-area-message
+      "pankaj")
+
+(message "Took %s secs to load." (load-time))
 
 (provide 'init)
 ;;; init.el ends here
