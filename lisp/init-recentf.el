@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(add-hook 'emacs-startup-hook
-	  (lambda ()
-	    (recentf-mode 1)))
+(recentf-mode 1)
 
 (provide 'init-recentf)
 ;;; init-recentf.el ends here
