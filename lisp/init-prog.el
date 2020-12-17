@@ -3,7 +3,7 @@
 ;;; Code:
 
 (defun my-prog-mode ()
-  "Enable defaults for prog-mode."
+  "Enable defaults for 'prog-mode'."
   (interactive)
 
   (show-paren-mode +1)

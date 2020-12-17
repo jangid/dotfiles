@@ -102,8 +102,7 @@
 
 (eval-and-compile
   (prog1 "essential-packages"
-    (let ((pkgs-all (list 'bind-key
-			  'diminish))
+    (let ((pkgs-all (list)); (list 'bind-key 'diminish))
 	  (pkgs-to-install (list)))
 
       (setq package-archives
@@ -140,17 +139,17 @@
 	 (python-mode . company-mode)))
 
 ;; Direnv
-(use-package direnv
-  :ensure t
-  :config
-  (declare-function direnv-mode "direnv")
-  (direnv-mode +1))
+;; (use-package direnv
+;;   :ensure t
+;;   :config
+;;   (declare-function direnv-mode "direnv")
+;;   (direnv-mode +1))
 
 ;; Docker
-(use-package dockerfile-mode
-  :ensure t)
-(use-package docker-compose-mode
-  :ensure t)
+;; (use-package dockerfile-mode
+;;   :ensure t)
+;; (use-package docker-compose-mode
+;;   :ensure t)
 
 ;; Eglot
 (use-package eglot
@@ -159,34 +158,34 @@
 	 (python-mode . eglot-ensure)))
 
 ;; Exec Path
-(use-package exec-path-from-shell
-  :ensure t
-  :if window-system
-  :init
-  (defvar exec-path-from-shell-arguments '("-i"))
-  :hook
-  (emacs-startup . exec-path-from-shell-initialize))
+;; (use-package exec-path-from-shell
+;;   :ensure t
+;;   :if window-system
+;;   :init
+;;   (defvar exec-path-from-shell-arguments '("-i"))
+;;   :hook
+;;   (emacs-startup . exec-path-from-shell-initialize))
 
 ;; flycheck
-(use-package flycheck
-  :ensure t
-  :hook ((kotlin-mode . flycheck-mode)
-	 (plantuml-mode . flycheck-mode)))
+;; (use-package flycheck
+;;   :ensure t
+;;   :hook ((kotlin-mode . flycheck-mode)
+;; 	 (plantuml-mode . flycheck-mode)))
 
 ;; kotlin, gradle
-(use-package kotlin-mode
-  :ensure t
-  :mode
-  (("\\.kt\\'" . kotlin-mode)
-   ("\\.kts\\'" . kotlin-mode))
-  :config
-  (add-hook 'kotlin-mode-hook #'display-line-numbers-mode)
-  (add-hook 'kotlin-mode-hook #'hs-minor-mode)
-  (add-hook 'kotlin-mode-hook #'abbrev-mode)
-  (use-package gradle-mode
-    :ensure t)
-  (use-package flycheck-kotlin
-    :ensure t))
+;; (use-package kotlin-mode
+;;   :ensure t
+;;   :mode
+;;   (("\\.kt\\'" . kotlin-mode)
+;;    ("\\.kts\\'" . kotlin-mode))
+;;   :config
+;;   (add-hook 'kotlin-mode-hook #'display-line-numbers-mode)
+;;   (add-hook 'kotlin-mode-hook #'hs-minor-mode)
+;;   (add-hook 'kotlin-mode-hook #'abbrev-mode)
+;;   (use-package gradle-mode
+;;     :ensure t)
+;;   (use-package flycheck-kotlin
+;;     :ensure t))
 
 ;; markdown
 (use-package markdown-mode
@@ -196,50 +195,45 @@
    ("\\.markdown\\'" . markdown-mode)))
 
 ;; org - TODO
-(use-package org-mime
-  :ensure t
-  :init
-  (defvar org-mime-library 'mml))
+;; (use-package org-mime
+;;   :ensure t
+;;   :init
+;;   (defvar org-mime-library 'mml))
 
 ;; gnuplot
-(use-package gnuplot
-  :ensure t)
-(use-package gnuplot-mode
-  :ensure t)
+;; (use-package gnuplot
+;;   :ensure t)
+;; (use-package gnuplot-mode
+;;   :ensure t)
 
 ;; php
-(use-package php-mode
-  :ensure t
-  :mode "\\.php\\'"
-  :interpreter "/usr/local/bin/php"
-  :config
-  (add-hook 'php-mode-hook #'display-line-numbers-mode)
-  (add-hook 'php-mode-hook #'electric-pair-local-mode)
-  (add-hook 'php-mode-hook #'hs-minor-mode)
-  (add-hook 'php-mode-hook #'abbrev-mode))
+;; (use-package php-mode
+;;   :ensure t
+;;   :mode "\\.php\\'"
+;;   :interpreter "/usr/local/bin/php"
+;;   :config
+;;   (add-hook 'php-mode-hook #'display-line-numbers-mode)
+;;   (add-hook 'php-mode-hook #'electric-pair-local-mode)
+;;   (add-hook 'php-mode-hook #'hs-minor-mode)
+;;   (add-hook 'php-mode-hook #'abbrev-mode))
 
 ;; twitter
-(use-package twittering-mode
-  :ensure t
-  :init
-  (defalias 'epa--decode-coding-string 'decode-coding-string)
-  :config
-  (defvar twittering-use-master-password t))
+;; (use-package twittering-mode
+;;   :ensure t
+;;   :init
+;;   (defalias 'epa--decode-coding-string 'decode-coding-string)
+;;   :config
+;;   (defvar twittering-use-master-password t))
 
 ;; rust-lang
 (use-package rust-mode
-  :ensure t
-  :config
-  (add-hook 'rust-mode-hook #'display-line-numbers-mode)
-  (add-hook 'rust-mode-hook #'electric-pair-local-mode)
-  (add-hook 'rust-mode-hook #'hs-minor-mode)
-  (add-hook 'rust-mode-hook #'abbrev-mode))
+  :ensure t)
 
 ;; plantuml
-(use-package plantuml-mode
-  :ensure t)
-(use-package flycheck-plantuml
-  :ensure t)
+;; (use-package plantuml-mode
+;;   :ensure t)
+;; (use-package flycheck-plantuml
+;;   :ensure t)
 
 ;; Ebdb
 ;; TODO - load time is too much for this package.
@@ -256,8 +250,8 @@
 ;; (require 'vtl)
 
 (defun load-time ()
-  (let ((end-time (current-time)))
-    (float-time (time-subtract end-time start-time))))
+  "Load time of Emacs."
+    (float-time (time-subtract (current-time) start-time)))
 
 (setq inhibit-startup-echo-area-message
       "pankaj")
