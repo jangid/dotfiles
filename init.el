@@ -152,23 +152,6 @@
 (use-package docker-compose-mode
   :ensure t)
 
-;; ebdb
-;; (setq compose-mail-user-agent-warnings nil)
-;; (defvar ebdb-mua-pop-up nil)
-;; (add-hook 'emacs-startup-hook
-;; 	  (lambda ()
-;; 	    (require 'ebdb-message)
-;; 	    (require 'ebdb-gnus)))
-(use-package ebdb
-  :ensure t
-  :init
-  (setq compose-mail-user-agent-warnings nil)
-  (defvar ebdb-mua-pop-up nil)
-  :hook
-  (emacs-startup . (lambda ()
-		     (use-package ebdb-message)
-		     (use-package ebdb-gnus))))
-
 ;; Eglot
 (use-package eglot
   :ensure t
@@ -257,6 +240,18 @@
   :ensure t)
 (use-package flycheck-plantuml
   :ensure t)
+
+;; Ebdb
+;; TODO - load time is too much for this package.
+(use-package ebdb
+  :ensure t
+  :init
+  (setq compose-mail-user-agent-warnings nil)
+  (defvar ebdb-mua-pop-up nil)
+  :hook
+  (emacs-startup . (lambda ()
+		     (use-package ebdb-message)
+		     (use-package ebdb-gnus))))
 
 ;; (require 'vtl)
 
