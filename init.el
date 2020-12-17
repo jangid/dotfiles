@@ -10,7 +10,25 @@
 ;; the latest version of Emacs.  Currently, only major version 27 is
 ;; supported.
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 								    ;;
+;;   The Emacs configuration file.				    ;;
+;; 								    ;;
+;;   This config file is organized as follows:			    ;;
+;; 								    ;;
+;;   SECTION 0 - Globals                                            ;;
+;;   SECTION 1 - Configuration of built-in packages		    ;;
+;;   SECTION 2 - Configuration of external packages		    ;;
+;; 								    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;;; Code:
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 								    ;;
+;;   SECTION 0 - Globals                                            ;;
+;; 								    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Produce backtrace on error
 ;; (setq debug-on-error t)
@@ -24,7 +42,24 @@
 (setq user-mail-address	"pankaj@codeisgreat.org"
       user-full-name "Pankaj Jangid")
 
-;; Configure built-in packages
+;; Keep the custom file separate from init.el
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+;; start server for emacsclient support
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (progn
+	      (eval-and-compile (require 'server))
+	      (unless (server-running-p) (server-start)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 								    ;;
+;;   SECTION 1 - Configuration of built-in packages		    ;;
+;; 								    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (eval-and-compile
   (add-to-list 'load-path
 	       (expand-file-name "lisp" user-emacs-directory)))
@@ -53,9 +88,12 @@
 (require 'init-python)
 (require 'init-org)
 
-;;(require 'init-use-package)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 								    ;;
+;;   SECTION 2 - Configuration of external packages		    ;;
+;; 								    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Configure external packages
 (eval-when-compile
   (add-to-list 'load-path
 	       (expand-file-name "use-package" user-emacs-directory))
@@ -74,17 +112,18 @@
       
       (eval-when-compile (package-initialize))
       
-      (message "PackagesAll %s" pkgs-all)
+      ;; (message "PackagesAll %s" pkgs-all)
 
       (require 'package)
       (dolist (pkg pkgs-all)		; prepare list
-	(message "checking %s" pkg)
+	;; (message "checking %s" pkg)
 	(unless (package-installed-p pkg)
-	  (message "%s not installed." pkg)
+	  ;; (message "%s not installed." pkg)
 	  (push pkg pkgs-to-install)
-	  (message "Added to list.")))
+	  ;; (message "Added to list.")
+	  ))
       
-      (message "PackageToInstall %s" pkgs-to-install)
+      ;; (message "PackageToInstall %s" pkgs-to-install)
       
       (unless (null pkgs-to-install)	; packages to install?
 	  (progn
@@ -219,18 +258,6 @@
   :ensure t)
 
 ;; (require 'vtl)
-
-;; Keep the custom file separate from init.el
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(when (file-exists-p custom-file)
-  (load custom-file))
-
-;; start server for emacsclient support
-(add-hook 'emacs-startup-hook
-	  (lambda ()
-	    (progn
-	      (eval-and-compile (require 'server))
-	      (unless (server-running-p) (server-start)))))
 
 (provide 'init)
 ;;; init.el ends here

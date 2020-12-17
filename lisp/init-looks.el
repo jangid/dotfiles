@@ -27,12 +27,7 @@
   (set-fontset-font t 'devanagari "Kohinoor Devanagari")))
 
 (defun looks-cycle-frame-size ()
-  "Cycle frame-size among default, small and big.
-
-0) default - 80x38 (built-in).
-1) small - 100x48
-2) big - 174x58"
-
+  "Cycle frame-size."
   (interactive)
 
   (let ((width (frame-width))
@@ -45,17 +40,6 @@
 	  ((and (eq width 174) (eq height 54))
 	   (set-frame-size nil 80 36))
 	  (t (set-frame-size nil 80 36))) ; default
-    ;; (cond ((and (eq width 80) (eq height 36))
-    ;; 	   (set-frame-size nil 174 56))
-    ;; 	  ((and (eq width 100) (eq height 46))
-    ;; 	   (set-frame-size nil 80 46))
-    ;; 	  ((and (eq width 80) (eq height 46))
-    ;; 	   (set-frame-size nil 80 36))
-    ;; 	  ((and (eq width 174) (eq height 56))
-    ;; 	   (set-frame-size nil 100 56))
-    ;; 	  ((and (eq width 100) (eq height 56))
-    ;; 	   (set-frame-size nil 100 46))
-    ;; 	  (t (set-frame-size nil 80 36))) ; default
     
     (message "Frame size: %sx%s" (frame-width) (frame-height))))
 
