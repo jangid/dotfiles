@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+;; Themes
+
 (defun modus-theme-toggle ()
   "Toggle between modus-operandi and modus-vivendi themes."
   (interactive)
@@ -12,10 +14,14 @@
     (disable-theme 'modus-vivendi)
     (load-theme 'modus-operandi t)))
 
+(when (window-system)
+  (load-theme 'modus-operandi))
+
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
 
 ;; Font
+
 (cond
  ((eq system-type 'gnu/linux)
   ;; On Debian, do this
@@ -25,6 +31,9 @@
   ;; (set-fontset-font "fontset-startup" 'devanagari "ITF Devanagari")
   ;; (set-fontset-font "fontset-startup" 'devanagari "Kohinoor Devanagari")
   (set-fontset-font t 'devanagari "Kohinoor Devanagari")))
+
+
+;; Frame Size
 
 (defun looks-cycle-frame-size ()
   "Cycle frame-size."
@@ -43,10 +52,12 @@
     
     (message "Frame size: %sx%s" (frame-width) (frame-height))))
 
-(global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen)
+(when (eq system-type 'darwin)
+  (global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen))
 (global-set-key (kbd "M-<f9>") 'looks-cycle-frame-size)
 
-;; show time in non-graphical displays
+;; Clock
+
 (if (eq window-system nil)
     (display-time-mode +1))
 
