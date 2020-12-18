@@ -93,4 +93,4 @@ lisp/init-flymake.elc: lisp/init-flymake.el
 	emacs $(OPTIONS) $<
 
 clean:
-	rm early-init.elc init.elc lisp/*.elc
+	rm -rf early-init.elc init.elc lisp/*.elc
