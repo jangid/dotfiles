@@ -4,61 +4,9 @@
 
 ;; SMTP
 (setq send-mail-function 'smtpmail-send-it)
-(defvar smtpmail-stream-type "ssl")
 
 ;; Enable electric quote mode in message-mode
 (add-hook 'message-mode-hook 'electric-quote-mode)
-
-(defun my/get-smtp ()
-  "Get SMTP for as per FROM field."
-  (interactive)
-  (defvar my/smtp-alist-file (locate-user-emacs-file "my-SMTPs"))
-  (let ((filename my/smtp-alist-file))
-    (defvar my/smtp-alist)
-    (setq my/smtp-alist
-          (when (file-exists-p filename)
-            (with-temp-buffer
-              (insert-file-contents filename)
-              (read (current-buffer)))))
-
-    (if (seq-every-p
-             (lambda (elt) (stringp (car-safe elt)))
-             my/smtp-alist)
-	(progn
-	  (declare-function message-fetch-field "message.el")
-	  (declare-function ietf-drums-parse-address "ietf-drums.el")
-	  (cdr
-	   (assoc
-	    (car
-	     (ietf-drums-parse-address
-	      (message-fetch-field "From")))
-	    my/smtp-alist)))
-      (warn "Contents of %s are in wrong format."
-            my/smtp-alist-file))))
-
-(defun my-set-smtp ()
-  "Set SMTP field as per FROM field."
-  (interactive)
-  (progn
-    (declare-function message-add-header "message.el")
-    (message-add-header
-     (concat "X-Message-SMTP-Method: "
-	     (my/get-smtp)))))
-
-(defun my-unset-smtp ()
-  "Remove -X-Message-SMTP-Method field."
-  (interactive)
-  (progn
-    (declare-function message-remove-header "message.el")
-    (message-remove-header "X-Message-SMTP-Method")))
-
-(defun my-check-group-type-and-set-smtp ()
-  "Check group type news or mail and set smtp header."
-  (interactive)
-  (progn
-    (my-set-smtp)))
-
-(add-hook 'message-setup-hook 'my-check-group-type-and-set-smtp)
 
 ;; Make face from JPG using:
 
@@ -67,7 +15,6 @@
 
 ;; Now check the size of "face.png" file. It should be less than 725
 ;; bytes. ref: http://quimby.gnus.org/circus/face/
-
 
 (defun my/set-face ()
   "Add Face header to email message."
@@ -85,50 +32,5 @@
     (declare-function message-remove-header "message.el")
     (message-remove-header "Face")))
 
-(defun my/set-gcc ()
-  "Set archive group."
-  (interactive)
-  ;;Gcc: nnfolder+archive:sent.2020-10
-  (progn
-    (declare-function message-add-header "message.el")
-    (defvar gnus-message-archive-group)
-    (message-add-header
-     (concat "Gcc: "
-	     (format-time-string "sent.%Y-%m")))))
-
-;; (make-temp-file
-;;  (expand-file-name "invite-" temporary-file-directory)
-;;  nil
-;;  ".ics")
-
-;; Configure Citation
-;; (defvar message-cite-style)
-;; (setq message-cite-style
-;;       '((message-citation-line-function
-;; 	 'message-insert-formatted-citation-line)))
-
-;; Configure search index
-(defun my/timestamp-me (process event)
-  "Record EVENT in the PROCESS buffer."
-  (print (format "%s %s at %s" process event (current-time-string))
-	 (process-buffer process)))
-
-(defun my/notmuch-new ()
-  "Execute 'notmuch new' command and logs in buffer *Notmuch*."
-  (set-process-sentinel
-   (start-process "notmuch" "*Notmuch*" "notmuch" "new")
-   'my/timestamp-me))
-
-;; (setq message-signature-directory "~/.signatures")
-;; Fetch addresses from headers
-;; (defun my/fetch-addresses ()
-;;   "Fetch email addresses from the email headers."
-;;   (message-fetch-field)
-;;   (message-narrow-to-headers-or-head)
-;; (car (ietf-drums-parse-address "Sanjay Sahani <sanjay.sahani@op.com>"))
-;;  (ietf-drums-parse-addresses "Sanjay Sahani <sanjay.sahani@op.com>, Deepak G <dk@op.com>")
-;;   )
-;; (defun my/save-alias ()
-;;   "Save the a")
 (provide 'init-email)
 ;;; init-email.el ends here
