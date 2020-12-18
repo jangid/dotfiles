@@ -139,11 +139,11 @@
 	 (python-mode . company-mode)))
 
 ;; Direnv
-;; (use-package direnv
-;;   :ensure t
-;;   :config
-;;   (declare-function direnv-mode "direnv")
-;;   (direnv-mode +1))
+(use-package direnv
+  :ensure t
+  :config
+  (declare-function direnv-mode "direnv")
+  (direnv-mode +1))
 
 ;; Docker
 ;; (use-package dockerfile-mode
@@ -256,7 +256,7 @@
 (setq inhibit-startup-echo-area-message
       "pankaj")
 
-(message "Took %s secs to load." (load-time))
+(message "Took %s secs to load %s." (load-time) user-init-file)
 
 (provide 'init)
 ;;; init.el ends here
