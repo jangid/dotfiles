@@ -7,6 +7,9 @@
     (setq python-shell-interpreter "ipython")
   (setq python-shell-interpreter "python3"))
 
+(defvar python-indent-guess-indent-offset-verbose nil)
+;;(setq python-indent-guess-indent-offset-verbose nil)
+
 ;;(add-hook 'python-mode-hook #'flymake-mode)
 (add-hook 'python-mode-hook #'display-line-numbers-mode)
 (add-hook 'python-mode-hook #'hs-minor-mode)
