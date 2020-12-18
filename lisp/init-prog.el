@@ -2,18 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-(defun my-prog-mode ()
-  "Enable defaults for 'prog-mode'."
-  (interactive)
-
-  (show-paren-mode +1)
+(show-paren-mode +1)
   
-  (add-hook 'prog-mode-hook #'display-line-numbers-mode)
-  (add-hook 'prog-mode-hook #'electric-pair-local-mode)
-  (add-hook 'prog-mode-hook #'hs-minor-mode)
-  (add-hook 'prog-mode-hook #'abbrev-mode))
-
-(add-hook 'emacs-startup-hook 'my-prog-mode)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(add-hook 'prog-mode-hook #'electric-pair-local-mode)
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+(add-hook 'prog-mode-hook #'abbrev-mode)
 
 (provide 'init-prog)
 ;;; init-prog.el ends here

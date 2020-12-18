@@ -49,11 +49,8 @@
   (load custom-file))
 
 ;; start server for emacsclient support
-(add-hook 'emacs-startup-hook
-	  (lambda ()
-	    (progn
-	      (eval-and-compile (require 'server))
-	      (unless (server-running-p) (server-start)))))
+(require 'server)
+(unless (server-running-p) (server-start))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
@@ -88,6 +85,10 @@
 (require 'init-elisp)
 (require 'init-python)
 (require 'init-org)
+(require 'init-eudc)
+(require 'init-java)
+(require 'init-js)
+(require 'init-ruby)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
@@ -156,6 +157,7 @@
   :ensure t
   :hook ((rust-mode . eglot-ensure)
 	 (python-mode . eglot-ensure)))
+;;	 (js-mode . eglot-ensure)))
 
 ;; Exec Path
 ;; (use-package exec-path-from-shell
@@ -163,8 +165,8 @@
 ;;   :if window-system
 ;;   :init
 ;;   (defvar exec-path-from-shell-arguments '("-i"))
-;;   :hook
-;;   (emacs-startup . exec-path-from-shell-initialize))
+;;   :config
+;;   (exec-path-from-shell-initialize))
 
 ;; flycheck
 ;; (use-package flycheck
@@ -242,12 +244,16 @@
   :init
   (setq compose-mail-user-agent-warnings nil)
   (defvar ebdb-mua-pop-up nil)
+  ;; :config
+  ;; (use-package ebdb-message)
+  ;; (use-package ebdb-gnus))
   :hook
   (emacs-startup . (lambda ()
 		     (use-package ebdb-message)
 		     (use-package ebdb-gnus))))
 
-;; (require 'vtl)
+;; velocity templates
+(require 'vtl)
 
 (defun load-time ()
   "Load time of Emacs."
