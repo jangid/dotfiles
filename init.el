@@ -192,9 +192,14 @@
 ;; markdown
 (use-package markdown-mode
   :ensure t
+  :commands
+  (markdown-mode gfm-mode)
   :mode
-  (("\\.md\\'" . markdown-mode)
-   ("\\.markdown\\'" . markdown-mode)))
+  (("README\\.md\\’" . gfm-mode)
+   ("\\.md\\'" . markdown-mode)
+   ("\\.markdown\\'" . markdown-mode))
+  :init
+  (setq markdown-command "multimarkdown"))
 
 ;; org - TODO
 ;; (use-package org-mime
