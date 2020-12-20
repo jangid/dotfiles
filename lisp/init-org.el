@@ -32,9 +32,6 @@
 (defvar org-agenda-include-diary)
 (setq org-agenda-include-diary t)
 
-(defvar org-plantuml-jar-path)
-(setq org-plantuml-jar-path "/usr/local/opt/libexec/plantuml.jar")
-
 (defvar org-directory)
 (setq org-directory "~/Documents/org")
 
