@@ -62,6 +62,8 @@
 
 ;; Cursor
 (setq visible-cursor nil)		; this works on text terminal only
+(setq x-stretch-cursor t)		; on GUIs, cursor width equals that
+					; of characters
 
 (provide 'init-looks)
 ;;; init-looks.el ends here
