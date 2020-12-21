@@ -58,8 +58,7 @@
 
 ;; Clock
 
-(if (eq window-system nil)
-    (display-time-mode +1))
+(display-time-mode +1)
 
 ;; Cursor
 (setq visible-cursor nil)		; this works on text terminal only
