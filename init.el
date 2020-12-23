@@ -30,7 +30,28 @@
 ;; 								    ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar start-time (current-time))
+(defvar start-time)
+(defvar prev-time)
+(setq prev-time (current-time))
+
+(defun load-time ()
+  "Load time of Emacs."
+    (float-time (time-subtract (current-time) start-time)))
+
+(defun diff-time (from-time)
+  "Load time diff FROM-TIME."
+  (float-time (time-subtract (current-time) from-time)))
+
+(defun took-time (entity)
+  "Log message for load time taken by ENTITY."
+  (message "Took %s secs to load %s." (diff-time prev-time) entity)
+  (setq prev-time (current-time)))
+
+(defun total-time (entity)
+  "Log message for total time till ENTITY is loaded."
+  (message "Took %s secs to load %s." (diff-time start-time) entity))
+
+(took-time early-init-file)
 
 ;; (setq debug-on-error t)
 
@@ -51,6 +72,7 @@
 ;; start server for emacsclient support
 (require 'server)
 (unless (server-running-p) (server-start))
+(took-time "server")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
@@ -90,6 +112,7 @@
 (require 'init-js)
 (require 'init-ruby)
 
+(took-time "built-in packages")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
 ;;   SECTION 2 - Configuration of external packages		    ;;
@@ -109,7 +132,7 @@
       (setq package-archives
 	    '(("melpa" . "https://melpa.org/packages/")
 	      ("elpa"   . "https://elpa.gnu.org/packages/")
-	      ("nongnu" . "http://elpa.gnu.org/nongnu/")))
+	      ("nongnu" . "http://elpa.nongnu.org/nongnu/")))
       
       (eval-when-compile (package-initialize))
       
@@ -133,6 +156,9 @@
 	      (package-install pkg)))))))
 
 ;; Configure packages
+(use-package use-package-ensure-system-package
+  :ensure t)
+
 ;; Company
 (use-package company
   :ensure t
@@ -142,21 +168,26 @@
 ;; Direnv
 (use-package direnv
   :ensure t
+;;  :ensure-system-package direnv
   :config
   (declare-function direnv-mode "direnv")
   (direnv-mode +1))
 
 ;; Docker
-;; (use-package dockerfile-mode
-;;   :ensure t)
-;; (use-package docker-compose-mode
-;;   :ensure t)
+(use-package dockerfile-mode
+  :ensure t)
+(use-package docker-compose-mode
+  :ensure t)
 
 ;; Eglot
 (use-package eglot
   :ensure t
-  :hook ((rust-mode . eglot-ensure)
-	 (python-mode . eglot-ensure)))
+  :hook
+  (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   (rust-mode . eglot-ensure)
+   ;; pip3 install 'python-language-server[a;;]'
+   (python-mode . eglot-ensure)))
+
 ;;	 (js-mode . eglot-ensure)))
 
 ;; Exec Path
@@ -260,14 +291,9 @@
 ;; velocity templates
 (require 'vtl)
 
-(defun load-time ()
-  "Load time of Emacs."
-    (float-time (time-subtract (current-time) start-time)))
-
-(setq inhibit-startup-echo-area-message
-      "pankaj")
-
-(message "Took %s secs to load %s." (load-time) user-init-file)
+(took-time "external packages")
+(setq inhibit-startup-echo-area-message "pankaj")
+(total-time user-init-file)
 
 (provide 'init)
 ;;; init.el ends here
