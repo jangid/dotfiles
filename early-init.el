@@ -2,6 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
+(defvar start-time)
+(setq start-time (current-time))
+
+(defvar prev-time)
+(setq prev-time start-time)
+
 (setq frame-resize-pixelwise t)
 (setq default-frame-alist
       '((vertical-scroll-bars . nil)

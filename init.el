@@ -95,7 +95,6 @@
 (require 'init-prog)
 (require 'init-completion)
 (require 'init-browser)
-(require 'init-date-time)
 (require 'init-diary)
 (require 'init-recentf)
 (require 'init-cedet)
@@ -168,7 +167,7 @@
 ;; Direnv
 (use-package direnv
   :ensure t
-;;  :ensure-system-package direnv
+  :ensure-system-package direnv
   :config
   (declare-function direnv-mode "direnv")
   (direnv-mode +1))
@@ -182,6 +181,9 @@
 ;; Eglot
 (use-package eglot
   :ensure t
+  :ensure-system-package
+  ((python3)
+   (pip3 . python3-pip))
   :hook
   (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
    (rust-mode . eglot-ensure)
@@ -292,6 +294,12 @@
 (require 'vtl)
 
 (took-time "external packages")
+
+;; user specific init file, loaded after everything else - my-init.el
+(setq my-init-file (expand-file-name "my-init.el" user-emacs-directory))
+(when (file-exists-p my-init-file)
+  (load custom-file))
+
 (setq inhibit-startup-echo-area-message "pankaj")
 (total-time user-init-file)
 
