@@ -43,10 +43,10 @@
 	(height (frame-height)))
 
     (cond ((and (eq width 80) (eq height 36))
-	   (set-frame-size nil 130 54))
-	  ((and (eq width 130) (eq height 54))
-	   (set-frame-size nil 174 54))
-	  ((and (eq width 174) (eq height 54))
+	   (set-frame-size nil 130 46))
+	  ((and (eq width 130) (eq height 46))
+	   (set-frame-size nil 160 46))
+	  ((and (eq width 160) (eq height 46))
 	   (set-frame-size nil 80 36))
 	  (t (set-frame-size nil 80 36))) ; default
     
