@@ -123,6 +123,8 @@
 	       (expand-file-name "use-package" user-emacs-directory))
   (require 'use-package))
 
+(require 'use-package-ensure-system-package)
+
 (eval-and-compile
   (prog1 "essential-packages"
     (let ((pkgs-all (list)); (list 'bind-key 'diminish))
@@ -153,10 +155,6 @@
 	    (package-refresh-contents)
 	    (dolist (pkg pkgs-to-install)
 	      (package-install pkg)))))))
-
-;; Configure packages
-(use-package use-package-ensure-system-package
-  :ensure t)
 
 ;; Company
 (use-package company
@@ -296,6 +294,7 @@
 (took-time "external packages")
 
 ;; user specific init file, loaded after everything else - my-init.el
+(defvar my-init-file)
 (setq my-init-file (expand-file-name "my-init.el" user-emacs-directory))
 (when (file-exists-p my-init-file)
   (load custom-file))

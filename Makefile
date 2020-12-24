@@ -13,7 +13,6 @@ init.elc: init.el \
 	lisp/init-erc.elc \
 	lisp/init-completion.elc \
 	lisp/init-browser.elc \
-	lisp/init-date-time.elc \
 	lisp/init-diary.elc \
 	lisp/init-recentf.elc \
 	lisp/init-cedet.elc \
@@ -48,9 +47,6 @@ lisp/init-completion.elc: lisp/init-completion.el
 	emacs $(OPTIONS) $<
 
 lisp/init-browser.elc: lisp/init-browser.el
-	emacs $(OPTIONS) $<
-
-lisp/init-date-time.elc: lisp/init-date-time.el
 	emacs $(OPTIONS) $<
 
 lisp/init-diary.elc: lisp/init-diary.el
