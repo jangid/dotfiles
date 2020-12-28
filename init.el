@@ -163,12 +163,12 @@
 	 (python-mode . company-mode)))
 
 ;; Direnv
-(use-package direnv
-  :ensure t
-  :ensure-system-package direnv
-  :config
-  (declare-function direnv-mode "direnv")
-  (direnv-mode +1))
+;; (use-package direnv
+;;   :ensure t
+;;   :ensure-system-package direnv
+;;   :config
+;;   (declare-function direnv-mode "direnv")
+;;   (direnv-mode +1))
 
 ;; Docker
 (use-package dockerfile-mode
@@ -191,13 +191,13 @@
 ;;	 (js-mode . eglot-ensure)))
 
 ;; Exec Path
-;; (use-package exec-path-from-shell
-;;   :ensure t
-;;   :if window-system
-;;   :init
-;;   (defvar exec-path-from-shell-arguments '("-i"))
-;;   :config
-;;   (exec-path-from-shell-initialize))
+(use-package exec-path-from-shell
+  :ensure t
+  :if window-system
+  :init
+  (defvar exec-path-from-shell-arguments '("-i"))
+  :config
+  (exec-path-from-shell-initialize))
 
 ;; flycheck
 ;; (use-package flycheck
