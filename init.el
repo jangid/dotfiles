@@ -297,7 +297,7 @@
 (defvar my-init-file)
 (setq my-init-file (expand-file-name "my-init.el" user-emacs-directory))
 (when (file-exists-p my-init-file)
-  (load custom-file))
+  (load my-init-file))
 
 (setq inhibit-startup-echo-area-message "pankaj")
 (total-time user-init-file)
