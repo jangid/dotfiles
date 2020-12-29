@@ -1,4 +1,4 @@
-all: early-init.elc init.elc
+all: early-init.elc init.elc my-init.elc install
 
 OPTIONS = -Q -batch -L lisp -f batch-byte-compile
 
@@ -27,6 +27,13 @@ init.elc: init.el \
 	lisp/init-eudc.elc \
 	lisp/init-flymake.elc
 	emacs $(OPTIONS) $<
+
+my-init.elc: my-init.el
+	emacs $(OPTIONS) $<
+
+install: early-init.el init.el
+	emacs -batch -l early-init.el -l init.el -f my-install-or-update
+	touch install
 
 lisp/init-keys.elc: lisp/init-keys.el
 	emacs $(OPTIONS) $<
@@ -89,4 +96,4 @@ lisp/init-flymake.elc: lisp/init-flymake.el
 	emacs $(OPTIONS) $<
 
 clean:
-	rm -rf early-init.elc init.elc lisp/*.elc
+	rm -rf early-init.elc init.elc my-init.elc install lisp/*.elc

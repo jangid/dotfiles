@@ -25,8 +25,12 @@
  ;; SECTION: version control
  '(add-log-dont-create-changelog-file t)
  ;; SECTION: packages
- '(package-selected-packages
-   '(use-package twittering-mode kotlin-mode gradle-mode ebdb diminish)))
+  '(package-selected-packages
+    '(twittering-mode rust-mode php-mode org-mime markdown-mode kotlin-mode gradle-mode gnuplot-mode gnuplot flycheck plantuml-mode flycheck-plantuml flycheck-kotlin exec-path-from-shell eglot ebdb dockerfile-mode docker-compose-mode direnv diminish company)))
+
 (custom-set-faces
  ;; custom-set-faces was added by user.
  )
+
+(provide 'my-init)
+;;; my-init.el ends here

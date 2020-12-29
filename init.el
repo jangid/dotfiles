@@ -19,6 +19,7 @@
 ;;   SECTION 0 - Globals                                            ;;
 ;;   SECTION 1 - Configuration of built-in packages		    ;;
 ;;   SECTION 2 - Configuration of external packages		    ;;
+;;   SECTION 3 - Utility functions		                    ;;
 ;; 								    ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -273,6 +274,22 @@
 (require 'vtl)
 
 (took-time "external packages")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 								    ;;
+;;   SECTION 3 - Utility functions		                    ;;
+;; 								    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun my-install-or-update ()
+  "Install selected packages."
+  (interactive)
+  (setq package-archives
+	'(("melpa" . "https://melpa.org/packages/")
+	  ("elpa"   . "https://elpa.gnu.org/packages/")
+	  ("nongnu" . "http://elpa.nongnu.org/nongnu/")))
+  (package-refresh-contents)
+  (package-install-selected-packages))
 
 ;; user specific init file, loaded after everything else - my-init.el
 (defvar my-init-file)
