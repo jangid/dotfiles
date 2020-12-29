@@ -158,7 +158,6 @@
 
 ;; Company
 (use-package company
-  :ensure t
   :hook ((rust-mode . company-mode)
 	 (python-mode . company-mode)))
 
@@ -171,14 +170,11 @@
 ;;   (direnv-mode +1))
 
 ;; Docker
-(use-package dockerfile-mode
-  :ensure t)
-(use-package docker-compose-mode
-  :ensure t)
+(use-package dockerfile-mode)
+(use-package docker-compose-mode)
 
 ;; Eglot
 (use-package eglot
-  :ensure t
   :ensure-system-package
   ((python3)
    (pip3 . python3-pip))
@@ -192,7 +188,6 @@
 
 ;; Exec Path
 (use-package exec-path-from-shell
-  :ensure t
   :if window-system
   :init
   (defvar exec-path-from-shell-arguments '("-i"))
@@ -201,13 +196,11 @@
 
 ;; flycheck
 ;; (use-package flycheck
-;;   :ensure t
 ;;   :hook ((kotlin-mode . flycheck-mode)
 ;; 	 (plantuml-mode . flycheck-mode)))
 
 ;; kotlin, gradle
 ;; (use-package kotlin-mode
-;;   :ensure t
 ;;   :mode
 ;;   (("\\.kt\\'" . kotlin-mode)
 ;;    ("\\.kts\\'" . kotlin-mode))
@@ -215,14 +208,11 @@
 ;;   (add-hook 'kotlin-mode-hook #'display-line-numbers-mode)
 ;;   (add-hook 'kotlin-mode-hook #'hs-minor-mode)
 ;;   (add-hook 'kotlin-mode-hook #'abbrev-mode)
-;;   (use-package gradle-mode
-;;     :ensure t)
-;;   (use-package flycheck-kotlin
-;;     :ensure t))
+;;   (use-package gradle-mode)
+;;   (use-package flycheck-kotlin))
 
 ;; markdown
 (use-package markdown-mode
-  :ensure t
   :commands
   (markdown-mode gfm-mode)
   :mode
@@ -234,19 +224,15 @@
 
 ;; org - TODO
 ;; (use-package org-mime
-;;   :ensure t
 ;;   :init
 ;;   (defvar org-mime-library 'mml))
 
 ;; gnuplot
-;; (use-package gnuplot
-;;   :ensure t)
-;; (use-package gnuplot-mode
-;;   :ensure t)
+;; (use-package gnuplot)
+;; (use-package gnuplot-mode)
 
 ;; php
 ;; (use-package php-mode
-;;   :ensure t
 ;;   :mode "\\.php\\'"
 ;;   :interpreter "/usr/local/bin/php"
 ;;   :config
@@ -257,26 +243,21 @@
 
 ;; twitter
 ;; (use-package twittering-mode
-;;   :ensure t
 ;;   :init
 ;;   (defalias 'epa--decode-coding-string 'decode-coding-string)
 ;;   :config
 ;;   (defvar twittering-use-master-password t))
 
 ;; rust-lang
-(use-package rust-mode
-  :ensure t)
+(use-package rust-mode)
 
 ;; plantuml
-;; (use-package plantuml-mode
-;;   :ensure t)
-;; (use-package flycheck-plantuml
-;;   :ensure t)
+;; (use-package plantuml-mode)
+;; (use-package flycheck-plantuml)
 
 ;; Ebdb
 ;; TODO - load time is too much for this package.
 (use-package ebdb
-  :ensure t
   :init
   (setq compose-mail-user-agent-warnings nil)
   (defvar ebdb-mua-pop-up nil)
@@ -297,7 +278,7 @@
 (defvar my-init-file)
 (setq my-init-file (expand-file-name "my-init.el" user-emacs-directory))
 (when (file-exists-p my-init-file)
-  (load custom-file))
+  (load my-init-file))
 
 (setq inhibit-startup-echo-area-message "pankaj")
 (total-time user-init-file)
