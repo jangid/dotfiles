@@ -17,9 +17,6 @@
 (when (window-system)
   (load-theme 'modus-operandi))
 
-(setq inhibit-startup-screen t)
-(setq initial-scratch-message nil)
-
 ;; Font
 
 (cond
