@@ -64,7 +64,6 @@
      company)))
 
 (custom-set-faces
- ;; custom-set-faces was added by user.
  )
 
 (provide 'my-init)

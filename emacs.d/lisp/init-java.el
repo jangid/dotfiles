@@ -2,15 +2,15 @@
 ;;; Commentary:
 ;;; Code:
 
-(when (eq system-type 'darwin)
-  (setenv "JAVA_HOME"
-	  (substring
-	   (shell-command-to-string "/usr/libexec/java_home -v 1.8")0 -1))
-  (setenv "PATH"
-	  (concat (getenv "JAVA_HOME") "/bin" ":" (getenv "PATH")))
+;; (when (eq system-type 'darwin)
+;;   (setenv "JAVA_HOME"
+;; 	  (substring
+;; 	   (shell-command-to-string "/usr/libexec/java_home -v 1.8")0 -1))
+;;   (setenv "PATH"
+;; 	  (concat (getenv "JAVA_HOME") "/bin" ":" (getenv "PATH")))
   
-  (add-to-list 'exec-path
-   	       (concat (getenv "JAVA_HOME") "/bin")))
+;;   (add-to-list 'exec-path
+;;    	       (concat (getenv "JAVA_HOME") "/bin")))
 
 (add-hook 'java-mode-hook #'semantic-mode)
 

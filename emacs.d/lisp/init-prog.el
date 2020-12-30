@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(show-paren-mode +1)
-  
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'electric-pair-local-mode)
 (add-hook 'prog-mode-hook #'hs-minor-mode)

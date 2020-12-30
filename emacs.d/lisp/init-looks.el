@@ -14,8 +14,8 @@
     (disable-theme 'modus-vivendi)
     (load-theme 'modus-operandi t)))
 
-(when (window-system)
-  (load-theme 'modus-operandi))
+;; (when (window-system)
+;;   (load-theme 'modus-operandi))
 
 ;; Font
 
@@ -52,10 +52,6 @@
 (when (eq system-type 'darwin)
   (global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen))
 (global-set-key (kbd "M-<f9>") 'looks-cycle-frame-size)
-
-;; Clock
-
-(display-time-mode +1)
 
 ;; Cursor
 (setq visible-cursor nil)		; this works on text terminal only
