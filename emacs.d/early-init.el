@@ -2,23 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
-(defvar start-time)
-(setq start-time (current-time))
+(require 'package)
 
-(defvar prev-time)
-(setq prev-time start-time)
+(setq package-load-list '(all))
 
-(setq frame-resize-pixelwise t)
-(setq default-frame-alist
-      '((vertical-scroll-bars . nil)
-	(horizontal-scroll-bars . nil)
-	(tool-bar-lines . 0)))
-
-;; (setq initial-frame-alist
-;;       '((left . 674)
-;; 	;; (height . 56)
-;;   	;; (width . 174)
-;; 	(top . 312)))
+(setq package-quickstart t)
 
 (provide 'early-init)
 ;;; early-init.el ends here

@@ -31,29 +31,6 @@
 ;; 								    ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar start-time)
-(defvar prev-time)
-(setq prev-time (current-time))
-
-(defun load-time ()
-  "Load time of Emacs."
-    (float-time (time-subtract (current-time) start-time)))
-
-(defun diff-time (from-time)
-  "Load time diff FROM-TIME."
-  (float-time (time-subtract (current-time) from-time)))
-
-(defun took-time (entity)
-  "Log message for load time taken by ENTITY."
-  (message "Took %s secs to load %s." (diff-time prev-time) entity)
-  (setq prev-time (current-time)))
-
-(defun total-time (entity)
-  "Log message for total time till ENTITY is loaded."
-  (message "Took %s secs to load %s." (diff-time start-time) entity))
-
-(took-time early-init-file)
-
 ;; (setq debug-on-error t)
 
 ;; Version check
@@ -73,7 +50,6 @@
 ;; start server for emacsclient support
 (require 'server)
 (unless (server-running-p) (server-start))
-(took-time "server")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
@@ -112,7 +88,6 @@
 (require 'init-js)
 (require 'init-ruby)
 
-(took-time "built-in packages")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
 ;;   SECTION 2 - Configuration of external packages		    ;;
@@ -122,9 +97,8 @@
 (eval-when-compile
   (add-to-list 'load-path
 	       (expand-file-name "use-package" user-emacs-directory))
-  (require 'use-package))
-
-(require 'use-package-ensure-system-package)
+  (require 'use-package)
+  (require 'use-package-ensure-system-package))
 
 (eval-and-compile
   (prog1 "essential-packages"
@@ -161,6 +135,8 @@
 (use-package company
   :hook ((rust-mode . company-mode)
 	 (python-mode . company-mode)))
+
+(use-package esup)
 
 ;; Direnv
 ;; (use-package direnv
@@ -273,8 +249,6 @@
 ;; velocity templates
 (require 'vtl)
 
-(took-time "external packages")
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
 ;;   SECTION 3 - Utility functions		                    ;;
@@ -298,7 +272,6 @@
   (load my-init-file))
 
 (setq inhibit-startup-echo-area-message "pankaj")
-(total-time user-init-file)
 
 (provide 'init)
 ;;; init.el ends here

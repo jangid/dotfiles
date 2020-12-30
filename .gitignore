@@ -51,3 +51,4 @@ image-dired/
 build.log
 **/*~
 install
+package-quickstart.el

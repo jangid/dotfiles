@@ -21,12 +21,47 @@
  ;; '(calendar-time-zone-style 'numeric))
  ;; '(calendar-standard-time-zone-name "IST")
  ;; '(calendar-daylight-time-zone-name "IST"))
+ '(display-time-mode t)
 
+ ;; SECTION: modeline
+ '(column-number-mode t)
+
+ ;; SECTION: Programming
+ '(show-paren-mode t)
+ 
+ ;; SECTION: Frame
+ '(scroll-bar-mode nil)
+ '(vertical-scroll-bar nil t)
+ '(tool-bar-mode nil)
+ '(frame-resize-pixelwise t)
+ 
  ;; SECTION: version control
  '(add-log-dont-create-changelog-file t)
+
  ;; SECTION: packages
-  '(package-selected-packages
-    '(twittering-mode rust-mode php-mode org-mime markdown-mode kotlin-mode gradle-mode gnuplot-mode gnuplot flycheck plantuml-mode flycheck-plantuml flycheck-kotlin exec-path-from-shell eglot ebdb dockerfile-mode docker-compose-mode direnv diminish company)))
+ '(package-selected-packages
+   '(twittering-mode
+     esup
+     rust-mode
+     php-mode
+     org-mime
+     markdown-mode
+     kotlin-mode
+     gradle-mode
+     gnuplot-mode
+     gnuplot
+     flycheck
+     plantuml-mode
+     flycheck-plantuml
+     flycheck-kotlin
+     exec-path-from-shell
+     eglot
+     ebdb
+     dockerfile-mode
+     docker-compose-mode
+     direnv
+     diminish
+     company)))
 
 (custom-set-faces
  ;; custom-set-faces was added by user.
