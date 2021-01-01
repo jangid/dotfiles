@@ -1,3 +1,7 @@
+;;; my-init.el --- user customizations
+;;; Commentary:
+;;; Code:
+
 (custom-set-variables
  ;; custom-set-variables was added by user.
 
@@ -21,11 +25,19 @@
  ;; '(calendar-time-zone-style 'numeric))
  ;; '(calendar-standard-time-zone-name "IST")
  ;; '(calendar-daylight-time-zone-name "IST"))
+ '(display-time-day-and-date t)
  '(display-time-mode t)
 
  ;; SECTION: modeline
  '(column-number-mode t)
 
+ ;; TVS keyboard - Hack
+ ;; Probably my right and left switches are swapped inside TVS keyboard.
+ '(mac-command-modifier 'none)
+ '(mac-right-command-modifier 'meta)
+ '(mac-option-modifier 'none)
+ '(mac-right-option-modifier 'super)
+ 
  ;; SECTION: Programming
  '(show-paren-mode t)
  

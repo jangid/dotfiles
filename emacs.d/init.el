@@ -73,7 +73,7 @@
 (require 'init-completion)
 (require 'init-browser)
 (require 'init-diary)
-(require 'init-recentf)
+(require 'init-session)
 (require 'init-cedet)
 (require 'init-speedbar)
 (require 'init-website)
@@ -97,7 +97,9 @@
 (eval-when-compile
   (add-to-list 'load-path
 	       (expand-file-name "use-package" user-emacs-directory))
-  (require 'use-package)
+  (require 'use-package))
+
+(eval-and-compile
   (require 'use-package-ensure-system-package))
 
 (eval-and-compile

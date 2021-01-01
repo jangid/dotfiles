@@ -52,3 +52,5 @@ build.log
 **/*~
 install
 package-quickstart.el
+emacs.d/sessions/emacs.desktop
+emacs.d/sessions/history

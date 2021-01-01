@@ -2,11 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'package)
-
-(setq package-load-list '(all))
-
-(setq package-quickstart t)
+;; pass
 
 (provide 'early-init)
 ;;; early-init.el ends here
