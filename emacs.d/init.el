@@ -240,6 +240,7 @@
   :init
   (setq compose-mail-user-agent-warnings nil)
   (defvar ebdb-mua-pop-up nil)
+  (defvar ebdb-completion-display-record nil)
   ;; :config
   ;; (use-package ebdb-message)
   ;; (use-package ebdb-gnus))

@@ -43,9 +43,9 @@
  
  ;; SECTION: Frame
  '(scroll-bar-mode nil)
- '(vertical-scroll-bar nil t)
+ ;; '(vertical-scroll-bar nil t)
  '(tool-bar-mode nil)
- '(frame-resize-pixelwise t)
+ '(frame-resize-pixelwise nil)
  
  ;; SECTION: version control
  '(add-log-dont-create-changelog-file t)
