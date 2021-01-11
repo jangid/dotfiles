@@ -62,13 +62,15 @@
      gradle-mode
      gnuplot-mode
      gnuplot
-     flycheck
      plantuml-mode
+     flycheck
      flycheck-plantuml
      flycheck-kotlin
      exec-path-from-shell
      eglot
+     which-key
      ebdb
+     yasnippet
      dockerfile-mode
      docker-compose-mode
      direnv

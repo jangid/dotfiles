@@ -3,7 +3,7 @@
 ;;; Code:
 
 (defvar site-project-dir
-  "~/work/code/github/codeisgreat/"	; *do not* remove training slash
+  (file-name-as-directory  "~/work/code/github/codeisgreat")
   "My webstie.")
 
 (defvar org-publish-project-alist
