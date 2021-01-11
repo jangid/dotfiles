@@ -17,8 +17,8 @@
 ;;   This config file is organized as follows:			    ;;
 ;; 								    ;;
 ;;   SECTION 0 - Globals                                            ;;
-;;   SECTION 1 - Configuration of built-in packages		    ;;
-;;   SECTION 2 - Configuration of external packages		    ;;
+;;   SECTION 1 - Configuration of external packages		    ;;
+;;   SECTION 2 - Configuration of built-in packages		    ;;
 ;;   SECTION 3 - Utility functions		                    ;;
 ;; 								    ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -53,44 +53,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
-;;   SECTION 1 - Configuration of built-in packages		    ;;
-;; 								    ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(eval-and-compile
-  (add-to-list 'load-path
-	       (expand-file-name "lisp" user-emacs-directory)))
-
-(require 'init-keys)
-(require 'init-looks)
-(require 'init-auth)
-(require 'init-ibuffer)
-(require 'init-email)
-(require 'init-mime)
-(require 'init-erc)
-(require 'init-crypto)
-(require 'init-prog)
-(require 'init-completion)
-(require 'init-browser)
-(require 'init-diary)
-(require 'init-session)
-(require 'init-cedet)
-(require 'init-speedbar)
-(require 'init-website)
-(require 'init-dired)
-(require 'init-flymake)
-(require 'init-modeline)
-(require 'init-elisp)
-(require 'init-python)
-(require 'init-org)
-(require 'init-eudc)
-(require 'init-java)
-(require 'init-js)
-(require 'init-ruby)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 								    ;;
-;;   SECTION 2 - Configuration of external packages		    ;;
+;;   SECTION 1 - Configuration of external packages		    ;;
 ;; 								    ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -104,7 +67,7 @@
 
 (eval-and-compile
   (prog1 "essential-packages"
-    (let ((pkgs-all (list)); (list 'bind-key 'diminish))
+    (let ((pkgs-all (list 'diminish)); (list 'bind-key 'diminish))
 	  (pkgs-to-install (list)))
 
       (setq package-archives
@@ -133,8 +96,39 @@
 	    (dolist (pkg pkgs-to-install)
 	      (package-install pkg)))))))
 
+;; Exec Path - first package after initializing use-package and
+;; accessories
+(use-package exec-path-from-shell
+  :if window-system
+  :init
+  (defvar exec-path-from-shell-arguments '("-i"))
+  :config
+  (exec-path-from-shell-initialize))
+
+(use-package hideshow
+  :diminish
+  (hs-minor-mode . "hs"))
+
+(use-package eldoc
+  :diminish
+  (eldoc-mode . "el"))
+
+(use-package abbrev
+  :diminish
+  (abbrev-mode . "ab"))
+
+;; Yasnippet
+(use-package yasnippet
+  :diminish
+  (yas-minor-mode . "ys")
+  :hook
+  ((rust-mode . yas-minor-mode)
+   (python-mode . yas-minor-mode)))
+
 ;; Company
 (use-package company
+  :diminish
+  (company-mode . "co")
   :hook ((rust-mode . company-mode)
 	 (python-mode . company-mode)))
 
@@ -152,31 +146,36 @@
 (use-package dockerfile-mode)
 (use-package docker-compose-mode)
 
+(use-package which-key
+  :config
+  (which-key-mode)
+  :diminish
+  (which-key-mode . "wk"))
+
 ;; Eglot
 (use-package eglot
-  :ensure-system-package
-  ((python3)
-   (pip3 . python3-pip))
+  ;; :ensure-system-package
+  ;; ((python3)
+  ;;  (pip3 . python3-pip))
+  :config
+  (add-to-list 'eglot-server-programs
+	       '((js-mode typescript-mode)
+		 ("typescript-language-server" "--stdio")))
   :hook
   (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
    (rust-mode . eglot-ensure)
-   ;; pip3 install 'python-language-server[a;;]'
-   (python-mode . eglot-ensure)))
+   ;; pip3 install 'python-language-server[all]'
+   (python-mode . eglot-ensure)
+   ;; npm i -g typescrypt-language-server; npm i -g typescript
+   (js-mode . eglot-ensure)))
 
 ;;	 (js-mode . eglot-ensure)))
 
-;; Exec Path
-(use-package exec-path-from-shell
-  :if window-system
-  :init
-  (defvar exec-path-from-shell-arguments '("-i"))
-  :config
-  (exec-path-from-shell-initialize))
-
 ;; flycheck
 ;; (use-package flycheck
-;;   :hook ((kotlin-mode . flycheck-mode)
-;; 	 (plantuml-mode . flycheck-mode)))
+;;   :hook
+;;   ;; npm i -g eslint
+;;   ((js-mode . flycheck-mode)))
 
 ;; kotlin, gradle
 ;; (use-package kotlin-mode
@@ -250,7 +249,46 @@
 		     (use-package ebdb-gnus))))
 
 ;; velocity templates
-(require 'vtl)
+(require 'vtl
+	 (expand-file-name "vtl.el"
+			   (expand-file-name "lisp" user-emacs-directory)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 								    ;;
+;;   SECTION 2 - Configuration of built-in packages		    ;;
+;; 								    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(eval-and-compile
+  (add-to-list 'load-path
+	       (expand-file-name "lisp" user-emacs-directory)))
+
+(require 'init-keys)
+(require 'init-looks)
+(require 'init-auth)
+(require 'init-ibuffer)
+(require 'init-email)
+(require 'init-mime)
+(require 'init-erc)
+(require 'init-crypto)
+(require 'init-prog)
+(require 'init-completion)
+(require 'init-browser)
+(require 'init-diary)
+(require 'init-session)
+(require 'init-cedet)
+(require 'init-speedbar)
+(require 'init-website)
+(require 'init-dired)
+(require 'init-flymake)
+(require 'init-modeline)
+(require 'init-elisp)
+(require 'init-python)
+(require 'init-org)
+(require 'init-eudc)
+(require 'init-java)
+(require 'init-js)
+(require 'init-ruby)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
