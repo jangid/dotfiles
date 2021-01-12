@@ -2,28 +2,30 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'org)
+;;(require 'org)
 
 (add-hook 'message-mode-hook
 	  (lambda ()
 	    (declare-function turn-on-orgtbl "org-table")
 	    (turn-on-orgtbl)))
 
-(add-hook 'org-mode-hook
-	  (lambda ()
-	    (org-indent-mode -1)))
+;; (add-hook 'org-mode-hook
+;; 	  (lambda ()
+;; 	    (org-indent-mode -1)))
 
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)
-   (R . t)
-   (python . t)
-   (C . t)
-   (java . t)
-   (js . t)
-   (css . t)
-   (sql . t)
-   (plantuml . t)))
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (org-babel-do-load-languages
+	     'org-babel-load-languages
+	     '((emacs-lisp . t)
+	       (R . t)
+	       (python . t)
+	       (C . t)
+	       (java . t)
+	       (js . t)
+	       (css . t)
+	       (sql . t)
+	       (plantuml . t)))))
 
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
