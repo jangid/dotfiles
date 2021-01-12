@@ -77,8 +77,8 @@
 	       (expand-file-name "use-package" user-emacs-directory))
   (require 'use-package))
 
-(eval-and-compile
-  (require 'use-package-ensure-system-package))
+;; (eval-and-compile
+;;   (require 'use-package-ensure-system-package))
 
 (eval-and-compile
   (prog1 "essential-packages"

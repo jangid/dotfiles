@@ -1,99 +1,127 @@
 all: early-init.elc init.elc my-init.elc install
 
 OPTIONS = -Q -batch -L lisp -f batch-byte-compile
+EMACS = /Users/pankaj/work/code/savannah/emacs/src/emacs
 
 early-init.elc: early-init.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 init.elc: init.el \
 	lisp/init-keys.elc \
+	lisp/init-looks.elc \
 	lisp/init-auth.elc \
 	lisp/init-ibuffer.elc \
 	lisp/init-email.elc \
+	lisp/init-mime.elc \
 	lisp/init-erc.elc \
+	lisp/init-crypto.elc \
+	lisp/init-prog.elc \
 	lisp/init-completion.elc \
 	lisp/init-browser.elc \
 	lisp/init-diary.elc \
-	lisp/init-recentf.elc \
+	lisp/init-session.elc \
 	lisp/init-cedet.elc \
 	lisp/init-speedbar.elc \
 	lisp/init-website.elc \
 	lisp/init-dired.elc \
-	lisp/init-looks.elc \
+	lisp/init-flymake.elc \
 	lisp/init-modeline.elc \
 	lisp/init-elisp.elc \
-	lisp/init-crypto.elc \
-	lisp/init-prog.elc \
+	lisp/init-python.elc \
+	lisp/init-org.elc \
 	lisp/init-eudc.elc \
-	lisp/init-flymake.elc
-	emacs $(OPTIONS) $<
+	lisp/init-java.elc \
+	lisp/init-js.elc \
+	lisp/init-ruby.elc
+	$(EMACS) $(OPTIONS) $<
 
 my-init.elc: my-init.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 install: early-init.el init.el
-	emacs -batch -l early-init.el -l init.el -f my-install-or-update
+	$(EMACS) -Q -batch -l early-init.el -l init.el -f my-install-or-update
 	touch install
 
 lisp/init-keys.elc: lisp/init-keys.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-auth.elc: lisp/init-auth.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
+
+lisp/init-mime.elc: lisp/init-mime.el
+	$(EMACS) $(OPTIONS) $<
+
+lisp/init-session.elc: lisp/init-session.el
+	$(EMACS) $(OPTIONS) $<
+
+lisp/init-python.elc: lisp/init-python.el
+	$(EMACS) $(OPTIONS) $<
+
+lisp/init-ruby.elc: lisp/init-ruby.el
+	$(EMACS) $(OPTIONS) $<
+
+lisp/init-js.elc: lisp/init-js.el
+	$(EMACS) $(OPTIONS) $<
+
+lisp/init-java.elc: lisp/init-java.el
+	$(EMACS) $(OPTIONS) $<
+
+lisp/init-org.elc: lisp/init-org.el
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-ibuffer.elc: lisp/init-ibuffer.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-email.elc: lisp/init-email.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-erc.elc: lisp/init-erc.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-completion.elc: lisp/init-completion.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-browser.elc: lisp/init-browser.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-diary.elc: lisp/init-diary.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-recentf.elc: lisp/init-recentf.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-cedet.elc: lisp/init-cedet.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-speedbar.elc: lisp/init-speedbar.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-website.elc: lisp/init-website.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-dired.elc: lisp/init-dired.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-looks.elc: lisp/init-looks.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-modeline.elc: lisp/init-modeline.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-elisp.elc: lisp/init-elisp.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-crypto.elc: lisp/init-crypto.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-prog.elc: lisp/init-prog.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-eudc.elc: lisp/init-eudc.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 lisp/init-flymake.elc: lisp/init-flymake.el
-	emacs $(OPTIONS) $<
+	$(EMACS) $(OPTIONS) $<
 
 clean:
 	rm -rf early-init.elc init.elc my-init.elc install lisp/*.elc

@@ -7,7 +7,7 @@
    (concat user-emacs-directory "sessions"))
   "Directory to store Emacs desktop sessions and minibuffer history.")
 
-(eval-when-compile (require 'desktop))
+(require 'desktop)
 (setq desktop-restore-eager 5)
 (add-to-list 'desktop-path sessions-directory)
 (setq desktop-base-file-name "emacs.desktop") ; not a hidden file
