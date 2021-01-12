@@ -47,6 +47,21 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
+;; Environment
+(add-to-list 'exec-path "/sbin")
+(add-to-list 'exec-path "/usr/sbin")
+(add-to-list 'exec-path "/bin")
+(add-to-list 'exec-path "/usr/bin")
+(add-to-list 'exec-path "/usr/localbin")
+(add-to-list 'exec-path "/Users/pankaj/go/bin")
+;; (add-to-list 'exec-path "~/Applications/Emacs.app/Contents/MacOS")
+(add-to-list 'exec-path "/Library/TeX/texbin")
+(add-to-list 'exec-path "/Library/Apple/usr/bin")
+(add-to-list 'exec-path "~/.cargo/bin")
+
+(setenv "PATH" (mapconcat 'identity exec-path ":"))
+(setenv "RUST_SRC_PATH""~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/")
+
 ;; start server for emacsclient support
 (require 'server)
 (unless (server-running-p) (server-start))
@@ -91,19 +106,10 @@
       ;; (message "PackageToInstall %s" pkgs-to-install)
       
       (unless (null pkgs-to-install)	; packages to install?
-	  (progn
-	    (package-refresh-contents)
-	    (dolist (pkg pkgs-to-install)
-	      (package-install pkg)))))))
-
-;; Exec Path - first package after initializing use-package and
-;; accessories
-(use-package exec-path-from-shell
-  :if window-system
-  :init
-  (defvar exec-path-from-shell-arguments '("-i"))
-  :config
-  (exec-path-from-shell-initialize))
+	(progn
+	  (package-refresh-contents)
+	  (dolist (pkg pkgs-to-install)
+	    (package-install pkg)))))))
 
 (use-package hideshow
   :diminish
@@ -147,6 +153,8 @@
 (use-package docker-compose-mode)
 
 (use-package which-key
+  :init
+  (setq which-key-idle-delay 3.0)
   :config
   (which-key-mode)
   :diminish
@@ -235,18 +243,18 @@
 
 ;; Ebdb
 ;; TODO - load time is too much for this package.
-(use-package ebdb
-  :init
-  (setq compose-mail-user-agent-warnings nil)
-  (defvar ebdb-mua-pop-up nil)
-  (defvar ebdb-completion-display-record nil)
-  ;; :config
-  ;; (use-package ebdb-message)
-  ;; (use-package ebdb-gnus))
-  :hook
-  (emacs-startup . (lambda ()
-		     (use-package ebdb-message)
-		     (use-package ebdb-gnus))))
+;; (use-package ebdb
+;;   :init
+;;   (setq compose-mail-user-agent-warnings nil)
+;;   (defvar ebdb-mua-pop-up nil)
+;;   (defvar ebdb-completion-display-record nil)
+;;   ;; :config
+;;   ;; (use-package ebdb-message)
+;;   ;; (use-package ebdb-gnus))
+;;   :hook
+;;   (emacs-startup . (lambda ()
+;; 		     (use-package ebdb-message)
+;; 		     (use-package ebdb-gnus))))
 
 ;; velocity templates
 (require 'vtl
@@ -311,8 +319,6 @@
 (setq my-init-file (expand-file-name "my-init.el" user-emacs-directory))
 (when (file-exists-p my-init-file)
   (load my-init-file))
-
-(setq inhibit-startup-echo-area-message "pankaj")
 
 (provide 'init)
 ;;; init.el ends here
