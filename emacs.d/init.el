@@ -60,7 +60,7 @@
 (add-to-list 'exec-path "~/.cargo/bin")
 
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
-(setenv "RUST_SRC_PATH""~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/")
+(setenv "RUST_SRC_PATH" "~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/")
 
 ;; start server for emacsclient support
 (require 'server)
@@ -243,23 +243,24 @@
 
 ;; Ebdb
 ;; TODO - load time is too much for this package.
-;; (use-package ebdb
-;;   :init
-;;   (setq compose-mail-user-agent-warnings nil)
-;;   (defvar ebdb-mua-pop-up nil)
-;;   (defvar ebdb-completion-display-record nil)
-;;   ;; :config
-;;   ;; (use-package ebdb-message)
-;;   ;; (use-package ebdb-gnus))
-;;   :hook
-;;   (emacs-startup . (lambda ()
-;; 		     (use-package ebdb-message)
-;; 		     (use-package ebdb-gnus))))
+(use-package ebdb
+  :init
+  (setq compose-mail-user-agent-warnings nil)
+  (defvar ebdb-mua-pop-up nil)
+  (defvar ebdb-completion-display-record nil)
+  ;; :config
+  ;; (use-package ebdb-message)
+  ;; (use-package ebdb-gnus))
+  :hook
+  (emacs-startup . (lambda ()
+		     (use-package ebdb-message)
+		     (use-package ebdb-gnus))))
 
 ;; velocity templates
 (require 'vtl
-	 (expand-file-name "vtl.el"
-			   (expand-file-name "lisp" user-emacs-directory)))
+	 (expand-file-name
+	  "vtl.el"
+	  (expand-file-name "lisp" user-emacs-directory)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
@@ -316,7 +317,8 @@
 
 ;; user specific init file, loaded after everything else - my-init.el
 (defvar my-init-file)
-(setq my-init-file (expand-file-name "my-init.el" user-emacs-directory))
+(setq my-init-file
+      (expand-file-name "my-init.el" user-emacs-directory))
 (when (file-exists-p my-init-file)
   (load my-init-file))
 
