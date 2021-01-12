@@ -52,7 +52,7 @@
 (add-to-list 'exec-path "/usr/sbin")
 (add-to-list 'exec-path "/bin")
 (add-to-list 'exec-path "/usr/bin")
-(add-to-list 'exec-path "/usr/localbin")
+(add-to-list 'exec-path "/usr/local/bin")
 (add-to-list 'exec-path "/Users/pankaj/go/bin")
 ;; (add-to-list 'exec-path "~/Applications/Emacs.app/Contents/MacOS")
 (add-to-list 'exec-path "/Library/TeX/texbin")
