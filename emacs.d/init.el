@@ -24,7 +24,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; Code:
-
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
 ;;   SECTION 0 - Globals                                            ;;
@@ -65,7 +65,7 @@
 ;; start server for emacsclient support
 (require 'server)
 (unless (server-running-p) (server-start))
-
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
 ;;   SECTION 1 - Configuration of external packages		    ;;
@@ -261,7 +261,7 @@
 	 (expand-file-name
 	  "vtl.el"
 	  (expand-file-name "lisp" user-emacs-directory)))
-
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
 ;;   SECTION 2 - Configuration of built-in packages		    ;;
@@ -298,7 +298,7 @@
 (require 'init-java)
 (require 'init-js)
 (require 'init-ruby)
-
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
 ;;   SECTION 3 - Utility functions		                    ;;
