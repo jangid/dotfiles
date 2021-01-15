@@ -3,8 +3,8 @@
 ;;; Code:
 
 ;; Startup Files
-(defvar gnus-init-file "~/Documents/gnus/gnus")
-(defvar gnus-startup-file "~/Documents/gnus/newsrc")
+(defvar gnus-init-file "~/.gnus")
+(defvar gnus-startup-file "~/.newsrc")
 
 ;; SMTP
 (setq send-mail-function 'smtpmail-send-it)
