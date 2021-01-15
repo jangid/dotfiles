@@ -4,9 +4,17 @@
 
 ;; TODO read nickname, fullname from file
 (defun my/erc-connect-freenode ()
-  "Connect to irc.freenode.net."
+  "Connect to chat.freenode.net."
   (interactive)
-  (erc :server "irc.freenode.net"
+  (erc :server "chat.freenode.net"
+       :port 6667
+       :nick "jangid"
+       :full-name "Pankaj Jangid"))
+
+(defun my/erc-connect-oftc ()
+  "Connect to irc.oftc.net."
+  (interactive)
+  (erc :server "irc.oftc.net"
        :port 6667
        :nick "jangid"
        :full-name "Pankaj Jangid"))
@@ -19,11 +27,17 @@
 	   :nick "jangid"
 	   :full-name "Pankaj Jangid"))
 
+(defvar erc-prompt-for-password nil)
 
 ;; Setup global key bindings to connect to IRC network
 (global-set-key (kbd "C-c e f") 'my/erc-connect-freenode)
 (global-set-key (kbd "C-c e g") 'my/erc-connect-gitter)
+(global-set-key (kbd "C-c e o") 'my/erc-connect-oftc)
 
+;; Join these channels whenever connecting to servers
+(defvar erc-autojoin-channels-alist
+  '(("freenode.net" "#emacs" "#erc ""#debian" "#python" "#arduino")
+    ("oftc.net" "#debian-india" "#fsci")))
 
 ;; Setup local key bindings i.e. while ERC is active
 (add-hook 'erc-mode-hook
@@ -31,12 +45,6 @@
 	    (local-set-key (kbd "RET") nil)
 	    (local-set-key (kbd "C-c RET") 'erc-send-current-line)
 	    (local-set-key (kbd "C-c C-RET") 'erc-send-current-line)))
-
-;; Some useful irc channel
-;; freenode.net"
-;; "#emacs" "#erc" "#postgresql" "##rust" "#rust-embedded"
-;; "#python" "##javascript" "#docker" "##electronics" "#arduino"
-;; "#arduino-ops" "#sr.ht")))
 
 (provide 'init-erc)
 ;;; init-erc.el ends here
