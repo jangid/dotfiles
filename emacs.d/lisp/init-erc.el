@@ -27,7 +27,7 @@
 	   :nick "jangid"
 	   :full-name "Pankaj Jangid"))
 
-(defvar erc-prompt-for-password nil)
+;; (defvar erc-prompt-for-password nil)
 
 ;; Setup global key bindings to connect to IRC network
 (global-set-key (kbd "C-c e f") 'my/erc-connect-freenode)
@@ -35,9 +35,11 @@
 (global-set-key (kbd "C-c e o") 'my/erc-connect-oftc)
 
 ;; Join these channels whenever connecting to servers
+;; (defvar erc-autojoin-channels-alist
+;;   '(("freenode.net" "#emacs" "#erc" "#debian" "#python" "#arduino")
+;;     ("oftc.net" "#debian-india" "#fsci")))
 (defvar erc-autojoin-channels-alist
-  '(("freenode.net" "#emacs" "#erc ""#debian" "#python" "#arduino")
-    ("oftc.net" "#debian-india" "#fsci")))
+  '(("freenode.net" "#erc")))
 
 ;; Setup local key bindings i.e. while ERC is active
 (add-hook 'erc-mode-hook
