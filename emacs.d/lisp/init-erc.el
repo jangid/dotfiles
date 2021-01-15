@@ -27,8 +27,6 @@
 	   :nick "jangid"
 	   :full-name "Pankaj Jangid"))
 
-;; (defvar erc-prompt-for-password nil)
-
 ;; Setup global key bindings to connect to IRC network
 (global-set-key (kbd "C-c e f") 'my/erc-connect-freenode)
 (global-set-key (kbd "C-c e g") 'my/erc-connect-gitter)
