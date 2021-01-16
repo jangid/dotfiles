@@ -269,14 +269,13 @@
 (require 'init-erc)
 (require 'init-diary)
 (require 'init-session)
+(require 'init-org)
 (require 'init-website)
 (require 'init-flymake)
 (require 'init-elisp)
 (require 'init-python)
-(require 'init-org)
 (require 'init-java)
 (require 'init-js)
-(require 'init-ruby)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;

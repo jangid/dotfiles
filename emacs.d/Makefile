@@ -20,7 +20,6 @@ init.elc: init.el \
 	lisp/init-org.elc \
 	lisp/init-java.elc \
 	lisp/init-js.elc \
-	lisp/init-ruby.elc
 	$(EMACS) $(OPTIONS) $<
 
 my-init.elc: my-init.el
@@ -37,9 +36,6 @@ lisp/init-session.elc: lisp/init-session.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-python.elc: lisp/init-python.el
-	$(EMACS) $(OPTIONS) $<
-
-lisp/init-ruby.elc: lisp/init-ruby.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-js.elc: lisp/init-js.el
