@@ -51,9 +51,9 @@
  '(add-log-dont-create-changelog-file t)
 
  ;; SECTION erc
- '(erc-prompt-for-password nil)
- '(erc-prompt-for-nickserv-password nil)
- '(erc-use-auth-source-for-nickserv-password t)
+ '(erc-prompt-for-password t)
+ '(erc-prompt-for-nickserv-password t)
+ '(erc-use-auth-source-for-nickserv-password nil)
 
  ;; SECTION: packages
  '(package-selected-packages

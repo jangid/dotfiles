@@ -2,6 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
+;; (require 'erc-services)
+;; (erc-services-mode 1)
+
 ;; TODO read nickname, fullname from file
 (defun my/erc-connect-freenode ()
   "Connect to chat.freenode.net."
