@@ -9,14 +9,10 @@ early-init.elc: early-init.el
 init.elc: init.el \
 	lisp/init-keys.elc \
 	lisp/init-looks.elc \
-	lisp/init-auth.elc \
 	lisp/init-ibuffer.elc \
 	lisp/init-email.elc \
-	lisp/init-mime.elc \
 	lisp/init-erc.elc \
 	lisp/init-prog.elc \
-	lisp/init-completion.elc \
-	lisp/init-browser.elc \
 	lisp/init-diary.elc \
 	lisp/init-session.elc \
 	lisp/init-cedet.elc \
@@ -44,12 +40,6 @@ install: early-init.el init.el
 lisp/init-keys.elc: lisp/init-keys.el
 	$(EMACS) $(OPTIONS) $<
 
-lisp/init-auth.elc: lisp/init-auth.el
-	$(EMACS) $(OPTIONS) $<
-
-lisp/init-mime.elc: lisp/init-mime.el
-	$(EMACS) $(OPTIONS) $<
-
 lisp/init-session.elc: lisp/init-session.el
 	$(EMACS) $(OPTIONS) $<
 
@@ -75,12 +65,6 @@ lisp/init-email.elc: lisp/init-email.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-erc.elc: lisp/init-erc.el
-	$(EMACS) $(OPTIONS) $<
-
-lisp/init-completion.elc: lisp/init-completion.el
-	$(EMACS) $(OPTIONS) $<
-
-lisp/init-browser.elc: lisp/init-browser.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-diary.elc: lisp/init-diary.el
