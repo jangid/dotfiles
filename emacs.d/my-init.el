@@ -50,6 +50,11 @@
  ;; SECTION: version control
  '(add-log-dont-create-changelog-file t)
 
+ ;; SECTION browswer
+ '(browse-url-browser-function 'eww-browse-url)
+ ;; '(shr-color-visible-distance-min 100)
+ '(shr-color-visible-luminance-min 70)
+
  ;; SECTION mime
  '(mailcap-user-mime-data nil)
  

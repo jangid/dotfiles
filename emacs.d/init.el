@@ -269,7 +269,6 @@
 (require 'init-email)
 (require 'init-erc)
 (require 'init-prog)
-(require 'init-browser)
 (require 'init-diary)
 (require 'init-session)
 (require 'init-cedet)
