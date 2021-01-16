@@ -50,6 +50,18 @@
  ;; SECTION: version control
  '(add-log-dont-create-changelog-file t)
 
+ ;; SECTION semantic
+ '(semantic-default-submodes
+   '(global-semanticdb-minor-mode
+     global-semantic-idle-scheduler-mode
+     global-semantic-idle-summary-mode
+     global-semantic-idle-completions-mode))
+ ;; Enable/disable semantic mode and submodes for various programming
+ ;; languages using these two variables:
+ ;;
+ ;;  -- semantic-new-buffer-setup-functions
+ ;;  -- semantic-default-submodes
+
  ;; SECTION browswer
  '(browse-url-browser-function 'eww-browse-url)
  ;; '(shr-color-visible-distance-min 100)
