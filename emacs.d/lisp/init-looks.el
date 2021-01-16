@@ -44,6 +44,8 @@
 	  ((and (eq width 120) (eq height 41))
 	   (set-frame-size nil 160 46))
 	  ((and (eq width 160) (eq height 46))
+	   (set-frame-size nil 80 46))
+	  ((and (eq width 80) (eq height 46))
 	   (set-frame-size nil 80 36))
 	  (t (set-frame-size nil 80 36))) ; default
     
