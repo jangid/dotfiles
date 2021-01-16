@@ -14,8 +14,8 @@
     (disable-theme 'modus-vivendi)
     (load-theme 'modus-operandi t)))
 
-;; (when (window-system)
-;;   (load-theme 'modus-operandi))
+(when (window-system)
+  (load-theme 'modus-operandi))
 
 ;; Font
 
