@@ -11,7 +11,6 @@ init.elc: init.el \
 	lisp/init-looks.elc \
 	lisp/init-email.elc \
 	lisp/init-erc.elc \
-	lisp/init-prog.elc \
 	lisp/init-diary.elc \
 	lisp/init-session.elc \
 	lisp/init-website.elc \
@@ -71,9 +70,6 @@ lisp/init-looks.elc: lisp/init-looks.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-elisp.elc: lisp/init-elisp.el
-	$(EMACS) $(OPTIONS) $<
-
-lisp/init-prog.elc: lisp/init-prog.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-flymake.elc: lisp/init-flymake.el

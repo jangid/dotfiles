@@ -81,6 +81,13 @@
  ;; SECTION EasyPG
  '(epg-pinentry-mode 'loopback)
 
+ ;; SECTION programming
+ '(prog-mode-hook
+   '(abbrev-mode
+     hs-minor-mode
+     electric-pair-local-mode
+     display-line-numbers-mode))
+ 
  ;; SECTION Email
  '(mml-secure-openpgp-encrypt-to-self t)
  '(mml-secure-openpgp-signers '("7C956E6FF8587689"))

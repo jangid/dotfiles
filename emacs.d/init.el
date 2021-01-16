@@ -267,7 +267,6 @@
 (require 'init-looks)
 (require 'init-email)
 (require 'init-erc)
-(require 'init-prog)
 (require 'init-diary)
 (require 'init-session)
 (require 'init-website)
