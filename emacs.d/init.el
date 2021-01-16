@@ -166,7 +166,9 @@
    ;; pip3 install 'python-language-server[all]'
    (python-mode . eglot-ensure)
    ;; npm i -g typescrypt-language-server; npm i -g typescript
-   (js-mode . eglot-ensure)))
+   (js-mode . eglot-ensure)
+   ;; install ruby lang server
+   (ruby-mode . eglot-ensure)))
 
 ;;	 (js-mode . eglot-ensure)))
 
@@ -202,7 +204,8 @@
 ;; org - TODO
 ;; (use-package org-mime
 ;;   :init
-;;   (defvar org-mime-library 'mml))
+;;   (defvar org-mime-library)
+;;   (setq org-mime-library 'mml))
 
 ;; gnuplot
 ;; (use-package gnuplot)
