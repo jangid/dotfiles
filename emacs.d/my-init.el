@@ -53,7 +53,20 @@
  ;; SECTION erc
  '(erc-prompt-for-password t)
  '(erc-prompt-for-nickserv-password t)
- '(erc-use-auth-source-for-nickserv-password nil)
+ '(erc-use-auth-source-for-nickserv-password t)
+
+ ;; SECTION EasyPG
+ '(epg-pinentry-mode 'loopback)
+
+ ;; SECTION Email
+ '(mml-secure-openpgp-encrypt-to-self t)
+ '(mml-secure-openpgp-signers '("7C956E6FF8587689"))
+ '(mml-secure-openpgp-sign-with-sender t)
+
+ '(gnus-init-file "~/.gnus")
+ '(gnus-startup-file "~/.newsrc")
+
+ '(send-mail-function 'smtpmail-send-it)
 
  ;; SECTION: packages
  '(package-selected-packages

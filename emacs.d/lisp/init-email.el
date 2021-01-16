@@ -2,13 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Startup Files
-(defvar gnus-init-file "~/.gnus")
-(defvar gnus-startup-file "~/.newsrc")
-
-;; SMTP
-(setq send-mail-function 'smtpmail-send-it)
-
 ;; Enable electric quote mode in message-mode
 (add-hook 'message-mode-hook 'electric-quote-mode)
 
