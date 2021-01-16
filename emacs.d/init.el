@@ -139,14 +139,6 @@
 
 (use-package esup)
 
-;; Direnv
-;; (use-package direnv
-;;   :ensure t
-;;   :ensure-system-package direnv
-;;   :config
-;;   (declare-function direnv-mode "direnv")
-;;   (direnv-mode +1))
-
 ;; Docker
 (use-package dockerfile-mode)
 (use-package docker-compose-mode)
@@ -273,7 +265,6 @@
 
 (require 'init-keys)
 (require 'init-looks)
-(require 'init-auth)
 (require 'init-ibuffer)
 (require 'init-email)
 (require 'init-mime)

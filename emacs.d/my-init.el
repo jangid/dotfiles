@@ -50,6 +50,9 @@
  ;; SECTION: version control
  '(add-log-dont-create-changelog-file t)
 
+ ;; SECTION Auth Source
+ '(auth-sources '("~/.authinfo.gpg"))
+ 
  ;; SECTION erc
  '(erc-prompt-for-password t)
  '(erc-prompt-for-nickserv-password t)

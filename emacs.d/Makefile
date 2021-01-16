@@ -14,7 +14,6 @@ init.elc: init.el \
 	lisp/init-email.elc \
 	lisp/init-mime.elc \
 	lisp/init-erc.elc \
-	lisp/init-crypto.elc \
 	lisp/init-prog.elc \
 	lisp/init-completion.elc \
 	lisp/init-browser.elc \
@@ -109,9 +108,6 @@ lisp/init-modeline.elc: lisp/init-modeline.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-elisp.elc: lisp/init-elisp.el
-	$(EMACS) $(OPTIONS) $<
-
-lisp/init-crypto.elc: lisp/init-crypto.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-prog.elc: lisp/init-prog.el
