@@ -87,6 +87,10 @@
      hs-minor-mode
      electric-pair-local-mode
      display-line-numbers-mode))
+
+ ;; SECTION python
+ '(python-shell-interpreter "python3")
+ '(python-indent-guess-indent-offset-verbose nil)
  
  ;; SECTION Email
  '(mml-secure-openpgp-encrypt-to-self t)

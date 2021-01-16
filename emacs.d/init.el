@@ -273,7 +273,6 @@
 (require 'init-website)
 (require 'init-flymake)
 (require 'init-elisp)
-(require 'init-python)
 (require 'init-java)
 (require 'init-js)
 

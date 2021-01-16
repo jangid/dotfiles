@@ -16,7 +16,6 @@ init.elc: init.el \
 	lisp/init-website.elc \
 	lisp/init-flymake.elc \
 	lisp/init-elisp.elc \
-	lisp/init-python.elc \
 	lisp/init-org.elc \
 	lisp/init-java.elc \
 	lisp/init-js.elc \
@@ -33,9 +32,6 @@ lisp/init-keys.elc: lisp/init-keys.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-session.elc: lisp/init-session.el
-	$(EMACS) $(OPTIONS) $<
-
-lisp/init-python.elc: lisp/init-python.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-js.elc: lisp/init-js.el
