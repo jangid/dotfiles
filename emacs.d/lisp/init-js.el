@@ -7,9 +7,6 @@
 
 ;;; Code:
 
-;; (declare-function tern-mode "tern.el")
-;; (add-hook 'js-mode-hook (lambda () (tern-mode t))))
-
 (add-to-list 'auto-mode-alist
 	     `(,(regexp-opt '(".mjs" ".cjs")) . js-mode))
 
