@@ -265,7 +265,6 @@
 
 (require 'init-keys)
 (require 'init-looks)
-(require 'init-ibuffer)
 (require 'init-email)
 (require 'init-erc)
 (require 'init-prog)

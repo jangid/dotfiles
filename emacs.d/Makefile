@@ -9,7 +9,6 @@ early-init.elc: early-init.el
 init.elc: init.el \
 	lisp/init-keys.elc \
 	lisp/init-looks.elc \
-	lisp/init-ibuffer.elc \
 	lisp/init-email.elc \
 	lisp/init-erc.elc \
 	lisp/init-prog.elc \
@@ -51,9 +50,6 @@ lisp/init-java.elc: lisp/init-java.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-org.elc: lisp/init-org.el
-	$(EMACS) $(OPTIONS) $<
-
-lisp/init-ibuffer.elc: lisp/init-ibuffer.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-email.elc: lisp/init-email.el
