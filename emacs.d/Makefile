@@ -15,8 +15,6 @@ init.elc: init.el \
 	lisp/init-prog.elc \
 	lisp/init-diary.elc \
 	lisp/init-session.elc \
-	lisp/init-cedet.elc \
-	lisp/init-speedbar.elc \
 	lisp/init-website.elc \
 	lisp/init-dired.elc \
 	lisp/init-flymake.elc \
@@ -71,12 +69,6 @@ lisp/init-diary.elc: lisp/init-diary.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-recentf.elc: lisp/init-recentf.el
-	$(EMACS) $(OPTIONS) $<
-
-lisp/init-cedet.elc: lisp/init-cedet.el
-	$(EMACS) $(OPTIONS) $<
-
-lisp/init-speedbar.elc: lisp/init-speedbar.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-website.elc: lisp/init-website.el

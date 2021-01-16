@@ -271,8 +271,6 @@
 (require 'init-prog)
 (require 'init-diary)
 (require 'init-session)
-(require 'init-cedet)
-(require 'init-speedbar)
 (require 'init-website)
 (require 'init-dired)
 (require 'init-flymake)
