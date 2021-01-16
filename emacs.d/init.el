@@ -267,7 +267,6 @@
 (require 'init-looks)
 (require 'init-ibuffer)
 (require 'init-email)
-(require 'init-mime)
 (require 'init-erc)
 (require 'init-prog)
 (require 'init-completion)

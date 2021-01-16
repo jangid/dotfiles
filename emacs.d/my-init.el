@@ -50,6 +50,9 @@
  ;; SECTION: version control
  '(add-log-dont-create-changelog-file t)
 
+ ;; SECTION mime
+ '(mailcap-user-mime-data nil)
+ 
  ;; SECTION Auth Source
  '(auth-sources '("~/.authinfo.gpg"))
  
