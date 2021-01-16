@@ -16,13 +16,10 @@ init.elc: init.el \
 	lisp/init-diary.elc \
 	lisp/init-session.elc \
 	lisp/init-website.elc \
-	lisp/init-dired.elc \
 	lisp/init-flymake.elc \
-	lisp/init-modeline.elc \
 	lisp/init-elisp.elc \
 	lisp/init-python.elc \
 	lisp/init-org.elc \
-	lisp/init-eudc.elc \
 	lisp/init-java.elc \
 	lisp/init-js.elc \
 	lisp/init-ruby.elc
@@ -74,22 +71,13 @@ lisp/init-recentf.elc: lisp/init-recentf.el
 lisp/init-website.elc: lisp/init-website.el
 	$(EMACS) $(OPTIONS) $<
 
-lisp/init-dired.elc: lisp/init-dired.el
-	$(EMACS) $(OPTIONS) $<
-
 lisp/init-looks.elc: lisp/init-looks.el
-	$(EMACS) $(OPTIONS) $<
-
-lisp/init-modeline.elc: lisp/init-modeline.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-elisp.elc: lisp/init-elisp.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-prog.elc: lisp/init-prog.el
-	$(EMACS) $(OPTIONS) $<
-
-lisp/init-eudc.elc: lisp/init-eudc.el
 	$(EMACS) $(OPTIONS) $<
 
 lisp/init-flymake.elc: lisp/init-flymake.el
