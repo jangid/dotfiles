@@ -1,3 +1,4 @@
+*.bk
 custom.el
 elpa
 network-security.data
