@@ -269,7 +269,6 @@
 (require 'init-email)
 (require 'init-erc)
 (require 'init-prog)
-(require 'init-completion)
 (require 'init-browser)
 (require 'init-diary)
 (require 'init-session)
