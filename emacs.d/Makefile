@@ -1,10 +1,12 @@
-all: early-init.elc init.elc my-init.elc install
+all: elc install
 
 OPTIONS = -Q -batch -L lisp -f batch-byte-compile
 EMACS = /Users/pankaj/work/code/savannah/emacs/src/emacs
 
 early-init.elc: early-init.el
 	$(EMACS) $(OPTIONS) $<
+
+elc: early-init.elc init.elc my-init.elc
 
 init.elc: init.el \
 	lisp/init-keys.elc \
