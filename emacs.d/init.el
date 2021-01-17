@@ -80,35 +80,10 @@
 ;;   (require 'use-package-ensure-system-package))
 
 (eval-and-compile
-  (prog1 "essential-packages"
-    (let ((pkgs-all (list 'diminish)); (list 'bind-key 'diminish))
-	  (pkgs-to-install (list)))
-
-      (setq package-archives
-	    '(("melpa" . "https://melpa.org/packages/")
-	      ("elpa"   . "https://elpa.gnu.org/packages/")
-	      ("nongnu" . "http://elpa.nongnu.org/nongnu/")))
-      
-      (eval-when-compile (package-initialize))
-      
-      ;; (message "PackagesAll %s" pkgs-all)
-
-      (require 'package)
-      (dolist (pkg pkgs-all)		; prepare list
-	;; (message "checking %s" pkg)
-	(unless (package-installed-p pkg)
-	  ;; (message "%s not installed." pkg)
-	  (push pkg pkgs-to-install)
-	  ;; (message "Added to list.")
-	  ))
-      
-      ;; (message "PackageToInstall %s" pkgs-to-install)
-      
-      (unless (null pkgs-to-install)	; packages to install?
-	(progn
-	  (package-refresh-contents)
-	  (dolist (pkg pkgs-to-install)
-	    (package-install pkg)))))))
+  (require 'package)
+  (add-to-list 'package-archives
+	       '("melpa" . "https://melpa.org/packages/")))
+(eval-when-compile (package-initialize))
 
 (use-package hideshow
   :diminish
@@ -137,16 +112,15 @@
   :hook ((rust-mode . company-mode)
 	 (python-mode . company-mode)))
 
-(use-package esup)
-
 ;; Docker
 (use-package dockerfile-mode)
 (use-package docker-compose-mode)
 
 (use-package which-key
   :init
-  (setq which-key-idle-delay 3.0)
+  (defvar which-key-idle-delay 3.0)
   :config
+  (declare-function which-key-mode "which-key")
   (which-key-mode)
   :diminish
   (which-key-mode . "wk"))
@@ -157,6 +131,7 @@
   ;; ((python3)
   ;;  (pip3 . python3-pip))
   :config
+  (defvar eglot-server-programs)
   (add-to-list 'eglot-server-programs
 	       '((js-mode typescript-mode)
 		 ("typescript-language-server" "--stdio")))
@@ -199,7 +174,7 @@
    ("\\.md\\'" . markdown-mode)
    ("\\.markdown\\'" . markdown-mode))
   :init
-  (setq markdown-command "multimarkdown"))
+  (defvar markdown-command "multimarkdown"))
 
 ;; org - TODO
 ;; (use-package org-mime
@@ -236,19 +211,17 @@
 ;; (use-package flycheck-plantuml)
 
 ;; Ebdb
-;; TODO - load time is too much for this package.
 (use-package ebdb
   :init
   (setq compose-mail-user-agent-warnings nil)
-  (defvar ebdb-mua-pop-up nil)
-  (defvar ebdb-completion-display-record nil)
-  ;; :config
-  ;; (use-package ebdb-message)
-  ;; (use-package ebdb-gnus))
-  :hook
-  (emacs-startup . (lambda ()
-		     (use-package ebdb-message)
-		     (use-package ebdb-gnus))))
+  :config
+  (defvar ebdb-mua-pop-up)
+  (defvar ebdb-completion-display-record)
+  (setq ebdb-mua-pop-up nil)
+  (setq ebdb-completion-display-record nil)
+  (run-with-timer 5 nil (lambda ()
+			  (use-package ebdb-message)
+			  (use-package ebdb-gnus))))
 
 ;; velocity templates
 (require 'vtl
@@ -288,10 +261,8 @@
 (defun my-install-or-update ()
   "Install selected packages."
   (interactive)
-  (setq package-archives
-	'(("melpa" . "https://melpa.org/packages/")
-	  ("elpa"   . "https://elpa.gnu.org/packages/")
-	  ("nongnu" . "http://elpa.nongnu.org/nongnu/")))
+  (add-to-list 'package-archives
+	       '("melpa" . "https://melpa.org/packages/"))
   (package-refresh-contents)
   (package-install-selected-packages))
 

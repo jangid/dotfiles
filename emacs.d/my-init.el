@@ -105,7 +105,6 @@
  ;; SECTION: packages
  '(package-selected-packages
    '(twittering-mode
-     esup
      rust-mode
      php-mode
      org-mime

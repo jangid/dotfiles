@@ -18,7 +18,7 @@ init.elc: init.el \
 	lisp/init-elisp.elc \
 	lisp/init-org.elc \
 	lisp/init-java.elc \
-	lisp/init-js.elc \
+	lisp/init-js.elc
 	$(EMACS) $(OPTIONS) $<
 
 my-init.elc: my-init.el

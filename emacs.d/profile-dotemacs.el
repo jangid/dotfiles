@@ -77,6 +77,7 @@
 
 ;; User variables
 
+(package-initialize)
 (defvar profile-dotemacs-file "~/.emacs.d/init.el"
   "File to be profiled.")
 
