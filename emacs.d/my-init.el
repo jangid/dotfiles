@@ -74,8 +74,8 @@
  '(auth-sources '("~/.authinfo.gpg"))
  
  ;; SECTION erc
- '(erc-prompt-for-password t)
- '(erc-prompt-for-nickserv-password t)
+ '(erc-prompt-for-password nil)
+ '(erc-prompt-for-nickserv-password nil)
  '(erc-use-auth-source-for-nickserv-password t)
 
  ;; SECTION EasyPG
@@ -84,6 +84,7 @@
  ;; SECTION programming
  '(prog-mode-hook
    '(abbrev-mode
+     eldoc-mode
      hs-minor-mode
      electric-pair-local-mode
      display-line-numbers-mode))

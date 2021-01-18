@@ -40,7 +40,8 @@
 ;;   '(("freenode.net" "#emacs" "#erc" "#debian" "#python" "#arduino")
 ;;     ("oftc.net" "#debian-india" "#fsci")))
 (defvar erc-autojoin-channels-alist
-  '(("freenode.net" "#erc")))
+  '(("freenode.net" "#erc" "#emacs")
+    ("oftc.net" "#oftc" "#fsci")))
 
 ;; Setup local key bindings i.e. while ERC is active
 (add-hook 'erc-mode-hook
