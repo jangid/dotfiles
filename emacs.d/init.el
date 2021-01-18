@@ -59,7 +59,8 @@
 (add-to-list 'exec-path "~/.cargo/bin")
 
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
-(setenv "RUST_SRC_PATH" "~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/")
+(setenv "RUST_SRC_PATH"
+	"~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/")
 
 ;; start server for emacsclient support
 (require 'server)
@@ -126,24 +127,24 @@
   (which-key-mode . "wk"))
 
 ;; Eglot
-(use-package eglot
-  ;; :ensure-system-package
-  ;; ((python3)
-  ;;  (pip3 . python3-pip))
-  :config
-  (defvar eglot-server-programs)
-  (add-to-list 'eglot-server-programs
-	       '((js-mode typescript-mode)
-		 ("typescript-language-server" "--stdio")))
-  :hook
-  (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-   (rust-mode . eglot-ensure)
-   ;; pip3 install 'python-language-server[all]'
-   (python-mode . eglot-ensure)
-   ;; npm i -g typescrypt-language-server; npm i -g typescript
-   (js-mode . eglot-ensure)
-   ;; install ruby lang server
-   (ruby-mode . eglot-ensure)))
+;; (use-package eglot
+;;   ;; :ensure-system-package
+;;   ;; ((python3)
+;;   ;;  (pip3 . python3-pip))
+;;   :config
+;;   (defvar eglot-server-programs)
+;;   (add-to-list 'eglot-server-programs
+;; 	       '((js-mode typescript-mode)
+;; 		 ("typescript-language-server" "--stdio")))
+;;   :hook
+;;   (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+;;    (rust-mode . eglot-ensure)
+;;    ;; pip3 install 'python-language-server[all]'
+;;    (python-mode . eglot-ensure)
+;;    ;; npm i -g typescrypt-language-server; npm i -g typescript
+;;    (js-mode . eglot-ensure)
+;;    ;; install ruby lang server
+;;    (ruby-mode . eglot-ensure)))
 
 ;;	 (js-mode . eglot-ensure)))
 
