@@ -19,5 +19,8 @@
  (t
   (setq visible-bell nil)))
 
+;; global key bindings
+(global-set-key [?\C-x ?\C-b] #'ibuffer)
+
 (provide 'init-keys)
 ;;; init-keys.el ends here
