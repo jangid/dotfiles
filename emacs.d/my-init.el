@@ -50,6 +50,9 @@
  ;; SECTION: version control
  '(add-log-dont-create-changelog-file t)
 
+ ;; SECTION dired
+ '(dired-use-ls-dired t)
+ 
  ;; SECTION semantic
  '(semantic-default-submodes
    '(global-semanticdb-minor-mode
