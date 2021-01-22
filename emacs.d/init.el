@@ -19,7 +19,7 @@
 ;;   SECTION 0 - Globals                                            ;;
 ;;   SECTION 1 - Configuration of external packages		    ;;
 ;;   SECTION 2 - Configuration of built-in packages		    ;;
-;;   SECTION 3 - Utility functions		                    ;;
+;;   SECTION 3 - Load my-init.el		                    ;;
 ;; 								    ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -30,6 +30,12 @@
 ;;   SECTION 0 - Globals                                            ;;
 ;; 								    ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(eval-and-compile
+  (add-to-list 'load-path
+	       (expand-file-name "lisp" user-emacs-directory)))
+
+(require 'my-util)
 
 ;; (setq debug-on-error t)
 
@@ -61,6 +67,24 @@
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
 (setenv "RUST_SRC_PATH"
 	"~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/")
+
+;; (when (eq system-type 'darwin)
+;;   (setenv "JAVA_HOME"
+;; 	  (substring
+;; 	   (shell-command-to-string "/usr/libexec/java_home -v 1.8")0 -1))
+;;   (setenv "PATH"
+;; 	  (concat (getenv "JAVA_HOME") "/bin" ":" (getenv "PATH")))
+  
+;;   (add-to-list 'exec-path
+;;    	       (concat (getenv "JAVA_HOME") "/bin")))
+
+(add-to-classpath
+ (substring
+  (shell-command-to-string
+   (format "find %s -name 'org.eclipse.equinox.launcher_*jar'"
+	   (expand-file-name "eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins"
+			     user-emacs-directory)))
+  0 -1))
 
 ;; start server for emacsclient support
 (require 'server)
@@ -97,14 +121,16 @@
   (yas-minor-mode . "ys")
   :hook
   ((rust-mode . yas-minor-mode)
-   (python-mode . yas-minor-mode)))
+   (python-mode . yas-minor-mode)
+   (java-mode . yas-minor-mode)))
 
 ;; Company
 (use-package company
   :diminish
   (company-mode . "co")
   :hook ((rust-mode . company-mode)
-	 (python-mode . company-mode)))
+	 (python-mode . company-mode)
+	 (java-mode . company-mode)))
 
 ;; Eglot
 (use-package eglot
@@ -123,6 +149,8 @@
    (python-mode . eglot-ensure)
    ;; npm i -g typescrypt-language-server; npm i -g typescript
    (js-mode . eglot-ensure)
+   ;; install eclipse.jdt.ls
+   (java-mode . eglot-ensure)
    ;; install ruby lang server
    (ruby-mode . eglot-ensure)))
 
@@ -195,10 +223,6 @@
 ;; 								    ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(eval-and-compile
-  (add-to-list 'load-path
-	       (expand-file-name "lisp" user-emacs-directory)))
-
 ;; Keys
 (defvar mac-command-modifier)
 (defvar mac-right-command-modifier)
@@ -241,18 +265,19 @@
 (global-set-key [?\C-x ?\C-b] #'ibuffer-other-window)
 
 ;; Development
-(eval-and-compile (require 'ede))
-(global-ede-mode +1)
-(ede-enable-generic-projects)
+;; (eval-and-compile (require 'ede))
+;; (global-ede-mode +1)
+;; (ede-enable-generic-projects)
 (semantic-mode +1)
 (eval-and-compile (require 'srecode))
 (global-srecode-minor-mode +1)
 
-;; Elisp
-;; (add-hook 'emacs-lisp-mode-hook #'flymake-mode)
-;; (add-hook 'emacs-lisp-mode-hook #'display-line-numbers-mode)
-;; (add-hook 'emacs-lisp-mode-hook #'hs-minor-mode)
-;; (add-hook 'emacs-lisp-mode-hook #'abbrev-mode)
+(add-hook 'prog-mode-hook 'abbrev-mode)
+(add-hook 'prog-mode-hook 'eldoc-mode)
+(add-hook 'prog-mode-hook 'hs-minor-mode)
+(add-hook 'prog-mode-hook 'electric-pair-local-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(add-hook 'prog-mode-hook 'flymake-mode)
 
 ;; Java
 ;; (when (eq system-type 'darwin)
@@ -315,119 +340,79 @@
 (savehist-mode +1)
 
 ;; Org
-
+(eval-and-compile (require 'org-table))
 (add-hook 'message-mode-hook
 	  (lambda ()
-	    (declare-function turn-on-orgtbl "org-table")
 	    (turn-on-orgtbl)))
-
-;; (add-hook 'org-mode-hook
-;; 	  (lambda ()
-;; 	    (org-indent-mode -1)))
-
-(add-hook 'emacs-startup-hook
-	  (lambda ()
-	    (org-babel-do-load-languages
-	     'org-babel-load-languages
-	     '((emacs-lisp . t)
-	       (R . t)
-	       (python . t)
-	       (C . t)
-	       (java . t)
-	       (js . t)
-	       (css . t)
-	       (sql . t)
-	       (plantuml . t)))))
 
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 
-(defvar org-agenda-include-diary)
-(setq org-agenda-include-diary t)
-
-(defvar org-directory)
-(setq org-directory "~/Documents/org")
-
-(defvar org-agenda-files)
-(setq org-agenda-files
-  (mapcar
-   (lambda (x)
-     (concat org-directory "/" x))
-   '("notes.org"
-     "gtd.org"
-     "optimizory.org"
-     "personal.org"
-     "j4d.org"
-     "social.org")))
-
-(defvar org-capture-templates)
-(setq org-capture-templates
+(custom-set-variables
+ '(org-directory "~/Documents/org")
+ '(org-agenda-include-diary t)
+ '(org-capture-templates
   '(("t" "Todo" entry (file+headline "notes.org" "Tasks")
      "* TODO %?\n %i")
     ("T" "Tickler" entry (file+headline "gtd.org" "Ticklers")
      "* TODO %?\n %U\n %i")))
-
-(defvar org-refile-targets)
-(setq org-refile-targets
+ '(org-refile-targets
   `((,(concat org-directory "/gtd.org") :maxlevel . 3)
     (,(concat org-directory "/optimizory.org") :maxlevel . 3)
     (,(concat org-directory "/personal.org") :maxlevel . 3)
     (,(concat org-directory "/j4d.org") :maxlevel . 3)
     (,(concat org-directory "/social.org") :maxlevel . 3)
     (,(concat org-directory "/someday.org") :level . 1)))
-
-(defvar org-todo-keywords)
-(setq org-todo-keywords
+ '(org-todo-keywords
   '((sequence "TODO(t)"
 	      "NEXT(n)"
 	      "WAITING(w)"
 	      "|"
 	      "DONE(d)"
 	      "CANCELLED(c)")))
+ '(org-agenda-files
+   (mapcar
+    (lambda (x)
+      (concat org-directory "/" x))
+    '("notes.org"
+      "gtd.org"
+      "optimizory.org"
+      "personal.org"
+      "j4d.org"
+      "social.org")))
+ '(org-babel-load-languages
+   '((emacs-lisp . t)
+     (R . t)
+     (python . t)
+     (C . t)
+     (java . t)
+     (js . t)
+     (css . t)
+     (sql . t)
+     (plantuml . t))))
 
-(defvar org-agenda-custom-commands)
-(setq org-agenda-custom-commands
-  '(("o" "At Optimzory" tags-todo "@optimizory"
-     ((org-agenda-overriding-header "Optimizory:")
-      (org-agenda-skip-function
-       #'my-org-agenda-skip-all-siblings-but-first)))
-    ("j" "At J4D" tags-todo "@j4d"
-     ((org-agenda-overriding-header "J4D:")
-      (org-agenda-skip-function
-       #'my-org-agenda-skip-all-siblings-but-first)))
-    ("h" "At Home" tags-todo "@home"
-     ((org-agenda-overriding-header "Home and Personal:")
-      (org-agenda-skip-function
-       #'my-org-agenda-skip-all-siblings-but-first)))
-    ("f" "At FSF" tags-todo "@fsf"
-     ((org-agenda-overriding-header "FSF:")
-      (org-agenda-skip-function
-       #'my-org-agenda-skip-all-siblings-but-first)))
-    ("n" "Agenda and all TODOs"
-     ((agenda "")
-      (alltodo "")))))
-
-(defun my-org-agenda-skip-all-siblings-but-first ()
-  "Skip all but the first non-done entry."
-  (declare-function org-goto-sibling "org.el")
-  (declare-function org-get-todo-state "org.el")
-  (declare-function outline-next-heading "outline.el")
-
-  (let (should-skip-entry)
-    (unless (org-current-is-todo)
-      (setq should-skip-entry t))
-    (save-excursion
-      (while (and (not should-skip-entry) (org-goto-sibling t))
-        (when (org-current-is-todo)
-          (setq should-skip-entry t))))
-    (when should-skip-entry
-      (or (outline-next-heading)
-          (goto-char (point-max))))))
-		  
-(defun org-current-is-todo ()
-  "Check if the currect node is in todo state."
-  (string= "TODO" (org-get-todo-state)))
+(eval-when-compile (require 'org-agenda))
+(add-to-list 'org-agenda-custom-commands
+	     '("o" "At Optimzory" tags-todo "@optimizory"
+	       ((org-agenda-overriding-header "Optimizory:")
+		(org-agenda-skip-function
+		 #'my-org-agenda-skip-all-siblings-but-first))))
+(add-to-list 'org-agenda-custom-commands
+	     '("j" "At J4D" tags-todo "@j4d"
+	       ((org-agenda-overriding-header "J4D:")
+		(org-agenda-skip-function
+		 #'my-org-agenda-skip-all-siblings-but-first))))
+(add-to-list 'org-agenda-custom-commands
+	     '("h" "At Home" tags-todo "@home"
+	       ((org-agenda-overriding-header "Home and Personal:")
+		(org-agenda-skip-function
+		 #'my-org-agenda-skip-all-siblings-but-first))))
+(add-to-list 'org-agenda-custom-commands
+	     '("f" "At FSF" tags-todo "@fsf"
+	       ((org-agenda-overriding-header "FSF:")
+		(org-agenda-skip-function
+		 #'my-org-agenda-skip-all-siblings-but-first))))
 
 ;; My Website
 (defvar site-project-dir
@@ -455,105 +440,21 @@
      :publishing-function org-publish-attachment))
   "My website project.")
 
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 								    ;;
-;;   SECTION 3 - Utility functions		                    ;;
-;; 								    ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun my-install-or-update ()
-  "Install selected packages."
-  (interactive)
-  (add-to-list 'package-archives
-	       '("melpa" . "https://melpa.org/packages/"))
-  (package-refresh-contents)
-  (package-install-selected-packages))
-
-;; TODO read nickname, fullname from file
-(defun my/erc-connect-freenode ()
-  "Connect to chat.freenode.net."
-  (interactive)
-  (erc :server "chat.freenode.net"
-       :port 6667
-       :nick "jangid"
-       :full-name "Pankaj Jangid"))
-
-(defun my/erc-connect-oftc ()
-  "Connect to irc.oftc.net."
-  (interactive)
-  (erc :server "irc.oftc.net"
-       :port 6667
-       :nick "jangid"
-       :full-name "Pankaj Jangid"))
-
-(defun my/erc-connect-gitter ()
-  "Connect to irc.gitter.im."
-  (interactive)
-  (erc-tls :server "irc.gitter.im"
-	   :port 6667
-	   :nick "jangid"
-	   :full-name "Pankaj Jangid"))
-
-;; Setup global key bindings to connect to IRC network
+;; Key bindings to connect to IRC network
 (global-set-key (kbd "C-c e f") 'my/erc-connect-freenode)
 (global-set-key (kbd "C-c e g") 'my/erc-connect-gitter)
 (global-set-key (kbd "C-c e o") 'my/erc-connect-oftc)
 
-(defun modus-theme-toggle ()
-  "Toggle between modus-operandi and modus-vivendi themes."
-  (interactive)
-  (if (member 'modus-operandi custom-enabled-themes)
-      (progn
-	(disable-theme 'modus-operandi)
-	(load-theme 'modus-vivendi t))
-    (disable-theme 'modus-vivendi)
-    (load-theme 'modus-operandi t)))
-
-(defun my/cycle-frame-size ()
-  "Cycle frame-size."
-  (interactive)
-
-  (let ((width (frame-width))
-	(height (frame-height)))
-
-    (cond ((and (eq width 80) (eq height 38))
-	   (set-frame-size nil 120 43))
-	  ((and (eq width 120) (eq height 43))
-	   (set-frame-size nil 160 48))
-	  ((and (eq width 160) (eq height 48))
-	   (set-frame-size nil 80 48))
-	  ((and (eq width 80) (eq height 48))
-	   (set-frame-size nil 80 38))
-	  (t (set-frame-size nil 80 38))) ; default
-    
-    (message "Frame size: %sx%s" (frame-width) (frame-height))))
-
+;; Key bindings for frame
 (when (eq system-type 'darwin)
   (global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen))
 
 (global-set-key (kbd "M-<f9>") 'my/cycle-frame-size)
 
-(defun my/set-face ()
-  "Add Face header to email message."
-  (interactive)
-    (progn
-    (declare-function message-add-header "message.el")
-    (message-add-header
-     (concat "Face: "
-	     (gnus-face-from-file "face.png")))))
-
-(defun my/unset-face ()
-  "Remove Face field."
-  (interactive)
-  (progn
-    (declare-function message-remove-header "message.el")
-    (message-remove-header "Face")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
-;;   SECTION 4 - Load my-init.el				    ;;
+;;   SECTION 3 - Load my-init.el				    ;;
 ;; 								    ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

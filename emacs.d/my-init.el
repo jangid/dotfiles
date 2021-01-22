@@ -91,14 +91,6 @@
  ;; SECTION EasyPG
  '(epg-pinentry-mode 'loopback)
 
- ;; SECTION programming
- '(prog-mode-hook
-   '(abbrev-mode
-     eldoc-mode
-     hs-minor-mode
-     electric-pair-local-mode
-     display-line-numbers-mode))
-
  ;; SECTION python
  '(python-shell-interpreter "python3")
  '(python-indent-guess-indent-offset-verbose nil)
