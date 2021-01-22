@@ -84,6 +84,9 @@
  '(erc-prompt-for-password nil)
  '(erc-prompt-for-nickserv-password nil)
  '(erc-use-auth-source-for-nickserv-password t)
+ '(erc-autojoin-channels-alist
+   '(("freenode.net""#erc" "#emacs")
+     ("oftc.net" "#oftc" "#fsci")))
 
  ;; SECTION EasyPG
  '(epg-pinentry-mode 'loopback)
