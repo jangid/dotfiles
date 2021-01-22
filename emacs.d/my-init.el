@@ -60,12 +60,15 @@
  ;;
  ;;  -- semantic-new-buffer-setup-functions
  ;;  -- semantic-default-submodes
- '(semantic-default-submodes
-   '(global-semanticdb-minor-mode
-     global-semantic-idle-scheduler-mode
-     global-semantic-idle-summary-mode
-     global-semantic-idle-completions-mode))
+ ;; '(semantic-default-submodes
+ ;;   '(global-semanticdb-minor-mode
+ ;;     global-semantic-idle-scheduler-mode
+ ;;     global-semantic-idle-summary-mode
+ ;;     global-semantic-idle-completions-mode))
 
+ ;; SECTION bell
+ '(ring-bell-function 'ignore)
+ 
  ;; SECTION browswer
  '(browse-url-browser-function 'eww-browse-url)
  ;; '(shr-color-visible-distance-min 100)
@@ -109,8 +112,7 @@
 
  ;; SECTION: packages
  '(package-selected-packages
-   '(twittering-mode
-     rust-mode
+   '(rust-mode
      php-mode
      org-mime
      markdown-mode

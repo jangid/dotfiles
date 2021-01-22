@@ -113,19 +113,6 @@
   :hook ((rust-mode . company-mode)
 	 (python-mode . company-mode)))
 
-;; Docker
-(use-package dockerfile-mode)
-(use-package docker-compose-mode)
-
-(use-package which-key
-  :init
-  (defvar which-key-idle-delay 3.0)
-  :config
-  (declare-function which-key-mode "which-key")
-  (which-key-mode)
-  :diminish
-  (which-key-mode . "wk"))
-
 ;; Eglot
 (use-package eglot
   ;; :ensure-system-package
@@ -146,24 +133,6 @@
    ;; install ruby lang server
    (ruby-mode . eglot-ensure)))
 
-;; flycheck
-;; (use-package flycheck
-;;   :hook
-;;   ;; npm i -g eslint
-;;   ((js-mode . flycheck-mode)))
-
-;; kotlin, gradle
-;; (use-package kotlin-mode
-;;   :mode
-;;   (("\\.kt\\'" . kotlin-mode)
-;;    ("\\.kts\\'" . kotlin-mode))
-;;   :config
-;;   (add-hook 'kotlin-mode-hook #'display-line-numbers-mode)
-;;   (add-hook 'kotlin-mode-hook #'hs-minor-mode)
-;;   (add-hook 'kotlin-mode-hook #'abbrev-mode)
-;;   (use-package gradle-mode)
-;;   (use-package flycheck-kotlin))
-
 ;; markdown
 (use-package markdown-mode
   :commands
@@ -175,32 +144,31 @@
   :init
   (defvar markdown-command "multimarkdown"))
 
+;; Docker
+(use-package dockerfile-mode)
+(use-package docker-compose-mode)
+
+(use-package which-key
+  :init
+  (defvar which-key-idle-delay 3.0)
+  :config
+  (declare-function which-key-mode "which-key")
+  (which-key-mode)
+  :diminish
+  (which-key-mode . "wk"))
+
 ;; org - TODO
-;; (use-package org-mime
-;;   :init
-;;   (defvar org-mime-library)
-;;   (setq org-mime-library 'mml))
+(use-package org-mime
+  :init
+  (defvar org-mime-library)
+  (setq org-mime-library 'mml))
 
 ;; gnuplot
-;; (use-package gnuplot)
-;; (use-package gnuplot-mode)
+(use-package gnuplot)
+(use-package gnuplot-mode)
 
 ;; php
-;; (use-package php-mode
-;;   :mode "\\.php\\'"
-;;   :interpreter "/usr/local/bin/php"
-;;   :config
-;;   (add-hook 'php-mode-hook #'display-line-numbers-mode)
-;;   (add-hook 'php-mode-hook #'electric-pair-local-mode)
-;;   (add-hook 'php-mode-hook #'hs-minor-mode)
-;;   (add-hook 'php-mode-hook #'abbrev-mode))
-
-;; twitter
-;; (use-package twittering-mode
-;;   :init
-;;   (defalias 'epa--decode-coding-string 'decode-coding-string)
-;;   :config
-;;   (defvar twittering-use-master-password t))
+(use-package php-mode)
 
 ;; rust-lang
 (use-package rust-mode)
@@ -251,20 +219,17 @@
 (require 'init-java)
 (require 'init-js)
 
-(run-with-timer 5 nil (lambda ()
-			(global-ede-mode +1)
-			(ede-enable-generic-projects)
-			(semantic-mode +1)))
-
-(add-hook 'prog-mode-hook (lambda ()
-			    (global-srecode-minor-mode +1)))
+;; Development
+(eval-and-compile (require 'ede))
+(global-ede-mode +1)
+(ede-enable-generic-projects)
+(semantic-mode +1)
+(eval-and-compile (require 'srecode))
+(global-srecode-minor-mode +1)
 
 ;; Emails
-;; (add-hook 'message-mode-hook (lambda ()
-;; 			       ()))
 (add-hook 'message-mode-hook 'electric-quote-mode)
 (add-hook 'message-mode-hook 'flyspell-mode)
-;;(setq mail-archive-file-name "testfile")
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
