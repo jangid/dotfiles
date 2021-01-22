@@ -68,24 +68,6 @@
 (setenv "RUST_SRC_PATH"
 	"~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/")
 
-;; (when (eq system-type 'darwin)
-;;   (setenv "JAVA_HOME"
-;; 	  (substring
-;; 	   (shell-command-to-string "/usr/libexec/java_home -v 1.8")0 -1))
-;;   (setenv "PATH"
-;; 	  (concat (getenv "JAVA_HOME") "/bin" ":" (getenv "PATH")))
-  
-;;   (add-to-list 'exec-path
-;;    	       (concat (getenv "JAVA_HOME") "/bin")))
-
-(add-to-classpath
- (substring
-  (shell-command-to-string
-   (format "find %s -name 'org.eclipse.equinox.launcher_*jar'"
-	   (expand-file-name "eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins"
-			     user-emacs-directory)))
-  0 -1))
-
 ;; start server for emacsclient support
 (require 'server)
 (unless (server-running-p) (server-start))
@@ -280,15 +262,23 @@
 (add-hook 'prog-mode-hook 'flymake-mode)
 
 ;; Java
-;; (when (eq system-type 'darwin)
-;;   (setenv "JAVA_HOME"
-;; 	  (substring
-;; 	   (shell-command-to-string "/usr/libexec/java_home -v 1.8")0 -1))
-;;   (setenv "PATH"
-;; 	  (concat (getenv "JAVA_HOME") "/bin" ":" (getenv "PATH")))
-  
-;;   (add-to-list 'exec-path
-;;    	       (concat (getenv "JAVA_HOME") "/bin")))
+(when (eq system-type 'darwin)
+  (setenv "JAVA_HOME"
+	  (substring
+	   (shell-command-to-string "/usr/libexec/java_home")
+	   0 -1))
+  (setenv "PATH"
+	  (concat (getenv "JAVA_HOME") "/bin" ":" (getenv "PATH")))
+  (add-to-list 'exec-path
+   	       (concat (getenv "JAVA_HOME") "/bin")))
+
+(add-to-classpath
+ (substring
+  (shell-command-to-string
+   (format "find %s -name 'org.eclipse.equinox.launcher_*jar'"
+	   (expand-file-name "eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins"
+			     user-emacs-directory)))
+  0 -1))
 
 ;; JavaScript
 (add-to-list
@@ -340,7 +330,7 @@
 (savehist-mode +1)
 
 ;; Org
-(eval-and-compile (require 'org-table))
+(require 'org-table)
 (add-hook 'message-mode-hook
 	  (lambda ()
 	    (turn-on-orgtbl)))
@@ -392,7 +382,7 @@
      (sql . t)
      (plantuml . t))))
 
-(eval-when-compile (require 'org-agenda))
+(require 'org-agenda)
 (add-to-list 'org-agenda-custom-commands
 	     '("o" "At Optimzory" tags-todo "@optimizory"
 	       ((org-agenda-overriding-header "Optimizory:")
