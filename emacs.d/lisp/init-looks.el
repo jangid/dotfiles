@@ -39,15 +39,15 @@
   (let ((width (frame-width))
 	(height (frame-height)))
 
-    (cond ((and (eq width 80) (eq height 36))
-	   (set-frame-size nil 120 41))
-	  ((and (eq width 120) (eq height 41))
-	   (set-frame-size nil 160 46))
-	  ((and (eq width 160) (eq height 46))
-	   (set-frame-size nil 80 46))
-	  ((and (eq width 80) (eq height 46))
-	   (set-frame-size nil 80 36))
-	  (t (set-frame-size nil 80 36))) ; default
+    (cond ((and (eq width 80) (eq height 38))
+	   (set-frame-size nil 120 43))
+	  ((and (eq width 120) (eq height 43))
+	   (set-frame-size nil 160 48))
+	  ((and (eq width 160) (eq height 48))
+	   (set-frame-size nil 80 48))
+	  ((and (eq width 80) (eq height 48))
+	   (set-frame-size nil 80 38))
+	  (t (set-frame-size nil 80 38))) ; default
     
     (message "Frame size: %sx%s" (frame-width) (frame-height))))
 

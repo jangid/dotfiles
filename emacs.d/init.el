@@ -127,26 +127,24 @@
   (which-key-mode . "wk"))
 
 ;; Eglot
-;; (use-package eglot
-;;   ;; :ensure-system-package
-;;   ;; ((python3)
-;;   ;;  (pip3 . python3-pip))
-;;   :config
-;;   (defvar eglot-server-programs)
-;;   (add-to-list 'eglot-server-programs
-;; 	       '((js-mode typescript-mode)
-;; 		 ("typescript-language-server" "--stdio")))
-;;   :hook
-;;   (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-;;    (rust-mode . eglot-ensure)
-;;    ;; pip3 install 'python-language-server[all]'
-;;    (python-mode . eglot-ensure)
-;;    ;; npm i -g typescrypt-language-server; npm i -g typescript
-;;    (js-mode . eglot-ensure)
-;;    ;; install ruby lang server
-;;    (ruby-mode . eglot-ensure)))
-
-;;	 (js-mode . eglot-ensure)))
+(use-package eglot
+  ;; :ensure-system-package
+  ;; ((python3)
+  ;;  (pip3 . python3-pip))
+  :config
+  (defvar eglot-server-programs)
+  (add-to-list 'eglot-server-programs
+	       '((js-mode typescript-mode)
+		 ("typescript-language-server" "--stdio")))
+  :hook
+  (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   (rust-mode . eglot-ensure)
+   ;; pip3 install 'python-language-server[all]'
+   (python-mode . eglot-ensure)
+   ;; npm i -g typescrypt-language-server; npm i -g typescript
+   (js-mode . eglot-ensure)
+   ;; install ruby lang server
+   (ruby-mode . eglot-ensure)))
 
 ;; flycheck
 ;; (use-package flycheck
@@ -252,6 +250,22 @@
 (require 'init-elisp)
 (require 'init-java)
 (require 'init-js)
+
+(run-with-timer 5 nil (lambda ()
+			(global-ede-mode +1)
+			(ede-enable-generic-projects)
+			(semantic-mode +1)))
+
+(add-hook 'prog-mode-hook (lambda ()
+			    (global-srecode-minor-mode +1)))
+
+;; Emails
+;; (add-hook 'message-mode-hook (lambda ()
+;; 			       ()))
+(add-hook 'message-mode-hook 'electric-quote-mode)
+(add-hook 'message-mode-hook 'flyspell-mode)
+;;(setq mail-archive-file-name "testfile")
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;

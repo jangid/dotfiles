@@ -25,8 +25,8 @@
  ;; '(calendar-time-zone-style 'numeric))
  ;; '(calendar-standard-time-zone-name "IST")
  ;; '(calendar-daylight-time-zone-name "IST"))
- '(display-time-day-and-date t)
- '(display-time-mode t)
+ ;; '(display-time-day-and-date t)
+ ;; '(display-time-mode t)
 
  ;; SECTION: modeline
  '(column-number-mode t)
@@ -51,19 +51,20 @@
  '(add-log-dont-create-changelog-file t)
 
  ;; SECTION dired
- '(dired-use-ls-dired t)
- 
+ '(dired-use-ls-dired nil)
+ '(ls-lisp-use-insert-directory-program nil)
+
  ;; SECTION semantic
- '(semantic-default-submodes
-   '(global-semanticdb-minor-mode
-     global-semantic-idle-scheduler-mode
-     global-semantic-idle-summary-mode
-     global-semantic-idle-completions-mode))
  ;; Enable/disable semantic mode and submodes for various programming
  ;; languages using these two variables:
  ;;
  ;;  -- semantic-new-buffer-setup-functions
  ;;  -- semantic-default-submodes
+ '(semantic-default-submodes
+   '(global-semanticdb-minor-mode
+     global-semantic-idle-scheduler-mode
+     global-semantic-idle-summary-mode
+     global-semantic-idle-completions-mode))
 
  ;; SECTION browswer
  '(browse-url-browser-function 'eww-browse-url)

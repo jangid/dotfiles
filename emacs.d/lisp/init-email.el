@@ -2,9 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Enable electric quote mode in message-mode
-(add-hook 'message-mode-hook 'electric-quote-mode)
-
 ;; Make face from JPG using:
 
 ;; "djpeg face.jpg | ppmnorm | pnmscale -width 48 -height 48 |

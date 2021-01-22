@@ -20,7 +20,7 @@
   (setq visible-bell nil)))
 
 ;; global key bindings
-(global-set-key [?\C-x ?\C-b] #'ibuffer)
+(global-set-key [?\C-x ?\C-b] #'ibuffer-other-window)
 
 (provide 'init-keys)
 ;;; init-keys.el ends here
