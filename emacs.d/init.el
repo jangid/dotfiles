@@ -37,7 +37,7 @@
 
 (require 'my-util)
 
-;; (setq debug-on-error t)
+(setq debug-on-error t)
 
 ;; Version check
 (let ((minver "27.1"))
@@ -196,22 +196,24 @@
 (use-package rust-mode)
 
 ;; plantuml
+;; Prerequisites - Java, Graphviz, PlantUML
 (use-package plantuml-mode
   :init
   (setq plantuml-default-exec-mode 'executable)
   :mode
-  (("\\.puml\\'" . plantuml-mode)))
+  (("\\.puml\\'" . plantuml-mode)
+   ("\\.plantuml\\'" . plantuml-mode)))
 
-(defvar ebdb-mua-pop-up)
-(defvar ebdb-completion-display-record)
-(setq ebdb-mua-pop-up nil)
-(setq ebdb-completion-display-record nil)
-(setq compose-mail-user-agent-warnings nil)
-   
+;; EBDB
+(setq compose-mail-user-agent-warnings nil) ; should be handled in 'ebdb
 (run-with-timer
  5
  nil
  (lambda()
+   (eval-when-compile (require 'ebdb))
+   (eval-when-compile (require 'ebdb-mua))
+   (setq ebdb-completion-display-record nil)
+   (setq ebdb-mua-pop-up nil)
    (require 'ebdb-gnus)
    (require 'ebdb-message)))
 
@@ -308,9 +310,9 @@
  'auto-mode-alist
  `(,(regexp-opt '(".mjs" ".cjs")) . js-mode))
 
-(setq indent-tabs-mode nil)
-(defvar js-indent-level)
-(setq js-indent-level 2)
+;; (setq indent-tabs-mode nil)
+;; (defvar js-indent-level)
+;; (setq js-indent-level 2)
 
 ;; Flymake
 (add-hook 'flymake-mode-hook
@@ -324,8 +326,14 @@
 (add-hook 'diary-mark-entries-hook 'diary-mark-included-diary-files)
 
 ;; Emails
+(defun my/turn-on-orgtbl ()
+  "Turn on orgtbl minor mode."
+  (eval-and-compile (require 'org-table))
+  (turn-on-orgtbl))
+
 (add-hook 'message-mode-hook 'electric-quote-mode)
 (add-hook 'message-mode-hook 'flyspell-mode)
+(add-hook 'message-mode-hook 'my/turn-on-orgtbl)
 
 ;; ERC
 ;; Setup local key bindings i.e. while ERC is active
@@ -353,8 +361,6 @@
 (savehist-mode +1)
 
 ;; Org
-(add-hook 'message-mode-hook 'turn-on-orgtbl)
-
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
@@ -421,32 +427,6 @@
      ("n" "Agenda and all TODOs"
       ((agenda "")
        (alltodo ""))))))
-
-;; My Website
-(defvar site-project-dir
-  (file-name-as-directory  "~/work/personal/codeisgreat")
-  "My webstie.")
-
-(defvar org-publish-project-alist
-  `(("website"
-     :components ("pages" "notes" "images" "other"))
-    ("pages"
-     :base-directory ,(concat site-project-dir "src/")
-     :publishing-directory ,(concat site-project-dir "docs/")
-     :publishing-function org-html-publish-to-html)
-    ("notes"
-     :base-directory ,(concat site-project-dir "src/notes")
-     :publishing-directory ,(concat site-project-dir "docs/notes")
-     :publishing-function org-html-publish-to-html)
-    ("images"
-     :base-directory ,(concat site-project-dir "src/images")
-     :publishing-directory ,(concat site-project-dir "docs/images")
-     :publishing-function org-publish-attachment)
-    ("other"
-     :base-directory ,(concat site-project-dir "src/other")
-     :publishing-directory ,(concat site-project-dir "docs/other")
-     :publishing-function org-publish-attachment))
-  "My website project.")
 
 ;; Key bindings to connect to IRC network
 (global-set-key (kbd "C-c e f") 'my/erc-connect-freenode)
