@@ -70,7 +70,11 @@
 
 ;; start server for emacsclient support
 (require 'server)
-(unless (server-running-p) (server-start))
+(run-with-timer
+ 5
+ nil
+ (lambda ()
+   (unless (server-running-p) (server-start))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
@@ -147,9 +151,21 @@
   :init
   (defvar markdown-command "multimarkdown"))
 
+;; YAML
+(use-package yaml-mode
+  :mode
+  (("\\.yml\\’" . yaml-mode)
+   ("\\.yaml\\’" . yaml-mode)))
+
 ;; Docker
-(use-package dockerfile-mode)
-(use-package docker-compose-mode)
+(use-package dockerfile-mode
+  :mode
+  (("Dockerfile\\’" . dockerfile-mode)))
+
+(use-package docker-compose-mode
+  :mode
+  (("docker-compose\\.yml\\’" . docker-compose-mode)
+   ("docker-compose\\.yaml\\’" . docker-compose-mode)))
 
 (use-package which-key
   :init
@@ -160,38 +176,44 @@
   :diminish
   (which-key-mode . "wk"))
 
-;; org - TODO
-(use-package org-mime
-  :init
-  (defvar org-mime-library)
-  (setq org-mime-library 'mml))
+;; org-mime - performance issue
+;; (use-package org-mime
+;;   :init
+;;   (defvar org-mime-library)
+;;   (setq org-mime-library 'mml))
 
 ;; gnuplot
-(use-package gnuplot)
-(use-package gnuplot-mode)
+(use-package gnuplot
+  :mode
+  (("\\.gp\\’" . gnuplot-mode)))
 
 ;; php
-(use-package php-mode)
+(use-package php-mode
+  :mode
+  (("\\.php\\’" . php-mode)))
 
 ;; rust-lang
 (use-package rust-mode)
 
 ;; plantuml
-;; (use-package plantuml-mode)
-;; (use-package flycheck-plantuml)
-
-;; Ebdb
-(use-package ebdb
+(use-package plantuml-mode
   :init
-  (setq compose-mail-user-agent-warnings nil)
-  :config
-  (defvar ebdb-mua-pop-up)
-  (defvar ebdb-completion-display-record)
-  (setq ebdb-mua-pop-up nil)
-  (setq ebdb-completion-display-record nil)
-  (run-with-timer 5 nil (lambda ()
-			  (use-package ebdb-message)
-			  (use-package ebdb-gnus))))
+  (setq plantuml-default-exec-mode 'executable)
+  :mode
+  (("\\.puml\\'" . plantuml-mode)))
+
+(defvar ebdb-mua-pop-up)
+(defvar ebdb-completion-display-record)
+(setq ebdb-mua-pop-up nil)
+(setq ebdb-completion-display-record nil)
+(setq compose-mail-user-agent-warnings nil)
+   
+(run-with-timer
+ 5
+ nil
+ (lambda()
+   (require 'ebdb-gnus)
+   (require 'ebdb-message)))
 
 ;; velocity templates
 (require 'vtl
@@ -250,9 +272,11 @@
 ;; (eval-and-compile (require 'ede))
 ;; (global-ede-mode +1)
 ;; (ede-enable-generic-projects)
-(semantic-mode +1)
-(eval-and-compile (require 'srecode))
-(global-srecode-minor-mode +1)
+;; Semantic - Performance issue
+;; (semantic-mode +1)
+;; SRecode - Performance issue
+;; (eval-and-compile (require 'srecode))
+;; (global-srecode-minor-mode +1)
 
 (add-hook 'prog-mode-hook 'abbrev-mode)
 (add-hook 'prog-mode-hook 'eldoc-mode)
@@ -319,7 +343,7 @@
 
 (require 'desktop)
 (setq desktop-restore-eager 5)
-(add-to-list 'desktop-path sessions-directory)
+(setq desktop-path `(,sessions-directory))
 (setq desktop-base-file-name "emacs.desktop") ; not a hidden file
 (desktop-save-mode +1)
 
@@ -329,10 +353,7 @@
 (savehist-mode +1)
 
 ;; Org
-(require 'org-table)
-(add-hook 'message-mode-hook
-	  (lambda ()
-	    (turn-on-orgtbl)))
+(add-hook 'message-mode-hook 'turn-on-orgtbl)
 
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -379,29 +400,27 @@
      (js . t)
      (css . t)
      (sql . t)
-     (plantuml . t))))
-
-(require 'org-agenda)
-(add-to-list 'org-agenda-custom-commands
-	     '("o" "At Optimzory" tags-todo "@optimizory"
+     (plantuml . t)))
+ '(org-agenda-custom-commands
+   '(("o" "At Optimzory" tags-todo "@optimizory"
 	       ((org-agenda-overriding-header "Optimizory:")
 		(org-agenda-skip-function
-		 #'my-org-agenda-skip-all-siblings-but-first))))
-(add-to-list 'org-agenda-custom-commands
-	     '("j" "At J4D" tags-todo "@j4d"
+		 #'my-org-agenda-skip-all-siblings-but-first)))
+     ("j" "At J4D" tags-todo "@j4d"
 	       ((org-agenda-overriding-header "J4D:")
 		(org-agenda-skip-function
-		 #'my-org-agenda-skip-all-siblings-but-first))))
-(add-to-list 'org-agenda-custom-commands
-	     '("h" "At Home" tags-todo "@home"
+		 #'my-org-agenda-skip-all-siblings-but-first)))
+     ("h" "At Home" tags-todo "@home"
 	       ((org-agenda-overriding-header "Home and Personal:")
 		(org-agenda-skip-function
-		 #'my-org-agenda-skip-all-siblings-but-first))))
-(add-to-list 'org-agenda-custom-commands
-	     '("f" "At FSF" tags-todo "@fsf"
+		 #'my-org-agenda-skip-all-siblings-but-first)))
+     ("f" "At FSF" tags-todo "@fsf"
 	       ((org-agenda-overriding-header "FSF:")
 		(org-agenda-skip-function
-		 #'my-org-agenda-skip-all-siblings-but-first))))
+		 #'my-org-agenda-skip-all-siblings-but-first)))
+     ("n" "Agenda and all TODOs"
+      ((agenda "")
+       (alltodo ""))))))
 
 ;; My Website
 (defvar site-project-dir

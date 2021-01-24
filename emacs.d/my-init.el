@@ -109,11 +109,11 @@
  '(package-selected-packages
    '(rust-mode
      php-mode
+     yaml-mode
      org-mime
      markdown-mode
      kotlin-mode
      gradle-mode
-     gnuplot-mode
      gnuplot
      plantuml-mode
      flycheck
