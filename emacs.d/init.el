@@ -65,7 +65,7 @@
 (add-to-list 'exec-path "~/.cargo/bin")
 
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
-(setenv "RUST_SRC_PATH"
+(setenv"RUST_SRC_PATH"
 	"~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/")
 
 ;; start server for emacsclient support
@@ -205,7 +205,7 @@
    ("\\.plantuml\\'" . plantuml-mode)))
 
 ;; EBDB
-(setq compose-mail-user-agent-warnings nil) ; should be handled in 'ebdb
+(setq compose-mail-user-agent-warnings nil) ; 'ebdb should handle it
 (run-with-timer
  5
  nil
@@ -258,14 +258,16 @@
   ;; sudo apt-get install fonts-noto
   (set-fontset-font t 'devanagari "Noto"))
  ((eq system-type 'darwin)
-  ;; (set-fontset-font "fontset-startup" 'devanagari "ITF Devanagari")
-  ;; (set-fontset-font "fontset-startup" 'devanagari "Kohinoor Devanagari")
+  ;; (set-fontset-font
+  ;; "fontset-startup" 'devanagari "ITF Devanagari")
+  ;; (set-fontset-font
+  ;; "fontset-startup" 'devanagari "Kohinoor Devanagari")
   (set-fontset-font t 'devanagari "Kohinoor Devanagari")))
 
 ;; Cursor
-(setq visible-cursor nil)		; this works on text terminal only
-(setq x-stretch-cursor t)		; on GUIs, cursor width equals that
-					; of characters
+(setq visible-cursor nil)		; Works on text terminal only
+(setq x-stretch-cursor t)		; On GUIs, cursor width equals
+					; that of characters
 
 ;; global key bindings
 (global-set-key [?\C-x ?\C-b] #'ibuffer-other-window)
@@ -300,9 +302,11 @@
 (add-to-classpath
  (substring
   (shell-command-to-string
-   (format "find %s -name 'org.eclipse.equinox.launcher_*jar'"
-	   (expand-file-name "eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins"
-			     user-emacs-directory)))
+   (format
+    "find %s -name 'org.eclipse.equinox.launcher_*jar'"
+    (expand-file-name
+     "eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins"
+     user-emacs-directory)))
   0 -1))
 
 ;; JavaScript
