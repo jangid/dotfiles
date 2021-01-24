@@ -3,28 +3,28 @@
 ;;; Code:
 
 (custom-set-variables
- ;; custom-set-variables was added by user.
-
  ;; SECTION: calendar, date, time
  
- ;; 1 minute is equal to 60 seconds.  1 degree is equal to 1 hour, that
- ;; is equal to 60 minutes or 3600 seconds.  To calculate decimal
- ;; degrees, we use the DMS to decimal degree formula below:
+ ;; 1 minute is equal to 60 seconds.  1 degree i.e. 1 hour is equal to
+ ;; 60 minutes or 3600 seconds.  To calculate decimal degrees, we use
+ ;; the DMS to decimal degree formula below:
  ;;
  ;; Decimal Degrees = degrees + (minutes/60) + (seconds/3600)
 
- ;; '(calendar-latitude 28.6)		; New Delhi
- ;; '(calendar-longitude 77.3)
+ ;; '(calendar-latitude +28.6)		; New Delhi
+ ;; '(calendar-longitude +77.3)
  ;; '(calendar-location-name "New Delhi, India")
- ;; '(calendar-latitude 26.9)		; Jaipur
- ;; '(calendar-longitude 75.8)
- '(calendar-latitude [26 52 north])
- '(calendar-location-name "Jaipur, India")
+ 
+ ;; '(calendar-latitude +26.9)		; Jaipur
+ ;; '(calendar-longitude +75.8)
+ '(calendar-latitude [26 52 north])	; vector [deg min north/south]
  '(calendar-longitude [75 46 east])
- '(calendar-time-zone 330)
- ;; '(calendar-time-zone-style 'numeric))
+ '(calendar-location-name "Jaipur, India")
+ 
+ '(calendar-time-zone +330)   ; minutes difference from UTC
+ ;; '(calendar-time-zone-style 'numeric)
  ;; '(calendar-standard-time-zone-name "IST")
- ;; '(calendar-daylight-time-zone-name "IST"))
+ ;; '(calendar-daylight-time-zone-name "IST")
  ;; '(display-time-day-and-date t)
  ;; '(display-time-mode t)
 
