@@ -267,10 +267,9 @@
 	  (substring
 	   (shell-command-to-string "/usr/libexec/java_home")
 	   0 -1))
-  (setenv "PATH"
-	  (concat (getenv "JAVA_HOME") "/bin" ":" (getenv "PATH")))
   (add-to-list 'exec-path
-   	       (concat (getenv "JAVA_HOME") "/bin")))
+   	       (concat (getenv "JAVA_HOME") "/bin"))
+  (setenv "PATH" (mapconcat 'identity exec-path ":")))
 
 (add-to-classpath
  (substring
@@ -406,19 +405,19 @@
 
 ;; My Website
 (defvar site-project-dir
-  (file-name-as-directory  "~/work/code/github/codeisgreat")
+  (file-name-as-directory  "~/work/personal/codeisgreat")
   "My webstie.")
 
 (defvar org-publish-project-alist
   `(("website"
-     :components ("pages" "articles" "images" "other"))
+     :components ("pages" "notes" "images" "other"))
     ("pages"
      :base-directory ,(concat site-project-dir "src/")
      :publishing-directory ,(concat site-project-dir "docs/")
      :publishing-function org-html-publish-to-html)
-    ("articles"
-     :base-directory ,(concat site-project-dir "src/articles")
-     :publishing-directory ,(concat site-project-dir "docs/articles")
+    ("notes"
+     :base-directory ,(concat site-project-dir "src/notes")
+     :publishing-directory ,(concat site-project-dir "docs/notes")
      :publishing-function org-html-publish-to-html)
     ("images"
      :base-directory ,(concat site-project-dir "src/images")
