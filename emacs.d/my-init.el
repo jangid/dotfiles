@@ -3,7 +3,7 @@
 ;;; Code:
 
 (custom-set-variables
- ;; SECTION: calendar, date, time
+ ;;: calendar, date, time
  
  ;; 1 minute is equal to 60 seconds.  1 degree i.e. 1 hour is equal to
  ;; 60 minutes or 3600 seconds.  To calculate decimal degrees, we use
@@ -28,7 +28,7 @@
  ;; '(display-time-day-and-date t)
  ;; '(display-time-mode t)
 
- ;; SECTION: modeline
+ ;;: modeline
  '(column-number-mode t)
 
  ;; TVS keyboard - Hack
@@ -38,23 +38,23 @@
  '(mac-option-modifier 'none)
  '(mac-right-option-modifier 'super)
  
- ;; SECTION: Programming
+ ;;: Programming
  '(show-paren-mode t)
  
- ;; SECTION: Frame
+ ;;: Frame
  '(scroll-bar-mode nil)
  ;; '(vertical-scroll-bar nil t)
  '(tool-bar-mode nil)
  '(frame-resize-pixelwise nil)
  
- ;; SECTION: version control
+ ;;: version control
  '(add-log-dont-create-changelog-file t)
 
- ;; SECTION dired
+ ;; dired
  '(dired-use-ls-dired nil)
  '(ls-lisp-use-insert-directory-program nil)
 
- ;; SECTION semantic
+ ;; semantic
  ;; Enable/disable semantic mode and submodes for various programming
  ;; languages using these two variables:
  ;;
@@ -66,18 +66,18 @@
  ;;     global-semantic-idle-summary-mode
  ;;     global-semantic-idle-completions-mode))
 
- ;; SECTION bell
+ ;; bell
  '(ring-bell-function 'ignore)
  
- ;; SECTION browswer
+ ;; browswer
  '(browse-url-browser-function 'eww-browse-url)
  ;; '(shr-color-visible-distance-min 100)
  '(shr-color-visible-luminance-min 70)
 
- ;; SECTION mime
+ ;; Mime
  '(mailcap-user-mime-data nil)
  
- ;; SECTION Auth Source
+ ;; Auth Source
  '(auth-sources '("~/.authinfo.gpg"))
 
  ;; Mouse
@@ -89,7 +89,7 @@
     (top-or-bottom . bottom)
     (top-or-bottom-pos . 3)))
 
- ;; SECTION erc
+ ;; Erc
  '(erc-prompt-for-password nil)
  '(erc-prompt-for-nickserv-password nil)
  '(erc-use-auth-source-for-nickserv-password t)
@@ -98,14 +98,14 @@
       "#postgresql")
      ("oftc.net" "#oftc" "#fsci")))
 
- ;; SECTION EasyPG
+ ;; EasyPG
  '(epg-pinentry-mode 'loopback)
 
- ;; SECTION python
+ ;; python
  '(python-shell-interpreter "python3")
  '(python-indent-guess-indent-offset-verbose nil)
  
- ;; SECTION Email
+ ;; Email
  '(mml-secure-openpgp-encrypt-to-self t)
  '(mml-secure-openpgp-signers '("7C956E6FF8587689"))
  '(mml-secure-openpgp-sign-with-sender t)
@@ -115,7 +115,7 @@
 
  '(send-mail-function 'smtpmail-send-it)
 
- ;; SECTION: packages
+ ;; packages
  '(package-selected-packages
    '(rust-mode
      php-mode
