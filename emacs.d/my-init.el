@@ -79,13 +79,23 @@
  
  ;; SECTION Auth Source
  '(auth-sources '("~/.authinfo.gpg"))
- 
+
+ ;; Mouse
+ '(mouse-avoidance-mode 'banish)
+ '(mouse-avoidance-banish-position
+  '((frame-or-window . frame)
+    (side . right)
+    (side-pos . 0)
+    (top-or-bottom . bottom)
+    (top-or-bottom-pos . 3)))
+
  ;; SECTION erc
  '(erc-prompt-for-password nil)
  '(erc-prompt-for-nickserv-password nil)
  '(erc-use-auth-source-for-nickserv-password t)
  '(erc-autojoin-channels-alist
-   '(("freenode.net""#erc" "#emacs")
+   '(("freenode.net""#erc" "#emacs" "#gnus" "#python" "#django"
+      "#postgresql")
      ("oftc.net" "#oftc" "#fsci")))
 
  ;; SECTION EasyPG
