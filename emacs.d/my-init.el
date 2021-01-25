@@ -81,7 +81,7 @@
  '(auth-sources '("~/.authinfo.gpg"))
 
  ;; Mouse
- '(mouse-avoidance-mode 'banish)
+ '(mouse-avoidance-mode nil)
  '(mouse-avoidance-banish-position
   '((frame-or-window . frame)
     (side . right)
