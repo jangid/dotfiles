@@ -94,8 +94,8 @@
  '(erc-prompt-for-nickserv-password nil)
  '(erc-use-auth-source-for-nickserv-password t)
  '(erc-autojoin-channels-alist
-   '(("freenode.net""#erc" "#emacs" "#gnus" "#python" "#django"
-      "#postgresql")
+   '(("freenode.net" "#erc" "#emacs" "#gnus" "#python" "#django"
+      "#postgresql" "##rust" "#rust-embedded" "##aws")
      ("oftc.net" "#oftc" "#fsci")))
 
  ;; EasyPG
