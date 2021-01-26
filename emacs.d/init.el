@@ -37,7 +37,7 @@
 
 (require 'my-util)
 
-(setq debug-on-error t)
+;;(setq debug-on-error t)
 
 ;; Version check
 (let ((minver "27.1"))
@@ -290,6 +290,8 @@
 (add-hook 'prog-mode-hook 'flymake-mode)
 
 ;; Java
+;; (remove-hook 'java-mode-hook 'flymake-mode)
+;; (remove-hook 'java-mode-hook 'eldoc-mode)
 (when (eq system-type 'darwin)
   (setenv "JAVA_HOME"
 	  (substring
@@ -443,6 +445,26 @@
 
 (global-set-key (kbd "M-<f9>") 'my/cycle-frame-size)
 
+;; Keyboard
+(cond
+ ((string= (system-name) "mb1.local")
+  (custom-set-variables
+   '(mac-command-modifier 'meta)
+   '(mac-right-command-modifier 'none)
+   '(mac-option-modifier 'super)
+   '(mac-right-option-modifier 'none)))
+ ((string= (system-name) "mb2.local")
+  (custom-set-variables
+   '(mac-command-modifier 'none)
+   '(mac-right-command-modifier 'meta)
+   '(mac-option-modifier 'none)
+   '(mac-right-option-modifier 'super)))
+ (t
+  (custom-set-variables
+   '(mac-command-modifier 'meta)
+   '(mac-right-command-modifier 'none)
+   '(mac-option-modifier 'super)
+   '(mac-right-option-modifier 'none))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
