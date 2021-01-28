@@ -37,7 +37,7 @@
 
 (require 'my-util)
 
-;;(setq debug-on-error t)
+(setq debug-on-error t)
 
 ;; Version check
 (let ((minver "27.1"))
@@ -349,23 +349,6 @@
 	    (local-set-key (kbd "C-c RET") 'erc-send-current-line)
 	    (local-set-key (kbd "C-c C-RET") 'erc-send-current-line)))
 
-;; Sessions
-(defvar sessions-directory
-  (file-name-as-directory
-   (concat user-emacs-directory "sessions"))
-  "Directory to store Emacs desktop sessions and minibuffer history.")
-
-(require 'desktop)
-(setq desktop-restore-eager 5)
-(setq desktop-path `(,sessions-directory))
-(setq desktop-base-file-name "emacs.desktop") ; not a hidden file
-(desktop-save-mode +1)
-
-(eval-when-compile (require 'savehist))
-(setq savehist-file
-      (concat sessions-directory "history"))
-(savehist-mode +1)
-
 ;; Org
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -478,6 +461,18 @@
       (expand-file-name "my-init.el" user-emacs-directory))
 (when (file-exists-p my-init-file)
   (load my-init-file))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 								    ;;
+;;   SECTION 4 - Restore desktop session			    ;;
+;; 								    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;(profiler-start 'cpu)
+;; Sessions - This should always be done after custom-set-variables
+;; i.e. after loading my-init-file.
+(desktop-save-mode +1)
+(savehist-mode +1)
 
 (provide 'init)
 ;;; init.el ends here

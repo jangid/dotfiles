@@ -115,6 +115,16 @@
 
  '(send-mail-function 'smtpmail-send-it)
 
+ ;; Sessions
+ '(sessions-directory
+   (file-name-as-directory
+    (concat user-emacs-directory "sessions")) t)
+ '(desktop-restore-eager 5)
+ '(desktop-path (list sessions-directory) t)
+ '(desktop-base-file-name "emacs.desktop")
+ '(savehist-file
+   (concat sessions-directory "history") t)
+ 
  ;; packages
  '(package-selected-packages
    '(rust-mode
