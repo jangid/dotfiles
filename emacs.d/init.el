@@ -65,7 +65,7 @@
 (add-to-list 'exec-path "~/.cargo/bin")
 
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
-(setenv"RUST_SRC_PATH"
+(setenv "RUST_SRC_PATH"
 	"~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/")
 
 ;; start server for emacsclient support
@@ -217,11 +217,6 @@
    (require 'ebdb-gnus)
    (require 'ebdb-message)))
 
-;; velocity templates
-(require 'vtl
-	 (expand-file-name
-	  "vtl.el"
-	  (expand-file-name "lisp" user-emacs-directory)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 								    ;;
@@ -290,8 +285,6 @@
 (add-hook 'prog-mode-hook 'flymake-mode)
 
 ;; Java
-;; (remove-hook 'java-mode-hook 'flymake-mode)
-;; (remove-hook 'java-mode-hook 'eldoc-mode)
 (when (eq system-type 'darwin)
   (setenv "JAVA_HOME"
 	  (substring
@@ -310,6 +303,9 @@
      "eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins"
      user-emacs-directory)))
   0 -1))
+
+(when (eq system-type 'darwin)
+  (setenv "ATLAS_HOME" "/usr/local/opt/atlassian-plugin-sdk/libexec"))
 
 ;; JavaScript
 (add-to-list
