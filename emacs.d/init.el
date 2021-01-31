@@ -37,7 +37,7 @@
 
 (require 'my-util)
 
-(setq debug-on-error t)
+;; (setq debug-on-error t)
 
 ;; Version check
 (let ((minver "27.1"))
@@ -114,22 +114,18 @@
   :diminish
   (yas-minor-mode . "ys")
   :hook
-  (
-   (rust-mode . yas-minor-mode)
+  ((rust-mode . yas-minor-mode)
    (python-mode . yas-minor-mode)
-   ;; (java-mode . yas-minor-mode)
-   ))
+   (java-mode . yas-minor-mode)))
 
 ;; Company
 (use-package company
   :diminish
   (company-mode . "co")
   :hook
-  (
-   (rust-mode . company-mode)
+  ((rust-mode . company-mode)
    (python-mode . company-mode)
-   (java-mode . company-mode)
-   ))
+   (java-mode . company-mode)))
 
 ;; Eglot
 (use-package eglot
@@ -180,14 +176,14 @@
   (("docker-compose\\.yml\\’" . docker-compose-mode)
    ("docker-compose\\.yaml\\’" . docker-compose-mode)))
 
-;; (use-package which-key
-;;   :init
-;;   (defvar which-key-idle-delay 3.0)
-;;   :config
-;;   (declare-function which-key-mode "which-key")
-;;   (which-key-mode)
-;;   :diminish
-;;   (which-key-mode . "wk"))
+(use-package which-key
+  :init
+  (defvar which-key-idle-delay 3.0)
+  :config
+  (declare-function which-key-mode "which-key")
+  (which-key-mode)
+  :diminish
+  (which-key-mode . "wk"))
 
 ;; org-mime - performance issue
 ;; (use-package org-mime
@@ -283,7 +279,7 @@
 ;; tabs, indent etc.
 (defvaralias 'c-basic-offset 'tab-width)
 
-;; Development
+;; Emacs Development Environment
 ;; (eval-and-compile (require 'ede))
 ;; (global-ede-mode +1)
 ;; (ede-enable-generic-projects)
@@ -311,7 +307,7 @@
 (when (eq system-type 'darwin)
   (setenv "JAVA_HOME"
       (substring
-       (shell-command-to-string "/usr/libexec/java_home")
+       (shell-command-to-string "/usr/libexec/java_home -v 11")
        0 -1))
   (add-to-list 'exec-path
            (concat (getenv "JAVA_HOME") "/bin"))
@@ -476,7 +472,7 @@
 ;;(profiler-start 'cpu)
 ;; Sessions - This should always be done after custom-set-variables
 ;; i.e. after loading my-init-file.
-;; (desktop-save-mode +1)
+(desktop-save-mode +1)
 (savehist-mode +1)
 
 (provide 'init)

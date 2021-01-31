@@ -40,6 +40,10 @@
  
  ;;: Programming
  '(show-paren-mode t)
+
+ ;; tabs, indent etc
+ '(indent-tabs-mode nil)
+ '(tab-width 4)
  
  ;;: Frame
  '(scroll-bar-mode nil)
