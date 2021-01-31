@@ -3,7 +3,7 @@
 ;;; Code:
 
 (custom-set-variables
- ;;: calendar, date, time
+ ;; calendar, date, time
  
  ;; 1 minute is equal to 60 seconds.  1 degree i.e. 1 hour is equal to
  ;; 60 minutes or 3600 seconds.  To calculate decimal degrees, we use
@@ -28,7 +28,7 @@
  ;; '(display-time-day-and-date t)
  ;; '(display-time-mode t)
 
- ;;: modeline
+ ;; modeline
  '(column-number-mode t)
 
  ;; TVS keyboard - Hack
@@ -38,20 +38,20 @@
  ;; '(mac-option-modifier 'none)
  ;; '(mac-right-option-modifier 'super)
  
- ;;: Programming
+ ;; Programming
  '(show-paren-mode t)
 
  ;; tabs, indent etc
  '(indent-tabs-mode nil)
  '(tab-width 4)
  
- ;;: Frame
+ ;; Frame
  '(scroll-bar-mode nil)
  ;; '(vertical-scroll-bar nil t)
  '(tool-bar-mode nil)
  '(frame-resize-pixelwise nil)
  
- ;;: version control
+ ;; version control
  '(add-log-dont-create-changelog-file t)
 
  ;; dired
