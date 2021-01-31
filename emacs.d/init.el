@@ -11,29 +11,29 @@
 ;; supported.
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 								    ;;
-;;   The Emacs configuration file.				    ;;
-;; 								    ;;
-;;   This config file is organized as follows:			    ;;
-;; 								    ;;
+;;                                                                  ;;
+;;   The Emacs configuration file.                                  ;;
+;;                                                                  ;;
+;;   This config file is organized as follows:                      ;;
+;;                                                                  ;;
 ;;   SECTION 0 - Globals                                            ;;
-;;   SECTION 1 - Configuration of external packages		    ;;
-;;   SECTION 2 - Configuration of built-in packages		    ;;
-;;   SECTION 3 - Load my-init.el		                    ;;
-;; 								    ;;
+;;   SECTION 1 - Configuration of external packages                 ;;
+;;   SECTION 2 - Configuration of built-in packages                 ;;
+;;   SECTION 3 - Load my-init.el                                    ;;
+;;                                                                  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; Code:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 								    ;;
+;;                                                                  ;;
 ;;   SECTION 0 - Globals                                            ;;
-;; 								    ;;
+;;                                                                  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (eval-and-compile
   (add-to-list 'load-path
-	       (expand-file-name "lisp" user-emacs-directory)))
+           (expand-file-name "lisp" user-emacs-directory)))
 
 (require 'my-util)
 
@@ -45,13 +45,21 @@
     (error "This config doesn't support version less than %s" minver)))
 
 ;; default email address and full name
-(setq user-mail-address	"pankaj@codeisgreat.org"
+(setq user-mail-address "pankaj@codeisgreat.org"
       user-full-name "Pankaj Jangid")
+;; (profiler-start 'cpu)
 
 ;; Keep the custom file separate from init.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
   (load custom-file))
+
+;; user specific init file, loaded after everything else - my-init.el
+(defvar my-init-file)
+(setq my-init-file
+      (expand-file-name "my-init.el" user-emacs-directory))
+(when (file-exists-p my-init-file)
+  (load my-init-file))
 
 ;; Environment
 (add-to-list 'exec-path "/sbin")
@@ -66,7 +74,7 @@
 
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
 (setenv "RUST_SRC_PATH"
-	"~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/")
+    "~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/")
 
 ;; start server for emacsclient support
 (require 'server)
@@ -77,14 +85,14 @@
    (unless (server-running-p) (server-start))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 								    ;;
-;;   SECTION 1 - Configuration of external packages		    ;;
-;; 								    ;;
+;;                                                                  ;;
+;;   Configuration of external packages                             ;;
+;;                                                                  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (eval-when-compile
   (add-to-list 'load-path
-	       (expand-file-name "use-package" user-emacs-directory))
+           (expand-file-name "use-package" user-emacs-directory))
   (require 'use-package))
 
 (eval-when-compile (package-initialize))
@@ -106,17 +114,22 @@
   :diminish
   (yas-minor-mode . "ys")
   :hook
-  ((rust-mode . yas-minor-mode)
+  (
+   (rust-mode . yas-minor-mode)
    (python-mode . yas-minor-mode)
-   (java-mode . yas-minor-mode)))
+   ;; (java-mode . yas-minor-mode)
+   ))
 
 ;; Company
 (use-package company
   :diminish
   (company-mode . "co")
-  :hook ((rust-mode . company-mode)
-	 (python-mode . company-mode)
-	 (java-mode . company-mode)))
+  :hook
+  (
+   (rust-mode . company-mode)
+   (python-mode . company-mode)
+   (java-mode . company-mode)
+   ))
 
 ;; Eglot
 (use-package eglot
@@ -126,8 +139,8 @@
   :config
   (defvar eglot-server-programs)
   (add-to-list 'eglot-server-programs
-	       '((js-mode typescript-mode)
-		 ("typescript-language-server" "--stdio")))
+           '((js-mode typescript-mode)
+         ("typescript-language-server" "--stdio")))
   :hook
   (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
    (rust-mode . eglot-ensure)
@@ -167,14 +180,14 @@
   (("docker-compose\\.yml\\’" . docker-compose-mode)
    ("docker-compose\\.yaml\\’" . docker-compose-mode)))
 
-(use-package which-key
-  :init
-  (defvar which-key-idle-delay 3.0)
-  :config
-  (declare-function which-key-mode "which-key")
-  (which-key-mode)
-  :diminish
-  (which-key-mode . "wk"))
+;; (use-package which-key
+;;   :init
+;;   (defvar which-key-idle-delay 3.0)
+;;   :config
+;;   (declare-function which-key-mode "which-key")
+;;   (which-key-mode)
+;;   :diminish
+;;   (which-key-mode . "wk"))
 
 ;; org-mime - performance issue
 ;; (use-package org-mime
@@ -219,9 +232,9 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 								    ;;
-;;   SECTION 2 - Configuration of built-in packages		    ;;
-;; 								    ;;
+;;                                                                  ;;
+;;   Configuration of built-in packages                             ;;
+;;                                                                  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Keys
@@ -260,38 +273,48 @@
   (set-fontset-font t 'devanagari "Kohinoor Devanagari")))
 
 ;; Cursor
-(setq visible-cursor nil)		; Works on text terminal only
-(setq x-stretch-cursor t)		; On GUIs, cursor width equals
-					; that of characters
+(setq visible-cursor nil)       ; Works on text terminal only
+(setq x-stretch-cursor t)       ; On GUIs, cursor width equals
+                    ; that of characters
 
 ;; global key bindings
 (global-set-key [?\C-x ?\C-b] #'ibuffer-other-window)
+
+;; tabs, indent etc.
+(defvaralias 'c-basic-offset 'tab-width)
 
 ;; Development
 ;; (eval-and-compile (require 'ede))
 ;; (global-ede-mode +1)
 ;; (ede-enable-generic-projects)
-;; Semantic - Performance issue
+
+;; Semantic
+;; TODO - Performance issue
 ;; (semantic-mode +1)
-;; SRecode - Performance issue
+
+;; SRecode
+;; TODO - Performance issue
 ;; (eval-and-compile (require 'srecode))
 ;; (global-srecode-minor-mode +1)
+;; (srecode-minor-mode +1)
 
 (add-hook 'prog-mode-hook 'abbrev-mode)
 (add-hook 'prog-mode-hook 'eldoc-mode)
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 (add-hook 'prog-mode-hook 'electric-pair-local-mode)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(add-hook 'prog-mode-hook 'flymake-mode)
+
+;; Elisp
+(add-hook 'emacs-lisp-mode-hook 'flymake-mode)
 
 ;; Java
 (when (eq system-type 'darwin)
   (setenv "JAVA_HOME"
-	  (substring
-	   (shell-command-to-string "/usr/libexec/java_home")
-	   0 -1))
+      (substring
+       (shell-command-to-string "/usr/libexec/java_home")
+       0 -1))
   (add-to-list 'exec-path
-   	       (concat (getenv "JAVA_HOME") "/bin"))
+           (concat (getenv "JAVA_HOME") "/bin"))
   (setenv "PATH" (mapconcat 'identity exec-path ":")))
 
 (add-to-classpath
@@ -312,15 +335,14 @@
  'auto-mode-alist
  `(,(regexp-opt '(".mjs" ".cjs")) . js-mode))
 
-;; (setq indent-tabs-mode nil)
-;; (defvar js-indent-level)
-;; (setq js-indent-level 2)
+(defvar js-indent-level)
+(setq js-indent-level 2)
 
 ;; Flymake
 (add-hook 'flymake-mode-hook
-	  (lambda ()
-	    (local-set-key (kbd "M-n") 'flymake-goto-next-error)
-	    (local-set-key (kbd "M-p") 'flymake-goto-prev-error)))
+      (lambda ()
+        (local-set-key (kbd "M-n") 'flymake-goto-next-error)
+        (local-set-key (kbd "M-p") 'flymake-goto-prev-error)))
 
 ;; Diary
 (add-hook 'diary-list-entries-hook 'diary-sort-entries t)
@@ -340,10 +362,10 @@
 ;; ERC
 ;; Setup local key bindings i.e. while ERC is active
 (add-hook 'erc-mode-hook
-	  (lambda ()
-	    (local-set-key (kbd "RET") nil)
-	    (local-set-key (kbd "C-c RET") 'erc-send-current-line)
-	    (local-set-key (kbd "C-c C-RET") 'erc-send-current-line)))
+      (lambda ()
+        (local-set-key (kbd "RET") nil)
+        (local-set-key (kbd "C-c RET") 'erc-send-current-line)
+        (local-set-key (kbd "C-c C-RET") 'erc-send-current-line)))
 
 ;; Org
 (global-set-key (kbd "C-c l") 'org-store-link)
@@ -367,11 +389,11 @@
     (,(concat org-directory "/someday.org") :level . 1)))
  '(org-todo-keywords
   '((sequence "TODO(t)"
-	      "NEXT(n)"
-	      "WAITING(w)"
-	      "|"
-	      "DONE(d)"
-	      "CANCELLED(c)")))
+          "NEXT(n)"
+          "WAITING(w)"
+          "|"
+          "DONE(d)"
+          "CANCELLED(c)")))
  '(org-agenda-files
    (mapcar
     (lambda (x)
@@ -394,21 +416,21 @@
      (plantuml . t)))
  '(org-agenda-custom-commands
    '(("o" "At Optimzory" tags-todo "@optimizory"
-	       ((org-agenda-overriding-header "Optimizory:")
-		(org-agenda-skip-function
-		 #'my-org-agenda-skip-all-siblings-but-first)))
+           ((org-agenda-overriding-header "Optimizory:")
+        (org-agenda-skip-function
+         #'my-org-agenda-skip-all-siblings-but-first)))
      ("j" "At J4D" tags-todo "@j4d"
-	       ((org-agenda-overriding-header "J4D:")
-		(org-agenda-skip-function
-		 #'my-org-agenda-skip-all-siblings-but-first)))
+           ((org-agenda-overriding-header "J4D:")
+        (org-agenda-skip-function
+         #'my-org-agenda-skip-all-siblings-but-first)))
      ("h" "At Home" tags-todo "@home"
-	       ((org-agenda-overriding-header "Home and Personal:")
-		(org-agenda-skip-function
-		 #'my-org-agenda-skip-all-siblings-but-first)))
+           ((org-agenda-overriding-header "Home and Personal:")
+        (org-agenda-skip-function
+         #'my-org-agenda-skip-all-siblings-but-first)))
      ("f" "At FSF" tags-todo "@fsf"
-	       ((org-agenda-overriding-header "FSF:")
-		(org-agenda-skip-function
-		 #'my-org-agenda-skip-all-siblings-but-first)))
+           ((org-agenda-overriding-header "FSF:")
+        (org-agenda-skip-function
+         #'my-org-agenda-skip-all-siblings-but-first)))
      ("n" "Agenda and all TODOs"
       ((agenda "")
        (alltodo ""))))))
@@ -446,28 +468,15 @@
    '(mac-right-option-modifier 'none))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 								    ;;
-;;   SECTION 3 - Load my-init.el				    ;;
-;; 								    ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; user specific init file, loaded after everything else - my-init.el
-(defvar my-init-file)
-(setq my-init-file
-      (expand-file-name "my-init.el" user-emacs-directory))
-(when (file-exists-p my-init-file)
-  (load my-init-file))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 								    ;;
-;;   SECTION 4 - Restore desktop session			    ;;
-;; 								    ;;
+;;                                                                  ;;
+;;   Restore desktop session                                        ;;
+;;                                                                  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;(profiler-start 'cpu)
 ;; Sessions - This should always be done after custom-set-variables
 ;; i.e. after loading my-init-file.
-(desktop-save-mode +1)
+;; (desktop-save-mode +1)
 (savehist-mode +1)
 
 (provide 'init)
