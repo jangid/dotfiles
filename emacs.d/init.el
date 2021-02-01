@@ -131,7 +131,8 @@
   :hook
   ((rust-mode . company-mode)
    (python-mode . company-mode)
-   (java-mode . company-mode)))
+   (java-mode . company-mode)
+   (js-mode . company-mode)))
 
 ;; Eglot
 (use-package eglot
@@ -142,7 +143,7 @@
   (defvar eglot-server-programs)
   (add-to-list 'eglot-server-programs
                '((js-mode typescript-mode)
-                 ("typescript-language-server" "--stdio")))
+                 "typescript-language-server" "--stdio"))
   :hook
   (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
    (rust-mode . eglot-ensure)
