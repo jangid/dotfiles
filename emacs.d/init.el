@@ -114,9 +114,15 @@
   :diminish
   (yas-minor-mode . "ys")
   :hook
-  ((rust-mode . yas-minor-mode)
-   (python-mode . yas-minor-mode)
-   (java-mode . yas-minor-mode)))
+  ((prog-mode . yas-minor-mode))
+   ;; (rust-mode . yas-minor-mode)
+   ;; (python-mode . yas-minor-mode)
+   ;; (java-mode . yas-minor-mode))
+  :config
+  (use-package yasnippet-snippets
+    :config
+    (declare-function yas-reload-all "yasnippet.el")
+    (yas-reload-all)))
 
 ;; Company
 (use-package company

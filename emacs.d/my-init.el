@@ -148,6 +148,7 @@
      which-key
      ebdb
      yasnippet
+     yasnippet-snippets
      dockerfile-mode
      docker-compose-mode
      direnv
