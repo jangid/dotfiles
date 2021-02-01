@@ -136,9 +136,6 @@
 
 ;; Eglot
 (use-package eglot
-  ;; :ensure-system-package
-  ;; ((python3)
-  ;;  (pip3 . python3-pip))
   :config
   (defvar eglot-server-programs)
   (add-to-list 'eglot-server-programs
