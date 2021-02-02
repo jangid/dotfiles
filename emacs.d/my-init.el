@@ -134,6 +134,7 @@
    '(rust-mode
      php-mode
      yaml-mode
+     po-mode
      org-mime
      markdown-mode
      kotlin-mode

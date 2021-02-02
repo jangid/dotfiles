@@ -208,6 +208,9 @@
 ;; rust-lang
 (use-package rust-mode)
 
+;; PO-editor
+(use-package po-mode)
+
 ;; plantuml
 ;; Prerequisites - Java, Graphviz, PlantUML
 (use-package plantuml-mode
@@ -229,6 +232,7 @@
    (setq ebdb-mua-pop-up nil)
    (require 'ebdb-gnus)
    (require 'ebdb-message)))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
