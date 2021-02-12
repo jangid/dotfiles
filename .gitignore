@@ -60,3 +60,4 @@ rsync_up.sh
 rsync_down.sh
 rsync_excludes.txt
 gnus/
+authinfo.gpg
