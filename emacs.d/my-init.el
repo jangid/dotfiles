@@ -31,13 +31,6 @@
  ;; modeline
  '(column-number-mode t)
 
- ;; TVS keyboard - Hack
- ;; Probably my right and left switches are swapped inside TVS keyboard.
- ;; '(mac-command-modifier 'none)
- ;; '(mac-right-command-modifier 'meta)
- ;; '(mac-option-modifier 'none)
- ;; '(mac-right-option-modifier 'super)
- 
  ;; Programming
  '(show-paren-mode t)
 
