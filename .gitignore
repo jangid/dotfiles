@@ -55,3 +55,8 @@ install
 package-quickstart.el
 emacs.d/sessions/emacs.desktop
 emacs.d/sessions/history
+create_links.sh
+rsync_up.sh
+rsync_down.sh
+rsync_excludes.txt
+gnus/
