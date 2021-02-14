@@ -477,7 +477,7 @@
 ;;                                                                  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;(profiler-start 'cpu)
+;; (profiler-start 'cpu)
 ;; Sessions - This should always be done after custom-set-variables
 ;; i.e. after loading my-init-file.
 (desktop-save-mode +1)
