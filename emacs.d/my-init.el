@@ -147,6 +147,7 @@
      docker-compose-mode
      direnv
      diminish
+     delight
      company)))
 
 (custom-set-faces

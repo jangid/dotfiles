@@ -98,21 +98,17 @@
 (eval-when-compile (package-initialize))
 
 (use-package hideshow
-  :diminish
-  (hs-minor-mode . "hs"))
+  :delight (hs-minor-mode))
 
 (use-package eldoc
-  :diminish
-  (eldoc-mode . "el"))
+  :delight (eldoc-mode))
 
 (use-package abbrev
-  :diminish
-  (abbrev-mode . "ab"))
+  :delight (abbrev-mode))
 
 ;; Yasnippet
 (use-package yasnippet
-  :diminish
-  (yas-minor-mode . "ys")
+  :delight (yas-minor-mode)
   :hook
   ((prog-mode . yas-minor-mode))
    ;; (rust-mode . yas-minor-mode)
@@ -126,8 +122,7 @@
 
 ;; Company
 (use-package company
-  :diminish
-  (company-mode . "co")
+  :delight (company-mode)
   :hook
   ((rust-mode . company-mode)
    (python-mode . company-mode)
@@ -186,8 +181,7 @@
   :config
   (declare-function which-key-mode "which-key")
   (which-key-mode)
-  :diminish
-  (which-key-mode . "wk"))
+  :delight (which-key-mode))
 
 ;; org-mime - performance issue
 ;; (use-package org-mime
@@ -302,6 +296,13 @@
 ;; (global-srecode-minor-mode +1)
 ;; (srecode-minor-mode +1)
 
+;; Flymake
+(add-hook 'flymake-mode-hook
+      (lambda ()
+        (local-set-key (kbd "M-n") 'flymake-goto-next-error)
+        (local-set-key (kbd "M-p") 'flymake-goto-prev-error)))
+
+
 (add-hook 'prog-mode-hook 'abbrev-mode)
 (add-hook 'prog-mode-hook 'eldoc-mode)
 (add-hook 'prog-mode-hook 'hs-minor-mode)
@@ -341,12 +342,6 @@
 
 (defvar js-indent-level)
 (setq js-indent-level 2)
-
-;; Flymake
-(add-hook 'flymake-mode-hook
-      (lambda ()
-        (local-set-key (kbd "M-n") 'flymake-goto-next-error)
-        (local-set-key (kbd "M-p") 'flymake-goto-prev-error)))
 
 ;; Diary
 (add-hook 'diary-list-entries-hook 'diary-sort-entries t)
@@ -448,7 +443,8 @@
 (when (eq system-type 'darwin)
   (global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen))
 
-(global-set-key (kbd "M-<f9>") 'my/cycle-frame-size)
+(global-set-key (kbd "M-<f9>") 'my/cycle-frame-width)
+(global-set-key (kbd "S-M-<f9>") 'my/cycle-frame-height)
 
 ;; Keyboard
 (cond
