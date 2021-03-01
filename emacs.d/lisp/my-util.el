@@ -15,7 +15,7 @@
     (setenv "CLASSPATH"
 	    (mapconcat 'identity class-path-list ":"))))
 
-(defun my/set-face ()
+(defun my/set-email-xface ()
   "Add Face header to email message."
   (interactive)
     (progn
@@ -24,7 +24,7 @@
      (concat "Face: "
 	     (gnus-face-from-file "face.png")))))
 
-(defun my/unset-face ()
+(defun my/unset-email-xface ()
   "Remove Face field."
   (interactive)
   (progn
@@ -84,15 +84,6 @@
     
     (message "Frame size: %sx%s" (frame-width) (frame-height))))
 
-(defun my-install-or-update ()
-  "Install selected packages."
-  (interactive)
-  (eval-when-compile (require 'package))
-  (add-to-list 'package-archives
-	       '("melpa" . "https://melpa.org/packages/"))
-  (package-refresh-contents)
-  (package-install-selected-packages))
-
 ;; TODO read nickname, fullname from file
 (defun my/erc-connect-freenode ()
   "Connect to chat.freenode.net."
@@ -117,28 +108,6 @@
 	   :port 6667
 	   :nick "jangid"
 	   :full-name "Pankaj Jangid"))
-
-;; Org
-(defun my-org-agenda-skip-all-siblings-but-first ()
-  "Skip all but the first non-done entry."
-  (declare-function org-goto-sibling "org.el")
-  (declare-function org-get-todo-state "org.el")
-  (declare-function outline-next-heading "outline.el")
-
-  (let (should-skip-entry)
-    (unless (org-current-is-todo)
-      (setq should-skip-entry t))
-    (save-excursion
-      (while (and (not should-skip-entry) (org-goto-sibling t))
-        (when (org-current-is-todo)
-          (setq should-skip-entry t))))
-    (when should-skip-entry
-      (or (outline-next-heading)
-          (goto-char (point-max))))))
-		  
-(defun org-current-is-todo ()
-  "Check if the currect node is in todo state."
-  (string= "TODO" (org-get-todo-state)))
 
 (provide 'my-util)
 ;;; my-util.el ends here
