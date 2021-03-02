@@ -254,8 +254,8 @@
 
 ;; Looks
 
-;; (when (window-system)
-;;   (load-theme 'modus-operandi))
+(when (window-system)
+  (load-theme 'modus-operandi))
 
 (cond
  ((eq system-type 'gnu/linux)
@@ -375,10 +375,11 @@
  '(org-agenda-files
    (concat org-directory "/agenda-files"))
  '(org-agenda-include-diary t)
+ '(org-default-notes-file
+   (concat org-directory "/notes.org"))
  '(org-capture-templates nil)
  '(org-refile-targets
-   `((org-agenda-files :maxlevel . 3)
-     (,(concat org-directory "/someday.org") :level . 1)))
+   '((org-agenda-files :maxlevel . 3)))
  '(org-todo-keywords
    '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)"
                "|"
