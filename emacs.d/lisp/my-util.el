@@ -31,16 +31,6 @@
     (declare-function message-remove-header "message.el")
     (message-remove-header "Face")))
 
-(defun modus-theme-toggle ()
-  "Toggle between modus-operandi and modus-vivendi themes."
-  (interactive)
-  (if (member 'modus-operandi custom-enabled-themes)
-      (progn
-	(disable-theme 'modus-operandi)
-	(load-theme 'modus-vivendi t))
-    (disable-theme 'modus-vivendi)
-    (load-theme 'modus-operandi t)))
-
 (defun my/cycle-frame-width ()
   "Cycle \"frame-width\"."
   (interactive)
