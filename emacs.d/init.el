@@ -111,7 +111,7 @@
   :delight (yas-minor-mode)
   :hook
   ((rust-mode . yas-minor-mode)
-   (python-mode . yas-minor-mode)
+   ;; (python-mode . yas-minor-mode)
    (java-mode . yas-minor-mode))
   :config
   (use-package yasnippet-snippets
@@ -255,6 +255,9 @@
 ;; Looks
 
 (when (window-system)
+  (custom-set-variables
+   '(modus-themes-slanted-constructs t)
+   '(modus-themes-bold-constructs nil))
   (load-theme 'modus-operandi))
 
 (cond
