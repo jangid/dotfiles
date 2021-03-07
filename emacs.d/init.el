@@ -71,6 +71,8 @@
 (add-to-list 'exec-path "/Library/TeX/texbin")
 (add-to-list 'exec-path "/Library/Apple/usr/bin")
 (add-to-list 'exec-path "~/.cargo/bin")
+(add-to-list 'exec-path
+             "/Users/pankaj/.local/context-osx-64/tex/texmf-osx-64/bin")
 
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
 (setenv "RUST_SRC_PATH"
