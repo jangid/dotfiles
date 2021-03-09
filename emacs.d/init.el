@@ -184,11 +184,12 @@
   (which-key-mode)
   :delight (which-key-mode))
 
-;; org-mime - performance issue
-;; (use-package org-mime
-;;   :init
-;;   (defvar org-mime-library)
-;;   (setq org-mime-library 'mml))
+;; org-mime
+;; TODO: fix performance issue
+(use-package org-mime
+  :init
+  (custom-set-variables
+   '(org-mime-library 'mml)))
 
 ;; gnuplot
 (use-package gnuplot
