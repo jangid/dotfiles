@@ -359,7 +359,7 @@
   (eval-and-compile (require 'org-table))
   (turn-on-orgtbl))
 
-(add-hook 'message-mode-hook 'electric-quote-mode)
+(add-hook 'message-mode-hook 'electric-quote-local-mode)
 (add-hook 'message-mode-hook 'flyspell-mode)
 (add-hook 'message-mode-hook 'my/turn-on-orgtbl)
 
