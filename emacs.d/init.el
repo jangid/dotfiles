@@ -204,6 +204,11 @@
 ;; rust-lang
 (use-package rust-mode)
 
+;; Clojure
+(use-package clojure-mode
+  :config
+  (use-package cider))
+
 ;; PO-editor
 (use-package po-mode)
 
@@ -284,7 +289,7 @@
 (global-set-key [?\C-x ?\C-b] #'ibuffer-other-window)
 
 ;; tabs, indent etc.
-(defvaralias 'c-basic-offset 'tab-width)
+;; (defvaralias 'c-basic-offset 'tab-width)
 
 ;; Emacs Development Environment
 ;; (eval-and-compile (require 'ede))

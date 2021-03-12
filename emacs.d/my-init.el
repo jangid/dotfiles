@@ -36,7 +36,7 @@
 
  ;; tabs, indent etc
  '(indent-tabs-mode nil)
- '(tab-width 4)
+ ;; '(tab-width 4)
  
  ;; Frame
  '(scroll-bar-mode nil)
@@ -132,6 +132,8 @@
      markdown-mode
      kotlin-mode
      gradle-mode
+     clojure-mode
+     cider
      gnuplot
      plantuml-mode
      flycheck
