@@ -149,6 +149,12 @@
    ;; install ruby lang server
    (ruby-mode . eglot-ensure)))
 
+;; Python
+(use-package pyvenv
+  :config
+  (declare-function pyvenv-mode "pyvenv.el")
+  (pyvenv-mode +1))
+
 ;; markdown
 (use-package markdown-mode
   :commands
@@ -361,7 +367,8 @@
 ;; Emails
 (defun my/turn-on-orgtbl ()
   "Turn on orgtbl minor mode."
-  (eval-and-compile (require 'org-table))
+  ;;(eval-and-compile (require 'org-table))
+  (declare-function turn-on-orgtbl "org-table.el")
   (turn-on-orgtbl))
 
 (add-hook 'message-mode-hook 'electric-quote-local-mode)
