@@ -153,7 +153,9 @@
 (use-package pyvenv
   :config
   (declare-function pyvenv-mode "pyvenv.el")
-  (pyvenv-mode +1))
+  (pyvenv-mode +1)
+  (custom-set-variables
+   '(pyvenv-default-virtual-env-name "venv")))
 
 ;; markdown
 (use-package markdown-mode
