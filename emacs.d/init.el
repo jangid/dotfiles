@@ -220,6 +220,11 @@
 ;; PO-editor
 (use-package po-mode)
 
+(use-package direnv
+  :config
+  (declare-function direnv-mode "direnv.el")
+  (direnv-mode +1))
+
 ;; plantuml
 ;; Prerequisites - Java, Graphviz, PlantUML
 (use-package plantuml-mode
