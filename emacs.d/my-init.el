@@ -134,7 +134,6 @@
      gradle-mode
      clojure-mode
      cider
-     pyvenv
      gnuplot
      plantuml-mode
      flycheck

@@ -149,14 +149,6 @@
    ;; install ruby lang server
    (ruby-mode . eglot-ensure)))
 
-;; Python
-(use-package pyvenv
-  :config
-  (declare-function pyvenv-mode "pyvenv.el")
-  (pyvenv-mode +1)
-  (custom-set-variables
-   '(pyvenv-default-virtual-env-name "venv")))
-
 ;; markdown
 (use-package markdown-mode
   :commands
