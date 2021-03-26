@@ -51,8 +51,8 @@
 
 ;; Keep the custom file separate from init.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(when (file-exists-p custom-file)
-  (load custom-file))
+;; (when (file-exists-p custom-file)
+;;   (load custom-file))
 
 ;; user specific init file, loaded after everything else - my-init.el
 (defvar my-init-file)
@@ -121,33 +121,33 @@
     (declare-function yas-reload-all "yasnippet.el")
     (yas-reload-all)))
 
-;; Company
-(use-package company
-  :delight (company-mode)
-  :hook
-  ((rust-mode . company-mode)
-   (python-mode . company-mode)
-   (java-mode . company-mode)
-   (js-mode . company-mode)))
+;; ;; Company
+;; (use-package company
+;;   :delight (company-mode)
+;;   :hook
+;;   ((rust-mode . company-mode)
+;;    (python-mode . company-mode)
+;;    (java-mode . company-mode)
+;;    (js-mode . company-mode)))
 
 ;; Eglot
-(use-package eglot
-  :config
-  (defvar eglot-server-programs)
-  (add-to-list 'eglot-server-programs
-               '((js-mode typescript-mode)
-                 "typescript-language-server" "--stdio"))
-  :hook
-  (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-   (rust-mode . eglot-ensure)
-   ;; pip3 install 'python-language-server[all]'
-   (python-mode . eglot-ensure)
-   ;; npm i -g typescrypt-language-server; npm i -g typescript
-   (js-mode . eglot-ensure)
-   ;; install eclipse.jdt.ls
-   (java-mode . eglot-ensure)
-   ;; install ruby lang server
-   (ruby-mode . eglot-ensure)))
+;; (use-package eglot
+;;   :config
+;;   (defvar eglot-server-programs)
+;;   (add-to-list 'eglot-server-programs
+;;                '((js-mode typescript-mode)
+;;                  "typescript-language-server" "--stdio"))
+;;   :hook
+;;   (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+;;    (rust-mode . eglot-ensure)
+;;    ;; pip3 install 'python-language-server[all]'
+;;    ;; (python-mode . eglot-ensure)
+;;    ;; npm i -g typescrypt-language-server; npm i -g typescript
+;;    (js-mode . eglot-ensure)
+;;    ;; install eclipse.jdt.ls
+;;    (java-mode . eglot-ensure)
+;;    ;; install ruby lang server
+;;    (ruby-mode . eglot-ensure)))
 
 ;; markdown
 (use-package markdown-mode
@@ -212,10 +212,10 @@
 ;; PO-editor
 (use-package po-mode)
 
-(use-package direnv
-  :config
-  (declare-function direnv-mode "direnv.el")
-  (direnv-mode +1))
+;; (use-package direnv
+;;   :config
+;;   (declare-function direnv-mode "direnv.el")
+;;   (direnv-mode +1))
 
 ;; plantuml
 ;; Prerequisites - Java, Graphviz, PlantUML
@@ -452,6 +452,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; (profiler-start 'cpu)
+;; (profiler-stop)
 ;; Sessions - This should always be done after custom-set-variables
 ;; i.e. after loading my-init-file.
 (desktop-save-mode +1)
