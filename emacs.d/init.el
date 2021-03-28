@@ -35,7 +35,114 @@
   (add-to-list 'load-path
            (expand-file-name "lisp" user-emacs-directory)))
 
-(require 'my-util)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                                                  ;;
+;;   SECTION 0 - Utility Functions                                  ;;
+;;                                                                  ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'cl-lib)
+
+(defun add-to-classpath (item)
+  "Add ITEM to CLASSPATH."
+  
+  (let ((class-path (getenv "CLASSPATH")))
+    
+    (defvar class-path-list (if class-path
+				(split-string class-path ":")))
+    (cl-pushnew item class-path-list)
+    (setenv "CLASSPATH"
+	    (mapconcat 'identity class-path-list ":"))))
+
+(defun my/set-email-xface ()
+  "Add Face header to email message."
+  (interactive)
+    (progn
+    (declare-function message-add-header "message.el")
+    (message-add-header
+     (concat "Face: "
+	     (gnus-face-from-file "face.png")))))
+
+(defun my/unset-email-xface ()
+  "Remove Face field."
+  (interactive)
+  (progn
+    (declare-function message-remove-header "message.el")
+    (message-remove-header "Face")))
+
+(defun my/cycle-frame-width ()
+  "Cycle \"frame-width\"."
+  (interactive)
+  
+  (let ((width (frame-width)))
+    
+    (cond ((eq width 80) (set-frame-width nil 120))
+          ((eq width 120) (set-frame-width nil 160))
+	      (t (set-frame-width nil 80))) ; default
+    
+    (message "Frame size: %sx%s" (frame-width) (frame-height))))
+
+(defun my/cycle-frame-height ()
+  "Cycle \"frame-height\"."
+  (interactive)
+  
+  (let ((height (frame-height)))
+    
+    (cond ((eq height 38) (set-frame-height nil 43))
+          ((eq height 43) (set-frame-height nil 48))
+	      (t (set-frame-height nil 38))) ; default
+    
+    (message "Frame size: %sx%s" (frame-width) (frame-height))))
+
+(defun my/cycle-frame-size ()
+  "Cycle frame-size."
+  (interactive)
+  
+  (let ((width (frame-width))
+	    (height (frame-height)))
+    
+    (cond ((and (eq width 80) (eq height 38))
+	       (set-frame-size nil 120 38))
+	      ((and (eq width 120) (eq height 38))
+           (set-frame-size nil 120 43))
+	      ((and (eq width 120) (eq height 43))
+           (set-frame-size nil 160 43))
+          ((and (eq width 160) (eq height 43))
+           (set-frame-size nil 160 48))
+	      (t (set-frame-size nil 80 38))) ; default
+    
+    (message "Frame size: %sx%s" (frame-width) (frame-height))))
+
+;; TODO read nickname, fullname from file
+(defun my/erc-connect-freenode ()
+  "Connect to chat.freenode.net."
+  (interactive)
+  (erc :server "chat.freenode.net"
+       :port 6667
+       :nick "jangid"
+       :full-name "Pankaj Jangid"))
+
+(defun my/erc-connect-oftc ()
+  "Connect to irc.oftc.net."
+  (interactive)
+  (erc :server "irc.oftc.net"
+       :port 6667
+       :nick "jangid"
+       :full-name "Pankaj Jangid"))
+
+(defun my/erc-connect-gitter ()
+  "Connect to irc.gitter.im."
+  (interactive)
+  (erc-tls :server "irc.gitter.im"
+	   :port 6667
+	   :nick "jangid"
+	   :full-name "Pankaj Jangid"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                                                  ;;
+;;   SECTION 0 - Customize Variables                                ;;
+;;                                                                  ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; (setq debug-on-error t)
 
@@ -49,17 +156,147 @@
       user-full-name "Pankaj Jangid")
 ;; (profiler-start 'cpu)
 
-;; Keep the custom file separate from init.el
+;; Keep the custom file separate from init.el. Also, do not load it on
+;; startup. Instead, if you want to make a permanent setting then look
+;; into custom.el and put that setting in this file in the next
+;; section.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 ;; (when (file-exists-p custom-file)
 ;;   (load custom-file))
 
-;; user specific init file, loaded after everything else - my-init.el
-(defvar my-init-file)
-(setq my-init-file
-      (expand-file-name "my-init.el" user-emacs-directory))
-(when (file-exists-p my-init-file)
-  (load my-init-file))
+;; User specific customizations. Put here for persistent settings.
+(custom-set-variables
+ ;; calendar, date, time
+ 
+ ;; '(calendar-latitude +28.6)		; New Delhi
+ ;; '(calendar-longitude +77.3)
+ ;; '(calendar-location-name "New Delhi, India")
+ 
+ ;; '(calendar-latitude +26.9)		; Jaipur
+ ;; '(calendar-longitude +75.8)
+ '(calendar-latitude [26 52 north])	; vector [deg min north/south]
+ '(calendar-longitude [75 46 east])
+ '(calendar-location-name "Jaipur, India")
+ 
+ '(calendar-time-zone +330)   ; minutes difference from UTC
+ ;; '(display-time-day-and-date t)
+ ;; '(display-time-mode t)
+
+ ;; modeline
+ '(column-number-mode t)
+
+ ;; Programming
+ '(show-paren-mode t)
+
+ ;; tabs, indent etc
+ '(indent-tabs-mode nil)
+ ;; '(tab-width 4)
+ 
+ ;; Frame
+ '(scroll-bar-mode nil)
+ ;; '(vertical-scroll-bar nil t)
+ '(tool-bar-mode nil)
+ '(frame-resize-pixelwise nil)
+ 
+ ;; version control
+ '(add-log-dont-create-changelog-file t)
+
+ ;; dired
+ '(dired-use-ls-dired nil)
+ '(ls-lisp-use-insert-directory-program nil)
+
+ ;; bell
+ '(ring-bell-function 'ignore)
+ 
+ ;; browswer
+ ;; '(browse-url-browser-function 'eww-browse-url)
+ ;; '(shr-color-visible-distance-min 100)
+ ;; '(shr-color-visible-luminance-min 70)
+
+ ;; Mime
+ ;; '(mailcap-user-mime-data nil)
+ 
+ ;; Auth Source
+ '(auth-sources '("~/.authinfo.gpg"))
+
+ ;; Mouse
+ '(mouse-avoidance-mode nil)
+ '(mouse-avoidance-banish-position
+  '((frame-or-window . frame)
+    (side . right)
+    (side-pos . 0)
+    (top-or-bottom . bottom)
+    (top-or-bottom-pos . 3)))
+
+ ;; Erc
+ '(erc-prompt-for-password nil)
+ '(erc-prompt-for-nickserv-password nil)
+ '(erc-use-auth-source-for-nickserv-password t)
+ '(erc-autojoin-channels-alist
+   '(("freenode.net" "#erc" "#emacs" "#gnus" "#python" "#django"
+      "#postgresql" "##rust" "#rust-embedded" "##aws" "#nmigen")
+     ("oftc.net" "#oftc" "#fsci")))
+
+ ;; EasyPG
+ '(epg-pinentry-mode 'loopback)
+
+ ;; python
+ '(python-shell-interpreter "python3")
+ '(python-indent-guess-indent-offset-verbose nil)
+ 
+ ;; Email
+ '(mml-secure-openpgp-encrypt-to-self t)
+ '(mml-secure-openpgp-signers '("7C956E6FF8587689"))
+ '(mml-secure-openpgp-sign-with-sender t)
+
+ '(gnus-init-file "~/.gnus")
+ '(gnus-startup-file "~/.newsrc")
+
+ '(send-mail-function 'smtpmail-send-it)
+
+ ;; Sessions
+ '(sessions-directory
+   (file-name-as-directory
+    (concat user-emacs-directory "sessions")) t)
+ '(desktop-restore-eager 5)
+ '(desktop-path (list sessions-directory) t)
+ '(desktop-base-file-name "emacs.desktop")
+ '(savehist-file
+   (concat sessions-directory "history") t)
+ 
+ ;; packages
+ '(package-selected-packages
+   '(rust-mode
+     php-mode
+     yaml-mode
+     po-mode
+     org-mime
+     markdown-mode
+     kotlin-mode
+     gradle-mode
+     clojure-mode
+     cider
+     gnuplot
+     plantuml-mode
+     flycheck
+     flycheck-plantuml
+     flycheck-kotlin
+     exec-path-from-shell
+     eglot
+     which-key
+     ebdb
+     yasnippet
+     yasnippet-snippets
+     dockerfile-mode
+     docker-compose-mode
+     direnv
+     diminish
+     delight
+     auctex
+     company)))
+
+(custom-set-faces
+ )
 
 ;; Environment
 (add-to-list 'exec-path "/sbin")
@@ -71,8 +308,6 @@
 (add-to-list 'exec-path "/Library/TeX/texbin")
 (add-to-list 'exec-path "/Library/Apple/usr/bin")
 (add-to-list 'exec-path "~/.cargo/bin")
-(add-to-list 'exec-path
-             "/Users/pankaj/.local/context-osx-64/tex/texmf-osx-64/bin")
 
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
 (setenv "RUST_SRC_PATH"
@@ -455,7 +690,7 @@
 ;; (profiler-stop)
 ;; Sessions - This should always be done after custom-set-variables
 ;; i.e. after loading my-init-file.
-(desktop-save-mode +1)
+;; (desktop-save-mode +1)
 (savehist-mode +1)
 
 (provide 'init)
