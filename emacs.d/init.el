@@ -16,10 +16,10 @@
 ;;                                                                  ;;
 ;;   This config file is organized as follows:                      ;;
 ;;                                                                  ;;
-;;   SECTION 0 - Globals                                            ;;
-;;   SECTION 1 - Configuration of external packages                 ;;
-;;   SECTION 2 - Configuration of built-in packages                 ;;
-;;   SECTION 3 - Load my-init.el                                    ;;
+;;   SECTION - Globals                                              ;;
+;;   SECTION - Configuration of external packages                   ;;
+;;   SECTION - Configuration of built-in packages                   ;;
+;;   SECTION - Load my-init.el                                      ;;
 ;;                                                                  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -209,7 +209,7 @@
  '(ring-bell-function 'ignore)
  
  ;; browswer
- ;; '(browse-url-browser-function 'eww-browse-url)
+ '(browse-url-browser-function 'eww-browse-url)
  ;; '(shr-color-visible-distance-min 100)
  ;; '(shr-color-visible-luminance-min 70)
 
@@ -292,7 +292,6 @@
      direnv
      diminish
      delight
-     auctex
      company)))
 
 (custom-set-faces
@@ -356,33 +355,34 @@
     (declare-function yas-reload-all "yasnippet.el")
     (yas-reload-all)))
 
-;; ;; Company
-;; (use-package company
-;;   :delight (company-mode)
-;;   :hook
-;;   ((rust-mode . company-mode)
-;;    (python-mode . company-mode)
-;;    (java-mode . company-mode)
-;;    (js-mode . company-mode)))
+;; Company
+(use-package company
+  :delight (company-mode)
+  :hook
+  ((rust-mode . company-mode)
+   (python-mode . company-mode)
+   (java-mode . company-mode)
+   (js-mode . company-mode)
+   (ruby-mode . company-mode)))
 
 ;; Eglot
-;; (use-package eglot
-;;   :config
-;;   (defvar eglot-server-programs)
-;;   (add-to-list 'eglot-server-programs
-;;                '((js-mode typescript-mode)
-;;                  "typescript-language-server" "--stdio"))
-;;   :hook
-;;   (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-;;    (rust-mode . eglot-ensure)
-;;    ;; pip3 install 'python-language-server[all]'
-;;    ;; (python-mode . eglot-ensure)
-;;    ;; npm i -g typescrypt-language-server; npm i -g typescript
-;;    (js-mode . eglot-ensure)
-;;    ;; install eclipse.jdt.ls
-;;    (java-mode . eglot-ensure)
-;;    ;; install ruby lang server
-;;    (ruby-mode . eglot-ensure)))
+(use-package eglot
+  :config
+  (defvar eglot-server-programs)
+  (add-to-list 'eglot-server-programs
+               '((js-mode typescript-mode)
+                 "typescript-language-server" "--stdio"))
+  :hook
+  (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   (rust-mode . eglot-ensure)
+   ;; pip3 install 'python-language-server[all]'
+   (python-mode . eglot-ensure)
+   ;; npm i -g typescrypt-language-server; npm i -g typescript
+   (js-mode . eglot-ensure)
+   ;; install eclipse.jdt.ls
+   (java-mode . eglot-ensure)
+   ;; install ruby lang server
+   (ruby-mode . eglot-ensure)))
 
 ;; markdown
 (use-package markdown-mode
@@ -690,7 +690,7 @@
 ;; (profiler-stop)
 ;; Sessions - This should always be done after custom-set-variables
 ;; i.e. after loading my-init-file.
-;; (desktop-save-mode +1)
+(desktop-save-mode +1)
 (savehist-mode +1)
 
 (provide 'init)
