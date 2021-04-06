@@ -277,6 +277,7 @@
      clojure-mode
      cider
      gnuplot
+     auctex
      plantuml-mode
      flycheck
      flycheck-plantuml
@@ -333,6 +334,9 @@
 
 (eval-when-compile (package-initialize))
 
+(use-package tex
+  :ensure auctex)
+
 (use-package hideshow
   :delight (hs-minor-mode))
 
@@ -347,8 +351,10 @@
   :delight (yas-minor-mode)
   :hook
   ((rust-mode . yas-minor-mode)
-   ;; (python-mode . yas-minor-mode)
-   (java-mode . yas-minor-mode))
+   (python-mode . yas-minor-mode)
+   (java-mode . yas-minor-mode)
+   (js-mode . yas-minor-mode)
+   (ruby-mode . yas-minor-mode))
   :config
   (use-package yasnippet-snippets
     :config
@@ -377,10 +383,10 @@
    (rust-mode . eglot-ensure)
    ;; pip3 install 'python-language-server[all]'
    (python-mode . eglot-ensure)
-   ;; npm i -g typescrypt-language-server; npm i -g typescript
-   (js-mode . eglot-ensure)
    ;; install eclipse.jdt.ls
    (java-mode . eglot-ensure)
+   ;; npm i -g typescrypt-language-server; npm i -g typescript
+   (js-mode . eglot-ensure)
    ;; install ruby lang server
    (ruby-mode . eglot-ensure)))
 
@@ -447,10 +453,11 @@
 ;; PO-editor
 (use-package po-mode)
 
-;; (use-package direnv
-;;   :config
-;;   (declare-function direnv-mode "direnv.el")
-;;   (direnv-mode +1))
+;; Direnv
+(use-package direnv
+  :config
+  (declare-function direnv-mode "direnv.el")
+  (direnv-mode +1))
 
 ;; plantuml
 ;; Prerequisites - Java, Graphviz, PlantUML
