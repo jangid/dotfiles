@@ -271,11 +271,13 @@
      yaml-mode
      po-mode
      org-mime
+     writegood-mode
      markdown-mode
      kotlin-mode
      gradle-mode
      clojure-mode
      cider
+     lua-mode
      gnuplot
      auctex
      plantuml-mode
@@ -335,7 +337,11 @@
 (eval-when-compile (package-initialize))
 
 (use-package tex
-  :ensure auctex)
+  :ensure auctex
+  :config
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq-default TeX-master nil))
 
 (use-package hideshow
   :delight (hs-minor-mode))
