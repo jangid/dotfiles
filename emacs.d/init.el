@@ -76,9 +76,11 @@
   
   (let ((width (frame-width)))
     
-    (cond ((eq width 80) (set-frame-width nil 120))
-          ((eq width 120) (set-frame-width nil 160))
-	      (t (set-frame-width nil 80))) ; default
+    (cond
+     ; ((eq width 80) (set-frame-width nil 120))
+     ((eq width 80) (set-frame-width nil 160))
+     ; ((eq width 120) (set-frame-width nil 160))
+     (t (set-frame-width nil 80))) ; default
     
     (message "Frame size: %sx%s" (frame-width) (frame-height))))
 
@@ -88,9 +90,11 @@
   
   (let ((height (frame-height)))
     
-    (cond ((eq height 38) (set-frame-height nil 43))
-          ((eq height 43) (set-frame-height nil 48))
-	      (t (set-frame-height nil 38))) ; default
+    (cond
+     ; ((eq height 36) (set-frame-height nil 42))
+     ((eq height 36) (set-frame-height nil 48))
+     ; ((eq height 42) (set-frame-height nil 48))
+     (t (set-frame-height nil 36))) ; default
     
     (message "Frame size: %sx%s" (frame-width) (frame-height))))
 
@@ -288,6 +292,7 @@
      eglot
      which-key
      ebdb
+     vertico
      yasnippet
      yasnippet-snippets
      dockerfile-mode
@@ -314,6 +319,21 @@
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
 (setenv "RUST_SRC_PATH"
     "~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/")
+
+(setenv "LANG" "en_US")
+
+;; Language environment
+(add-hook 'set-language-environment-hook
+          (lambda ()
+            (if (equal current-language-environment "Devanagari")
+                (progn
+                  (set-input-method "devanagari-inscript")))))
+
+(add-hook 'exit-language-environment-hook
+          (lambda ()
+            (if (equal current-language-environment "Devanagari")
+                (progn
+                  (set-input-method nil)))))
 
 ;; start server for emacsclient support
 (require 'server)
@@ -352,49 +372,56 @@
 (use-package abbrev
   :delight (abbrev-mode))
 
-;; Yasnippet
-(use-package yasnippet
-  :delight (yas-minor-mode)
-  :hook
-  ((rust-mode . yas-minor-mode)
-   (python-mode . yas-minor-mode)
-   (java-mode . yas-minor-mode)
-   (js-mode . yas-minor-mode)
-   (ruby-mode . yas-minor-mode))
-  :config
-  (use-package yasnippet-snippets
-    :config
-    (declare-function yas-reload-all "yasnippet.el")
-    (yas-reload-all)))
+;; ;; Enable vertico
+;; (use-package vertico
+;;   :config
+;;   (declare-function vertico-mode "vertico.el")
+;;   (vertico-mode))
 
-;; Company
-(use-package company
-  :delight (company-mode)
-  :hook
-  ((rust-mode . company-mode)
-   (python-mode . company-mode)
-   (java-mode . company-mode)
-   (js-mode . company-mode)
-   (ruby-mode . company-mode)))
+;; ;; Yasnippet
+;; (use-package yasnippet
+;;   :delight (yas-minor-mode)
+;;   :hook
+;;   ((lua-mode . yas-minor-mode)
+;;    (rust-mode . yas-minor-mode)
+;;    (python-mode . yas-minor-mode)
+;;    (java-mode . yas-minor-mode)
+;;    (js-mode . yas-minor-mode)
+;;    (ruby-mode . yas-minor-mode))
+;;   :config
+;;   (use-package yasnippet-snippets
+;;     :config
+;;     (declare-function yas-reload-all "yasnippet.el")
+;;     (yas-reload-all)))
 
-;; Eglot
-(use-package eglot
-  :config
-  (defvar eglot-server-programs)
-  (add-to-list 'eglot-server-programs
-               '((js-mode typescript-mode)
-                 "typescript-language-server" "--stdio"))
-  :hook
-  (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-   (rust-mode . eglot-ensure)
-   ;; pip3 install 'python-language-server[all]'
-   (python-mode . eglot-ensure)
-   ;; install eclipse.jdt.ls
-   (java-mode . eglot-ensure)
-   ;; npm i -g typescrypt-language-server; npm i -g typescript
-   (js-mode . eglot-ensure)
-   ;; install ruby lang server
-   (ruby-mode . eglot-ensure)))
+;; ;; Company
+;; (use-package company
+;;   :delight (company-mode)
+;;   :hook
+;;   ((rust-mode . company-mode)
+;;    (python-mode . company-mode)
+;;    (java-mode . company-mode)
+;;    (js-mode . company-mode)
+;;    (ruby-mode . company-mode)))
+
+;; ;; Eglot
+;; (use-package eglot
+;;   :config
+;;   (defvar eglot-server-programs)
+;;   (add-to-list 'eglot-server-programs
+;;                '((js-mode typescript-mode)
+;;                  "typescript-language-server" "--stdio"))
+;;   :hook
+;;   (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+;;    (rust-mode . eglot-ensure)
+;;    ;; pip3 install 'python-language-server[all]'
+;;    (python-mode . eglot-ensure)
+;;    ;; install eclipse.jdt.ls
+;;    (java-mode . eglot-ensure)
+;;    ;; npm i -g typescrypt-language-server; npm i -g typescript
+;;    (js-mode . eglot-ensure)
+;;    ;; install ruby lang server
+;;    (ruby-mode . eglot-ensure)))
 
 ;; markdown
 (use-package markdown-mode
@@ -527,10 +554,7 @@
   ;; sudo apt-get install fonts-noto
   (set-fontset-font t 'devanagari "Noto"))
  ((eq system-type 'darwin)
-  ;; (set-fontset-font
-  ;; "fontset-startup" 'devanagari "ITF Devanagari")
-  ;; (set-fontset-font
-  ;; "fontset-startup" 'devanagari "Kohinoor Devanagari")
+  ;; (set-fontset-font t 'devanagari "ITF Devanagari")
   (set-fontset-font t 'devanagari "Kohinoor Devanagari")))
 
 ;; Cursor
