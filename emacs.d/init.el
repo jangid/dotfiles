@@ -322,19 +322,6 @@
 
 (setenv "LANG" "en_US")
 
-;; Language environment
-(add-hook 'set-language-environment-hook
-          (lambda ()
-            (if (equal current-language-environment "Devanagari")
-                (progn
-                  (set-input-method "devanagari-inscript")))))
-
-(add-hook 'exit-language-environment-hook
-          (lambda ()
-            (if (equal current-language-environment "Devanagari")
-                (progn
-                  (set-input-method nil)))))
-
 ;; start server for emacsclient support
 (require 'server)
 (run-with-timer
