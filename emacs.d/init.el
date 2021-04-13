@@ -142,6 +142,12 @@
 	   :nick "jangid"
 	   :full-name "Pankaj Jangid"))
 
+(defun my/set-devanagari-input-method ()
+  "Set `default-input-method' for Devanagari language."
+  (if (equal current-language-environment "Devanagari")
+      (progn
+        (setq default-input-method "devanagari-inscript"))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                                                  ;;
 ;;   SECTION 0 - Customize Variables                                ;;
@@ -543,6 +549,8 @@
  ((eq system-type 'darwin)
   ;; (set-fontset-font t 'devanagari "ITF Devanagari")
   (set-fontset-font t 'devanagari "Kohinoor Devanagari")))
+
+(add-hook 'set-language-environment-hook 'my/set-devanagari-input-method)
 
 ;; Cursor
 (setq visible-cursor nil)       ; Works on text terminal only
