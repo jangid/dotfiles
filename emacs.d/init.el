@@ -296,9 +296,9 @@
      flycheck-kotlin
      exec-path-from-shell
      eglot
-     which-key
      ebdb
      vertico
+     corfu
      yasnippet
      yasnippet-snippets
      dockerfile-mode
@@ -306,7 +306,8 @@
      direnv
      diminish
      delight
-     company)))
+     ;; company
+     )))
 
 (custom-set-faces
  )
@@ -320,7 +321,17 @@
 (add-to-list 'exec-path "/Users/pankaj/go/bin")
 (add-to-list 'exec-path "/Library/TeX/texbin")
 (add-to-list 'exec-path "/Library/Apple/usr/bin")
-(add-to-list 'exec-path "~/.cargo/bin")
+(add-to-list 'exec-path "/Users/pankaj/.cargo/bin")
+(add-to-list 'exec-path
+             "/Users/pankaj/.sdkman/candidates/ant/current/bin")
+(add-to-list 'exec-path
+             "/Users/pankaj/.sdkman/candidates/gradle/current/bin")
+(add-to-list 'exec-path
+             "/Users/pankaj/.sdkman/candidates/groovy/current/bin")
+(add-to-list 'exec-path
+             "/Users/pankaj/.sdkman/candidates/kotlin/current/bin")
+;; (add-to-list 'exec-path
+;;              "/usr/local/opt/gcc/bin")
 
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
 (setenv "RUST_SRC_PATH"
@@ -356,6 +367,13 @@
   (setq TeX-parse-self t)
   (setq-default TeX-master nil))
 
+;; (use-package exec-path-from-shell
+;;   :config
+;;   (when (memq window-system '(mac ns x))
+;;     (declare-function exec-path-from-shell-initialize
+;;                       "exec-path-from-shell-initialize.el")
+;;     (exec-path-from-shell-initialize)))
+
 (use-package hideshow
   :delight (hs-minor-mode))
 
@@ -365,29 +383,67 @@
 (use-package abbrev
   :delight (abbrev-mode))
 
-;; ;; Enable vertico
+;; Enable vertico
 ;; (use-package vertico
 ;;   :config
 ;;   (declare-function vertico-mode "vertico.el")
 ;;   (vertico-mode))
 
-;; ;; Yasnippet
-;; (use-package yasnippet
-;;   :delight (yas-minor-mode)
-;;   :hook
-;;   ((lua-mode . yas-minor-mode)
-;;    (rust-mode . yas-minor-mode)
-;;    (python-mode . yas-minor-mode)
-;;    (java-mode . yas-minor-mode)
-;;    (js-mode . yas-minor-mode)
-;;    (ruby-mode . yas-minor-mode))
-;;   :config
-;;   (use-package yasnippet-snippets
-;;     :config
-;;     (declare-function yas-reload-all "yasnippet.el")
-;;     (yas-reload-all)))
+;; Configure corfu
+;; (use-package corfu
+;;   ;; Optionally use TAB for cycling, default is `corfu-complete'.
+;;   ;; :bind (:map corfu-map
+;;   ;;        ("TAB" . corfu-next)
+;;   ;;        ("S-TAB" . corfu-previous))
 
-;; ;; Company
+;;   ;; Enable the overlay only for certain modes.
+;;   ;; For example it is not a useful UI for completions at point in the
+;;   ;; minibuffer.
+;;   :hook ((prog-mode . corfu-mode)
+;;          (eshell-mode . corfu-mode)))
+
+;;   :config
+
+;;   ;; Optionally enable cycling for `corfu-next' and `corfu-previous'.
+;;   ;; (setq corfu-cycle t)
+;; )
+
+;; Use the `orderless' completion style.
+;; Enable `partial-completion' for files to allow path expansion.
+;; You may prefer to use `initials' instead of `partial-completion'.
+;; (use-package orderless
+;;   :init
+;;   (setq completion-styles '(orderless)
+;;         completion-category-defaults nil
+;;         completion-category-overrides '((file (styles . (partial-completion))))))
+
+;; A few more useful configurations...
+(use-package emacs
+  :init
+  ;; TAB cycle if there are only few candidates
+  (setq completion-cycle-threshold 3)
+
+  ;; Enable indentation+completion using the TAB key.
+  ;; Completion is often bound to M-TAB.
+  (setq tab-always-indent 'complete))
+
+;; Yasnippet
+(use-package yasnippet
+  :delight (yas-minor-mode)
+  :hook
+  ((lua-mode . yas-minor-mode)
+   (rust-mode . yas-minor-mode)
+   (python-mode . yas-minor-mode)
+   (java-mode . yas-minor-mode)
+   (js-mode . yas-minor-mode)
+   (ruby-mode . yas-minor-mode))
+  :config
+  (use-package yasnippet-snippets
+    :config
+    (declare-function yas-reload-all "yasnippet.el")
+    (yas-reload-all)))
+
+;; Company
 ;; (use-package company
 ;;   :delight (company-mode)
 ;;   :hook
@@ -395,26 +451,28 @@
 ;;    (python-mode . company-mode)
 ;;    (java-mode . company-mode)
 ;;    (js-mode . company-mode)
-;;    (ruby-mode . company-mode)))
+;;    (ruby-mode . company-mode)
+;;    (cider-mode . company-mode)
+;;    (cider-repl-mode . company-mode)))
 
-;; ;; Eglot
-;; (use-package eglot
-;;   :config
-;;   (defvar eglot-server-programs)
-;;   (add-to-list 'eglot-server-programs
-;;                '((js-mode typescript-mode)
-;;                  "typescript-language-server" "--stdio"))
-;;   :hook
-;;   (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-;;    (rust-mode . eglot-ensure)
-;;    ;; pip3 install 'python-language-server[all]'
-;;    (python-mode . eglot-ensure)
-;;    ;; install eclipse.jdt.ls
-;;    (java-mode . eglot-ensure)
-;;    ;; npm i -g typescrypt-language-server; npm i -g typescript
-;;    (js-mode . eglot-ensure)
-;;    ;; install ruby lang server
-;;    (ruby-mode . eglot-ensure)))
+;; Eglot
+(use-package eglot
+  :config
+  (defvar eglot-server-programs)
+  (add-to-list 'eglot-server-programs
+               '((js-mode typescript-mode)
+                 "typescript-language-server" "--stdio"))
+  :hook
+  (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   (rust-mode . eglot-ensure)
+   ;; pip3 install 'python-language-server[all]'
+   (python-mode . eglot-ensure)
+   ;; install eclipse.jdt.ls
+   (java-mode . eglot-ensure)
+   ;; npm i -g typescrypt-language-server; npm i -g typescript
+   (js-mode . eglot-ensure)
+   ;; install ruby lang server
+   (ruby-mode . eglot-ensure)))
 
 ;; markdown
 (use-package markdown-mode
@@ -443,14 +501,6 @@
   (("docker-compose\\.yml\\’" . docker-compose-mode)
    ("docker-compose\\.yaml\\’" . docker-compose-mode)))
 
-(use-package which-key
-  :init
-  (defvar which-key-idle-delay 3.0)
-  :config
-  (declare-function which-key-mode "which-key")
-  (which-key-mode)
-  :delight (which-key-mode))
-
 ;; org-mime
 ;; TODO: fix performance issue
 (use-package org-mime
@@ -472,9 +522,13 @@
 (use-package rust-mode)
 
 ;; Clojure
-(use-package clojure-mode
+(use-package clojure-mode)
+(use-package cider
   :config
-  (use-package cider))
+  (custom-set-variables
+   '(cider-preferred-build-tool lein))
+  :hook
+  ((clojure-mode . cider-mode)))
 
 ;; PO-editor
 (use-package po-mode)

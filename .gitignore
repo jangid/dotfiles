@@ -61,3 +61,6 @@ rsync_down.sh
 rsync_excludes.txt
 gnus/
 authinfo.gpg
+emacs.d/eln-cache/**/*
+aws/quickstart.pem
+emacs.d/ics-diary
