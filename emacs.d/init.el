@@ -337,7 +337,7 @@
 (setenv "RUST_SRC_PATH"
     "~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/")
 
-(setenv "LANG" "en_US")
+(setenv "LANG" "en_US.UTF-8")
 
 ;; start server for emacsclient support
 (require 'server)
