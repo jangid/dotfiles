@@ -360,6 +360,16 @@
 
 (eval-when-compile (package-initialize))
 
+;; A few more useful configurations...
+(use-package emacs
+  :init
+  ;; TAB cycle if there are only few candidates
+  (setq completion-cycle-threshold 3)
+
+  ;; Enable indentation+completion using the TAB key.
+  ;; Completion is often bound to M-TAB.
+  (setq tab-always-indent 'complete))
+
 (use-package tex
   :ensure auctex
   :config
@@ -399,14 +409,17 @@
 ;;   ;; Enable the overlay only for certain modes.
 ;;   ;; For example it is not a useful UI for completions at point in the
 ;;   ;; minibuffer.
-;;   :hook ((prog-mode . corfu-mode)
-;;          (eshell-mode . corfu-mode)))
-
+;;   :hook ((lua-mode . corfu-mode)
+;;          (rust-mode . corfu-mode)
+;;          (python-mode . corfu-mode)
+;;          (java-mode . corfu-mode)
+;;          (js-mode . corfu-mode)
+;;          (ruby-mode . corfu-mode)
+;;          (eshell-mode. corfu-mode))
 ;;   :config
-
 ;;   ;; Optionally enable cycling for `corfu-next' and `corfu-previous'.
 ;;   ;; (setq corfu-cycle t)
-;; )
+;;   )
 
 ;; Use the `orderless' completion style.
 ;; Enable `partial-completion' for files to allow path expansion.
@@ -417,31 +430,21 @@
 ;;         completion-category-defaults nil
 ;;         completion-category-overrides '((file (styles . (partial-completion))))))
 
-;; A few more useful configurations...
-(use-package emacs
-  :init
-  ;; TAB cycle if there are only few candidates
-  (setq completion-cycle-threshold 3)
-
-  ;; Enable indentation+completion using the TAB key.
-  ;; Completion is often bound to M-TAB.
-  (setq tab-always-indent 'complete))
-
 ;; Yasnippet
-(use-package yasnippet
-  :delight (yas-minor-mode)
-  :hook
-  ((lua-mode . yas-minor-mode)
-   (rust-mode . yas-minor-mode)
-   (python-mode . yas-minor-mode)
-   (java-mode . yas-minor-mode)
-   (js-mode . yas-minor-mode)
-   (ruby-mode . yas-minor-mode))
-  :config
-  (use-package yasnippet-snippets
-    :config
-    (declare-function yas-reload-all "yasnippet.el")
-    (yas-reload-all)))
+;; (use-package yasnippet
+;;   :delight (yas-minor-mode)
+;;   :hook
+;;   ((lua-mode . yas-minor-mode)
+;;    (rust-mode . yas-minor-mode)
+;;    (python-mode . yas-minor-mode)
+;;    (java-mode . yas-minor-mode)
+;;    (js-mode . yas-minor-mode)
+;;    (ruby-mode . yas-minor-mode))
+;;   :config
+;;   (use-package yasnippet-snippets
+;;     :config
+;;     (declare-function yas-reload-all "yasnippet.el")
+;;     (yas-reload-all)))
 
 ;; Company
 ;; (use-package company
@@ -589,11 +592,11 @@
 
 ;; Looks
 
-(when (window-system)
-  (custom-set-variables
-   '(modus-themes-slanted-constructs t)
-   '(modus-themes-bold-constructs nil))
-  (load-theme 'modus-operandi))
+;; (when (window-system)
+;;   (custom-set-variables
+;;    '(modus-themes-slanted-constructs t)
+;;    '(modus-themes-bold-constructs nil))
+;;   (load-theme 'modus-operandi))
 
 (cond
  ((eq system-type 'gnu/linux)
