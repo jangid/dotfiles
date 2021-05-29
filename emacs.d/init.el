@@ -1,48 +1,69 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t -*-
 
 ;;; Commentary:
-;; This is the master configuration file.  This loads several other
-;; files to give customized behaviour.  The goal of this file is to
-;; provide light weight customizations to your Emacs without changing
-;; much of the default behaviour.
+;; The goal of this file is to provide light weight customizations to
+;; your Emacs without changing much of the default behaviour.
 ;;
 ;; Another objective of this file is to keep this file updated with
-;; the latest version of Emacs.  Currently, only major version 27 is
-;; supported.
+;; the latest version of Emacs.  Currently, only major version 27 and
+;; 28 are supported.
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                                                  ;;
 ;;   The Emacs configuration file.                                  ;;
 ;;                                                                  ;;
-;;   This config file is organized as follows:                      ;;
-;;                                                                  ;;
-;;   SECTION - Globals                                              ;;
-;;   SECTION - Configuration of external packages                   ;;
-;;   SECTION - Configuration of built-in packages                   ;;
-;;   SECTION - Load my-init.el                                      ;;
-;;                                                                  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; Code:
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                                                                  ;;
-;;   SECTION 0 - Globals                                            ;;
-;;                                                                  ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (profiler-start 'cpu)
+
+;; Version check
+(let ((minver "27.1"))
+  (when (version< emacs-version minver)
+    (error "This config doesn't support version less than %s" minver)))
+
+;; Packages
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/"))
 
 (eval-and-compile
   (add-to-list 'load-path
            (expand-file-name "lisp" user-emacs-directory)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                                                                  ;;
-;;   SECTION 0 - Utility Functions                                  ;;
-;;                                                                  ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(eval-when-compile
+  (add-to-list 'load-path
+           (expand-file-name "use-package" user-emacs-directory))
+  (require 'use-package))
 
-(require 'cl-lib)
+(eval-when-compile (package-initialize))
 
+;; Environment
+(add-to-list 'exec-path "/sbin")
+(add-to-list 'exec-path "/usr/sbin")
+(add-to-list 'exec-path "/bin")
+(add-to-list 'exec-path "/usr/bin")
+(add-to-list 'exec-path "/usr/local/bin")
+(add-to-list 'exec-path "/Users/pankaj/go/bin")
+(add-to-list 'exec-path "/Library/TeX/texbin")
+(add-to-list 'exec-path "/Library/Apple/usr/bin")
+(add-to-list 'exec-path "/Users/pankaj/.cargo/bin")
+(add-to-list 'exec-path
+             "/Users/pankaj/.sdkman/candidates/ant/current/bin")
+(add-to-list 'exec-path
+             "/Users/pankaj/.sdkman/candidates/gradle/current/bin")
+(add-to-list 'exec-path
+             "/Users/pankaj/.sdkman/candidates/groovy/current/bin")
+(add-to-list 'exec-path
+             "/Users/pankaj/.sdkman/candidates/kotlin/current/bin")
+
+(setenv "PATH" (mapconcat 'identity exec-path ":"))
+(setenv "RUST_SRC_PATH"
+    "~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/")
+
+(setenv "LANG" "en_US.UTF-8")
+
+;; Utility Functions
 (defun add-to-classpath (item)
   "Add ITEM to CLASSPATH."
   
@@ -57,7 +78,7 @@
 (defun my/set-email-xface ()
   "Add Face header to email message."
   (interactive)
-    (progn
+  (progn
     (declare-function message-add-header "message.el")
     (message-add-header
      (concat "Face: "
@@ -142,62 +163,90 @@
 	   :nick "jangid"
 	   :full-name "Pankaj Jangid"))
 
+(defun my/erc-connect-libera ()
+  "Connect to irc.libera.chat."
+  (interactive)
+  (erc-tls :server "irc.libera.chat"
+	   :port 6697
+	   :nick "jangid"
+	   :full-name "Pankaj Jangid"))
+
 (defun my/set-devanagari-input-method ()
   "Set `default-input-method' for Devanagari language."
   (if (equal current-language-environment "Devanagari")
       (progn
         (setq default-input-method "devanagari-inscript"))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                                                                  ;;
-;;   SECTION 0 - Customize Variables                                ;;
-;;                                                                  ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; (setq debug-on-error t)
-
-;; Version check
-(let ((minver "27.1"))
-  (when (version< emacs-version minver)
-    (error "This config doesn't support version less than %s" minver)))
-
-;; default email address and full name
-(setq user-mail-address "pankaj@codeisgreat.org"
-      user-full-name "Pankaj Jangid")
-;; (profiler-start 'cpu)
-
-;; Keep the custom file separate from init.el. Also, do not load it on
-;; startup. Instead, if you want to make a permanent setting then look
-;; into custom.el and put that setting in this file in the next
-;; section.
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-;; (when (file-exists-p custom-file)
-;;   (load custom-file))
-
-;; User specific customizations. Put here for persistent settings.
 (custom-set-variables
+ '(debug-on-error t)
+
+ ;; packages
+ '(package-selected-packages
+   '(rust-mode
+     php-mode
+     yaml-mode
+     po-mode
+     org-mime
+     writegood-mode
+     markdown-mode
+     kotlin-mode
+     gradle-mode
+     clojure-mode
+     solidity-mode
+     cider
+     lua-mode
+     gnuplot
+     auctex
+     plantuml-mode
+     flycheck
+     flycheck-plantuml
+     flycheck-kotlin
+     exec-path-from-shell
+     eglot
+     ebdb
+     company
+     dockerfile-mode
+     docker-compose-mode
+     direnv
+     diminish
+     delight))
+
  ;; calendar, date, time
- 
- ;; '(calendar-latitude +28.6)		; New Delhi
- ;; '(calendar-longitude +77.3)
- ;; '(calendar-location-name "New Delhi, India")
- 
  ;; '(calendar-latitude +26.9)		; Jaipur
  ;; '(calendar-longitude +75.8)
  '(calendar-latitude [26 52 north])	; vector [deg min north/south]
  '(calendar-longitude [75 46 east])
  '(calendar-location-name "Jaipur, India")
- 
  '(calendar-time-zone +330)   ; minutes difference from UTC
- ;; '(display-time-day-and-date t)
- ;; '(display-time-mode t)
+ 
+ ;; Bookmarks
+ '(bookmark-fontify nil)
+ 
+ ;; TAB cycle if there are only few candidates
+ '(completion-cycle-threshold 3)
 
+ ;; Enable indentation+completion using the TAB key.
+ ;; Completion is often bound to M-TAB.
+ '(tab-always-indent 'complete)
+
+ ;; default email address and full name
+ '(user-mail-address "pankaj@codeisgreat.org")
+ '(user-full-name "Pankaj Jangid")
+ 
+ ;; Keep the custom file separate from init.el. Also, do not load it
+ ;; on startup. Instead, if you want to make a permanent setting then
+ ;; look into custom.el and put that setting in this file in the next
+ ;; section.
+ '(custom-file (expand-file-name "custom.el" user-emacs-directory) t)
+ ;; (when (file-exists-p custom-file)
+ ;;   (load custom-file))
+ 
  ;; modeline
  '(column-number-mode t)
-
+ 
  ;; Programming
  '(show-paren-mode t)
-
+ 
  ;; tabs, indent etc
  '(indent-tabs-mode nil)
  ;; '(tab-width 4)
@@ -210,11 +259,11 @@
  
  ;; version control
  '(add-log-dont-create-changelog-file t)
-
+ 
  ;; dired
  '(dired-use-ls-dired nil)
  '(ls-lisp-use-insert-directory-program nil)
-
+ 
  ;; bell
  '(ring-bell-function 'ignore)
  
@@ -222,34 +271,36 @@
  '(browse-url-browser-function 'eww-browse-url)
  ;; '(shr-color-visible-distance-min 100)
  ;; '(shr-color-visible-luminance-min 70)
-
+ 
  ;; Mime
  ;; '(mailcap-user-mime-data nil)
  
  ;; Auth Source
  '(auth-sources '("~/.authinfo.gpg"))
-
+ 
  ;; Mouse
  '(mouse-avoidance-mode nil)
  '(mouse-avoidance-banish-position
-  '((frame-or-window . frame)
-    (side . right)
-    (side-pos . 0)
-    (top-or-bottom . bottom)
-    (top-or-bottom-pos . 3)))
-
+   '((frame-or-window . frame)
+     (side . right)
+     (side-pos . 0)
+     (top-or-bottom . bottom)
+     (top-or-bottom-pos . 3)))
+ 
  ;; Erc
  '(erc-prompt-for-password nil)
  '(erc-prompt-for-nickserv-password nil)
  '(erc-use-auth-source-for-nickserv-password t)
- '(erc-autojoin-channels-alist
-   '(("freenode.net" "#erc" "#emacs" "#gnus" "#python" "#django"
-      "#postgresql" "##rust" "#rust-embedded" "##aws" "#nmigen")
-     ("oftc.net" "#oftc" "#fsci")))
-
+ ;; '(erc-autojoin-channels-alist
+ ;;   '(("freenode.net" "#erc" "#emacs" "#gnus" "#python")
+ ;;     ;;  "#postgresql" "##rust" "#rust-embedded" "##aws" "#nmigen")
+ ;;     ;; ("oftc.net" "#oftc" "#fsci")))
+ ;;     ;; ("libera.chat" "#sr.ht" "#sr.ht.watercooler" "#sr.ht.ops")))
+ ;;     ("libera.chat" "#django")))
+ 
  ;; EasyPG
  '(epg-pinentry-mode 'loopback)
-
+ 
  ;; python
  '(python-shell-interpreter "python3")
  '(python-indent-guess-indent-offset-verbose nil)
@@ -272,45 +323,7 @@
  '(desktop-path (list sessions-directory) t)
  '(desktop-base-file-name "emacs.desktop")
  '(savehist-file
-   (concat sessions-directory "history") t)
- 
- ;; packages
- '(package-selected-packages
-   '(rust-mode
-     php-mode
-     yaml-mode
-     po-mode
-     org-mime
-     writegood-mode
-     markdown-mode
-     kotlin-mode
-     gradle-mode
-     clojure-mode
-     cider
-     lua-mode
-     gnuplot
-     auctex
-     plantuml-mode
-     flycheck
-     flycheck-plantuml
-     flycheck-kotlin
-     exec-path-from-shell
-     eglot
-     ebdb
-     vertico
-     corfu
-     yasnippet
-     yasnippet-snippets
-     dockerfile-mode
-     docker-compose-mode
-     direnv
-     diminish
-     delight
-     ;; company
-     )))
-
-(custom-set-faces
- )
+   (concat sessions-directory "history") t))
 
 ;; start server for emacsclient support
 (require 'server)
@@ -319,29 +332,6 @@
  nil
  (lambda ()
    (unless (server-running-p) (server-start))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                                                                  ;;
-;;   Configuration of external packages                             ;;
-;;                                                                  ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(eval-when-compile
-  (add-to-list 'load-path
-           (expand-file-name "use-package" user-emacs-directory))
-  (require 'use-package))
-
-(eval-when-compile (package-initialize))
-
-;; A few more useful configurations...
-(use-package emacs
-  :init
-  ;; TAB cycle if there are only few candidates
-  (setq completion-cycle-threshold 3)
-
-  ;; Enable indentation+completion using the TAB key.
-  ;; Completion is often bound to M-TAB.
-  (setq tab-always-indent 'complete))
 
 (use-package tex
   :ensure auctex
@@ -366,78 +356,25 @@
 (use-package abbrev
   :delight (abbrev-mode))
 
-;; Enable vertico
-;; (use-package vertico
-;;   :config
-;;   (declare-function vertico-mode "vertico.el")
-;;   (vertico-mode))
-
-;; Configure corfu
-;; (use-package corfu
-;;   ;; Optionally use TAB for cycling, default is `corfu-complete'.
-;;   ;; :bind (:map corfu-map
-;;   ;;        ("TAB" . corfu-next)
-;;   ;;        ("S-TAB" . corfu-previous))
-
-;;   ;; Enable the overlay only for certain modes.
-;;   ;; For example it is not a useful UI for completions at point in the
-;;   ;; minibuffer.
-;;   :hook ((lua-mode . corfu-mode)
-;;          (rust-mode . corfu-mode)
-;;          (python-mode . corfu-mode)
-;;          (java-mode . corfu-mode)
-;;          (js-mode . corfu-mode)
-;;          (ruby-mode . corfu-mode)
-;;          (eshell-mode. corfu-mode))
-;;   :config
-;;   ;; Optionally enable cycling for `corfu-next' and `corfu-previous'.
-;;   ;; (setq corfu-cycle t)
-;;   )
-
-;; Use the `orderless' completion style.
-;; Enable `partial-completion' for files to allow path expansion.
-;; You may prefer to use `initials' instead of `partial-completion'.
-;; (use-package orderless
-;;   :init
-;;   (setq completion-styles '(orderless)
-;;         completion-category-defaults nil
-;;         completion-category-overrides '((file (styles . (partial-completion))))))
-
-;; Yasnippet
-;; (use-package yasnippet
-;;   :delight (yas-minor-mode)
-;;   :hook
-;;   ((lua-mode . yas-minor-mode)
-;;    (rust-mode . yas-minor-mode)
-;;    (python-mode . yas-minor-mode)
-;;    (java-mode . yas-minor-mode)
-;;    (js-mode . yas-minor-mode)
-;;    (ruby-mode . yas-minor-mode))
-;;   :config
-;;   (use-package yasnippet-snippets
-;;     :config
-;;     (declare-function yas-reload-all "yasnippet.el")
-;;     (yas-reload-all)))
-
 ;; Company
-;; (use-package company
-;;   :delight (company-mode)
-;;   :hook
-;;   ((rust-mode . company-mode)
-;;    (python-mode . company-mode)
-;;    (java-mode . company-mode)
-;;    (js-mode . company-mode)
-;;    (ruby-mode . company-mode)
-;;    (cider-mode . company-mode)
-;;    (cider-repl-mode . company-mode)))
+(use-package company
+  :delight (company-mode)
+  :hook
+  ((rust-mode . company-mode)
+   (python-mode . company-mode)
+   (java-mode . company-mode)
+   (js-mode . company-mode)
+   (ruby-mode . company-mode)
+   (cider-mode . company-mode)
+   (cider-repl-mode . company-mode)))
 
 ;; Eglot
 (use-package eglot
   :config
-  (defvar eglot-server-programs)
-  (add-to-list 'eglot-server-programs
-               '((js-mode typescript-mode)
-                 "typescript-language-server" "--stdio"))
+  ;; (defvar eglot-server-programs)
+  ;; (add-to-list 'eglot-server-programs
+  ;;              '((js-mode typescript-mode)
+  ;;                "typescript-language-server" "--stdio"))
   :hook
   (;; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
    (rust-mode . eglot-ensure)
@@ -479,10 +416,10 @@
 
 ;; org-mime
 ;; TODO: fix performance issue
-(use-package org-mime
-  :init
-  (custom-set-variables
-   '(org-mime-library 'mml)))
+;; (use-package org-mime
+;;   :init
+;;   (custom-set-variables
+;;    '(org-mime-library 'mml)))
 
 ;; gnuplot
 (use-package gnuplot
@@ -538,38 +475,26 @@
    (require 'ebdb-message)))
 
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                                                                  ;;
-;;   Configuration of built-in packages                             ;;
-;;                                                                  ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; Keys
-(defvar mac-command-modifier)
-(defvar mac-right-command-modifier)
-(defvar mac-option-modifier)
-(defvar mac-right-option-modifier)
-
 (cond
  ((eq system-type 'darwin)
   ;; apple keyboard - use command as meta for better ergonimics
-  (setq mac-command-modifier 'meta)
-  (setq mac-right-command-modifier 'none)
-  (setq mac-option-modifier 'super)
-  (setq mac-right-option-modifier 'none)
+  (custom-set-variables
+   '(mac-command-modifier 'meta)
+   '(mac-right-command-modifier 'none)
+   '(mac-option-modifier 'super)
+   '(mac-right-option-modifier 'none))
 
   (setq visible-bell nil))
  (t
   (setq visible-bell nil)))
 
-;; Looks
-
-;; (when (window-system)
-;;   (custom-set-variables
-;;    '(modus-themes-slanted-constructs t)
-;;    '(modus-themes-bold-constructs nil))
-;;   (load-theme 'modus-operandi))
+;; Theme
+(when (window-system)
+  (custom-set-variables
+   '(modus-themes-slanted-constructs t)
+   '(modus-themes-bold-constructs nil))
+  (load-theme 'modus-operandi))
 
 (cond
  ((eq system-type 'gnu/linux)
@@ -593,21 +518,6 @@
 ;; tabs, indent etc.
 ;; (defvaralias 'c-basic-offset 'tab-width)
 
-;; Emacs Development Environment
-;; (eval-and-compile (require 'ede))
-;; (global-ede-mode +1)
-;; (ede-enable-generic-projects)
-
-;; Semantic
-;; TODO - Performance issue
-;; (semantic-mode +1)
-
-;; SRecode
-;; TODO - Performance issue
-;; (eval-and-compile (require 'srecode))
-;; (global-srecode-minor-mode +1)
-;; (srecode-minor-mode +1)
-
 ;; Flymake
 (add-hook 'flymake-mode-hook
       (lambda ()
@@ -619,7 +529,7 @@
 (add-hook 'prog-mode-hook 'eldoc-mode)
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 (add-hook 'prog-mode-hook 'electric-pair-local-mode)
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+;; (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;; Elisp
 (add-hook 'emacs-lisp-mode-hook 'flymake-mode)
@@ -713,6 +623,7 @@
 (global-set-key (kbd "C-c e f") 'my/erc-connect-freenode)
 (global-set-key (kbd "C-c e g") 'my/erc-connect-gitter)
 (global-set-key (kbd "C-c e o") 'my/erc-connect-oftc)
+(global-set-key (kbd "C-c e l") 'my/erc-connect-libera)
 
 ;; Key bindings for frame
 (when (eq system-type 'darwin)
@@ -742,17 +653,11 @@
    '(mac-option-modifier 'super)
    '(mac-right-option-modifier 'none))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                                                                  ;;
-;;   Restore desktop session                                        ;;
-;;                                                                  ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; (profiler-start 'cpu)
 ;; (profiler-stop)
 ;; Sessions - This should always be done after custom-set-variables
 ;; i.e. after loading my-init-file.
-(desktop-save-mode +1)
+;; (desktop-save-mode +1)
 (savehist-mode +1)
 
 (provide 'init)
