@@ -657,7 +657,7 @@
 ;; (profiler-stop)
 ;; Sessions - This should always be done after custom-set-variables
 ;; i.e. after loading my-init-file.
-;; (desktop-save-mode +1)
+(desktop-save-mode +1)
 (savehist-mode +1)
 
 (provide 'init)
