@@ -38,6 +38,24 @@
 
 (eval-when-compile (package-initialize))
 
+;; EBDB
+(eval-when-compile
+  (add-to-list 'load-path
+               (expand-file-name "ebdb_src" user-emacs-directory))
+  (require 'ebdb)
+  (require 'ebdb-mua))
+(require 'ebdb-gnus)
+(require 'ebdb-message)
+(custom-set-variables
+ '(ebdb-mua-pop-up nil)
+ '(ebdb-mua-auto-update-p 'existing)
+ '(ebdb-complete-mail 'capf)
+ '(ebdb-complete-mail-allow-cycling 5)
+ '(ebdb-completion-display-record nil)
+ '(ebdb-use-diary t))
+;; (setq compose-mail-user-agent-warnings nil) ; 'ebdb should handle it
+
+
 ;; Environment
 (add-to-list 'exec-path "/sbin")
 (add-to-list 'exec-path "/usr/sbin")
@@ -203,7 +221,6 @@
      flycheck-kotlin
      exec-path-from-shell
      eglot
-     ebdb
      company
      dockerfile-mode
      docker-compose-mode
@@ -292,11 +309,11 @@
  '(erc-prompt-for-nickserv-password nil)
  '(erc-use-auth-source-for-nickserv-password t)
  ;; '(erc-autojoin-channels-alist
- ;;   '(("freenode.net" "#erc" "#emacs" "#gnus" "#python")
+ ;;   '(("freenode.net" #gnus")
  ;;     ;;  "#postgresql" "##rust" "#rust-embedded" "##aws" "#nmigen")
  ;;     ;; ("oftc.net" "#oftc" "#fsci")))
  ;;     ;; ("libera.chat" "#sr.ht" "#sr.ht.watercooler" "#sr.ht.ops")))
- ;;     ("libera.chat" "#django")))
+ ;;     ("libera.chat" "#django" "#erc" #emacs" "#kicad" "#python")))
  
  ;; EasyPG
  '(epg-pinentry-mode 'loopback)
@@ -460,20 +477,6 @@
   :mode
   (("\\.puml\\'" . plantuml-mode)
    ("\\.plantuml\\'" . plantuml-mode)))
-
-;; EBDB
-(setq compose-mail-user-agent-warnings nil) ; 'ebdb should handle it
-(run-with-timer
- 5
- nil
- (lambda()
-   (eval-when-compile (require 'ebdb))
-   (eval-when-compile (require 'ebdb-mua))
-   (setq ebdb-completion-display-record nil)
-   (setq ebdb-mua-pop-up nil)
-   (require 'ebdb-gnus)
-   (require 'ebdb-message)))
-
 
 ;; Keys
 (cond
