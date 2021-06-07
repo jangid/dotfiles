@@ -49,7 +49,8 @@
 (custom-set-variables
  '(ebdb-mua-pop-up nil)
  '(ebdb-mua-auto-update-p 'existing)
- '(ebdb-complete-mail 'capf)
+ ;; '(ebdb-complete-mail 'capf)
+ '(ebdb-complete-mail t)
  '(ebdb-complete-mail-allow-cycling 5)
  '(ebdb-completion-display-record nil)
  '(ebdb-use-diary t))
