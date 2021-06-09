@@ -118,9 +118,9 @@
     
     (cond
      ; ((eq width 80) (set-frame-width nil 120))
-     ((eq width 80) (set-frame-width nil 160))
+     ((eq width 84) (set-frame-width nil 168))
      ; ((eq width 120) (set-frame-width nil 160))
-     (t (set-frame-width nil 80))) ; default
+     (t (set-frame-width nil 84))) ; default
     
     (message "Frame size: %sx%s" (frame-width) (frame-height))))
 
@@ -227,7 +227,8 @@
      docker-compose-mode
      direnv
      diminish
-     delight))
+     delight
+     magit))
 
  ;; calendar, date, time
  ;; '(calendar-latitude +26.9)		; Jaipur
@@ -330,7 +331,6 @@
 
  '(gnus-init-file "~/.gnus")
  '(gnus-startup-file "~/.newsrc")
-
  '(send-mail-function 'smtpmail-send-it)
 
  ;; Sessions
@@ -341,7 +341,8 @@
  '(desktop-path (list sessions-directory) t)
  '(desktop-base-file-name "emacs.desktop")
  '(savehist-file
-   (concat sessions-directory "history") t))
+   (concat sessions-directory "history") t)
+ '(dictionary-server "dict.org"))
 
 ;; start server for emacsclient support
 (require 'server)
@@ -533,7 +534,7 @@
 (add-hook 'prog-mode-hook 'eldoc-mode)
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 (add-hook 'prog-mode-hook 'electric-pair-local-mode)
-;; (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;; Elisp
 (add-hook 'emacs-lisp-mode-hook 'flymake-mode)
