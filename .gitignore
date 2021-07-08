@@ -64,3 +64,4 @@ authinfo.gpg
 emacs.d/eln-cache/**/*
 aws/quickstart.pem
 emacs.d/ics-diary
+emacs.d/history

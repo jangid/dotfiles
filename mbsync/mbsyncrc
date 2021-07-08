@@ -1,0 +1,118 @@
+SyncState *
+#Sync New ReNew Flags
+Create Both
+Expunge Both
+
+IMAPAccount gmail
+Host imap.gmail.com
+Port 993
+User pankaj.jangid@gmail.com
+PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.passwds/gmail.gpg"
+SSLType IMAPS
+SSLVersions TLSv1.2
+CertificateFile /usr/local/etc/openssl/cert.pem
+AuthMechs LOGIN
+#PipelineDepth 1
+
+MaildirStore gmail-local
+Path ~/Maildirs/gmail/
+Inbox ~/Maildirs/gmail/inbox
+
+IMAPStore gmail-remote
+Account gmail
+UseNamespace yes
+
+Channel gmail-inbox
+Far :gmail-remote:"INBOX"
+Near :gmail-local:inbox
+MaxMessages 1000
+
+# Channel gmail-archive
+# Far :gmail-remote:"[Gmail]/All Mail"
+# Near :gmail-local:archive
+# MaxMessages 1000
+
+Channel gmail-drafts
+Far :gmail-remote:"[Gmail]/Drafts"
+Near :gmail-local:drafts
+MaxMessages 1000
+
+Channel gmail-sent
+Far :gmail-remote:"[Gmail]/Sent Mail"
+Near :gmail-local:sent
+MaxMessages 1000
+
+Channel gmail-trash
+Far :gmail-remote:"[Gmail]/Bin"
+Near :gmail-local:trash
+MaxMessages 1000
+
+Channel gmail-junk
+Far :gmail-remote:"[Gmail]/Spam"
+Near :gmail-local:junk
+MaxMessages 1000
+
+Group gmail
+Channel gmail-inbox
+# Channel gmail-archive
+Channel gmail-drafts
+Channel gmail-sent
+Channel gmail-trash
+Channel gmail-junk
+
+IMAPAccount optimizory
+Host imap.gmail.com
+Port 993
+User pankaj@optimizory.com
+PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.passwds/optimizory.gpg"
+SSLType IMAPS
+SSLVersions TLSv1.2
+CertificateFile /usr/local/etc/openssl/cert.pem
+AuthMechs LOGIN
+#PipelineDepth 50
+
+MaildirStore optimizory-local
+Path ~/Maildirs/optimizory/
+Inbox ~/Maildirs/optimizory/inbox
+
+IMAPStore optimizory-remote
+Account optimizory
+UseNamespace yes
+
+Channel optimizory-inbox
+Far :optimizory-remote:"INBOX"
+Near :optimizory-local:inbox
+MaxMessages 1000
+
+# Channel optimizory-archive
+# Far :optimizory-remote:"[Gmail]/All Mail"
+# Near :optimizory-local:archive
+# MaxMessages 1000
+
+Channel optimizory-drafts
+Far :optimizory-remote:"[Gmail]/Drafts"
+Near :optimizory-local:drafts
+MaxMessages 1000
+
+Channel optimizory-sent
+Far :optimizory-remote:"[Gmail]/Sent Mail"
+Near :optimizory-local:sent
+MaxMessages 1000
+
+Channel optimizory-trash
+Far :optimizory-remote:"[Gmail]/Bin"
+Near :optimizory-local:trash
+MaxMessages 1000
+
+Channel optimizory-junk
+Far :optimizory-remote:"[Gmail]/Spam"
+Near :optimizory-local:junk
+MaxMessages 1000
+
+Group optimizory
+Channel optimizory-inbox
+# Channel optimizory-archive
+Channel optimizory-drafts
+Channel optimizory-sent
+Channel optimizory-trash
+Channel optimizory-junk

@@ -1,12 +1,6 @@
 [submodule "use-package"]
 	path = emacs.d/use-package
 	url = https://github.com/jwiegley/use-package.git
-[submodule "emacs.d/use-package"]
-	path = emacs.d/use-package
-	url = git@github.com:jwiegley/use-package.git
 [submodule "emacs.d/eclipse.jdt.ls"]
 	path = emacs.d/eclipse.jdt.ls
 	url = git@github.com:eclipse/eclipse.jdt.ls.git
-[submodule "emacs.d/ebdb_src"]
-	path = emacs.d/ebdb_src
-	url = https://github.com/girzel/ebdb

@@ -31,31 +31,7 @@
   (add-to-list 'load-path
            (expand-file-name "lisp" user-emacs-directory)))
 
-(eval-when-compile
-  (add-to-list 'load-path
-           (expand-file-name "use-package" user-emacs-directory))
-  (require 'use-package))
-
 (eval-when-compile (package-initialize))
-
-;; EBDB
-(eval-when-compile
-  (add-to-list 'load-path
-               (expand-file-name "ebdb_src" user-emacs-directory))
-  (require 'ebdb)
-  (require 'ebdb-mua))
-(require 'ebdb-gnus)
-(require 'ebdb-message)
-(custom-set-variables
- '(ebdb-mua-pop-up nil)
- '(ebdb-mua-auto-update-p 'existing)
- ;; '(ebdb-complete-mail 'capf)
- '(ebdb-complete-mail t)
- '(ebdb-complete-mail-allow-cycling 5)
- '(ebdb-completion-display-record nil)
- '(ebdb-use-diary t))
-;; (setq compose-mail-user-agent-warnings nil) ; 'ebdb should handle it
-
 
 ;; Environment
 (add-to-list 'exec-path "/sbin")
@@ -67,6 +43,7 @@
 (add-to-list 'exec-path "/Library/TeX/texbin")
 (add-to-list 'exec-path "/Library/Apple/usr/bin")
 (add-to-list 'exec-path "/Users/pankaj/.cargo/bin")
+(add-to-list 'exec-path "/Users/pankaj/.ghcup/bin")
 (add-to-list 'exec-path
              "/Users/pankaj/.sdkman/candidates/ant/current/bin")
 (add-to-list 'exec-path
@@ -117,10 +94,10 @@
   (let ((width (frame-width)))
     
     (cond
-     ; ((eq width 80) (set-frame-width nil 120))
-     ((eq width 84) (set-frame-width nil 168))
-     ; ((eq width 120) (set-frame-width nil 160))
-     (t (set-frame-width nil 84))) ; default
+     ((eq width 80) (set-frame-width nil 84))
+     ((eq width 84) (set-frame-width nil 124))
+     ((eq width 124) (set-frame-width nil 168))
+     (t (set-frame-width nil 80))) ; default
     
     (message "Frame size: %sx%s" (frame-width) (frame-height))))
 
@@ -131,29 +108,8 @@
   (let ((height (frame-height)))
     
     (cond
-     ; ((eq height 36) (set-frame-height nil 42))
-     ((eq height 36) (set-frame-height nil 48))
-     ; ((eq height 42) (set-frame-height nil 48))
-     (t (set-frame-height nil 36))) ; default
-    
-    (message "Frame size: %sx%s" (frame-width) (frame-height))))
-
-(defun my/cycle-frame-size ()
-  "Cycle frame-size."
-  (interactive)
-  
-  (let ((width (frame-width))
-	    (height (frame-height)))
-    
-    (cond ((and (eq width 80) (eq height 38))
-	       (set-frame-size nil 120 38))
-	      ((and (eq width 120) (eq height 38))
-           (set-frame-size nil 120 43))
-	      ((and (eq width 120) (eq height 43))
-           (set-frame-size nil 160 43))
-          ((and (eq width 160) (eq height 43))
-           (set-frame-size nil 160 48))
-	      (t (set-frame-size nil 80 38))) ; default
+     ((eq height 44) (set-frame-height nil 48))
+     (t (set-frame-height nil 44))) ; default
     
     (message "Frame size: %sx%s" (frame-width) (frame-height))))
 
@@ -196,12 +152,20 @@
       (progn
         (setq default-input-method "devanagari-inscript"))))
 
+(defun my/turn-on-orgtbl ()
+  "Turn on orgtbl minor mode."
+  ;;(eval-and-compile (require 'org-table))
+  (declare-function turn-on-orgtbl "org-table.el")
+  (turn-on-orgtbl))
+
 (custom-set-variables
  '(debug-on-error t)
 
  ;; packages
  '(package-selected-packages
    '(rust-mode
+     ebdb
+     use-package
      php-mode
      yaml-mode
      po-mode
@@ -212,6 +176,7 @@
      gradle-mode
      clojure-mode
      solidity-mode
+     haskell-mode
      cider
      lua-mode
      gnuplot
@@ -247,6 +212,7 @@
  ;; Enable indentation+completion using the TAB key.
  ;; Completion is often bound to M-TAB.
  '(tab-always-indent 'complete)
+ '(tab-first-completion 'eol)
 
  ;; default email address and full name
  '(user-mail-address "pankaj@codeisgreat.org")
@@ -271,9 +237,9 @@
  ;; '(tab-width 4)
  
  ;; Frame
- '(scroll-bar-mode nil)
+ ;; '(scroll-bar-mode nil)
  ;; '(vertical-scroll-bar nil t)
- '(tool-bar-mode nil)
+ ;; '(tool-bar-mode nil)
  '(frame-resize-pixelwise nil)
  
  ;; version control
@@ -311,11 +277,10 @@
  '(erc-prompt-for-nickserv-password nil)
  '(erc-use-auth-source-for-nickserv-password t)
  ;; '(erc-autojoin-channels-alist
- ;;   '(("freenode.net" #gnus")
- ;;     ;;  "#postgresql" "##rust" "#rust-embedded" "##aws" "#nmigen")
- ;;     ;; ("oftc.net" "#oftc" "#fsci")))
- ;;     ;; ("libera.chat" "#sr.ht" "#sr.ht.watercooler" "#sr.ht.ops")))
- ;;     ("libera.chat" "#django" "#erc" #emacs" "#kicad" "#python")))
+ ;;   '(("freenode.net")
+ ;;     ("oftc.net" "#oftc" "#fsci")
+ ;; ("libera.chat" "#django" "#erc" "#emacs" "emacs-beginners" "#org-mode"
+ ;;  "#gnus" "#kicad" "#python" "#sr.ht" "#sr.ht.watercooler" "#sr.ht.ops")))
  
  ;; EasyPG
  '(epg-pinentry-mode 'loopback)
@@ -329,9 +294,17 @@
  '(mml-secure-openpgp-signers '("7C956E6FF8587689"))
  '(mml-secure-openpgp-sign-with-sender t)
 
+ ;; Gnus
  '(gnus-init-file "~/.gnus")
  '(gnus-startup-file "~/.newsrc")
  '(send-mail-function 'smtpmail-send-it)
+ '(gnus-cloud-method "nnimap:gml")
+ '(gnus-cloud-synched-files
+   '("~/.authinfo.gpg"
+     "~/.gnus.el"
+     (:directory "~/News" :match ".*.SCORE\\'")))
+ '(gnus-cloud-storage-method 'epg)
+ '(gnus-cloud-interactive t)
 
  ;; Sessions
  '(sessions-directory
@@ -342,15 +315,34 @@
  '(desktop-base-file-name "emacs.desktop")
  '(savehist-file
    (concat sessions-directory "history") t)
+
+ ;; Cursor
+ '(visible-cursor nil)                  ; Works on text terminal only
+ '(x-stretch-cursor t)                  ; On GUIs, cursor width equals
+                                        ; that of characters
+ 
+ ;; Bell
+ '(visible-bell nil)
+
+ ;; dictionary
  '(dictionary-server "dict.org"))
 
-;; start server for emacsclient support
-(require 'server)
-(run-with-timer
- 5
- nil
- (lambda ()
-   (unless (server-running-p) (server-start))))
+;; EBDB
+(eval-when-compile
+  ;; (add-to-list 'load-path
+  ;;              (expand-file-name "ebdb_src" user-emacs-directory))
+  (require 'ebdb)
+  (require 'ebdb-mua))
+(require 'ebdb-gnus)
+(require 'ebdb-message)
+(custom-set-variables
+ '(ebdb-mua-pop-up nil)
+ '(ebdb-mua-auto-update-p nil)
+ '(ebdb-complete-mail t)
+ '(ebdb-complete-mail-allow-cycling 5)
+ '(ebdb-completion-display-record nil)
+ '(ebdb-use-diary t)
+ '(compose-mail-user-agent-warnings nil))
 
 (use-package tex
   :ensure auctex
@@ -384,6 +376,7 @@
    (java-mode . company-mode)
    (js-mode . company-mode)
    (ruby-mode . company-mode)
+   (haskell-mode . company-mode)
    (cider-mode . company-mode)
    (cider-repl-mode . company-mode)))
 
@@ -404,7 +397,9 @@
    ;; npm i -g typescrypt-language-server; npm i -g typescript
    (js-mode . eglot-ensure)
    ;; install ruby lang server
-   (ruby-mode . eglot-ensure)))
+   (ruby-mode . eglot-ensure)
+   ;; install ghcup and haskell tools or may be stack
+   (haskell-mode . eglot-ensure)))
 
 ;; markdown
 (use-package markdown-mode
@@ -480,20 +475,6 @@
   (("\\.puml\\'" . plantuml-mode)
    ("\\.plantuml\\'" . plantuml-mode)))
 
-;; Keys
-(cond
- ((eq system-type 'darwin)
-  ;; apple keyboard - use command as meta for better ergonimics
-  (custom-set-variables
-   '(mac-command-modifier 'meta)
-   '(mac-right-command-modifier 'none)
-   '(mac-option-modifier 'super)
-   '(mac-right-option-modifier 'none))
-
-  (setq visible-bell nil))
- (t
-  (setq visible-bell nil)))
-
 ;; Theme
 (when (window-system)
   (custom-set-variables
@@ -510,18 +491,8 @@
   ;; (set-fontset-font t 'devanagari "ITF Devanagari")
   (set-fontset-font t 'devanagari "Kohinoor Devanagari")))
 
-(add-hook 'set-language-environment-hook 'my/set-devanagari-input-method)
-
-;; Cursor
-(setq visible-cursor nil)       ; Works on text terminal only
-(setq x-stretch-cursor t)       ; On GUIs, cursor width equals
-                    ; that of characters
-
-;; global key bindings
-(global-set-key [?\C-x ?\C-b] #'ibuffer-other-window)
-
-;; tabs, indent etc.
-;; (defvaralias 'c-basic-offset 'tab-width)
+(add-hook 'set-language-environment-hook
+          'my/set-devanagari-input-method)
 
 ;; Flymake
 (add-hook 'flymake-mode-hook
@@ -530,6 +501,61 @@
         (local-set-key (kbd "M-p") 'flymake-goto-prev-error)))
 
 
+;; Diary
+(add-hook 'diary-list-entries-hook 'diary-sort-entries t)
+(add-hook 'diary-list-entries-hook 'diary-include-other-diary-files)
+(add-hook 'diary-mark-entries-hook 'diary-mark-included-diary-files)
+
+;; Emails
+(add-hook 'message-mode-hook 'electric-quote-local-mode)
+(add-hook 'message-mode-hook 'flyspell-mode)
+;; (add-hook 'message-mode-hook 'my/turn-on-orgtbl)
+
+;; ERC
+;; Setup local key bindings i.e. while ERC is active
+(add-hook 'erc-mode-hook
+      (lambda ()
+        (local-set-key (kbd "RET") nil)
+        (local-set-key (kbd "C-c RET") 'erc-send-current-line)
+        (local-set-key (kbd "C-c C-RET") 'erc-send-current-line)))
+;; Key bindings to connect to IRC network
+(global-set-key (kbd "C-c e f") 'my/erc-connect-freenode)
+(global-set-key (kbd "C-c e g") 'my/erc-connect-gitter)
+(global-set-key (kbd "C-c e o") 'my/erc-connect-oftc)
+(global-set-key (kbd "C-c e l") 'my/erc-connect-libera)
+
+;; Org
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+
+(custom-set-variables
+ '(org-directory "~/work/personal/docs/org")
+ '(org-agenda-files
+   (concat org-directory "/agenda-files"))
+ '(org-agenda-include-diary t)
+ '(org-default-notes-file
+   (concat org-directory "/notes.org"))
+ '(org-capture-templates nil)
+ '(org-refile-targets
+   '((org-agenda-files :maxlevel . 3)))
+ '(org-todo-keywords
+   '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)"
+               "|"
+               "DONE(d)" "CANCELLED(c)")))
+ '(org-babel-load-languages
+   '((emacs-lisp . t)
+     (R . t)
+     (python . t)
+     (C . t)
+     (java . t)
+     (js . t)
+     (css . t)
+     (sql . t)
+     (plantuml . t))))
+
+;; Programming environment
+
 (add-hook 'prog-mode-hook 'abbrev-mode)
 (add-hook 'prog-mode-hook 'eldoc-mode)
 (add-hook 'prog-mode-hook 'hs-minor-mode)
@@ -537,7 +563,7 @@
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;; Elisp
-(add-hook 'emacs-lisp-mode-hook 'flymake-mode)
+;; (add-hook 'emacs-lisp-mode-hook 'flymake-mode)
 
 ;; Java
 (when (eq system-type 'darwin)
@@ -570,65 +596,8 @@
 (defvar js-indent-level)
 (setq js-indent-level 2)
 
-;; Diary
-(add-hook 'diary-list-entries-hook 'diary-sort-entries t)
-(add-hook 'diary-list-entries-hook 'diary-include-other-diary-files)
-(add-hook 'diary-mark-entries-hook 'diary-mark-included-diary-files)
-
-;; Emails
-(defun my/turn-on-orgtbl ()
-  "Turn on orgtbl minor mode."
-  ;;(eval-and-compile (require 'org-table))
-  (declare-function turn-on-orgtbl "org-table.el")
-  (turn-on-orgtbl))
-
-(add-hook 'message-mode-hook 'electric-quote-local-mode)
-(add-hook 'message-mode-hook 'flyspell-mode)
-(add-hook 'message-mode-hook 'my/turn-on-orgtbl)
-
-;; ERC
-;; Setup local key bindings i.e. while ERC is active
-(add-hook 'erc-mode-hook
-      (lambda ()
-        (local-set-key (kbd "RET") nil)
-        (local-set-key (kbd "C-c RET") 'erc-send-current-line)
-        (local-set-key (kbd "C-c C-RET") 'erc-send-current-line)))
-
-;; Org
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c c") 'org-capture)
-
-(custom-set-variables
- '(org-directory "~/work/personal/docs/org")
- '(org-agenda-files
-   (concat org-directory "/agenda-files"))
- '(org-agenda-include-diary t)
- '(org-default-notes-file
-   (concat org-directory "/notes.org"))
- '(org-capture-templates nil)
- '(org-refile-targets
-   '((org-agenda-files :maxlevel . 3)))
- '(org-todo-keywords
-   '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)"
-               "|"
-               "DONE(d)" "CANCELLED(c)")))
- '(org-babel-load-languages
-   '((emacs-lisp . t)
-     (R . t)
-     (python . t)
-     (C . t)
-     (java . t)
-     (js . t)
-     (css . t)
-     (sql . t)
-     (plantuml . t))))
-
-;; Key bindings to connect to IRC network
-(global-set-key (kbd "C-c e f") 'my/erc-connect-freenode)
-(global-set-key (kbd "C-c e g") 'my/erc-connect-gitter)
-(global-set-key (kbd "C-c e o") 'my/erc-connect-oftc)
-(global-set-key (kbd "C-c e l") 'my/erc-connect-libera)
+;; key bindings for ibuffer
+(global-set-key [?\C-x ?\C-b] #'ibuffer-other-window)
 
 ;; Key bindings for frame
 (when (eq system-type 'darwin)
@@ -637,7 +606,7 @@
 (global-set-key (kbd "M-<f9>") 'my/cycle-frame-width)
 (global-set-key (kbd "S-M-<f9>") 'my/cycle-frame-height)
 
-;; Keyboard
+;; Apple Keyboard - use command as meta for better ergonimics
 (cond
  ((string= (system-name) "mb1.local")
   (custom-set-variables
@@ -647,10 +616,10 @@
    '(mac-right-option-modifier 'none)))
  ((string= (system-name) "mb2.local")
   (custom-set-variables
-   '(mac-command-modifier 'none)
+   '(mac-command-modifier 'meta)
    '(mac-right-command-modifier 'meta)
-   '(mac-option-modifier 'none)
-   '(mac-right-option-modifier 'super)))
+   '(mac-option-modifier 'super)))
+   ;; '(mac-right-option-modifier 'super)))
  (t
   (custom-set-variables
    '(mac-command-modifier 'meta)
@@ -664,6 +633,14 @@
 ;; i.e. after loading my-init-file.
 (desktop-save-mode +1)
 (savehist-mode +1)
+
+;; start server for emacsclient support
+(require 'server)
+(run-with-timer
+ 5
+ nil
+ (lambda ()
+   (unless (server-running-p) (server-start))))
 
 (provide 'init)
 ;;; init.el ends here
